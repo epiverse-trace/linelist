@@ -91,17 +91,17 @@
 </h3>
 <p>Our stable versions are released on CRAN, and can be installed using:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"linelist"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"linelist"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="development-version">Development version<a class="anchor" aria-label="anchor" href="#development-version"></a>
 </h3>
 <p>The development version of <em>linelist</em> can be installed from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"epiverse-trace/linelist"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"epiverse-trace/linelist"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -116,165 +116,166 @@
 </ol>
 <p>The short example below illustrates these different features. See the <a href="Documentation">Documentation</a> section for more in-depth examples and details about <code>linelist</code> objects.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># load packages and a dataset for the example</span>
-<span class="co"># -------------------------------------------</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trinker/pacman" class="external-link">pacman</a></span><span class="op">)</span>
-<span class="fu">p_load</span><span class="op">(</span><span class="va">dplyr</span><span class="op">)</span>
-<span class="fu">p_load</span><span class="op">(</span><span class="va">magrittr</span><span class="op">)</span>
-<span class="fu">p_load</span><span class="op">(</span><span class="va">outbreaks</span><span class="op">)</span>
-<span class="fu">p_load</span><span class="op">(</span><span class="va">incidence2</span><span class="op">)</span>
-<span class="fu">p_load</span><span class="op">(</span><span class="va">linelist</span><span class="op">)</span>
-
-<span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu">outbreaks</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/outbreaks/man/mers_korea_2015.html" class="external-link">mers_korea_2015</a></span><span class="op">$</span><span class="va">linelist</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span>
-<span class="co">#&gt;     id age age_class sex        place_infect reporting_ctry</span>
-<span class="co">#&gt; 1 SK_1  68     60-69   M         Middle East    South Korea</span>
-<span class="co">#&gt; 2 SK_2  63     60-69   F Outside Middle East    South Korea</span>
-<span class="co">#&gt; 3 SK_3  76     70-79   M Outside Middle East    South Korea</span>
-<span class="co">#&gt; 4 SK_4  46     40-49   F Outside Middle East    South Korea</span>
-<span class="co">#&gt; 5 SK_5  50     50-59   M Outside Middle East    South Korea</span>
-<span class="co">#&gt; 6 SK_6  71     70-79   M Outside Middle East    South Korea</span>
-<span class="co">#&gt;                                              loc_hosp   dt_onset  dt_report</span>
-<span class="co">#&gt; 1 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-11 2015-05-19</span>
-<span class="co">#&gt; 2 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-18 2015-05-20</span>
-<span class="co">#&gt; 3 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-20 2015-05-20</span>
-<span class="co">#&gt; 4 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-25 2015-05-26</span>
-<span class="co">#&gt; 5                           365 Yeollin Clinic, Seoul 2015-05-25 2015-05-27</span>
-<span class="co">#&gt; 6 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-24 2015-05-28</span>
-<span class="co">#&gt;   week_report dt_start_exp dt_end_exp    dt_diag outcome   dt_death</span>
-<span class="co">#&gt; 1     2015_21   2015-04-18 2015-05-04 2015-05-20   Alive       &lt;NA&gt;</span>
-<span class="co">#&gt; 2     2015_21   2015-05-15 2015-05-20 2015-05-20   Alive       &lt;NA&gt;</span>
-<span class="co">#&gt; 3     2015_21   2015-05-16 2015-05-16 2015-05-21    Dead 2015-06-04</span>
-<span class="co">#&gt; 4     2015_22   2015-05-16 2015-05-20 2015-05-26   Alive       &lt;NA&gt;</span>
-<span class="co">#&gt; 5     2015_22   2015-05-17 2015-05-17 2015-05-26   Alive       &lt;NA&gt;</span>
-<span class="co">#&gt; 6     2015_22   2015-05-15 2015-05-17 2015-05-28    Dead 2015-06-01</span>
-
-<span class="co"># check known tagged variables</span>
-<span class="co"># ----------------------------</span>
-<span class="fu"><a href="reference/tags_names.html">tags_names</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "id"             "date_onset"     "date_reporting" "date_admission"</span>
-<span class="co">#&gt;  [5] "date_discharge" "date_outcome"   "date_death"     "gender"        </span>
-<span class="co">#&gt;  [9] "age"            "location"       "occupation"     "hcw"           </span>
-<span class="co">#&gt; [13] "outcome"</span>
-
-<span class="co"># build a linelist</span>
-<span class="co"># ----------------</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="va">dataset</span> <span class="op">%&gt;%</span>
-  <span class="fu">tibble</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/make_linelist.html">make_linelist</a></span><span class="op">(</span>date_onset <span class="op">=</span> <span class="st">"dt_onset"</span>, <span class="co"># date of onset</span>
-                date_reporting <span class="op">=</span> <span class="st">"dt_report"</span>, <span class="co"># date of reporting</span>
-                occupation <span class="op">=</span> <span class="st">"age"</span> <span class="co"># mistake</span>
-                <span class="op">)</span>
-<span class="va">x</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; // linelist object</span>
-<span class="co">#&gt; # A tibble: 162 × 15</span>
-<span class="co">#&gt;    id      age age_class sex   place_infect   reporting_ctry loc_hosp dt_onset  </span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;int&gt; &lt;chr&gt;     &lt;fct&gt; &lt;fct&gt;          &lt;fct&gt;          &lt;fct&gt;    &lt;date&gt;    </span>
-<span class="co">#&gt;  1 SK_1     68 60-69     M     Middle East    South Korea    Pyeongt… 2015-05-11</span>
-<span class="co">#&gt;  2 SK_2     63 60-69     F     Outside Middl… South Korea    Pyeongt… 2015-05-18</span>
-<span class="co">#&gt;  3 SK_3     76 70-79     M     Outside Middl… South Korea    Pyeongt… 2015-05-20</span>
-<span class="co">#&gt;  4 SK_4     46 40-49     F     Outside Middl… South Korea    Pyeongt… 2015-05-25</span>
-<span class="co">#&gt;  5 SK_5     50 50-59     M     Outside Middl… South Korea    365 Yeo… 2015-05-25</span>
-<span class="co">#&gt;  6 SK_6     71 70-79     M     Outside Middl… South Korea    Pyeongt… 2015-05-24</span>
-<span class="co">#&gt;  7 SK_7     28 20-29     F     Outside Middl… South Korea    Pyeongt… 2015-05-21</span>
-<span class="co">#&gt;  8 SK_8     46 40-49     F     Outside Middl… South Korea    Seoul C… 2015-05-26</span>
-<span class="co">#&gt;  9 SK_9     56 50-59     M     Outside Middl… South Korea    Pyeongt… NA        </span>
-<span class="co">#&gt; 10 SK_10    44 40-49     M     Outside Middl… China          Pyeongt… 2015-05-21</span>
-<span class="co">#&gt; # … with 152 more rows, and 7 more variables: dt_report &lt;date&gt;,</span>
-<span class="co">#&gt; #   week_report &lt;fct&gt;, dt_start_exp &lt;date&gt;, dt_end_exp &lt;date&gt;, dt_diag &lt;date&gt;,</span>
-<span class="co">#&gt; #   outcome &lt;fct&gt;, dt_death &lt;date&gt;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; // tags: date_onset:dt_onset, date_reporting:dt_report, occupation:age</span>
-<span class="fu"><a href="reference/tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># check available tags</span>
-<span class="co">#&gt; $date_onset</span>
-<span class="co">#&gt; [1] "dt_onset"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $date_reporting</span>
-<span class="co">#&gt; [1] "dt_report"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $occupation</span>
-<span class="co">#&gt; [1] "age"</span>
-
-<span class="co"># validation of tagged variables</span>
-<span class="co"># ------------------------------</span>
-<span class="co">## (this flags a likely mistake: occupation should not be an integer)</span>
-<span class="fu"><a href="reference/validate_linelist.html">validate_linelist</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; Error in validate_types(x, ref_types): Issue when checking class of tag `occupation`:</span>
-<span class="co">#&gt; Must inherit from class 'character'/'factor', but has class 'integer'</span>
-
-<span class="co"># change tags: fix mistakes, add new ones</span>
-<span class="co"># ---------------------------------------</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/set_tags.html">set_tags</a></span><span class="op">(</span>occupation <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># tag removal</span>
-           gender <span class="op">=</span> <span class="st">"sex"</span>, <span class="co"># new tag</span>
-           outcome <span class="op">=</span> <span class="st">"outcome"</span>
-           <span class="op">)</span>
-
-<span class="co"># safeguards against actions losing tags</span>
-<span class="co"># --------------------------------------</span>
-<span class="co">## attemping to remove geographical info but removing dates by mistake</span>
-<span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span>
-<span class="co">#&gt;  date_onset:dt_onset</span>
-
-<span class="co">## for stronger pipelines, trigger errors upon loss</span>
-<span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Error in prune_tags(out, lost_action): The following tags have lost their variable:</span>
-<span class="co">#&gt;  date_onset:dt_onset</span>
-
-<span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">%&gt;%</span>
-  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co">## to revert to default behaviour (warning upon error)</span>
-<span class="fu"><a href="reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Lost tags will now issue a warning.</span>
-
-<span class="co"># access content by tags, and build downstream pipelines</span>
-<span class="co"># ------------------------------------------------------</span>
-<span class="va">x_no_geo</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/select_tags.html">select_tags</a></span><span class="op">(</span><span class="va">date_onset</span>, <span class="va">outcome</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 162 × 2</span>
-<span class="co">#&gt;    date_onset outcome</span>
-<span class="co">#&gt;    &lt;date&gt;     &lt;fct&gt;  </span>
-<span class="co">#&gt;  1 2015-05-11 Alive  </span>
-<span class="co">#&gt;  2 2015-05-18 Alive  </span>
-<span class="co">#&gt;  3 2015-05-20 Dead   </span>
-<span class="co">#&gt;  4 2015-05-25 Alive  </span>
-<span class="co">#&gt;  5 2015-05-25 Alive  </span>
-<span class="co">#&gt;  6 2015-05-24 Dead   </span>
-<span class="co">#&gt;  7 2015-05-21 Alive  </span>
-<span class="co">#&gt;  8 2015-05-26 Alive  </span>
-<span class="co">#&gt;  9 NA         Alive  </span>
-<span class="co">#&gt; 10 2015-05-21 Alive  </span>
-<span class="co">#&gt; # … with 152 more rows</span>
-
-<span class="va">x_no_geo</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 162 × 4</span>
-<span class="co">#&gt;    date_onset date_reporting gender outcome</span>
-<span class="co">#&gt;    &lt;date&gt;     &lt;date&gt;         &lt;fct&gt;  &lt;fct&gt;  </span>
-<span class="co">#&gt;  1 2015-05-11 2015-05-19     M      Alive  </span>
-<span class="co">#&gt;  2 2015-05-18 2015-05-20     F      Alive  </span>
-<span class="co">#&gt;  3 2015-05-20 2015-05-20     M      Dead   </span>
-<span class="co">#&gt;  4 2015-05-25 2015-05-26     F      Alive  </span>
-<span class="co">#&gt;  5 2015-05-25 2015-05-27     M      Alive  </span>
-<span class="co">#&gt;  6 2015-05-24 2015-05-28     M      Dead   </span>
-<span class="co">#&gt;  7 2015-05-21 2015-05-28     F      Alive  </span>
-<span class="co">#&gt;  8 2015-05-26 2015-05-29     F      Alive  </span>
-<span class="co">#&gt;  9 NA         2015-05-29     M      Alive  </span>
-<span class="co">#&gt; 10 2015-05-21 2015-05-29     M      Alive  </span>
-<span class="co">#&gt; # … with 152 more rows</span>
-
-<span class="va">x_no_geo</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">incidence</span><span class="op">(</span><span class="st">"date_onset"</span>, groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"outcome"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">facet_plot</span><span class="op">(</span>facets <span class="op">=</span> <span class="st">"gender"</span>, fill <span class="op">=</span> <span class="va">outcome</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="60%"></p>
+<code class="sourceCode R"><span><span class="co"># load packages and a dataset for the example</span></span>
+<span><span class="co"># -------------------------------------------</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trinker/pacman" class="external-link">pacman</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: package 'pacman' was built under R version 4.1.3</span></span>
+<span><span class="fu">p_load</span><span class="op">(</span><span class="va">dplyr</span><span class="op">)</span></span>
+<span><span class="fu">p_load</span><span class="op">(</span><span class="va">magrittr</span><span class="op">)</span></span>
+<span><span class="fu">p_load</span><span class="op">(</span><span class="va">outbreaks</span><span class="op">)</span></span>
+<span><span class="fu">p_load</span><span class="op">(</span><span class="va">incidence2</span><span class="op">)</span></span>
+<span><span class="fu">p_load</span><span class="op">(</span><span class="va">linelist</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu">outbreaks</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/outbreaks/man/mers_korea_2015.html" class="external-link">mers_korea_2015</a></span><span class="op">$</span><span class="va">linelist</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span>
+<span><span class="co">#&gt;     id age age_class sex        place_infect reporting_ctry</span></span>
+<span><span class="co">#&gt; 1 SK_1  68     60-69   M         Middle East    South Korea</span></span>
+<span><span class="co">#&gt; 2 SK_2  63     60-69   F Outside Middle East    South Korea</span></span>
+<span><span class="co">#&gt; 3 SK_3  76     70-79   M Outside Middle East    South Korea</span></span>
+<span><span class="co">#&gt; 4 SK_4  46     40-49   F Outside Middle East    South Korea</span></span>
+<span><span class="co">#&gt; 5 SK_5  50     50-59   M Outside Middle East    South Korea</span></span>
+<span><span class="co">#&gt; 6 SK_6  71     70-79   M Outside Middle East    South Korea</span></span>
+<span><span class="co">#&gt;                                              loc_hosp   dt_onset  dt_report</span></span>
+<span><span class="co">#&gt; 1 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-11 2015-05-19</span></span>
+<span><span class="co">#&gt; 2 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-18 2015-05-20</span></span>
+<span><span class="co">#&gt; 3 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-20 2015-05-20</span></span>
+<span><span class="co">#&gt; 4 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-25 2015-05-26</span></span>
+<span><span class="co">#&gt; 5                           365 Yeollin Clinic, Seoul 2015-05-25 2015-05-27</span></span>
+<span><span class="co">#&gt; 6 Pyeongtaek St. Mary, Hospital, Pyeongtaek, Gyeonggi 2015-05-24 2015-05-28</span></span>
+<span><span class="co">#&gt;   week_report dt_start_exp dt_end_exp    dt_diag outcome   dt_death</span></span>
+<span><span class="co">#&gt; 1     2015_21   2015-04-18 2015-05-04 2015-05-20   Alive       &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 2     2015_21   2015-05-15 2015-05-20 2015-05-20   Alive       &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 3     2015_21   2015-05-16 2015-05-16 2015-05-21    Dead 2015-06-04</span></span>
+<span><span class="co">#&gt; 4     2015_22   2015-05-16 2015-05-20 2015-05-26   Alive       &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 5     2015_22   2015-05-17 2015-05-17 2015-05-26   Alive       &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 6     2015_22   2015-05-15 2015-05-17 2015-05-28    Dead 2015-06-01</span></span>
+<span></span>
+<span><span class="co"># check known tagged variables</span></span>
+<span><span class="co"># ----------------------------</span></span>
+<span><span class="fu"><a href="reference/tags_names.html">tags_names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "id"             "date_onset"     "date_reporting" "date_admission"</span></span>
+<span><span class="co">#&gt;  [5] "date_discharge" "date_outcome"   "date_death"     "gender"        </span></span>
+<span><span class="co">#&gt;  [9] "age"            "location"       "occupation"     "hcw"           </span></span>
+<span><span class="co">#&gt; [13] "outcome"</span></span>
+<span></span>
+<span><span class="co"># build a linelist</span></span>
+<span><span class="co"># ----------------</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">dataset</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">tibble</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="reference/make_linelist.html">make_linelist</a></span><span class="op">(</span>date_onset <span class="op">=</span> <span class="st">"dt_onset"</span>, <span class="co"># date of onset</span></span>
+<span>                date_reporting <span class="op">=</span> <span class="st">"dt_report"</span>, <span class="co"># date of reporting</span></span>
+<span>                occupation <span class="op">=</span> <span class="st">"age"</span> <span class="co"># mistake</span></span>
+<span>                <span class="op">)</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; // linelist object</span></span>
+<span><span class="co">#&gt; # A tibble: 162 x 15</span></span>
+<span><span class="co">#&gt;    id      age age_class sex   place_infect   reporting_ctry loc_hosp dt_onset  </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt; &lt;int&gt; &lt;chr&gt;     &lt;fct&gt; &lt;fct&gt;          &lt;fct&gt;          &lt;fct&gt;    &lt;date&gt;    </span></span>
+<span><span class="co">#&gt;  1 SK_1     68 60-69     M     Middle East    South Korea    Pyeongt~ 2015-05-11</span></span>
+<span><span class="co">#&gt;  2 SK_2     63 60-69     F     Outside Middl~ South Korea    Pyeongt~ 2015-05-18</span></span>
+<span><span class="co">#&gt;  3 SK_3     76 70-79     M     Outside Middl~ South Korea    Pyeongt~ 2015-05-20</span></span>
+<span><span class="co">#&gt;  4 SK_4     46 40-49     F     Outside Middl~ South Korea    Pyeongt~ 2015-05-25</span></span>
+<span><span class="co">#&gt;  5 SK_5     50 50-59     M     Outside Middl~ South Korea    365 Yeo~ 2015-05-25</span></span>
+<span><span class="co">#&gt;  6 SK_6     71 70-79     M     Outside Middl~ South Korea    Pyeongt~ 2015-05-24</span></span>
+<span><span class="co">#&gt;  7 SK_7     28 20-29     F     Outside Middl~ South Korea    Pyeongt~ 2015-05-21</span></span>
+<span><span class="co">#&gt;  8 SK_8     46 40-49     F     Outside Middl~ South Korea    Seoul C~ 2015-05-26</span></span>
+<span><span class="co">#&gt;  9 SK_9     56 50-59     M     Outside Middl~ South Korea    Pyeongt~ NA        </span></span>
+<span><span class="co">#&gt; 10 SK_10    44 40-49     M     Outside Middl~ China          Pyeongt~ 2015-05-21</span></span>
+<span><span class="co">#&gt; # ... with 152 more rows, and 7 more variables: dt_report &lt;date&gt;,</span></span>
+<span><span class="co">#&gt; #   week_report &lt;fct&gt;, dt_start_exp &lt;date&gt;, dt_end_exp &lt;date&gt;, dt_diag &lt;date&gt;,</span></span>
+<span><span class="co">#&gt; #   outcome &lt;fct&gt;, dt_death &lt;date&gt;</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; // tags: date_onset:dt_onset, date_reporting:dt_report, occupation:age</span></span>
+<span><span class="fu"><a href="reference/tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># check available tags</span></span>
+<span><span class="co">#&gt; $date_onset</span></span>
+<span><span class="co">#&gt; [1] "dt_onset"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $date_reporting</span></span>
+<span><span class="co">#&gt; [1] "dt_report"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $occupation</span></span>
+<span><span class="co">#&gt; [1] "age"</span></span>
+<span></span>
+<span><span class="co"># validation of tagged variables</span></span>
+<span><span class="co"># ------------------------------</span></span>
+<span><span class="co">## (this flags a likely mistake: occupation should not be an integer)</span></span>
+<span><span class="fu"><a href="reference/validate_linelist.html">validate_linelist</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in validate_types(x, ref_types): Issue when checking class of tag `occupation`:</span></span>
+<span><span class="co">#&gt; Must inherit from class 'character'/'factor', but has class 'integer'</span></span>
+<span></span>
+<span><span class="co"># change tags: fix mistakes, add new ones</span></span>
+<span><span class="co"># ---------------------------------------</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="reference/set_tags.html">set_tags</a></span><span class="op">(</span>occupation <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># tag removal</span></span>
+<span>           gender <span class="op">=</span> <span class="st">"sex"</span>, <span class="co"># new tag</span></span>
+<span>           outcome <span class="op">=</span> <span class="st">"outcome"</span></span>
+<span>           <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># safeguards against actions losing tags</span></span>
+<span><span class="co"># --------------------------------------</span></span>
+<span><span class="co">## attemping to remove geographical info but removing dates by mistake</span></span>
+<span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt;  date_onset:dt_onset</span></span>
+<span></span>
+<span><span class="co">## for stronger pipelines, trigger errors upon loss</span></span>
+<span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt;  date_onset:dt_onset</span></span>
+<span></span>
+<span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## to revert to default behaviour (warning upon error)</span></span>
+<span><span class="fu"><a href="reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Lost tags will now issue a warning.</span></span>
+<span></span>
+<span><span class="co"># access content by tags, and build downstream pipelines</span></span>
+<span><span class="co"># ------------------------------------------------------</span></span>
+<span><span class="va">x_no_geo</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="reference/select_tags.html">select_tags</a></span><span class="op">(</span><span class="va">date_onset</span>, <span class="va">outcome</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 162 x 2</span></span>
+<span><span class="co">#&gt;    date_onset outcome</span></span>
+<span><span class="co">#&gt;    &lt;date&gt;     &lt;fct&gt;  </span></span>
+<span><span class="co">#&gt;  1 2015-05-11 Alive  </span></span>
+<span><span class="co">#&gt;  2 2015-05-18 Alive  </span></span>
+<span><span class="co">#&gt;  3 2015-05-20 Dead   </span></span>
+<span><span class="co">#&gt;  4 2015-05-25 Alive  </span></span>
+<span><span class="co">#&gt;  5 2015-05-25 Alive  </span></span>
+<span><span class="co">#&gt;  6 2015-05-24 Dead   </span></span>
+<span><span class="co">#&gt;  7 2015-05-21 Alive  </span></span>
+<span><span class="co">#&gt;  8 2015-05-26 Alive  </span></span>
+<span><span class="co">#&gt;  9 NA         Alive  </span></span>
+<span><span class="co">#&gt; 10 2015-05-21 Alive  </span></span>
+<span><span class="co">#&gt; # ... with 152 more rows</span></span>
+<span></span>
+<span><span class="va">x_no_geo</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 162 x 4</span></span>
+<span><span class="co">#&gt;    date_onset date_reporting gender outcome</span></span>
+<span><span class="co">#&gt;    &lt;date&gt;     &lt;date&gt;         &lt;fct&gt;  &lt;fct&gt;  </span></span>
+<span><span class="co">#&gt;  1 2015-05-11 2015-05-19     M      Alive  </span></span>
+<span><span class="co">#&gt;  2 2015-05-18 2015-05-20     F      Alive  </span></span>
+<span><span class="co">#&gt;  3 2015-05-20 2015-05-20     M      Dead   </span></span>
+<span><span class="co">#&gt;  4 2015-05-25 2015-05-26     F      Alive  </span></span>
+<span><span class="co">#&gt;  5 2015-05-25 2015-05-27     M      Alive  </span></span>
+<span><span class="co">#&gt;  6 2015-05-24 2015-05-28     M      Dead   </span></span>
+<span><span class="co">#&gt;  7 2015-05-21 2015-05-28     F      Alive  </span></span>
+<span><span class="co">#&gt;  8 2015-05-26 2015-05-29     F      Alive  </span></span>
+<span><span class="co">#&gt;  9 NA         2015-05-29     M      Alive  </span></span>
+<span><span class="co">#&gt; 10 2015-05-21 2015-05-29     M      Alive  </span></span>
+<span><span class="co">#&gt; # ... with 152 more rows</span></span>
+<span></span>
+<span><span class="va">x_no_geo</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">incidence</span><span class="op">(</span><span class="st">"date_onset"</span>, groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"outcome"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">facet_plot</span><span class="op">(</span>facets <span class="op">=</span> <span class="st">"gender"</span>, fill <span class="op">=</span> <span class="va">outcome</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in `check_suggests()`:</span></span>
+<span><span class="co">#&gt; ! Suggested package 'ggplot2' not present.</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
@@ -372,6 +373,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
+<li><a href="https://digitalpublicgoods.net/registry/linelist.html" class="external-link"><img src="https://raw.githubusercontent.com/epiverse-trace/linelist/main/man/figures/dpg_badge.png" alt="Digital Public Good"></a></li>
 <li><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></li>
 <li><a href="https://cran.r-project.org/web/checks/check_results_linelist.html" class="external-link"><img src="https://cranchecks.info/badges/summary/linelist" alt="cran-check"></a></li>
 <li><a href="https://github.com/epiverse-trace/linelist/actions" class="external-link"><img src="https://github.com/epiverse-trace/linelist/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
@@ -394,7 +396,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

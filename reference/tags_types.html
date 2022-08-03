@@ -67,7 +67,7 @@ values. Otherwise, provided values will be used to define the defaults.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tags_types</span><span class="op">(</span><span class="va">...</span>, allow_extra <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tags_types</span><span class="op">(</span><span class="va">...</span>, allow_extra <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -108,8 +108,8 @@ tags will trigger an error</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># list default values</span></span>
-<span class="r-in"><span class="fu">tags_types</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># list default values</span></span></span>
+<span class="r-in"><span><span class="fu">tags_types</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "numeric"   "integer"   "character"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -149,9 +149,9 @@ tags will trigger an error</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $outcome</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "character" "factor"   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># change existing values</span></span>
-<span class="r-in"><span class="fu">tags_types</span><span class="op">(</span>date_onset <span class="op">=</span> <span class="st">"Date"</span><span class="op">)</span> <span class="co"># impose a Date class</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># change existing values</span></span></span>
+<span class="r-in"><span><span class="fu">tags_types</span><span class="op">(</span>date_onset <span class="op">=</span> <span class="st">"Date"</span><span class="op">)</span> <span class="co"># impose a Date class</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "numeric"   "integer"   "character"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -191,9 +191,9 @@ tags will trigger an error</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $outcome</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "character" "factor"   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># add new types e.g. to allow genetic sequences using ape's format</span></span>
-<span class="r-in"><span class="fu">tags_types</span><span class="op">(</span>sequence <span class="op">=</span> <span class="st">"DNAbin"</span>, allow_extra <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># add new types e.g. to allow genetic sequences using ape's format</span></span></span>
+<span class="r-in"><span><span class="fu">tags_types</span><span class="op">(</span>sequence <span class="op">=</span> <span class="st">"DNAbin"</span>, allow_extra <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "numeric"   "integer"   "character"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -236,7 +236,7 @@ tags will trigger an error</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $sequence</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "DNAbin"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -251,7 +251,7 @@ tags will trigger an error</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

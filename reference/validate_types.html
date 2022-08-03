@@ -65,7 +65,7 @@ against pre-defined accepted classes in <code><a href="tags_types.html">tags_typ
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">validate_types</span><span class="op">(</span><span class="va">x</span>, ref_types <span class="op">=</span> <span class="fu"><a href="tags_types.html">tags_types</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">validate_types</span><span class="op">(</span><span class="va">x</span>, ref_types <span class="op">=</span> <span class="fu"><a href="tags_types.html">tags_types</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -100,39 +100,41 @@ by <code><a href="tags_types.html">tags_types()</a></code></p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## create an invalid linelist - gender is a numeric</span></span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">    <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span class="r-in">    <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"case_ID"</span>,</span>
-<span class="r-in">                  gender <span class="op">=</span> <span class="st">"infector"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">x</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## the below would issue an error</span></span>
-<span class="r-in">  <span class="co">## note: tryCatch is only used to avoid a genuine error in the example </span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="fu">validate_types</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, error <span class="op">=</span> <span class="va">paste</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## to allow other types, e.g. gender to be integer, character or factor</span></span>
-<span class="r-in">  <span class="fu">validate_types</span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="tags_types.html">tags_types</a></span><span class="op">(</span>gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"integer"</span>, <span class="st">"character"</span>, <span class="st">"factor"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## create an invalid linelist - gender is a numeric</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
+<span class="r-in"><span>                  gender <span class="op">=</span> <span class="st">"infector"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## the below would issue an error</span></span></span>
+<span class="r-in"><span>  <span class="co">## note: tryCatch is only used to avoid a genuine error in the example </span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="fu">validate_types</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, error <span class="op">=</span> <span class="va">paste</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## to allow other types, e.g. gender to be integer, character or factor</span></span></span>
+<span class="r-in"><span>  <span class="fu">validate_types</span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="tags_types.html">tags_types</a></span><span class="op">(</span>gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"integer"</span>, <span class="st">"character"</span>, <span class="st">"factor"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> // linelist object</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 188 × 12</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    case_ID infector date_of_prodrome date_of_rash date_of_death   age gender</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>       1       45 1861-11-21       1861-11-25   <span style="color: #BB0000;">NA</span>                7 f     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>       2       45 1861-11-23       1861-11-27   <span style="color: #BB0000;">NA</span>                6 f     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>       3      172 1861-11-28       1861-12-02   <span style="color: #BB0000;">NA</span>                4 f     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>       4      180 1861-11-27       1861-11-28   <span style="color: #BB0000;">NA</span>               13 m     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>       5       45 1861-11-22       1861-11-27   <span style="color: #BB0000;">NA</span>                8 f     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>       6      180 1861-11-26       1861-11-29   <span style="color: #BB0000;">NA</span>               12 m     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>       7       42 1861-11-24       1861-11-28   <span style="color: #BB0000;">NA</span>                6 m     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>       8       45 1861-11-21       1861-11-26   <span style="color: #BB0000;">NA</span>               10 m     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>       9      182 1861-11-26       1861-11-30   <span style="color: #BB0000;">NA</span>               13 m     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>      10       45 1861-11-21       1861-11-25   <span style="color: #BB0000;">NA</span>                7 f     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 178 more rows, and 5 more variables: family_ID &lt;int&gt;, class &lt;fct&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   complications &lt;fct&gt;, x_loc &lt;dbl&gt;, y_loc &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    case_ID infector date_of_p…¹ date_of_…² date_of_…³   age gender famil…⁴ class</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>       1       45 1861-11-21  1861-11-25 <span style="color: #BB0000;">NA</span>             7 f           41 1    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>       2       45 1861-11-23  1861-11-27 <span style="color: #BB0000;">NA</span>             6 f           41 1    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>       3      172 1861-11-28  1861-12-02 <span style="color: #BB0000;">NA</span>             4 f           41 0    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>       4      180 1861-11-27  1861-11-28 <span style="color: #BB0000;">NA</span>            13 m           61 2    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>       5       45 1861-11-22  1861-11-27 <span style="color: #BB0000;">NA</span>             8 f           42 1    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>       6      180 1861-11-26  1861-11-29 <span style="color: #BB0000;">NA</span>            12 m           42 2    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>       7       42 1861-11-24  1861-11-28 <span style="color: #BB0000;">NA</span>             6 m           26 0    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>       8       45 1861-11-21  1861-11-26 <span style="color: #BB0000;">NA</span>            10 m           44 1    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>       9      182 1861-11-26  1861-11-30 <span style="color: #BB0000;">NA</span>            13 m           44 2    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>      10       45 1861-11-21  1861-11-25 <span style="color: #BB0000;">NA</span>             7 f           29 1    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 178 more rows, 3 more variables: complications &lt;fct&gt;, x_loc &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   y_loc &lt;dbl&gt;, and abbreviated variable names ¹​date_of_prodrome,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​date_of_rash, ³​date_of_death, ⁴​family_ID</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> // tags: id:case_ID, gender:infector </span>
 </code></pre></div>
@@ -149,7 +151,7 @@ by <code><a href="tags_types.html">tags_types()</a></code></p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

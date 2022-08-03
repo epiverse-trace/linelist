@@ -69,7 +69,7 @@ validations checks made by <code><a href="validate_types.html">validate_types()<
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">validate_linelist</span><span class="op">(</span><span class="va">x</span>, allow_extra <span class="op">=</span> <span class="cn">FALSE</span>, ref_types <span class="op">=</span> <span class="fu"><a href="tags_types.html">tags_types</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">validate_linelist</span><span class="op">(</span><span class="va">x</span>, allow_extra <span class="op">=</span> <span class="cn">FALSE</span>, ref_types <span class="op">=</span> <span class="fu"><a href="tags_types.html">tags_types</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -119,33 +119,33 @@ by <code><a href="tags_types.html">tags_types()</a></code></p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## create a valid linelist</span></span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">    <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span class="r-in">    <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"case_ID"</span>,</span>
-<span class="r-in">                  date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span>
-<span class="r-in">                  age <span class="op">=</span> <span class="st">"age"</span>,</span>
-<span class="r-in">                  gender <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">x</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## validation</span></span>
-<span class="r-in">  <span class="fu">validate_linelist</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## create an invalid linelist - onset date is a factor</span></span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">    <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span class="r-in">    <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"case_ID"</span>,</span>
-<span class="r-in">                  date_onset <span class="op">=</span> <span class="st">"gender"</span>,</span>
-<span class="r-in">                  age <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">x</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## the below issues an error</span></span>
-<span class="r-in">  <span class="co">## note: tryCatch is only used to avoid a genuine error in the example </span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="fu">validate_linelist</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, error <span class="op">=</span> <span class="va">paste</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## create a valid linelist</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
+<span class="r-in"><span>                  date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span></span>
+<span class="r-in"><span>                  age <span class="op">=</span> <span class="st">"age"</span>,</span></span>
+<span class="r-in"><span>                  gender <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## validation</span></span></span>
+<span class="r-in"><span>  <span class="fu">validate_linelist</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## create an invalid linelist - onset date is a factor</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
+<span class="r-in"><span>                  date_onset <span class="op">=</span> <span class="st">"gender"</span>,</span></span>
+<span class="r-in"><span>                  age <span class="op">=</span> <span class="st">"age"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## the below issues an error</span></span></span>
+<span class="r-in"><span>  <span class="co">## note: tryCatch is only used to avoid a genuine error in the example </span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span><span class="fu">validate_linelist</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, error <span class="op">=</span> <span class="va">paste</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Error in validate_types(x, ref_types): Issue when checking class of tag `date_onset`:\nMust inherit from class 'integer'/'numeric'/'Date'/'POSIXct'/'POSIXlt', but has class 'factor'\n"</span>
 </code></pre></div>
     </div>
@@ -161,7 +161,7 @@ by <code><a href="tags_types.html">tags_types()</a></code></p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

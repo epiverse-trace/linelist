@@ -71,7 +71,7 @@ a regular <code>data.frame</code> (or <code>tibble</code>).</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">select_tags</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">select_tags</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -105,25 +105,25 @@ terminology; see <code><a href="tags_names.html">tags_names()</a></code> for def
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## dataset we'll create a linelist from</span></span>
-<span class="r-in">  <span class="va">measles_hagelloch_1861</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## create linelist</span></span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span>,</span>
-<span class="r-in">                     id <span class="op">=</span> <span class="st">"case_ID"</span>,</span>
-<span class="r-in">                     date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span>
-<span class="r-in">                     age <span class="op">=</span> <span class="st">"age"</span>,</span>
-<span class="r-in">                     gender <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## check tagged variables</span></span>
-<span class="r-in">  <span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## extract tagged variables</span></span>
-<span class="r-in">  <span class="fu">select_tags</span><span class="op">(</span><span class="va">x</span>, <span class="st">"gender"</span>, <span class="st">"age"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## dataset we'll create a linelist from</span></span></span>
+<span class="r-in"><span>  <span class="va">measles_hagelloch_1861</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## create linelist</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span>,</span></span>
+<span class="r-in"><span>                     id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
+<span class="r-in"><span>                     date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span></span>
+<span class="r-in"><span>                     age <span class="op">=</span> <span class="st">"age"</span>,</span></span>
+<span class="r-in"><span>                     gender <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## check tagged variables</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## extract tagged variables</span></span></span>
+<span class="r-in"><span>  <span class="fu">select_tags</span><span class="op">(</span><span class="va">x</span>, <span class="st">"gender"</span>, <span class="st">"age"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     gender age</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        f   7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2        f   6</span>
@@ -327,7 +327,7 @@ terminology; see <code><a href="tags_names.html">tags_names()</a></code> for def
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

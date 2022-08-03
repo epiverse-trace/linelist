@@ -112,77 +112,77 @@ or <code>tibble</code></p></li>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="co"># using base R style</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## dataset we'll create a linelist from, only using the first 50 entries</span></span>
-<span class="r-in">  <span class="va">measles_hagelloch_1861</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## create linelist</span></span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span>,</span>
-<span class="r-in">                     id <span class="op">=</span> <span class="st">"case_ID"</span>,</span>
-<span class="r-in">                     date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span>
-<span class="r-in">                     age <span class="op">=</span> <span class="st">"age"</span>,</span>
-<span class="r-in">                     gender <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">x</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## check tagged variables</span></span>
-<span class="r-in">  <span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## extract tagged variables</span></span>
-<span class="r-in">  <span class="fu"><a href="select_tags.html">select_tags</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"gender"</span>, <span class="st">"age"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## robust renaming</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"identifier"</span></span>
-<span class="r-in">  <span class="va">x</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## example of dropping tags by mistake - default: warning</span></span>
-<span class="r-in">  <span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## to silence warnings when taggs are dropped</span></span>
-<span class="r-in">  <span class="fu"><a href="lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"none"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## to trigger errors when taggs are dropped</span></span>
-<span class="r-in">  <span class="co"># lost_tags_action("error")</span></span>
-<span class="r-in">  <span class="co"># x[, 2:5]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## reset default behaviour</span></span>
-<span class="r-in">  <span class="fu"><a href="lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># using tidyverse style</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">## example of creating a linelist, adding a new variable, and adding a tag</span></span>
-<span class="r-in">  <span class="co">## for it</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">    <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">      <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span class="r-in">      <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"case_ID"</span>,</span>
-<span class="r-in">                    date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span>
-<span class="r-in">                    age <span class="op">=</span> <span class="st">"age"</span>,</span>
-<span class="r-in">                    gender <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>result <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">date_of_death</span><span class="op">)</span>, <span class="st">"survived"</span>, <span class="st">"died"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">      <span class="fu"><a href="set_tags.html">set_tags</a></span><span class="op">(</span>outcome <span class="op">=</span> <span class="st">"result"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>identifier <span class="op">=</span> <span class="va">case_ID</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">    <span class="va">x</span></span>
-<span class="r-in"></span>
-<span class="r-in">    <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">      <span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">    <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">starts_with</a></span><span class="op">(</span><span class="st">"date"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">    <span class="co">## disable warnings on the fly</span></span>
-<span class="r-in">    <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">      <span class="fu"><a href="lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"none"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">starts_with</a></span><span class="op">(</span><span class="st">"date"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">    </span>
-<span class="r-in">  <span class="op">}</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># using base R style</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## dataset we'll create a linelist from, only using the first 50 entries</span></span></span>
+<span class="r-in"><span>  <span class="va">measles_hagelloch_1861</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## create linelist</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">measles_hagelloch_1861</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span>,</span></span>
+<span class="r-in"><span>                     id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
+<span class="r-in"><span>                     date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span></span>
+<span class="r-in"><span>                     age <span class="op">=</span> <span class="st">"age"</span>,</span></span>
+<span class="r-in"><span>                     gender <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## check tagged variables</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## extract tagged variables</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="select_tags.html">select_tags</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"gender"</span>, <span class="st">"age"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## robust renaming</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"identifier"</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## example of dropping tags by mistake - default: warning</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## to silence warnings when taggs are dropped</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"none"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span><span class="op">[</span>, <span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## to trigger errors when taggs are dropped</span></span></span>
+<span class="r-in"><span>  <span class="co"># lost_tags_action("error")</span></span></span>
+<span class="r-in"><span>  <span class="co"># x[, 2:5]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## reset default behaviour</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># using tidyverse style</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">## example of creating a linelist, adding a new variable, and adding a tag</span></span></span>
+<span class="r-in"><span>  <span class="co">## for it</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span></span>
+<span class="r-in"><span>      <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
+<span class="r-in"><span>                    date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span></span>
+<span class="r-in"><span>                    age <span class="op">=</span> <span class="st">"age"</span>,</span></span>
+<span class="r-in"><span>                    gender <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>result <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">date_of_death</span><span class="op">)</span>, <span class="st">"survived"</span>, <span class="st">"died"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="set_tags.html">set_tags</a></span><span class="op">(</span>outcome <span class="op">=</span> <span class="st">"result"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>identifier <span class="op">=</span> <span class="va">case_ID</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>    <span class="va">x</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>    <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>    <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">starts_with</a></span><span class="op">(</span><span class="st">"date"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>    <span class="co">## disable warnings on the fly</span></span></span>
+<span class="r-in"><span>    <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"none"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">starts_with</a></span><span class="op">(</span><span class="st">"date"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    </span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: outbreaks</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>  id:identifier, gender:gender, age:age</span>
@@ -220,8 +220,8 @@ or <code>tibble</code></p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 1861-11-30       1861-12-05   <span style="color: #BB0000;">NA</span>           </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> // tags: date_onset:date_of_prodrome </span>
-<span class="r-in"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -236,7 +236,7 @@ or <code>tibble</code></p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
