@@ -82,7 +82,7 @@ types of features:
    handling operations
 
 The short example below illustrates these different features. See the
-[Documentation](Documentation) section for more in-depth examples and details
+[Documentation](#Documentation) section for more in-depth examples and details
 about `linelist` objects.
 
 ```{r error = TRUE, fig.height = 4, fig.width = 8, out.width = "60%"}
