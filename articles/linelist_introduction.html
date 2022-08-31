@@ -273,7 +273,6 @@
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 178 more rows, 3 more variables: complications &lt;fct&gt;, x_loc &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   y_loc &lt;dbl&gt;, and abbreviated variable names ¹​date_of_prodrome,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ²​date_of_rash, ³​date_of_death, ⁴​family_ID</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age</span></span></code></pre></div>
 <p>The printing of the object confirms that the tags have been added. If we want to double-check which variables have been tagged:</p>
@@ -324,7 +323,6 @@
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 4 more variables: complications &lt;fct&gt;, x_loc &lt;dbl&gt;, y_loc &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   inferred_outcome &lt;chr&gt;, and abbreviated variable names ¹​date_of_prodrome,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ²​date_of_rash, ³​date_of_death, ⁴​family_ID</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ Use `colnames()` to see all variable names</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age, outcome:inferred_outcome</span></span></code></pre></div>
 <p>If we wanted to undo the above, i.e. remove the <code>outcome</code> tag, we only need set it to <code>NULL</code>:</p>
