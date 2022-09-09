@@ -3,5 +3,8 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   linelist: linelist.html
-last_built: 2022-09-06T08:19Z
+last_built: 2022-09-09T09:47Z
+urls:
+  reference: https://epiverse-trace.github.io/linelist/reference
+  article: https://epiverse-trace.github.io/linelist/articles
 
