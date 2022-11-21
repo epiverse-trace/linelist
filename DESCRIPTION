@@ -12,7 +12,7 @@ Authors@R:
              email = "pit.monticone@gmail.com"))
 Description: Provides tools to help storing and handling case line list data. The 'linelist' class adds a tagging system to classical 'data.frame' objects to identify key epidemiological data such as dates of symptom onset, epidemiological case definition, age, gender or disease outcome. Once tagged, these variables can be seamlessly used in downstream analyses, making data pipelines more robust and reliable. 
 License: MIT + file LICENSE
-URL: https://github.com/epiverse-trace/linelist
+URL: https://epiverse-trace.github.io/linelist/, https://github.com/epiverse-trace/linelist
 BugReports: https://github.com/epiverse-trace/linelist/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
