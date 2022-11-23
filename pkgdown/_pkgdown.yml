@@ -1,4 +1,6 @@
 url: https://epiverse-trace.github.io/linelist/
+template:
+  bootstrap: 5
 
 reference:
   - title: Package Overview
