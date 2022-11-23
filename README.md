@@ -313,7 +313,7 @@ Contributors to the project include:
 
 Please note that the linelist project is released with a [Contributor
 Code of
-Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
 ### Notes
