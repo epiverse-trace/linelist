@@ -263,11 +263,11 @@ More detailed documentation can be found at:
 
 In particular:
 
-  - A general introduction to *linelist*
-    ([link](https://epiverse-trace.github.io/linelist/articles/linelist_introduction.html))
+- A general introduction to *linelist*
+  ([link](https://epiverse-trace.github.io/linelist/articles/linelist.html))
 
-  - The reference manual
-    ([link](https://epiverse-trace.github.io/linelist/reference/index.html))
+- The reference manual
+  ([link](https://epiverse-trace.github.io/linelist/reference/index.html))
 
 ## Getting help
 
@@ -304,10 +304,10 @@ requests](https://github.com/epiverse-trace/linelist/pulls).
 
 Contributors to the project include:
 
-  - Thibaut Jombart (author)
-  - David Mascarina (logo)
-  - Emma Marty (communication)
-  - Pietro Monticone (contributor)
+- Thibaut Jombart (author)
+- David Mascarina (logo)
+- Emma Marty (communication)
+- Pietro Monticone (contributor)
 
 ### Code of Conduct
 
