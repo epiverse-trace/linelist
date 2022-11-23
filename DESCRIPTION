@@ -25,7 +25,6 @@ Suggests:
     callr,
     covr,
     knitr,
-    magrittr,
     outbreaks,
     remotes,
     rmarkdown,

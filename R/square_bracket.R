@@ -35,7 +35,7 @@
 #' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @examples
-#' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+#' if (require(outbreaks)) {
 #'   ## create a linelist
 #'   x <- measles_hagelloch_1861 %>%
 #'     tibble() %>% 

@@ -34,14 +34,12 @@ if (require(outbreaks)) {
   head(x)
 
   # version with a tibble
-  if (require(tibble) && require(magrittr)) {
-   measles_hagelloch_1861 \%>\%
-     tibble() \%>\% 
-     make_linelist(id = "case_ID",
-                   date_onset = "date_of_prodrome",
-                   age = "age",
-                   gender = "gender")
-  }
+  measles_hagelloch_1861 \%>\%
+    tibble() \%>\% 
+    make_linelist(id = "case_ID",
+                  date_onset = "date_of_prodrome",
+                  age = "age",
+                  gender = "gender")
 }
 }
 \author{

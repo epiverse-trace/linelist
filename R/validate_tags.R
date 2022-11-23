@@ -19,7 +19,7 @@
 #'   the right classes
 #'
 #' @examples
-#' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+#' if (require(outbreaks)) {
 #'
 #'   ## create a valid linelist
 #'   x <- measles_hagelloch_1861 %>%

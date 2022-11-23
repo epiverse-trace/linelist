@@ -24,7 +24,7 @@
 #' * [tags_df()] to return a `data.frame` or a `tibble` of all agged variables
 #' 
 #' @examples
-#' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+#' if (require(outbreaks)) {
 #'
 #'   ## dataset to create a linelist from
 #'   head(measles_hagelloch_1861)

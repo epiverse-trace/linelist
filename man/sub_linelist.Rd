@@ -5,7 +5,7 @@
 \alias{sub_linelist}
 \alias{[<-.linelist}
 \alias{[[<-.linelist}
-\title{Subsetting of linelist objets}
+\title{Subsetting of linelist objects}
 \usage{
 \method{[}{linelist}(x, i, j, drop = FALSE)
 
@@ -38,7 +38,7 @@ takes the appropriate action if this is the case (warning, error, or ignore,
 depending on the general option set via \code{\link[=lost_tags_action]{lost_tags_action()}}) .
 }
 \examples{
-if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+if (require(outbreaks)) {
   ## create a linelist
   x <- measles_hagelloch_1861 \%>\%
     tibble() \%>\% 

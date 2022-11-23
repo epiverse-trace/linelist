@@ -91,7 +91,6 @@ about `linelist` objects.
 # -------------------------------------------
 library(pacman)
 p_load(dplyr)
-p_load(magrittr)
 p_load(outbreaks)
 p_load(incidence2)
 p_load(linelist)

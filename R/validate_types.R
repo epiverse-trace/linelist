@@ -20,7 +20,7 @@
 #' * [validate_linelist()] to combine `validate_tags` and `validate_types`
 #' 
 #' @examples
-#' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+#' if (require(outbreaks)) {
 #'
 #'   ## create an invalid linelist - gender is a numeric
 #'   x <- measles_hagelloch_1861 %>%

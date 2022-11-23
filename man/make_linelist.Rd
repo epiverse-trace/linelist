@@ -27,7 +27,7 @@ The function returns a \code{linelist} object.
 \description{
 This function converts a \code{data.frame} or a \code{tibble} into a \code{linelist} object,
 where different types of epidemiologically relevant data are tagged. This
-includes dates of different events (e.g. onset of symtpom, case reporting),
+includes dates of different events (e.g. onset of symptoms, case reporting),
 information on the patient (e.g. age, gender, location) as well as other
 informations such as the type of case (e.g. confirmed, probable) or the
 outcome of the disease. The output will seem to be the same \code{data.frame}, but

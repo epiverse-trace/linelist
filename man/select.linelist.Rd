@@ -24,7 +24,7 @@ to tagged variables through the \code{tags} argument. When variables are selecte
 using both procedures, tagged variables are output as the last columns.
 }
 \examples{
-if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+if (require(outbreaks)) {
 
   ## dataset to create a linelist from
   head(measles_hagelloch_1861)

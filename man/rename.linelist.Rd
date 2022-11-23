@@ -20,7 +20,7 @@ the columns of a \code{linelist}. Tagged variables are updated as needed to matc
 new column names.
 }
 \examples{
-if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+if (require(outbreaks)) {
 
   ## dataset to create a linelist from
   head(measles_hagelloch_1861)

@@ -234,7 +234,6 @@ information:
 
 library(tibble) # data.frame but with nice printing 
 library(dplyr) # for data handling
-library(magrittr) # for the %>% operator
 library(linelist) # this package!
 
 x <- measles_hagelloch_1861 %>%
