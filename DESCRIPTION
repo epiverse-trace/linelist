@@ -28,6 +28,5 @@ Suggests:
     outbreaks,
     remotes,
     rmarkdown,
-    testthat,
-    tibble
+    testthat
 VignetteBuilder: knitr

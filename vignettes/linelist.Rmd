@@ -231,8 +231,6 @@ We first load a few useful packages, and create a `linelist` with the above
 information:
 
 ```{r }
-
-library(tibble) # data.frame but with nice printing 
 library(dplyr) # for data handling
 library(linelist) # this package!
 
