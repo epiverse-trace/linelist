@@ -23,10 +23,8 @@ Imports:
     dplyr
 Suggests:
     callr,
-    covr,
     knitr,
     outbreaks,
-    remotes,
     rmarkdown,
     testthat
 VignetteBuilder: knitr
