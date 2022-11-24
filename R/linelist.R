@@ -93,6 +93,7 @@
 #' 
 #'
 #'   # using tidyverse style
+#'   library(dplyr)
 #'
 #'   ## example of creating a linelist, adding a new variable, and adding a tag
 #'   ## for it

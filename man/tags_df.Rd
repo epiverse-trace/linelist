@@ -22,6 +22,7 @@ This function returns a \code{data.frame} of all the tagged variables stored in 
 if (require(outbreaks)) {
 
   ## create a tibble linelist
+  library(dplyr)
   x <- measles_hagelloch_1861 \%>\%
     tibble() \%>\% 
     make_linelist(id = "case_ID",

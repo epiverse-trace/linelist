@@ -29,6 +29,7 @@
 #'   head(x)
 #'
 #'   # version with a tibble
+#'   library(dplyr)
 #'   measles_hagelloch_1861 %>%
 #'     tibble() %>% 
 #'     make_linelist(id = "case_ID",

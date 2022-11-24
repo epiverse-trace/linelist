@@ -40,6 +40,7 @@ depending on the general option set via \code{\link[=lost_tags_action]{lost_tags
 \examples{
 if (require(outbreaks)) {
   ## create a linelist
+  library(dplyr)
   x <- measles_hagelloch_1861 \%>\%
     tibble() \%>\% 
     make_linelist(id = "case_ID",

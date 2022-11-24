@@ -39,6 +39,7 @@ The following checks are performed:
 \examples{
 
 if (require(outbreaks)) {
+  library(dplyr)
 
   ## create a valid linelist
   x <- measles_hagelloch_1861 \%>\%
