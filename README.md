@@ -311,8 +311,7 @@ Contributors to the project include:
 
 ### Code of Conduct
 
-Please note that the linelist project is released with a [Contributor
-Code of
+Please note that the linelist project is released with a [Code of
 Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
