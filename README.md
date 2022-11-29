@@ -80,7 +80,7 @@ p_load(dplyr)
 #> also installing the dependencies 'generics', 'tidyselect'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpEsZg0k/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYgmXSW/downloaded_packages
 #> 
 #> dplyr installed
 p_load(magrittr)
@@ -89,7 +89,7 @@ p_load(outbreaks)
 #> (as 'lib' is unspecified)
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpEsZg0k/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYgmXSW/downloaded_packages
 #> 
 #> outbreaks installed
 p_load(incidence2)
@@ -98,7 +98,7 @@ p_load(incidence2)
 #> also installing the dependencies 'tzdb', 'cpp11', 'ellipsis', 'data.table', 'grates', 'clock'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpEsZg0k/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYgmXSW/downloaded_packages
 #> 
 #> incidence2 installed
 p_load(linelist)
@@ -311,8 +311,7 @@ Contributors to the project include:
 
 ### Code of Conduct
 
-Please note that the linelist project is released with a [Contributor
-Code of
+Please note that the linelist project is released with a [Code of
 Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
