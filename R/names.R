@@ -10,7 +10,7 @@
 #' @return a `linelist` with new column names
 #'
 #' @seealso [rename.linelist()] for renaming columns as with [dplyr::rename()]
-#' 
+#'
 #' @export
 #'
 #' @author Thibaut Jombart \email{thibaut@@data.org}
@@ -23,10 +23,11 @@
 #'
 #'   ## create linelist
 #'   x <- make_linelist(measles_hagelloch_1861,
-#'                      id = "case_ID",
-#'                      date_onset = "date_of_prodrome",
-#'                      age = "age",
-#'                      gender = "gender")
+#'     id = "case_ID",
+#'     date_onset = "date_of_prodrome",
+#'     age = "age",
+#'     gender = "gender"
+#'   )
 #'   head(x)
 #'
 #'   ## change names
@@ -43,8 +44,8 @@
   # names. We do this by:
 
   # 1. Storing old names and new names to have define replacement rules
-  # 2. Replace all tagged variables using the replacement rules 
-  
+  # 2. Replace all tagged variables using the replacement rules
+
   out <- drop_linelist(x, remove_tags = TRUE)
   names(out) <- value
 
@@ -55,7 +56,8 @@
     msg <- paste(
       "Suggested naming would result in `NA` for some column names.",
       "Did you provide less names than columns targetted for renaming?",
-      sep = "\n")
+      sep = "\n"
+    )
     stop(msg)
   }
 
@@ -67,7 +69,7 @@
       out_tags[[i]] <- new_names[idx]
     }
   }
-  
+
   attr(out, "tags") <- out_tags
   class(out) <- class(x)
   out

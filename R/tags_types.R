@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @inheritParams make_linelist
-#' 
+#'
 #' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return A named `list`.
@@ -16,7 +16,7 @@
 #' * [tags_defaults()] for the default tags
 #' * [validate_types()] uses [tags_types()] for validating tags
 #' * [validate_linelist()] uses [tags_types()] for validating tags
-#' 
+#'
 #' @examples
 #' # list default values
 #' tags_types()
@@ -26,8 +26,7 @@
 #'
 #' # add new types e.g. to allow genetic sequences using ape's format
 #' tags_types(sequence = "DNAbin", allow_extra = TRUE)
-#' 
-
+#'
 tags_types <- function(..., allow_extra = FALSE) {
   defaults <- list(
     id = c("numeric", "integer", "character"),
@@ -41,7 +40,7 @@ tags_types <- function(..., allow_extra = FALSE) {
     age = numeric_types,
     location = category_types,
     occupation = category_types,
-    hcw = binary_types, 
+    hcw = binary_types,
     outcome = category_types
   )
 
@@ -49,9 +48,8 @@ tags_types <- function(..., allow_extra = FALSE) {
   if (length(new_values)) {
     lapply(new_values, checkmate::assertCharacter, min.len = 1)
   }
-  
+
   modify_defaults(defaults = defaults, x = new_values, strict = !allow_extra)
-  
 }
 
 
@@ -62,7 +60,7 @@ date_types <- c("integer", "numeric", "Date", "POSIXct", "POSIXlt")
 category_types <- c("character", "factor")
 
 #' @noRd
-numeric_types <- c("numeric", "integer") 
+numeric_types <- c("numeric", "integer")
 
 #' @noRd
 binary_types <- c("logical", "integer", "character", "factor")

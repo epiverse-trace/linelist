@@ -12,7 +12,7 @@ test_that("tests for make_linelist", {
 
   msg <- "Unknown variable types: foo\n  Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
   expect_error(make_linelist(cars, foo = "speed", allow_extra = FALSE), msg, fixed = TRUE)
-  
+
   # test functionalities
   expect_identical(tags_defaults(), tags(make_linelist(cars), TRUE))
 
@@ -28,5 +28,4 @@ test_that("tests for make_linelist", {
   x <- make_linelist(cars, date_onset = "dist", date_outcome = "speed")
   y <- make_linelist(cars, list(date_onset = "dist", date_outcome = "speed"))
   expect_identical(x, y)
-  
 })

@@ -15,16 +15,18 @@
 #' @return The function returns a `linelist` object.
 #'
 #' @examples
-#' 
+#'
 #' if (require(outbreaks)) {
 #'   ## create a linelist
 #'   x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_rash")
 #'   tags(x)
 #'
 #'   ## add new tags and fix an existing one
-#'   x <- set_tags(x, age = "age",
-#'                 gender = "gender",
-#'                 date_onset = "date_of_prodrome")
+#'   x <- set_tags(x,
+#'     age = "age",
+#'     gender = "gender",
+#'     date_onset = "date_of_prodrome"
+#'   )
 #'   tags(x)
 #'
 #'   ## add non-default tags using allow_extra
@@ -39,10 +41,8 @@
 #'   ## setting tags providing a list (used to restore old tags here)
 #'   x <- set_tags(x, old_tags)
 #'   tags(x)
-#'   
 #' }
-#' 
-
+#'
 set_tags <- function(x, ..., allow_extra = FALSE) {
 
   # assert inputs
@@ -62,9 +62,10 @@ set_tags <- function(x, ..., allow_extra = FALSE) {
   out <- x
   for (i in seq_along(final_tags)) {
     out <- tag_variable(out,
-                        var_type = names(final_tags)[i],
-                        var_name = final_tags[[i]])
+      var_type = names(final_tags)[i],
+      var_name = final_tags[[i]]
+    )
   }
- 
+
   out
 }

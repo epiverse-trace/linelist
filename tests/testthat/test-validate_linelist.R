@@ -15,6 +15,4 @@ test_that("tests for validate_linelist", {
   # Functionalities
   x <- make_linelist(cars)
   expect_identical(x, validate_linelist(x))
-  
 })
-

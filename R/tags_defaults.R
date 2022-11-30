@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' tags_defaults()
-
+#'
 tags_defaults <- function() {
   list(
     id = NULL,
@@ -25,7 +25,7 @@ tags_defaults <- function() {
     age = NULL,
     location = NULL,
     occupation = NULL,
-    hcw = NULL, 
+    hcw = NULL,
     outcome = NULL
   )
 }

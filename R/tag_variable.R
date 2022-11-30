@@ -51,6 +51,6 @@ tag_variable <- function(x, var_type, var_name) {
   tags <- attr(x, "tags")
   tags[var_type] <- list(var_name)
   attr(x, "tags") <- tags
-  
+
   x
 }

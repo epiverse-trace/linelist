@@ -49,6 +49,4 @@ test_that("tests for validate_tags", {
 
   x <- set_tags(x, date_onset = "dist", toto = "speed", allow_extra = TRUE)
   expect_identical(x, validate_tags(x, allow_extra = TRUE))
-  
 })
-

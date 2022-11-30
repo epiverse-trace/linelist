@@ -9,7 +9,7 @@
 #'
 #' @param i a vector of `integer` or `logical` to subset the rows of the
 #'   `linelist`
-#' 
+#'
 #' @param j a vector of `character`, `integer`, or `logical` to subset the
 #'   columns of the `linelist`
 #'
@@ -17,7 +17,7 @@
 #'   `data.frame` class should be dropped to return a simple vector, in which
 #'   case the `linelist` class is lost as well; defaults to `FALSE`
 #'
-#' @param value the replacement to be used for the entries identified in `x` 
+#' @param value the replacement to be used for the entries identified in `x`
 #'
 #' @return If no drop is happening, a `linelist`. Otherwise an atomic vector.
 #'
@@ -25,24 +25,26 @@
 #' * [lost_tags_action()] to set the behaviour to adopt when tags are
 #'   lost through subsetting; default is to issue a warning
 #' * [get_lost_tags_action()] to check the current the behaviour
-#' 
+#'
 #' @export
 #'
 #' @rdname sub_linelist
 #'
 #' @aliases sub_linelist
-#' 
+#'
 #' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @examples
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 #'   ## create a linelist
 #'   x <- measles_hagelloch_1861 %>%
-#'     tibble() %>% 
-#'     make_linelist(id = "case_ID",
-#'                   date_onset = "date_of_prodrome",
-#'                   age = "age",
-#'                   gender = "gender") %>%
+#'     tibble() %>%
+#'     make_linelist(
+#'       id = "case_ID",
+#'       date_onset = "date_of_prodrome",
+#'       age = "age",
+#'       gender = "gender"
+#'     ) %>%
 #'     mutate(result = if_else(is.na(date_of_death), "survived", "died")) %>%
 #'     set_tags(outcome = "result") %>%
 #'     rename(identifier = case_ID)
@@ -55,7 +57,6 @@
 #'   x[[2]] <- NULL
 #'   x
 #' }
-
 `[.linelist` <- function(x, i, j, drop = FALSE) {
   # Strategy for subsetting
   #
@@ -99,7 +100,6 @@
   old_tags <- tags(x, TRUE)
   out <- restore_tags(out, old_tags, lost_action)
   out
-  
 }
 
 
@@ -113,6 +113,5 @@
   out <- NextMethod()
   old_tags <- tags(x, TRUE)
   out <- restore_tags(out, old_tags, lost_action)
-  out  
+  out
 }
-

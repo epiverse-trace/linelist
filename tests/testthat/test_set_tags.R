@@ -1,5 +1,4 @@
 test_that("tests for se_tags", {
-
   x <- make_linelist(cars, date_onset = "dist")
 
   # Check error messages
@@ -12,7 +11,7 @@ test_that("tests for se_tags", {
   msg <- "Assertion on 'var_name' failed: Must be element of set \\{'speed','dist'\\}, but is 'toto'."
   expect_error(set_tags(x, outcome = "toto"), msg)
 
-  
+
   # Check functionality
   expect_identical(x, set_tags(x))
   x <- set_tags(x, date_reporting = "speed")
@@ -22,5 +21,4 @@ test_that("tests for se_tags", {
   x <- set_tags(x, id = "speed", date_outcome = "dist")
   y <- set_tags(x, list(id = "speed", date_outcome = "dist"))
   expect_identical(x, y)
-  
 })

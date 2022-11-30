@@ -10,10 +10,10 @@
 #' @return The function returns a `character` vector.
 #'
 #' @seealso [tags_defaults()] for a `list` of default values of the tags
-#' 
+#'
 #' @examples
 #' tags_names()
-
+#'
 tags_names <- function() {
   names(tags_defaults())
 }

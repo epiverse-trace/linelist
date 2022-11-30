@@ -4,5 +4,3 @@ if (require(testthat)) {
 } else {
   warning("'linelist' requires 'testthat' for tests")
 }
-
-

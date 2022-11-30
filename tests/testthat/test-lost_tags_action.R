@@ -1,5 +1,4 @@
 test_that("tests for lost_tags_action", {
-
   msg <- "Lost tags will now issue a warning."
   expect_message(lost_tags_action(), msg)
 
@@ -21,5 +20,4 @@ test_that("tests for lost_tags_action", {
 
   lost_tags_action("warning", quiet = TRUE)
   expect_identical(get_lost_tags_action(), "warning")
-  
 })

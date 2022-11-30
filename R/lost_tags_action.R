@@ -20,43 +20,42 @@
 #' @return if a a `linelist` is provided, it returns the object unchanged;
 #'   otherwise, returns `NULL`; the option itself is set in
 #'   `options("linelist")`
-#' 
+#'
 #' @export
 #'
 #' @rdname lost_tags_action
 #'
 #' @aliases lost_tags_action get_lost_tags_action
-#' 
+#'
 #' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @examples
 #' # reset default - done automatically at package loading
 #' lost_tags_action()
-#' 
+#'
 #' # check current value
 #' get_lost_tags_action()
 #'
 #' # change to issue errors when tags are lost
 #' lost_tags_action("error")
 #' get_lost_tags_action()
-#' 
+#'
 #' # change to ignore when tags are lost
 #' lost_tags_action("none")
 #' get_lost_tags_action()
-#' 
+#'
 #' # reset to default: warning
 #' lost_tags_action()
-
+#'
 lost_tags_action <- function(x = NULL,
                              action = c("warning", "error", "none"),
                              quiet = FALSE) {
-
   linelist_options <- options("linelist")$linelist
 
   if (is.null(x)) {
     x <- "warning"
   }
-    
+
   # behaviour 1: action is passed through `x`
   if (!is.null(x) && is.character(x) && length(x) == 1L) {
     action <- match.arg(x, c("warning", "error", "none"))
@@ -77,16 +76,14 @@ lost_tags_action <- function(x = NULL,
     options("linelist" = linelist_options)
     return(x)
   }
-
 }
 
 
 
 #' @export
-#' 
+#'
 #' @rdname lost_tags_action
 
 get_lost_tags_action <- function() {
   options("linelist")$linelist$lost_tags_action
 }
-  

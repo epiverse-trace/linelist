@@ -5,7 +5,7 @@
 #' using both procedures, tagged variables are output as the last columns.
 #'
 #' @rdname select.linelist
-#' 
+#'
 #' @param .data a `linelist` object
 #'
 #' @param ... the variables to select, using `dplyr` compatible syntax
@@ -26,7 +26,7 @@
 #' @seealso
 #' * [select_tags()] to select tags only
 #' * [tags_df()] to return a `data.frame` of all tagged variables
-#' 
+#'
 #' @examples
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 #'
@@ -35,11 +35,13 @@
 #'
 #'   ## create linelist
 #'   x <- measles_hagelloch_1861 %>%
-#'     tibble() %>% 
-#'     make_linelist(id = "case_ID",
-#'                   date_onset = "date_of_prodrome",
-#'                   age = "age",
-#'                   gender = "gender")
+#'     tibble() %>%
+#'     make_linelist(
+#'       id = "case_ID",
+#'       date_onset = "date_of_prodrome",
+#'       age = "age",
+#'       gender = "gender"
+#'     )
 #'   x
 #'
 #'   ## change select all dates and some tags
@@ -50,28 +52,25 @@
 #'   x %>%
 #'     select(1:3)
 #'
-#'  ## getting rid of warnings on the fly
-#'  x %>%
-#'    lost_tags_action("none") %>%
-#'    select(1:3)
+#'   ## getting rid of warnings on the fly
+#'   x %>%
+#'     lost_tags_action("none") %>%
+#'     select(1:3)
 #'
-#'  ## reset default behaviour
-#'  lost_tags_action()
-#' 
+#'   ## reset default behaviour
+#'   lost_tags_action()
 #' }
-
 select.linelist <- function(.data, ..., tags = NULL) {
-
   lost_action <- get_lost_tags_action()
 
   checkmate::assertCharacter(tags, null.ok = TRUE)
   x <- .data
-  
+
   # Strategy
   # --------
   #
   # Variable selection is done in two steps:
-  # 
+  #
   # 1. normal use of `dplyr::select` on the data.frame using `...` arguments
   # 2. selection of tagged variables via the `tags` argument
   #
@@ -83,7 +82,7 @@ select.linelist <- function(.data, ..., tags = NULL) {
   #
   # we need to check that tagged variables have not been lost, through
   # subsetting or renaming; for this we use `restore_tags()`
-  # 
+  #
 
   # step 1
   df_base <- dplyr::select(drop_linelist(x), ...)
@@ -107,14 +106,14 @@ select.linelist <- function(.data, ..., tags = NULL) {
   } else {
     missing_names <- tag_names == ""
     tag_names[missing_names] <- tags[missing_names]
-  }  
+  }
 
-  ## create new_tags where tags are renamed as needed 
-  new_tags <- as.list(tag_names)  
+  ## create new_tags where tags are renamed as needed
+  new_tags <- as.list(tag_names)
   names(new_tags) <- tags
   out_tags <- modify_defaults(old_tags, new_tags)
-  
-  
+
+
   # finalize output
   # Note: cbind() loses the `tibble` class, which we want to avoid.
   if (inherits(x, "tbl_df")) {

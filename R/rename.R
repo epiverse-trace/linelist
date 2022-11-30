@@ -5,7 +5,7 @@
 #' new column names.
 #'
 #' @rdname rename.linelist
-#' 
+#'
 #' @param .data a `linelist` object
 #'
 #' @param ... the variables to rename, using `dplyr` compatible syntax
@@ -22,7 +22,7 @@
 #' * [select.linelist()] for selecting variables and tags
 #' * [select_tags()] for selecting tags
 #' * [tags_df()] to return a `data.frame` or a `tibble` of all agged variables
-#' 
+#'
 #' @examples
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 #'
@@ -31,11 +31,13 @@
 #'
 #'   ## create linelist
 #'   x <- measles_hagelloch_1861 %>%
-#'     tibble() %>% 
-#'     make_linelist(id = "case_ID",
-#'                   date_onset = "date_of_prodrome",
-#'                   age = "age",
-#'                   gender = "gender")
+#'     tibble() %>%
+#'     make_linelist(
+#'       id = "case_ID",
+#'       date_onset = "date_of_prodrome",
+#'       age = "age",
+#'       gender = "gender"
+#'     )
 #'   x
 #'
 #'   ## change names
@@ -46,7 +48,6 @@
 #'   x
 #'   tags(x)
 #' }
-
 rename.linelist <- function(.data, ...) {
   # Strategy: we use `dplyr::rename` to handle the renaming of columns, then
   # extract these names and use them to rename the linelist using

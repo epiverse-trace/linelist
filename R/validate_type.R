@@ -13,8 +13,8 @@
 #' @param tag the name of the tag the variable corresponds to, typically one of
 #'   the values of `tags_names()`
 #'
-#' @param ref_types a `list` providing allowed types for all tags 
-#' 
+#' @param ref_types a `list` providing allowed types for all tags
+#'
 #' @author Thibaut Jombart \email{thibaut@@data.org}
 #'
 #' @return `TRUE` if the test is successful; otherwise, a `character` indicating
@@ -25,17 +25,18 @@
 #' * [tags_types()] to check or change acceptable data
 #'   classes for specific tags
 #' * [validate_types()] to apply validation to a `linelist`
-#' 
+#'
 
 validate_type <- function(x, tag, ref_types = tags_types()) {
   checkmate::assertAtomicVector(x)
   if (!tag %in% names(ref_types)) {
     msg <- sprintf(
       "Allowed types for tag `%s` are not documented in `ref_types`",
-      tag)
+      tag
+    )
     stop(msg)
   }
-  
+
   allowed_types <- ref_types[[tag]]
   checkmate::check_multi_class(x, allowed_types, null.ok = TRUE)
 }
