@@ -5,3 +5,4 @@ README.md
 codecov.yml
 ^\.github$
 ^LICENSE\.md$
+^\.lintr$
