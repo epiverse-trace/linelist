@@ -60,7 +60,7 @@ validate_tags <- function(x, allow_extra = FALSE) {
     missing_tags <- tags_names()[!default_present]
     msg <- sprintf(
       "The following default tags are missing:\n%s",
-      paste(missing_tags, collapse = ", ")
+      toString(missing_tags)
     )
     stop(msg)
   }
@@ -72,7 +72,7 @@ validate_tags <- function(x, allow_extra = FALSE) {
       extra_tags <- names(x_tags)[is_extra]
       msg <- sprintf(
         "The following tags are not part of the defaults:\n%s\n%s",
-        paste(extra_tags, collapse = ", "),
+        toString(extra_tags),
         "Consider using `allow_extra = TRUE` to allow additional tags."
       )
       stop(msg)

@@ -5,7 +5,11 @@ test_that("tests for restore_tags", {
   names(z) <- c("titi", "toto")
 
   # Check error messages
-  msg <- "The following tags have lost their variable:\n date_onset:dist, age:speed"
+  msg <- paste(
+    "The following tags have lost their variable:",
+    " date_onset:dist, age:speed",
+    sep = "\n"
+  )
   expect_error(restore_tags(z, tags(x), "error"), msg)
   expect_warning(restore_tags(z, tags(x), "warning"), msg)
 

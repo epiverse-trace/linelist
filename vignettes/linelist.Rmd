@@ -111,7 +111,7 @@ If you prefer using the latest features and bug fixes, you can alternatively
 install the development version of *linelist* from [GitHub](https://github.com/)
 using the following commands:
 
-```{r, eval=FALSE}
+```r
 if (!require(remotes)) {
   install.packages("remotes")
 }
@@ -232,7 +232,7 @@ information:
 
 ```{r }
 
-library(tibble) # data.frame but with nice printing 
+library(tibble) # data.frame but with nice printing
 library(dplyr) # for data handling
 library(magrittr) # for the %>% operator
 library(linelist) # this package!
@@ -270,7 +270,9 @@ and setting up a new tag using `set_tags`:
 ```{r }
 
 x <- x %>%
-  mutate(inferred_outcome = if_else(is.na(date_of_death), "survided", "died")) %>%
+  mutate(
+    inferred_outcome = if_else(is.na(date_of_death), "survived", "died")
+  ) %>%
   set_tags(outcome = "inferred_outcome")
 x
 
@@ -362,9 +364,8 @@ x %>%
   lost_tags_action("error") %>%
   select(1:2, tags = "gender")
 
-# note that `lost_tags_action` sets the behavior for any later operation, so we 
+# note that `lost_tags_action` sets the behavior for any later operation, so we
 # need to reset the default
 get_lost_tags_action() # check current behaviour
 lost_tags_action() # reset default
-
 ```

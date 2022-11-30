@@ -25,15 +25,12 @@
 #'
 #' @seealso
 #'
-#' * An overview of the [linelist] package
-#' * [tags_names()]: for a list of known tag names
-#' * [tags_types()]: for the associated accepted types/classes
-#' * [tags()]: for a list of tagged variables in a `linelist`
-#' * [set_tags()]: for modifying tags
-#' * [tags_df()]: for selecting variables by tags
+#' * An overview of the [linelist] package * [tags_names()]: for a list of known
+#' tag names * [tags_types()]: for the associated accepted types/classes *
+#' [tags()]: for a list of tagged variables in a `linelist` * [set_tags()]: for
+#' modifying tags * [tags_df()]: for selecting variables by tags
 #'
-#' @details
-#' Known variable types include:
+#' @details Known variable types include:
 #'
 #' * `id`: a unique case identifier as `numeric` or `character`
 #'
@@ -54,15 +51,15 @@
 #' * `age`: a `numeric` indicating the age of the patient, in years
 #'
 #' * `location`: a `factor` or `character` indicating the location of the
-#'   patient
+#' patient
 #'
 #' * `occupation`: a `factor` or `character` indicating the professional
-#'   activity of the patient
+#' activity of the patient
 #'
 #' * `hcw`: a `logical` indicating if the patient is a health care worker
 #'
 #' * `outcome`: a `factor` or `character` indicating the outcome of the disease
-#'   (death or survival)
+#' (death or survival)
 #'
 #' Dates can be provided in the following formats/types:
 #'
@@ -71,7 +68,8 @@
 #'
 #' * `POSIXct/POSIXlt` objects (when a finer scale than days is needed)
 #'
-#' * `numeric` values, typically indicating the number of days since the first case
+#' * `numeric` values, typically indicating the number of days since the first
+#' case
 #'
 #' @export
 #'

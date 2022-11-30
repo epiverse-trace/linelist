@@ -10,7 +10,11 @@ test_that("tests for select", {
     lost_tags_action("error", quiet = TRUE)
     expect_error(select(x, toto = dist, tags = "date_onset"), msg)
 
-    msg <- "The following tags have lost their variable:\n date_onset:dist, date_outcome:speed"
+    msg <- paste(
+      "The following tags have lost their variable:",
+      " date_onset:dist, date_outcome:speed",
+      sep = "\n"
+    )
     lost_tags_action("warning", quiet = TRUE)
     expect_warning(select(x, toto = dist), msg)
 
@@ -22,7 +26,7 @@ test_that("tests for select", {
     ## basic case
     expect_identical(x, select(x, everything()))
     y <- select(x, everything(), tags = "date_onset")
-    expect_identical(names(y), c("speed", "dist", "date_onset"))
+    expect_named(y, c("speed", "dist", "date_onset"))
     expect_identical(y$dist, y$date_onset)
     expect_identical(
       list(date_onset = "date_onset", date_outcome = "speed"),
@@ -32,12 +36,12 @@ test_that("tests for select", {
     ## case where some tags are dropped
     lost_tags_action("none", quiet = TRUE)
     y <- select(x, dist, tags = "date_onset")
-    expect_identical(names(y), c("dist", "date_onset"))
+    expect_named(y, c("dist", "date_onset"))
     expect_identical(tags(y), list(date_onset = "date_onset"))
 
     ## same, with renaming of tags
     y <- select(x, dist, tags = c(onset = "date_onset"))
-    expect_identical(names(y), c("dist", "onset"))
+    expect_named(y, c("dist", "onset"))
     expect_identical(tags(y), list(date_onset = "onset"))
 
     ## selecting tags only
@@ -47,7 +51,8 @@ test_that("tests for select", {
     )
 
     ## check that tibble class is preserved
-    x <- make_linelist(tibble(cars), date_onset = "dist", date_outcome = "speed")
-    expect_true(inherits(select(x, 1, tags = "date_onset"), "tbl_df"))
+    cars_tbl <- tibble(cars)
+    x <- make_linelist(cars_tbl, date_onset = "dist", date_outcome = "speed")
+    expect_s3_class(select(x, 1, tags = "date_onset"), "tbl_df")
   }
 })

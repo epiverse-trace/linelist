@@ -22,7 +22,7 @@ modify_defaults <- function(defaults, x, strict = TRUE) {
   if (strict && (length(extra) > 0L)) {
     msg <- paste0(
       "Unknown variable types: ",
-      paste(extra, collapse = ", "),
+      toString(extra),
       "\n  ",
       "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
     )

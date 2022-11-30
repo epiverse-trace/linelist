@@ -4,7 +4,7 @@ test_that("tests for tags_df", {
   names(y) <- c("date_reporting", "age")
 
   # errors
-  msg <- "Assertion on 'x' failed: Must inherit from class 'linelist', but has class 'data.frame'."
+  msg <- "Must inherit from class 'linelist', but has class 'data.frame'."
   expect_error(tags_df(cars), msg)
 
   # functionality

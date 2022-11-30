@@ -1,7 +1,7 @@
 test_that("tests for validate_tags", {
 
   # test errors
-  msg <- "Assertion on 'x' failed: Must inherit from class 'linelist', but has class 'data.frame'."
+  msg <- "Must inherit from class 'linelist', but has class 'data.frame'."
   expect_error(validate_tags(cars), msg)
 
   x <- make_linelist(cars)
@@ -10,11 +10,19 @@ test_that("tests for validate_tags", {
   expect_error(validate_tags(x), msg)
 
   attr(x, "tags") <- tags_defaults()[-(1:3)]
-  msg <- "The following default tags are missing:\nid, date_onset, date_reporting"
+  msg <- paste(
+    "The following default tags are missing:",
+    "id, date_onset, date_reporting",
+    sep = "\n"
+  )
   expect_error(validate_tags(x), msg)
 
   attr(x, "tags") <- c(tags_defaults(), toto = "ilestbo")
-  msg <- "The following tags are not part of the defaults:\ntoto\nConsider using `allow_extra = TRUE` to allow additional tags."
+  msg <- paste(
+    "The following tags are not part of the defaults:\ntoto",
+    "Consider using `allow_extra = TRUE` to allow additional tags.",
+    sep = "\n"
+  )
   expect_error(validate_tags(x), msg)
 
   attr(x, "tags") <- c(tags_defaults(), toto = "ilestbo")
@@ -24,24 +32,14 @@ test_that("tests for validate_tags", {
   tags <- tags_defaults()
   tags[[2]] <- 1L
   attr(x, "tags") <- tags
-  msg <- "May only contain the following types: \\{character,null\\}, but element 2 has type 'integer'."
+  msg <- paste0(
+    "May only contain the following types: \\{character,null\\}, ",
+    "but element 2 has type 'integer'."
+  )
   expect_error(validate_tags(x), msg)
 
   msg <- ""
   expect_error(validate_tags(x), msg)
-
-  msg <- ""
-  expect_error(, msg)
-
-  msg <- ""
-  expect_error(, msg)
-
-  msg <- ""
-  expect_error(, msg)
-
-  msg <- ""
-  expect_error(, msg)
-
 
   # functionalities
   x <- make_linelist(cars)

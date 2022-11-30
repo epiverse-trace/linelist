@@ -40,8 +40,8 @@ test_that("tests for [<- operator", {
   expect_error(x[, 1] <- NULL, msg)
 
   # functionalities
-  x[1:3, 1] <- 1
-  expect_equal(x$speed[1:3], rep(1L, 3))
+  x[1:3, 1] <- 1L
+  expect_identical(x$speed[1:3], rep(1, 3))
 
   lost_tags_action("none", quiet = TRUE)
   x <- make_linelist(cars, id = "speed", age = "dist")
@@ -68,8 +68,8 @@ test_that("tests for [[<- operator", {
   expect_error(x[[1]] <- NULL, msg)
 
   # functionalities
-  x[[1]] <- 1
-  expect_equal(x$speed, rep(1L, nrow(x)))
+  x[[1]] <- 1L
+  expect_identical(x$speed, rep(1L, nrow(x)))
 
   lost_tags_action("none", quiet = TRUE)
   x <- make_linelist(cars, id = "speed", age = "dist")

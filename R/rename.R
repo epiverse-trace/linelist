@@ -50,8 +50,8 @@
 #' }
 rename.linelist <- function(.data, ...) {
   # Strategy: we use `dplyr::rename` to handle the renaming of columns, then
-  # extract these names and use them to rename the linelist using
-  # `names<-.linelist`
+  # extract these names and use them to rename the linelist using the dedicated
+  # `names<-.linelist()` method
   out <- .data
   new_names <- names(dplyr::rename(drop_linelist(out), ...))
   names(out) <- new_names

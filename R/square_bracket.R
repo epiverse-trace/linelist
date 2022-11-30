@@ -71,7 +71,7 @@
   # Note that the [ operator's implementation is messy and does not seem to pass
   # the drop argument well when using NextMethod(); also it does not allow extra
   # args, in case we wanted to use them; so declassing the object instead using
-  # drop_linelist()
+  # the drop_linelist() function
 
   lost_action <- get_lost_tags_action()
 

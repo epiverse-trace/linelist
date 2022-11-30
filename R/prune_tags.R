@@ -6,9 +6,9 @@
 #'
 #' @param x `linelist` object
 #'
-#' @param lost_action a `character` indicating the behaviour to adopt when tagged
-#'   variables have been lost: "error" (default) will issue an error; "warning"
-#'   will issue a warning; "none" will do nothing
+#' @param lost_action a `character` indicating the behaviour to adopt when
+#'   tagged variables have been lost: "error" (default) will issue an error;
+#'   "warning" will issue a warning; "none" will do nothing
 #'
 #' @noRd
 #'
