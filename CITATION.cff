@@ -1,0 +1,248 @@
+# -----------------------------------------------------------
+# CITATION file created with {cffr} R package, v0.4.1
+# See also: https://docs.ropensci.org/cffr/
+# -----------------------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "linelist" in publications use:'
+type: software
+license: MIT
+title: 'linelist: Tagging and Validating Epidemiological Data'
+version: 0.0.2
+abstract: Provides tools to help storing and handling case line list data. The 'linelist'
+  class adds a tagging system to classical 'data.frame' objects to identify key epidemiological
+  data such as dates of symptom onset, epidemiological case definition, age, gender
+  or disease outcome. Once tagged, these variables can be seamlessly used in downstream
+  analyses, making data pipelines more robust and reliable.
+authors:
+- family-names: Jombart
+  given-names: Thibaut
+  email: thibaut@data.org
+repository: https://CRAN.R-project.org/package=linelist
+repository-code: https://github.com/epiverse-trace/linelist
+url: https://epiverse-trace.github.io/linelist/
+contact:
+- family-names: Jombart
+  given-names: Thibaut
+  email: thibaut@data.org
+keywords:
+- data
+- data-structures
+- epidemics
+- epidemiology
+- epiverse
+- outbreaks
+- r
+- r-language
+- r-package
+- r-programming
+- structured-data
+references:
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  location:
+    name: Vienna, Austria
+  year: '2023'
+  institution:
+    name: R Foundation for Statistical Computing
+  version: '>= 3.1.0'
+- type: software
+  title: checkmate
+  abstract: 'checkmate: Fast and Versatile Argument Checks'
+  notes: Imports
+  url: https://mllg.github.io/checkmate/
+  repository: https://CRAN.R-project.org/package=checkmate
+  authors:
+  - family-names: Lang
+    given-names: Michel
+    email: michellang@gmail.com
+    orcid: https://orcid.org/0000-0001-9754-0393
+  year: '2023'
+- type: software
+  title: dplyr
+  abstract: 'dplyr: A Grammar of Data Manipulation'
+  notes: Imports
+  url: https://dplyr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=dplyr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: François
+    given-names: Romain
+    orcid: https://orcid.org/0000-0002-2444-4226
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Müller
+    given-names: Kirill
+    orcid: https://orcid.org/0000-0002-1416-3412
+  - family-names: Vaughan
+    given-names: Davis
+    email: davis@posit.co
+    orcid: https://orcid.org/0000-0003-4777-038X
+  year: '2023'
+- type: software
+  title: callr
+  abstract: 'callr: Call R from R'
+  notes: Suggests
+  url: https://callr.r-lib.org
+  repository: https://CRAN.R-project.org/package=callr
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+    orcid: https://orcid.org/0000-0001-7098-9676
+  - family-names: Chang
+    given-names: Winston
+  year: '2023'
+- type: software
+  title: covr
+  abstract: 'covr: Test Coverage for Packages'
+  notes: Suggests
+  url: https://covr.r-lib.org
+  repository: https://CRAN.R-project.org/package=covr
+  authors:
+  - family-names: Hester
+    given-names: Jim
+    email: james.f.hester@gmail.com
+  year: '2023'
+- type: software
+  title: knitr
+  abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
+  notes: Suggests
+  url: https://yihui.org/knitr/
+  repository: https://CRAN.R-project.org/package=knitr
+  authors:
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2023'
+- type: software
+  title: magrittr
+  abstract: 'magrittr: A Forward-Pipe Operator for R'
+  notes: Suggests
+  url: https://magrittr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=magrittr
+  authors:
+  - family-names: Bache
+    given-names: Stefan Milton
+    email: stefan@stefanbache.dk
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2023'
+- type: software
+  title: outbreaks
+  abstract: 'outbreaks: A Collection of Disease Outbreak Data'
+  notes: Suggests
+  url: https://github.com/reconhub/outbreaks
+  repository: https://CRAN.R-project.org/package=outbreaks
+  authors:
+  - family-names: Jombart
+    given-names: Thibaut
+    email: thibaut.jombart@gmail.com
+  - family-names: Frost
+    given-names: Simon
+  - family-names: Nouvellet
+    given-names: Pierre
+  - family-names: Campbell
+    given-names: Finlay
+    email: finlaycampbell93@gmail.com
+  - family-names: Sudre
+    given-names: Bertrand
+    email: bertrand.sudre@edc.europa.eu
+  year: '2023'
+- type: software
+  title: remotes
+  abstract: 'remotes: R Package Installation from Remote Repositories, Including ''GitHub'''
+  notes: Suggests
+  url: https://remotes.r-lib.org
+  repository: https://CRAN.R-project.org/package=remotes
+  authors:
+  - family-names: Csárdi
+    given-names: Gábor
+    email: csardi.gabor@gmail.com
+  - family-names: Hester
+    given-names: Jim
+    email: jim.hester@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+  - family-names: Chang
+    given-names: Winston
+  - family-names: Morgan
+    given-names: Martin
+  - family-names: Tenenbaum
+    given-names: Dan
+  year: '2023'
+- type: software
+  title: rmarkdown
+  abstract: 'rmarkdown: Dynamic Documents for R'
+  notes: Suggests
+  url: https://pkgs.rstudio.com/rmarkdown/
+  repository: https://CRAN.R-project.org/package=rmarkdown
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@rstudio.com
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: McPherson
+    given-names: Jonathan
+    email: jonathan@rstudio.com
+  - family-names: Luraschi
+    given-names: Javier
+    email: javier@rstudio.com
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@rstudio.com
+  - family-names: Atkins
+    given-names: Aron
+    email: aron@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  - family-names: Cheng
+    given-names: Joe
+    email: joe@rstudio.com
+  - family-names: Chang
+    given-names: Winston
+    email: winston@rstudio.com
+  - family-names: Iannone
+    given-names: Richard
+    email: rich@rstudio.com
+    orcid: https://orcid.org/0000-0003-3925-190X
+  year: '2023'
+- type: software
+  title: testthat
+  abstract: 'testthat: Unit Testing for R'
+  notes: Suggests
+  url: https://testthat.r-lib.org
+  repository: https://CRAN.R-project.org/package=testthat
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2023'
+- type: software
+  title: tibble
+  abstract: 'tibble: Simple Data Frames'
+  notes: Suggests
+  url: https://tibble.tidyverse.org/
+  repository: https://CRAN.R-project.org/package=tibble
+  authors:
+  - family-names: Müller
+    given-names: Kirill
+    email: kirill@cynkra.com
+    orcid: https://orcid.org/0000-0002-1416-3412
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2023'
