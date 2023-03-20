@@ -20,7 +20,7 @@ drop_linelist <- function(x, remove_tags = TRUE) {
   classes <- class(x)
   class(x) <- setdiff(classes, "linelist")
   if (remove_tags) {
-    attr(x, "tags") <- NULL
+    lapply(x, function(i) attr(i, "label") <- NULL)
   }
   x
 }

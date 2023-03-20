@@ -39,18 +39,7 @@ tag_variable <- function(x, var_type, var_name) {
   }
   checkmate::assertChoice(var_name, choices = names(x), null.ok = TRUE)
 
-  # create tags attribute if needed; this is a named list used to store the
-  # variable name corresponding to known variable types
-  if (is.null(attr(x, "tags"))) {
-    attr(x, "tags") <- list()
-  }
-
-  # extract the tags list, add new values, re-add to the object note that we
-  # need to ensure that tags set to NULL are kept in the list, so we want to
-  # avoid things like tags[[]] <- NULL which would remove the item altogether
-  tags <- attr(x, "tags")
-  tags[var_type] <- list(var_name)
-  attr(x, "tags") <- tags
+  attr(x[[var_name]], "label") <- var_type
 
   x
 }

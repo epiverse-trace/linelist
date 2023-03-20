@@ -106,17 +106,9 @@ make_linelist <- function(x,
   checkmate::assertDataFrame(x, min.cols = 1)
   checkmate::assertLogical(allow_extra)
 
-  # The approach is to replace default values with user-provided ones, and then
-  # tag each variable in turn. Validation the tagged variables is done
-  # elsewhere.
-  tags <- tags_defaults()
-
-  args <- list(...)
-  if (length(args) && is.list(args[[1]])) {
-    args <- args[[1]]
-  }
-
-  tags <- modify_defaults(tags, args, strict = !allow_extra)
+  tags <- list(...)
+  
+  extra_tags <- names(tags)
 
   out <- x
   for (i in seq_along(tags)) {

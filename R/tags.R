@@ -33,10 +33,5 @@
 #'
 tags <- function(x, show_null = FALSE) {
   checkmate::assertClass(x, "linelist")
-  out <- attr(x, "tags")
-  if (!show_null) {
-    to_remove <- vapply(out, is.null, logical(1))
-    out <- out[!to_remove]
-  }
-  out
+  lapply(x, function(i) attr(i, "label"))
 }
