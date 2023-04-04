@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# *linelist*: Tagging and Validating Epidemiological Data <img src="man/figures/logo.png" align="right" width="120" />
+# *linelist*: Tagging and Validating Epidemiological Data <img src="man/figures/logo.svg" align="right" width="120" />
 
 <!-- badges: start -->
 
@@ -74,34 +74,17 @@ details about `linelist` objects.
 # load packages and a dataset for the example
 # -------------------------------------------
 library(pacman)
+#> Error in library(pacman): there is no package called 'pacman'
 p_load(dplyr)
-#> Installing package into '/Users/runner/work/_temp/Library'
-#> (as 'lib' is unspecified)
-#> also installing the dependencies 'generics', 'tidyselect'
-#> 
-#> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYgmXSW/downloaded_packages
-#> 
-#> dplyr installed
+#> Error in p_load(dplyr): could not find function "p_load"
 p_load(magrittr)
+#> Error in p_load(magrittr): could not find function "p_load"
 p_load(outbreaks)
-#> Installing package into '/Users/runner/work/_temp/Library'
-#> (as 'lib' is unspecified)
-#> 
-#> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYgmXSW/downloaded_packages
-#> 
-#> outbreaks installed
+#> Error in p_load(outbreaks): could not find function "p_load"
 p_load(incidence2)
-#> Installing package into '/Users/runner/work/_temp/Library'
-#> (as 'lib' is unspecified)
-#> also installing the dependencies 'tzdb', 'cpp11', 'ellipsis', 'data.table', 'grates', 'clock'
-#> 
-#> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpYgmXSW/downloaded_packages
-#> 
-#> incidence2 installed
+#> Error in p_load(incidence2): could not find function "p_load"
 p_load(linelist)
+#> Error in p_load(linelist): could not find function "p_load"
 
 dataset <- outbreaks::mers_korea_2015$linelist
 head(dataset)
@@ -130,10 +113,7 @@ head(dataset)
 # check known tagged variables
 # ----------------------------
 tags_names()
-#>  [1] "id"             "date_onset"     "date_reporting" "date_admission"
-#>  [5] "date_discharge" "date_outcome"   "date_death"     "gender"        
-#>  [9] "age"            "location"       "occupation"     "hcw"           
-#> [13] "outcome"
+#> Error in tags_names(): could not find function "tags_names"
 
 # build a linelist
 # ----------------
@@ -143,44 +123,17 @@ x <- dataset %>%
                 date_reporting = "dt_report", # date of reporting
                 occupation = "age" # mistake
                 )
+#> Error in dataset %>% tibble() %>% make_linelist(date_onset = "dt_onset", : could not find function "%>%"
 x
-#> 
-#> // linelist object
-#> # A tibble: 162 × 15
-#>    id      age age_class sex   place_inf…¹ repor…² loc_h…³ dt_onset   dt_report 
-#>    <chr> <int> <chr>     <fct> <fct>       <fct>   <fct>   <date>     <date>    
-#>  1 SK_1     68 60-69     M     Middle East South … Pyeong… 2015-05-11 2015-05-19
-#>  2 SK_2     63 60-69     F     Outside Mi… South … Pyeong… 2015-05-18 2015-05-20
-#>  3 SK_3     76 70-79     M     Outside Mi… South … Pyeong… 2015-05-20 2015-05-20
-#>  4 SK_4     46 40-49     F     Outside Mi… South … Pyeong… 2015-05-25 2015-05-26
-#>  5 SK_5     50 50-59     M     Outside Mi… South … 365 Ye… 2015-05-25 2015-05-27
-#>  6 SK_6     71 70-79     M     Outside Mi… South … Pyeong… 2015-05-24 2015-05-28
-#>  7 SK_7     28 20-29     F     Outside Mi… South … Pyeong… 2015-05-21 2015-05-28
-#>  8 SK_8     46 40-49     F     Outside Mi… South … Seoul … 2015-05-26 2015-05-29
-#>  9 SK_9     56 50-59     M     Outside Mi… South … Pyeong… NA         2015-05-29
-#> 10 SK_10    44 40-49     M     Outside Mi… China   Pyeong… 2015-05-21 2015-05-29
-#> # … with 152 more rows, 6 more variables: week_report <fct>,
-#> #   dt_start_exp <date>, dt_end_exp <date>, dt_diag <date>, outcome <fct>,
-#> #   dt_death <date>, and abbreviated variable names ¹​place_infect,
-#> #   ²​reporting_ctry, ³​loc_hosp
-#> 
-#> // tags: date_onset:dt_onset, date_reporting:dt_report, occupation:age
+#> Error in eval(expr, envir, enclos): object 'x' not found
 tags(x) # check available tags
-#> $date_onset
-#> [1] "dt_onset"
-#> 
-#> $date_reporting
-#> [1] "dt_report"
-#> 
-#> $occupation
-#> [1] "age"
+#> Error in tags(x): could not find function "tags"
 
 # validation of tagged variables
 # ------------------------------
 ## (this flags a likely mistake: occupation should not be an integer)
 validate_linelist(x)
-#> Error in validate_types(x, ref_types): Issue when checking class of tag `occupation`:
-#> Must inherit from class 'character'/'factor', but has class 'integer'
+#> Error in validate_linelist(x): could not find function "validate_linelist"
 
 # change tags: fix mistakes, add new ones
 # ---------------------------------------
@@ -189,72 +142,45 @@ x <- x %>%
            gender = "sex", # new tag
            outcome = "outcome"
            )
+#> Error in x %>% set_tags(occupation = NULL, gender = "sex", outcome = "outcome"): could not find function "%>%"
 
 # safeguards against actions losing tags
 # --------------------------------------
 ## attemping to remove geographical info but removing dates by mistake
 x_no_geo <- x %>%
   select(-(5:8))
-#> Warning in prune_tags(out, lost_action): The following tags have lost their variable:
-#>  date_onset:dt_onset
+#> Error in x %>% select(-(5:8)): could not find function "%>%"
 
 ## for stronger pipelines, trigger errors upon loss
 x_no_geo <- x %>%
   lost_tags_action("error") %>% 
   select(-(5:8))
-#> Error in prune_tags(out, lost_action): The following tags have lost their variable:
-#>  date_onset:dt_onset
+#> Error in x %>% lost_tags_action("error") %>% select(-(5:8)): could not find function "%>%"
 
 x_no_geo <- x %>%
   select(-(5:7))
+#> Error in x %>% select(-(5:7)): could not find function "%>%"
 
 ## to revert to default behaviour (warning upon error)
 lost_tags_action()
-#> Lost tags will now issue a warning.
+#> Error in lost_tags_action(): could not find function "lost_tags_action"
 
 # access content by tags, and build downstream pipelines
 # ------------------------------------------------------
 x_no_geo %>%
   select_tags(date_onset, outcome)
-#> # A tibble: 162 × 2
-#>    date_onset outcome
-#>    <date>     <fct>  
-#>  1 2015-05-11 Alive  
-#>  2 2015-05-18 Alive  
-#>  3 2015-05-20 Dead   
-#>  4 2015-05-25 Alive  
-#>  5 2015-05-25 Alive  
-#>  6 2015-05-24 Dead   
-#>  7 2015-05-21 Alive  
-#>  8 2015-05-26 Alive  
-#>  9 NA         Alive  
-#> 10 2015-05-21 Alive  
-#> # … with 152 more rows
+#> Error in x_no_geo %>% select_tags(date_onset, outcome): could not find function "%>%"
 
 x_no_geo %>%
   tags_df()
-#> # A tibble: 162 × 4
-#>    date_onset date_reporting gender outcome
-#>    <date>     <date>         <fct>  <fct>  
-#>  1 2015-05-11 2015-05-19     M      Alive  
-#>  2 2015-05-18 2015-05-20     F      Alive  
-#>  3 2015-05-20 2015-05-20     M      Dead   
-#>  4 2015-05-25 2015-05-26     F      Alive  
-#>  5 2015-05-25 2015-05-27     M      Alive  
-#>  6 2015-05-24 2015-05-28     M      Dead   
-#>  7 2015-05-21 2015-05-28     F      Alive  
-#>  8 2015-05-26 2015-05-29     F      Alive  
-#>  9 NA         2015-05-29     M      Alive  
-#> 10 2015-05-21 2015-05-29     M      Alive  
-#> # … with 152 more rows
+#> Error in x_no_geo %>% tags_df(): could not find function "%>%"
 
 x_no_geo %>%
   tags_df() %>%
   incidence("date_onset", groups = c("gender", "outcome")) %>%
   facet_plot(facets = "gender", fill = outcome)
+#> Error in x_no_geo %>% tags_df() %>% incidence("date_onset", groups = c("gender", : could not find function "%>%"
 ```
-
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="60%" />
 
 ## Documentation
 
@@ -263,11 +189,11 @@ More detailed documentation can be found at:
 
 In particular:
 
-  - A general introduction to *linelist*
-    ([link](https://epiverse-trace.github.io/linelist/articles/linelist.html))
+- A general introduction to *linelist*
+  ([link](https://epiverse-trace.github.io/linelist/articles/linelist.html))
 
-  - The reference manual
-    ([link](https://epiverse-trace.github.io/linelist/reference/index.html))
+- The reference manual
+  ([link](https://epiverse-trace.github.io/linelist/reference/index.html))
 
 ## Getting help
 
@@ -304,10 +230,10 @@ requests](https://github.com/epiverse-trace/linelist/pulls).
 
 Contributors to the project include:
 
-  - Thibaut Jombart (author)
-  - David Mascarina (logo)
-  - Emma Marty (communication)
-  - Pietro Monticone (contributor)
+- Thibaut Jombart (author)
+- David Mascarina (logo)
+- Emma Marty (communication)
+- Pietro Monticone (contributor)
 
 ### Code of Conduct
 
