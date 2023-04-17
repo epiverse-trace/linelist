@@ -183,12 +183,9 @@ prevent the loss of tagged variables.
 
 * `get_lost_tags_actions()`: to check the current behaviour for lost tagged
   variables
-  
-* `rename`: adapted from `dplyr::rename`, to rename columns of a `linelist`;
+
+* `names(x) <- `: the 'base R' approach to renaming columns of a `linelist`;
   will rename tags as needed to match the new column names
-  
-* `names(x) <- `: same as `rename`, but using the 'base R' approach to renaming
-  columns
   
 * `select()`: adapted from `dplyr::select`, for subsetting columns; an
   additional argument can be used to subset tagged variables as well; will

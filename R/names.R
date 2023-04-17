@@ -9,8 +9,6 @@
 #'
 #' @return a `linelist` with new column names
 #'
-#' @seealso [rename.linelist()] for renaming columns as with [dplyr::rename()]
-#'
 #' @export
 #'
 #' @author Thibaut Jombart \email{thibaut@@data.org}
