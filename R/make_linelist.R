@@ -104,6 +104,7 @@ make_linelist <- function(x,
                           allow_extra = FALSE) {
   # assert inputs
   checkmate::assertDataFrame(x, min.cols = 1)
+  assertNotDataTable(x)
   checkmate::assertLogical(allow_extra)
 
   # The approach is to replace default values with user-provided ones, and then
