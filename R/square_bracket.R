@@ -74,10 +74,10 @@
   # the drop_linelist() function
 
   lost_action <- get_lost_tags_action()
-  
+
   # Handle the corner case where only 1 arg is passed (x[i]) to subset by column
   n_args <- nargs() - !missing(drop)
-  
+
   if (n_args <= 2L) {
     # Avoid "'drop' argument will be ignored" warning in [.data.frame() from our
     # default value. When we subset this way, drop is always considered to be
@@ -103,8 +103,6 @@
   out
 }
 
-
-
 #' @export
 #'
 #' @rdname sub_linelist
@@ -116,8 +114,6 @@
   out <- restore_tags(out, old_tags, lost_action)
   out
 }
-
-
 
 #' @export
 #'
