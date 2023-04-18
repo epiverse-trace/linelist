@@ -22,9 +22,34 @@ test_that("tests for [ operator", {
 
   lost_tags_action("none", quiet = TRUE)
   expect_identical(x[, 1], make_linelist(cars[, 1, drop = FALSE], id = "speed"))
+
+  # [ behaves exactly as in the simple data.frame case, including when subset
+  # only cols. https://github.com/epiverse-trace/linelist/issues/51
+  expect_identical(
+    cars[1],
+    x[1],
+    ignore_attr = TRUE
+  )
+  expect_identical(
+    dplyr::as_tibble(cars)[1],
+    x[1],
+    ignore_attr = TRUE
+  )
+
+  # Warning about drop is surfaced to the user in this situation *iff* not our
+  # default
+  expect_no_warning(
+    x[1]
+  )
+  expect_warning(
+    x[1, drop = FALSE],
+    "'drop' argument will be ignored"
+  )
+  expect_warning(
+    dplyr::as_tibble(x)[1, drop = FALSE],
+    "`drop` argument ignored"
+  )
 })
-
-
 
 test_that("tests for [<- operator", {
 
@@ -48,11 +73,6 @@ test_that("tests for [<- operator", {
   x[, 1:2] <- NULL
   expect_identical(ncol(x), 0L)
 })
-
-
-
-
-
 
 test_that("tests for [[<- operator", {
 
