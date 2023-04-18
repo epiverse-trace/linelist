@@ -402,7 +402,7 @@ tag using <code>set_tags</code>:</p>
 <span><span class="va">x</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 13</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 13</span></span></span>
 <span><span class="co">#&gt;    case_ID infector date_of_prodrome date_of_rash date_of_death   age gender</span></span>
 <span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>       1       45 1861-11-21       1861-11-25   <span style="color: #BB0000;">NA</span>                7 f     </span></span>
@@ -415,9 +415,7 @@ tag using <code>set_tags</code>:</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>       8       45 1861-11-21       1861-11-26   <span style="color: #BB0000;">NA</span>               10 m     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>       9      182 1861-11-26       1861-11-30   <span style="color: #BB0000;">NA</span>               13 m     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>      10       45 1861-11-21       1861-11-25   <span style="color: #BB0000;">NA</span>                7 f     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>      11      182 1861-11-25       1861-11-30   <span style="color: #BB0000;">NA</span>               11 f     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>      12       45 1861-11-20       1861-11-25   <span style="color: #BB0000;">NA</span>                7 f     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>      13       12 1861-11-30       1861-12-05   <span style="color: #BB0000;">NA</span>               13 m     </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 178 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 6 more variables: family_ID &lt;int&gt;, class &lt;fct&gt;, complications &lt;fct&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   x_loc &lt;dbl&gt;, y_loc &lt;dbl&gt;, inferred_outcome &lt;chr&gt;</span></span></span>
 <span><span class="co">#&gt; </span></span>
@@ -453,7 +451,7 @@ using any of the following means:</p>
 <span><span class="co"># select tagged variables only</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/select_tags.html">select_tags</a></span><span class="op">(</span><span class="va">date_onset</span>, <span class="va">date_death</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 2</span></span></span>
 <span><span class="co">#&gt;    date_onset date_death</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1861-11-21 <span style="color: #BB0000;">NA</span>        </span></span>
@@ -466,14 +464,12 @@ using any of the following means:</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1861-11-21 <span style="color: #BB0000;">NA</span>        </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1861-11-26 <span style="color: #BB0000;">NA</span>        </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1861-11-21 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 1861-11-25 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 1861-11-20 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 1861-11-30 <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 178 more rows</span></span></span>
 <span></span>
 <span><span class="co"># select tagged variables only with renaming on the fly</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/select_tags.html">select_tags</a></span><span class="op">(</span>onset <span class="op">=</span> <span class="va">date_onset</span>, <span class="va">date_death</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 2</span></span></span>
 <span><span class="co">#&gt;    onset      date_death</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1861-11-21 <span style="color: #BB0000;">NA</span>        </span></span>
@@ -486,14 +482,12 @@ using any of the following means:</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1861-11-21 <span style="color: #BB0000;">NA</span>        </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1861-11-26 <span style="color: #BB0000;">NA</span>        </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1861-11-21 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 1861-11-25 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 1861-11-20 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 1861-11-30 <span style="color: #BB0000;">NA</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 178 more rows</span></span></span>
 <span></span>
 <span><span class="co"># get all tagged variables in a data.frame</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 4</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 4</span></span></span>
 <span><span class="co">#&gt;    date_onset date_death gender   age</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1861-11-21 <span style="color: #BB0000;">NA</span>         f          7</span></span>
@@ -506,9 +500,7 @@ using any of the following means:</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1861-11-21 <span style="color: #BB0000;">NA</span>         m         10</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1861-11-26 <span style="color: #BB0000;">NA</span>         m         13</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1861-11-21 <span style="color: #BB0000;">NA</span>         f          7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 1861-11-25 <span style="color: #BB0000;">NA</span>         f         11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 1861-11-20 <span style="color: #BB0000;">NA</span>         f          7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 1861-11-30 <span style="color: #BB0000;">NA</span>         m         13</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 178 more rows</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="using-safeguards">Using safeguards<a class="anchor" aria-label="anchor" href="#using-safeguards"></a>
@@ -528,7 +520,7 @@ columns of <code>x</code>:</p>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 2</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 2</span></span></span>
 <span><span class="co">#&gt;    case_ID infector</span></span>
 <span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>       1       45</span></span>
@@ -541,9 +533,7 @@ columns of <code>x</code>:</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>       8       45</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>       9      182</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>      10       45</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>      11      182</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>      12       45</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>      13       12</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 178 more rows</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // tags: [no tagged variable]</span></span></code></pre></div>
 <p>Here, the above command gave a meaningful warning, in which
@@ -564,7 +554,7 @@ For instance, to retain the first 2 variables, and the
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 3</span></span></span>
 <span><span class="co">#&gt;    case_ID infector gender</span></span>
 <span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>       1       45 f     </span></span>
@@ -577,9 +567,7 @@ For instance, to retain the first 2 variables, and the
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>       8       45 m     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>       9      182 m     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>      10       45 f     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>      11      182 f     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>      12       45 f     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>      13       12 m     </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 178 more rows</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // tags: gender:gender</span></span></code></pre></div>
 <p>Again, we observe a warning as before due to the loss of tagged
@@ -594,7 +582,7 @@ instance):</p>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 3</span></span></span>
 <span><span class="co">#&gt;    case_ID infector gender</span></span>
 <span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>       1       45 f     </span></span>
@@ -607,9 +595,7 @@ instance):</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>       8       45 m     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>       9      182 m     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>      10       45 f     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>      11      182 f     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>      12       45 f     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>      13       12 m     </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 178 more rows</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // tags: gender:gender</span></span>
 <span></span>
@@ -619,7 +605,7 @@ instance):</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, tags <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 13 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 3</span></span></span>
 <span><span class="co">#&gt;    case_ID infector gender</span></span>
 <span><span class="co">#&gt;      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>       1       45 f     </span></span>
@@ -632,9 +618,7 @@ instance):</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>       8       45 m     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>       9      182 m     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>      10       45 f     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>      11      182 f     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span>      12       45 f     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span>      13       12 m     </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 178 more rows</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // tags: gender:gender</span></span>
 <span></span>
