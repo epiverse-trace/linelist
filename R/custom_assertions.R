@@ -8,8 +8,8 @@ check_not_data_table <- function(x) {
 }
 
 assert_not_data_table <- function(
-    x, 
-    .var.name = checkmate::vname(x), 
+    x,
+    .var.name = checkmate::vname(x),
     add = NULL
 ) {
   if (missing(x)) {
