@@ -74,9 +74,19 @@
   # the drop_linelist() function
 
   lost_action <- get_lost_tags_action()
+  
+  # Handle the corner case where only 1 arg is passed (x[i]) to subset by column
+  n_args <- nargs() - !missing(drop)
+  
+  if (n_args <= 2L) {
+    # Avoid "'drop' argument will be ignored" warning in [.data.frame. When we 
+    # subset this way, drop is always considered to be TRUE
+    out <- drop_linelist(x)[i]
+  } else {
+    out <- drop_linelist(x)[i, j, drop = drop]
+  }
 
   # Case 1
-  out <- drop_linelist(x)[i, j, drop = drop]
   if (is.null(ncol(out))) {
     return(out)
   }
