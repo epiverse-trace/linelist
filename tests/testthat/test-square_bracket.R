@@ -35,6 +35,20 @@ test_that("tests for [ operator", {
     x[1],
     ignore_attr = TRUE
   )
+  
+  # Warning about drop is surfaced to the user in this situation *iff* not our
+  # default
+  expect_no_warning(
+    x[1]
+  )
+  expect_warning(
+    x[1, drop = FALSE],
+    "'drop' argument will be ignored"
+  )
+  expect_warning(
+    dplyr::as_tibble(x)[1, drop = FALSE],
+    "`drop` argument ignored"
+  )
 })
 
 

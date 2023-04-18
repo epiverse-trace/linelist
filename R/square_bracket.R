@@ -79,9 +79,14 @@
   n_args <- nargs() - !missing(drop)
   
   if (n_args <= 2L) {
-    # Avoid "'drop' argument will be ignored" warning in [.data.frame. When we 
-    # subset this way, drop is always considered to be TRUE
-    out <- drop_linelist(x)[i]
+    # Avoid "'drop' argument will be ignored" warning in [.data.frame() from our
+    # default value. When we subset this way, drop is always considered to be
+    # TRUE. We let warnings from user-specified drop values surface.
+    if (missing(drop)) {
+      out <- drop_linelist(x)[i]
+    } else {
+      out <- drop_linelist(x)[i, drop = drop]
+    }
   } else {
     out <- drop_linelist(x)[i, j, drop = drop]
   }
