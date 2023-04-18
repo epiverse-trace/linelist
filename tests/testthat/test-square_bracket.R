@@ -22,6 +22,19 @@ test_that("tests for [ operator", {
 
   lost_tags_action("none", quiet = TRUE)
   expect_identical(x[, 1], make_linelist(cars[, 1, drop = FALSE], id = "speed"))
+  
+  # [ behaves exactly as in the simple data.frame case, including when subset 
+  # only cols. https://github.com/epiverse-trace/linelist/issues/51
+  expect_identical(
+    cars[1],
+    x[1],
+    ignore_attr = TRUE
+  )
+  expect_identical(
+    dplyr::as_tibble(cars)[1],
+    x[1],
+    ignore_attr = TRUE
+  )
 })
 
 
