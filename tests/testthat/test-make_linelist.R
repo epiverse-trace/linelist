@@ -36,3 +36,17 @@ test_that("tests for make_linelist", {
   y <- make_linelist(cars, list(date_onset = "dist", date_outcome = "speed"))
   expect_identical(x, y)
 })
+
+test_that("make_linelist() errors on data.table input", {
+
+  dt_cars <- structure(
+    cars,
+    class = c("data.table", "data.frame")
+  )
+
+  expect_error(
+    make_linelist(dt_cars),
+    "NOT be a data.table"
+  )
+
+})
