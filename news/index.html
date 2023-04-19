@@ -61,7 +61,8 @@
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-0-0-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-0-2"></a></h3>
-<ul><li>
+<ul><li>linelist is now explicitly marked as incompatible with data.table. In practice, <code>make_linelist(x)</code> now errors if <code>x</code> inherits from <code>data.table</code> (<a href="https://github.com/epiverse-trace/linelist/issues/55" class="external-link">#55</a>, <a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, based on discussions with <a href="https://github.com/TimTaylor" class="external-link">@TimTaylor</a>).</li>
+<li>
 <code>[.linelist()</code> now works to subset by column when including just one argument (<a href="https://github.com/epiverse-trace/linelist/issues/54" class="external-link">#54</a>, <a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>). E.g., <code>x[1]</code>. As an indirect effect, this also improves compatibility with dplyr verbs that rely on this method (<a href="https://github.com/epiverse-trace/linelist/issues/51" class="external-link">#51</a>).</li>
 </ul></div>
 </div>
@@ -85,7 +86,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Thibaut Jombart.</p>
+  <p></p><p>Developed by Thibaut Jombart, Hugo Gruson.</p>
 </div>
 
 <div class="pkgdown-footer-right">
