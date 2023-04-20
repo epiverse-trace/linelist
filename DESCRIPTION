@@ -1,6 +1,6 @@
 Package: linelist
 Title: Tagging and Validating Epidemiological Data
-Version: 0.0.2
+Version: 1.0.0
 Authors@R: 
     c(person(given = "Thibaut",
              family = "Jombart",
@@ -30,6 +30,7 @@ Depends:
 Imports:
     checkmate,
     dplyr,
+    lifecycle,
     tidyselect
 Suggests:
     callr,
