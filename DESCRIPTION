@@ -29,7 +29,8 @@ Depends:
     R (>= 3.1.0)
 Imports:
     checkmate,
-    dplyr
+    dplyr,
+    tidyselect
 Suggests:
     callr,
     covr,
