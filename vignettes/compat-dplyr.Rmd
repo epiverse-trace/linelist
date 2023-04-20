@@ -1,0 +1,181 @@
+---
+title: "Compatibility with dplyr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Compatibility with dplyr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+linelist philoshopy is to prevent you from accidentally losing valuable data, but to otherwise be totally transparent and not interfere with your workflow.
+
+One popular ecosystem for data science workflow is the tidyverse and we are going the extra mile to ensure linelist compatibility with the tidyverse. All dplyr verbs are thoroughly tested in the `tests/test-compat-dplyr.R` file.
+
+```{r}
+library(linelist)
+library(outbreaks)
+library(dplyr)
+
+x <- make_linelist(
+  measles_hagelloch_1861,
+  id = "case_ID",
+  date_onset = "date_of_prodrome",
+  age = "age",
+  gender = "gender"
+)
+
+head(x)
+```
+
+## Verbs operating on rows
+
+linelist does not modify anything regarding the behaviour for row-operations. As such, it is fully compatible with dplyr verbs operating on rows out-of-the-box.
+You can see in the following examples that linelist does not produce any errors, warnings or messages and its tags are conserved through dplyr operations on rows.
+
+### `dplyr::arrange()` ✅
+
+```{r}
+x %>%
+  arrange(case_ID) %>%
+  head()
+```
+
+### `dplyr:distinct()` ✅
+
+```{r}
+x %>%
+  distinct() %>%
+  head()
+```
+
+### `dplyr::filter()` ✅
+
+```{r}
+x %>%
+  filter(age >= 10) %>%
+  head()
+```
+
+### `dplyr::slice()` ✅
+
+```{r}
+x %>%
+  slice(5:10)
+
+x %>%
+  slice_head(n = 5)
+
+x %>%
+  slice_tail(n = 5)
+
+x %>%
+  slice_min(age, n = 3)
+
+x %>%
+  slice_max(age, n = 3)
+
+x %>%
+  slice_sample(n = 5)
+```
+
+## Verbs operating on columns
+
+During operations on columns, linelist will:
+- stay invisible and conserve tags if no tagged column is affected by the operation
+- trigger `lost_tags_action()` if tagged columns are affected by the operation
+
+### `dplyr::mutate()` ✓ (partial)
+
+There is an incomplete compatibility with `dplyr::mutate()` in that:
+- simple renames without any actual modification of the column don't update the tags. In this scenario, users should rather use `dplyr::rename()`
+- in place column modifications cause tag losses
+
+### `dplyr::pull()` ✅
+
+`dplyr::pull()` returns a vector, which results, as expected, in the loss of the linelist class and tags:
+
+```{r}
+x %>%
+  pull(age)
+```
+
+### `dplyr::rename()` & `dplyr::rename_with()` ✅
+
+`dplyr::rename()` is fully compatible out-of-the-box with linelist, meaning that tags will be updated at the same time that columns are renamed. This is possibly because it uses `names<-()` under the hood, which linelist provides a custom `names<-.linelist()` method for:
+
+```{r}
+x %>%
+  rename(edad = age) %>%
+  head()
+```
+
+### `dplyr::select()` ✓ (partial)
+
+`dplyr::select()` is currently only partially compatible with linelist because:
+- renames with `select()` do not correctly update tags
+- linelist provides a custom `select.linelist()` method which adds the ability to select by tags through the `tags` argument. But this means that you cannot use `tags` as a column name for example
+
+```{r}
+# Works fine
+x %>%
+  select(case_ID, date_of_prodrome, gender, age) %>%
+  head()
+
+# Tags are not updated!
+x %>%
+  select(case_ID, date_of_prodrome, gender, edad = age) %>%
+  head()
+
+# Instead, split the selecting and renaming steps:
+x %>%
+  select(case_ID, date_of_prodrome, gender, age) %>%
+  rename(edad = age) %>%
+  head()
+```
+
+## Verbs operating on groups
+
+Groups are not yet supported. Applying any verb operating on group to a linelist will silently convert it back to a data.frame or tibble.
+
+## Verbs operating on data.frames
+
+### `bind_rows()` ✅
+
+```{r}
+dim(x)
+
+dim(bind_rows(x, x))
+```
+
+### `bind_cols()` ✘
+
+`bind_cols()` is currently incompatible with linelist:
+- Tags from the second element are lost
+- Warnings are produced about lost tagged, even for tags that are not actually lost
+
+```{r}
+bind_cols(
+  suppressWarnings(select(x, case_ID, date_of_prodrome)),
+  suppressWarnings(select(x, age, gender))
+) %>%
+  head()
+```
+
+### Joins ✘
+
+Joins are currently not compatible with linelist as tags from the second element are silently dropped.
+
+```{r}
+full_join(
+  suppressWarnings(select(x, case_ID, date_of_prodrome)),
+  suppressWarnings(select(x, case_ID, age, gender))
+) %>%
+  head()
+```
