@@ -100,11 +100,12 @@ behaviour of actions where tagged variables are lost</p></li>
 <p>Specific methods commonly used to handle <code>data.frame</code> are provided for
 <code>linelist</code> objects, typically to help flag or prevent actions which could
 alter or lose tagged variables (and may thus break downstream data
-pipelines).</p><ul><li><p><code>names() &lt;-</code> and <code>rename</code> (see <code><a href="rename.linelist.html">rename.linelist()</a></code>): will rename tags as needed</p></li>
-<li><p><code>x[...] &lt;-</code> and <code>x[[...]] &lt;-</code> (see <a href="sub_linelist.html">sub_linelist</a>): will adopt
-the desire behaviour when tagged variables are lost</p></li>
-<li><p><code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>: prints info about the <code>linelist</code> in addition to the <code>data.frame</code>
-or <code>tibble</code></p></li>
+pipelines).</p><ul><li><p><code>names() &lt;-</code> and <code>rename</code> (see <code><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">dplyr::rename()</a></code>): will rename tags as
+needed</p></li>
+<li><p><code>x[...] &lt;-</code> and <code>x[[...]] &lt;-</code> (see <a href="sub_linelist.html">sub_linelist</a>): will adopt the desire
+behaviour when tagged variables are lost</p></li>
+<li><p><code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>: prints info about the <code>linelist</code> in addition to the
+<code>data.frame</code> or <code>tibble</code></p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
