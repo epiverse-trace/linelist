@@ -186,16 +186,9 @@ prevent the loss of tagged variables.
 
 * `names(x) <- `: the 'base R' approach to renaming columns of a `linelist`;
   will rename tags as needed to match the new column names
-  
-* `select()`: adapted from `dplyr::select`, for subsetting columns; an
-  additional argument can be used to subset tagged variables as well; will
+
+* `x[]` and `x[[]]`: for subsetting columns using 'base R' syntax; will
   behave according to `get_lost_tags_actions()` if tagged variables are lost
-  
-* `x[]` and `x[[]]`: same as `dplyr::select` but using 'base R' syntax; will
-  behave according to `get_lost_tags_actions()` if tagged variables are lost
-
-
-
 
 # Worked example
 
@@ -324,18 +317,16 @@ x %>%
 ```
 
 Here, the above command gave a meaningful warning, in which `select` removes
-some of the variables that were tagged. This is because *linelist* implements a
-specific `select` method for `linelist` objects - see
-[`?select.linelist`](https://epiverse-trace.github.io/linelist/reference/select.linelist.html). In
-fact, looking at the documentation, we can see that `select()` can be used to
-select variables both from the dataset and from the tags, using the `tags = ...`
-argument. For instance, to retain the first 2 variables, and the `gender` tag:
+some of the variables that were tagged.
+
+We can also use the `has_tag()` select helper to select columns via their tag.
+For example, to retain the first 2 variables, and the `gender` tag:
 
 ```{r }
 
 # hybrid selection
 x %>%
-  select(1:2, tags = "gender")
+  select(1:2, has_tag("gender"))
 
 ```
 
@@ -346,17 +337,17 @@ issue an error (for stronger pipelines for instance):
 ```{r error = TRUE}
 # hybrid selection
 x %>%
-  select(1:2, tags = "gender")
+  select(1:2, has_tag("gender"))
 
 # hybrid selection - no warning
 x %>%
   lost_tags_action("none") %>%
-  select(1:2, tags = "gender")
+  select(1:2, has_tag("gender"))
 
 # hybrid selection - error due to lost tags
 x %>%
   lost_tags_action("error") %>%
-  select(1:2, tags = "gender")
+  select(1:2, has_tag("gender"))
 
 # note that `lost_tags_action` sets the behavior for any later operation, so we
 # need to reset the default
