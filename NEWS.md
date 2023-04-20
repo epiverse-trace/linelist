@@ -2,6 +2,35 @@
 
 ## New features
 
+* A new selection helper is provided for tidyverse users, based on the existing
+selectors provided by the tidyselect package: `has_tag()` (@Bisaloo, #61). By 
+feeding it a character vector of tags to operate on, you can work with dplyr
+verbs on specific tagged columns without having to explicitly use the column
+names:
+
+  ```r
+  x %>%
+    dplyr::select(has_tag(c("id", "date_of_onset")))
+  ```
+
+* The custom `select.linelist()` method has been deprecated as providing a 
+custom `[.linelist()` is sufficient to ensure compatibility with
+`dplyr::select()` default methods, including triggering `lost_tags_action()`
+on tag removal (@Bisaloo, #61).
+A full deletion of this method is not possible at the moment because we want to
+provide a smooth transition for users that relied on the custom `tags` argument
+of the `select.linelist()` method. It is now recommend instead to use the new 
+`has_tag()` selection helper:
+
+  ```r
+  x %>%
+    dplyr::select(has_tag(c("id", "date_of_onset")))
+    
+  # Instead of
+  x %>%
+    select(tags = c("id", "date_of_onset"))
+  ```
+
 * The custom `rename.linelist()` method has been removed as providing a custom
 `names<-().linelist` method is sufficient to ensure compatibility with 
 `dplyr::rename()`, including appropriate modification of the tags. (@Bisaloo, 
