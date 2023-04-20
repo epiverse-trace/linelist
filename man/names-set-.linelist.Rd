@@ -26,10 +26,11 @@ if (require(outbreaks)) {
 
   ## create linelist
   x <- make_linelist(measles_hagelloch_1861,
-                     id = "case_ID",
-                     date_onset = "date_of_prodrome",
-                     age = "age",
-                     gender = "gender")
+    id = "case_ID",
+    date_onset = "date_of_prodrome",
+    age = "age",
+    gender = "gender"
+  )
   head(x)
 
   ## change names
@@ -38,10 +39,16 @@ if (require(outbreaks)) {
   ## see results: tags have been updated
   head(x)
   tags(x)
+
+ # This also works with using `dplyr::rename()` because it uses names<-() 
+ # under hood
+ if (require(dplyr)) {
+   x <- x \%>\%
+     rename(case_id= case_label)
+   head(x)
+   tags(x)
+ }
 }
-}
-\seealso{
-\code{\link[=rename.linelist]{rename.linelist()}} for renaming columns as with \code{\link[dplyr:rename]{dplyr::rename()}}
 }
 \author{
 Thibaut Jombart \email{thibaut@data.org}

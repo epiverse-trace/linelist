@@ -2,6 +2,11 @@
 
 ## New features
 
+* The custom `rename.linelist()` method has been removed as providing a custom
+`names<-().linelist` method is sufficient to ensure compatibility with 
+`dplyr::rename()`, including appropriate modification of the tags. (@Bisaloo, 
+#60)
+
 * added a hex logo thanks to David Mascarina's contribution
 
 * added short lay description to README thanks to Emma Marty's contribution

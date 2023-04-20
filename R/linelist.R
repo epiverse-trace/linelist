@@ -43,7 +43,7 @@
 #'   alter or lose tagged variables (and may thus break downstream data
 #'   pipelines).
 #'
-#'   * `names() <-` and `rename` (see [rename.linelist()]): will rename tags as
+#'   * `names() <-` and `rename` (see [dplyr::rename()]): will rename tags as
 #'   needed
 #'
 #'   * `x[...] <-` and `x[[...]] <-` (see [sub_linelist]): will adopt the desire
