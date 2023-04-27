@@ -29,3 +29,4 @@ This function was deprecated to ensure full compatibility with the default
 \item \code{\link[=tags_df]{tags_df()}} to return a \code{data.frame} of all tagged variables
 }
 }
+\keyword{deprecated}
