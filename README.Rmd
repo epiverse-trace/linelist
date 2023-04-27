@@ -89,12 +89,9 @@ about `linelist` objects.
 
 # load packages and a dataset for the example
 # -------------------------------------------
-library(pacman)
-p_load(dplyr)
-p_load(magrittr)
-p_load(outbreaks)
-p_load(incidence2)
-p_load(linelist)
+library(linelist)
+library(dplyr)
+library(incidence2)
 
 dataset <- outbreaks::mers_korea_2015$linelist
 head(dataset)

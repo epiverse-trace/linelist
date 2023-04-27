@@ -73,18 +73,18 @@ details about `linelist` objects.
 
 # load packages and a dataset for the example
 # -------------------------------------------
-library(pacman)
-#> Error in library(pacman): there is no package called 'pacman'
-p_load(dplyr)
-#> Error in p_load(dplyr): could not find function "p_load"
-p_load(magrittr)
-#> Error in p_load(magrittr): could not find function "p_load"
-p_load(outbreaks)
-#> Error in p_load(outbreaks): could not find function "p_load"
-p_load(incidence2)
-#> Error in p_load(incidence2): could not find function "p_load"
-p_load(linelist)
-#> Error in p_load(linelist): could not find function "p_load"
+library(linelist)
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
+library(incidence2)
+#> Loading required package: grates
 
 dataset <- outbreaks::mers_korea_2015$linelist
 head(dataset)
@@ -113,7 +113,10 @@ head(dataset)
 # check known tagged variables
 # ----------------------------
 tags_names()
-#> Error in tags_names(): could not find function "tags_names"
+#>  [1] "id"             "date_onset"     "date_reporting" "date_admission"
+#>  [5] "date_discharge" "date_outcome"   "date_death"     "gender"        
+#>  [9] "age"            "location"       "occupation"     "hcw"           
+#> [13] "outcome"
 
 # build a linelist
 # ----------------
@@ -123,17 +126,43 @@ x <- dataset %>%
                 date_reporting = "dt_report", # date of reporting
                 occupation = "age" # mistake
                 )
-#> Error in dataset %>% tibble() %>% make_linelist(date_onset = "dt_onset", : could not find function "%>%"
 x
-#> Error in eval(expr, envir, enclos): object 'x' not found
+#> 
+#> // linelist object
+#> # A tibble: 162 × 15
+#>    id      age age_class sex   place_infect   reporting_ctry loc_hosp dt_onset  
+#>    <chr> <int> <chr>     <fct> <fct>          <fct>          <fct>    <date>    
+#>  1 SK_1     68 60-69     M     Middle East    South Korea    Pyeongt… 2015-05-11
+#>  2 SK_2     63 60-69     F     Outside Middl… South Korea    Pyeongt… 2015-05-18
+#>  3 SK_3     76 70-79     M     Outside Middl… South Korea    Pyeongt… 2015-05-20
+#>  4 SK_4     46 40-49     F     Outside Middl… South Korea    Pyeongt… 2015-05-25
+#>  5 SK_5     50 50-59     M     Outside Middl… South Korea    365 Yeo… 2015-05-25
+#>  6 SK_6     71 70-79     M     Outside Middl… South Korea    Pyeongt… 2015-05-24
+#>  7 SK_7     28 20-29     F     Outside Middl… South Korea    Pyeongt… 2015-05-21
+#>  8 SK_8     46 40-49     F     Outside Middl… South Korea    Seoul C… 2015-05-26
+#>  9 SK_9     56 50-59     M     Outside Middl… South Korea    Pyeongt… NA        
+#> 10 SK_10    44 40-49     M     Outside Middl… China          Pyeongt… 2015-05-21
+#> # ℹ 152 more rows
+#> # ℹ 7 more variables: dt_report <date>, week_report <fct>, dt_start_exp <date>,
+#> #   dt_end_exp <date>, dt_diag <date>, outcome <fct>, dt_death <date>
+#> 
+#> // tags: date_onset:dt_onset, date_reporting:dt_report, occupation:age
 tags(x) # check available tags
-#> Error in tags(x): could not find function "tags"
+#> $date_onset
+#> [1] "dt_onset"
+#> 
+#> $date_reporting
+#> [1] "dt_report"
+#> 
+#> $occupation
+#> [1] "age"
 
 # validation of tagged variables
 # ------------------------------
 ## (this flags a likely mistake: occupation should not be an integer)
 validate_linelist(x)
-#> Error in validate_linelist(x): could not find function "validate_linelist"
+#> Error in validate_types(x, ref_types): Issue when checking class of tag `occupation`:
+#> Must inherit from class 'character'/'factor', but has class 'integer'
 
 # change tags: fix mistakes, add new ones
 # ---------------------------------------
@@ -142,44 +171,70 @@ x <- x %>%
            gender = "sex", # new tag
            outcome = "outcome"
            )
-#> Error in x %>% set_tags(occupation = NULL, gender = "sex", outcome = "outcome"): could not find function "%>%"
 
 # safeguards against actions losing tags
 # --------------------------------------
 ## attemping to remove geographical info but removing dates by mistake
 x_no_geo <- x %>%
   select(-(5:8))
-#> Error in x %>% select(-(5:8)): could not find function "%>%"
+#> Warning in prune_tags(out, lost_action): The following tags have lost their variable:
+#>  date_onset:dt_onset
 
 ## for stronger pipelines, trigger errors upon loss
 x_no_geo <- x %>%
   lost_tags_action("error") %>% 
   select(-(5:8))
-#> Error in x %>% lost_tags_action("error") %>% select(-(5:8)): could not find function "%>%"
+#> Error in prune_tags(out, lost_action): The following tags have lost their variable:
+#>  date_onset:dt_onset
 
 x_no_geo <- x %>%
   select(-(5:7))
-#> Error in x %>% select(-(5:7)): could not find function "%>%"
 
 ## to revert to default behaviour (warning upon error)
 lost_tags_action()
-#> Error in lost_tags_action(): could not find function "lost_tags_action"
+#> Lost tags will now issue a warning.
 
 # access content by tags, and build downstream pipelines
 # ------------------------------------------------------
 x_no_geo %>%
   select_tags(date_onset, outcome)
-#> Error in x_no_geo %>% select_tags(date_onset, outcome): could not find function "%>%"
+#> # A tibble: 162 × 2
+#>    date_onset outcome
+#>    <date>     <fct>  
+#>  1 2015-05-11 Alive  
+#>  2 2015-05-18 Alive  
+#>  3 2015-05-20 Dead   
+#>  4 2015-05-25 Alive  
+#>  5 2015-05-25 Alive  
+#>  6 2015-05-24 Dead   
+#>  7 2015-05-21 Alive  
+#>  8 2015-05-26 Alive  
+#>  9 NA         Alive  
+#> 10 2015-05-21 Alive  
+#> # ℹ 152 more rows
 
 x_no_geo %>%
   tags_df()
-#> Error in x_no_geo %>% tags_df(): could not find function "%>%"
+#> # A tibble: 162 × 4
+#>    date_onset date_reporting gender outcome
+#>    <date>     <date>         <fct>  <fct>  
+#>  1 2015-05-11 2015-05-19     M      Alive  
+#>  2 2015-05-18 2015-05-20     F      Alive  
+#>  3 2015-05-20 2015-05-20     M      Dead   
+#>  4 2015-05-25 2015-05-26     F      Alive  
+#>  5 2015-05-25 2015-05-27     M      Alive  
+#>  6 2015-05-24 2015-05-28     M      Dead   
+#>  7 2015-05-21 2015-05-28     F      Alive  
+#>  8 2015-05-26 2015-05-29     F      Alive  
+#>  9 NA         2015-05-29     M      Alive  
+#> 10 2015-05-21 2015-05-29     M      Alive  
+#> # ℹ 152 more rows
 
 x_no_geo %>%
   tags_df() %>%
   incidence("date_onset", groups = c("gender", "outcome")) %>%
   facet_plot(facets = "gender", fill = outcome)
-#> Error in x_no_geo %>% tags_df() %>% incidence("date_onset", groups = c("gender", : could not find function "%>%"
+#> Error: `facet_plot` is defunct and has been removed from incidence2.
 ```
 
 ## Documentation
