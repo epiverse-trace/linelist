@@ -27,8 +27,6 @@
 #'
 #'   * [tags_df()]: to get a `data.frame` of all tagged variables
 #'
-#'   * [select_tags()]: like [dplyr::select()], but for tagged variables
-#'
 #'   * [lost_tags_action()]: to change the behaviour of actions where tagged
 #'   variables are lost (e.g. removing columns storing tagged variables) to
 #'   issue warnings, errors, or do nothing
