@@ -1,6 +1,6 @@
 #' A selector function to use in \pkg{tidyverse} functions
-#' 
-#' @param tags A character vector of tags listing the variables you want to 
+#'
+#' @param tags A character vector of tags listing the variables you want to
 #'   operate on
 #'
 #' @returns A numeric vector containing the position of the columns with the
