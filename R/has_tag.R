@@ -35,6 +35,8 @@ has_tag <- function(
   dat <- tidyselect::peek_data(fn = "has_tag")
   dat_tags <- tags(dat)
 
-  return(which(colnames(dat) %in% dat_tags[names(dat_tags) %in% tags]))
+  cols_to_extract <- dat_tags[names(dat_tags) %in% tags]
+
+  which(colnames(dat) %in% cols_to_extract)
 
 }
