@@ -3,7 +3,7 @@
 #' @keywords deprecated
 #' @description
 #' `r lifecycle::badge("superseded")`
-#' 
+#'
 #' This function was deprecated to ensure full compatibility with the default
 #' [dplyr::select()] methods. The tag selection feature is now possible via the
 #' [has_tag()] selection helper.
@@ -12,9 +12,9 @@
 #'
 #' @param ... the variables to select, using `dplyr` compatible syntax
 #'
-#' @param tags `r lifecycle::badge("deprecated")` It is now recommended to 
+#' @param tags `r lifecycle::badge("deprecated")` It is now recommended to
 #'   leverage the [has_tag()] selection helper rather than this argument.
-#' 
+#'
 #'
 #' @importFrom dplyr select
 #'
@@ -30,7 +30,7 @@ select.linelist <- function(.data, ..., tags) {
   if (lifecycle::is_present(tags)) {
     lifecycle::deprecate_warn(
       "1.0.0",
-      "select(tags)", 
+      "select(tags)",
       details = paste(
         "It is now recommended to leverage the `has_tag()` selection helper",
         "rather than this argument."
@@ -38,6 +38,6 @@ select.linelist <- function(.data, ..., tags) {
     )
     return(select(.data, ..., has_tag(tags)))
   }
-  
+
   NextMethod()
 }

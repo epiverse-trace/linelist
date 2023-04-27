@@ -1,5 +1,5 @@
 #' Extract tagged variables of a linelist object
-#' 
+#'
 #' @keywords deprecated
 #' @description
 #' `r lifecycle::badge("deprecated")`
@@ -7,7 +7,7 @@
 #' This function was  equivalent to running successively [tags_df()] and
 #' [dplyr::select()] on a `linelist` object.
 #' To encourage users to understand what is going on and in order to follow the
-#' software engineering good practice of providing just one way to do a given 
+#' software engineering good practice of providing just one way to do a given
 #' task, this function is now deprecated.
 #'
 #' @param x a `linelist` object
@@ -45,7 +45,7 @@
 #'
 #'   # DEPRECATED!
 #'   select_tags(x, "gender", "age")
-#'   
+#'
 #'   # Instead, use:
 #'   library(dplyr)
 #'   x %>%
@@ -57,8 +57,8 @@ select_tags <- function(x, ...) {
 
   lifecycle::deprecate_warn(
     "1.0.0",
-    "select_tags()", 
-    details = 
+    "select_tags()",
+    details =
       paste(
         "This function is deprecated:",
         "use the two step `tags_df()` and `dplyr::select()` process instead"
