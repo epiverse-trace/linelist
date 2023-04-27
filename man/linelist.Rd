@@ -16,17 +16,16 @@ reliable.
 \section{Main functions}{
 
 \itemize{
-\item \code{\link[=make_linelist]{make_linelist()}}: to create \code{linelist} objects from a
-\code{data.frame} or a \code{tibble}, with the possibility to tag key epi variables
+\item \code{\link[=make_linelist]{make_linelist()}}: to create \code{linelist} objects from a \code{data.frame} or a
+\code{tibble}, with the possibility to tag key epi variables
 \item \code{\link[=set_tags]{set_tags()}}: to change or add tagged variables in a \code{linelist}
 \item \code{\link[=tags]{tags()}}: to get the list of tags of a \code{linelist}
 \item \code{\link[=tags_df]{tags_df()}}: to get a \code{data.frame} of all tagged variables
-\item \code{\link[=select_tags]{select_tags()}}: like \code{\link[dplyr:select]{dplyr::select()}}, but for tagged variables
-\item \code{\link[=lost_tags_action]{lost_tags_action()}}: to change the behaviour of actions
-where tagged variables are lost (e.g. removing columns storing tagged
-variables) to issue warnings, errors, or do nothing
-\item \code{\link[=get_lost_tags_action]{get_lost_tags_action()}}: to check the current
-behaviour of actions where tagged variables are lost
+\item \code{\link[=lost_tags_action]{lost_tags_action()}}: to change the behaviour of actions where tagged
+variables are lost (e.g. removing columns storing tagged variables) to
+issue warnings, errors, or do nothing
+\item \code{\link[=get_lost_tags_action]{get_lost_tags_action()}}: to check the current behaviour of actions where
+tagged variables are lost
 }
 }
 

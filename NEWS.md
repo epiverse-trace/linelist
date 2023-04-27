@@ -13,6 +13,27 @@ names:
     dplyr::select(has_tag(c("id", "date_of_onset")))
   ```
 
+* The `select_tags()` function is now deprecated to ensure we provide just one
+clear way to address a given issue and that our "happy path" is clearly
+signposted. If you were using this function, we now recommend using the more 
+explicit two-steps process:
+
+  ```r
+  # Deprecated
+  x %>%
+    select_tags("age")
+
+  # Instead use
+  x %>%
+    tags_df() %>%
+    select(age)
+  
+  # Or
+  x %>%
+    select(has_tag("age")) %>%
+    tags_df()
+  ```
+
 * The custom `select.linelist()` method has been deprecated as providing a 
 custom `[.linelist()` is sufficient to ensure compatibility with
 `dplyr::select()` default methods, including triggering `lost_tags_action()`

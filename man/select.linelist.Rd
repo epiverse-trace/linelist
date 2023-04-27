@@ -26,7 +26,6 @@ This function was deprecated to ensure full compatibility with the default
 }
 \seealso{
 \itemize{
-\item \code{\link[=select_tags]{select_tags()}} to select tags only
 \item \code{\link[=tags_df]{tags_df()}} to return a \code{data.frame} of all tagged variables
 }
 }

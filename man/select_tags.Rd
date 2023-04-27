@@ -16,11 +16,12 @@ terminology; see \code{\link[=tags_names]{tags_names()}} for default values}
 A \code{data.frame} of tagged variables.
 }
 \description{
-This function is used to create a \code{data.frame} of tagged variables from a
-\code{linelist} object, and runs \link[dplyr:select]{dplyr::select} on the output. It is equivalent
-to running successively \code{\link[=tags_df]{tags_df()}} and \code{\link[dplyr:select]{dplyr::select()}} on a
-\code{linelist} object. Note that the output no longer is a \code{linelist} object, but
-a regular \code{data.frame} (or \code{tibble}).
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+This function was  equivalent to running successively \code{\link[=tags_df]{tags_df()}} and
+\code{\link[dplyr:select]{dplyr::select()}} on a \code{linelist} object.
+To encourage users to understand what is going on and in order to follow the
+software engineering good practice of providing just one way to do a given
+task, this function is now deprecated.
 }
 \examples{
 if (require(outbreaks)) {
@@ -30,18 +31,26 @@ if (require(outbreaks)) {
 
   ## create linelist
   x <- make_linelist(measles_hagelloch_1861,
-                     id = "case_ID",
-                     date_onset = "date_of_prodrome",
-                     age = "age",
-                     gender = "gender")
+    id = "case_ID",
+    date_onset = "date_of_prodrome",
+    age = "age",
+    gender = "gender"
+  )
   head(x)
 
   ## check tagged variables
   tags(x)
 
-  ## extract tagged variables
+  # DEPRECATED!
   select_tags(x, "gender", "age")
+  
+  # Instead, use:
+  library(dplyr)
+  x \%>\%
+    tags_df() \%>\%
+    select(gender, age)
 }
+
 }
 \seealso{
 \itemize{
