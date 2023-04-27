@@ -61,3 +61,4 @@ if (require(outbreaks)) {
 \author{
 Thibaut Jombart \email{thibaut@data.org}
 }
+\keyword{deprecated}

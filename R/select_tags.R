@@ -1,5 +1,6 @@
 #' Extract tagged variables of a linelist object
 #' 
+#' @keywords deprecated
 #' @description
 #' `r lifecycle::badge("deprecated")`
 

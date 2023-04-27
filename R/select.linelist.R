@@ -1,5 +1,6 @@
 #' Subset columns of a linelist object
 #'
+#' @keywords deprecated
 #' @description
 #' `r lifecycle::badge("superseded")`
 #' 

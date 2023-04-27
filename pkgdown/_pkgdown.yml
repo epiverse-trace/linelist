@@ -23,7 +23,12 @@ reference:
     - validate_types
   - title: S3 Methods for `linelist` Objects
     contents:
-    - ends_with("\\.linelist")
+    - ends_with("\\.linelist") 
+    - -has_keyword("deprecated")
   - title: Manipulate `linelist` Tags
     contents:
-    - contains("tags")
+    - contains("tag")
+    - -has_keyword("deprecated")
+  - title: Deprecated Functions
+    contents:
+    - has_keyword("deprecated")
