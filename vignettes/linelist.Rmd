@@ -60,9 +60,9 @@ symptom onset, age, gender, disease outcome)
    
 3. **secured methods**: generic functions which could lead to the loss of tagged
    variables have dedicated methods for *linelist* objects with adapted
-   behaviours, either updating tags as needed (*e.g.* `rename`, `names() <-
+   behaviours, either updating tags as needed (*e.g.* `rename()`, `names() <-
    ...`) or issuing warnings/errors when tagged variables are lost (*e.g.*
-   `select`, `x[]`, `x[[]]`)
+   `select()`, `x[]`, `x[[]]`)
 
 
 ## Should I use *linelist*?
@@ -186,9 +186,22 @@ prevent the loss of tagged variables.
 
 * `names(x) <- `: the 'base R' approach to renaming columns of a `linelist`;
   will rename tags as needed to match the new column names
+<<<<<<< HEAD
 
 * `x[]` and `x[[]]`: for subsetting columns using 'base R' syntax; will
   behave according to `get_lost_tags_actions()` if tagged variables are lost
+=======
+  
+* `select()`: adapted from `dplyr::select()`, for subsetting columns; an
+  additional argument can be used to subset tagged variables as well; will
+  behave according to `get_lost_tags_actions()` if tagged variables are lost
+  
+* `x[]` and `x[[]]`: same as `dplyr::select()` but using 'base R' syntax; will
+  behave according to `get_lost_tags_actions()` if tagged variables are lost
+
+
+
+>>>>>>> fbf6c3f (Use fct() instead of fct to enable auto-linking)
 
 # Worked example
 
@@ -250,7 +263,7 @@ Tags can be added / removed / changed using `set_tags()`.
 
 Let us assume we also want to record the outcome: it is currently missing, but
 can be built from dates of deaths (missing date = survived). This can be done by
-using `mutate` on `x` to create the new variable (remember `x` is not only a
+using `mutate()` on `x` to create the new variable (remember `x` is not only a
 `linelist`, but also a regular `tibble` and this compatible with `dplyr` verbs),
 and setting up a new tag using `set_tags`:
 
@@ -316,7 +329,7 @@ x %>%
 
 ```
 
-Here, the above command gave a meaningful warning, in which `select` removes
+Here, the above command gave a meaningful warning, in which `select()` removes
 some of the variables that were tagged.
 
 We can also use the `has_tag()` select helper to select columns via their tag.
