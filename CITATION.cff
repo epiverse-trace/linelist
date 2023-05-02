@@ -8,7 +8,7 @@ message: 'To cite package "linelist" in publications use:'
 type: software
 license: MIT
 title: 'linelist: Tagging and Validating Epidemiological Data'
-version: 0.0.2
+version: 1.0.0
 abstract: Provides tools to help storing and handling case line list data. The 'linelist'
   class adds a tagging system to classical 'data.frame' objects to identify key epidemiological
   data such as dates of symptom onset, epidemiological case definition, age, gender
@@ -87,6 +87,35 @@ references:
     given-names: Davis
     email: davis@posit.co
     orcid: https://orcid.org/0000-0003-4777-038X
+  year: '2023'
+- type: software
+  title: lifecycle
+  abstract: 'lifecycle: Manage the Life Cycle of your Package Functions'
+  notes: Imports
+  url: https://lifecycle.r-lib.org/
+  repository: https://CRAN.R-project.org/package=lifecycle
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+    orcid: https://orcid.org/0000-0003-4757-117X
+  year: '2023'
+- type: software
+  title: tidyselect
+  abstract: 'tidyselect: Select from a Set of Strings'
+  notes: Imports
+  url: https://tidyselect.r-lib.org
+  repository: https://CRAN.R-project.org/package=tidyselect
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@rstudio.com
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
   year: '2023'
 - type: software
   title: callr
