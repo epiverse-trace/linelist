@@ -6,3 +6,7 @@ codecov.yml
 ^\.github$
 ^LICENSE\.md$
 ^\.lintr$
+^CITATION\.cff$
+^pkgdown$
+^.*\.Rproj$
+^\.Rproj\.user$
