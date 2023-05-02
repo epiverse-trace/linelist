@@ -27,7 +27,7 @@ reliable."><meta property="og:image" content="https://epiverse-trace.github.io/l
     
     <a class="navbar-brand me-2" href="../index.html">linelist</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,17 +80,16 @@ reliable.</p>
     <h2 id="main-functions">Main functions<a class="anchor" aria-label="anchor" href="#main-functions"></a></h2>
     
 
-<ul><li><p><code><a href="make_linelist.html">make_linelist()</a></code>: to create <code>linelist</code> objects from a
-<code>data.frame</code> or a <code>tibble</code>, with the possibility to tag key epi variables</p></li>
+<ul><li><p><code><a href="make_linelist.html">make_linelist()</a></code>: to create <code>linelist</code> objects from a <code>data.frame</code> or a
+<code>tibble</code>, with the possibility to tag key epi variables</p></li>
 <li><p><code><a href="set_tags.html">set_tags()</a></code>: to change or add tagged variables in a <code>linelist</code></p></li>
 <li><p><code><a href="tags.html">tags()</a></code>: to get the list of tags of a <code>linelist</code></p></li>
 <li><p><code><a href="tags_df.html">tags_df()</a></code>: to get a <code>data.frame</code> of all tagged variables</p></li>
-<li><p><code><a href="select_tags.html">select_tags()</a></code>: like <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select()</a></code>, but for tagged variables</p></li>
-<li><p><code><a href="lost_tags_action.html">lost_tags_action()</a></code>: to change the behaviour of actions
-where tagged variables are lost (e.g. removing columns storing tagged
-variables) to issue warnings, errors, or do nothing</p></li>
-<li><p><code><a href="lost_tags_action.html">get_lost_tags_action()</a></code>: to check the current
-behaviour of actions where tagged variables are lost</p></li>
+<li><p><code><a href="lost_tags_action.html">lost_tags_action()</a></code>: to change the behaviour of actions where tagged
+variables are lost (e.g. removing columns storing tagged variables) to
+issue warnings, errors, or do nothing</p></li>
+<li><p><code><a href="lost_tags_action.html">get_lost_tags_action()</a></code>: to check the current behaviour of actions where
+tagged variables are lost</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="dedicated-methods">Dedicated methods<a class="anchor" aria-label="anchor" href="#dedicated-methods"></a></h2>
@@ -185,20 +184,13 @@ behaviour when tagged variables are lost</p></li>
 <span class="r-in"><span>    </span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: outbreaks</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`select_tags()` was deprecated in linelist 1.0.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This function is deprecated: use the two step `tags_df()` and</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   `dplyr::select()` process instead</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>  id:identifier, gender:gender, age:age</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Lost tags will now be ignored.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Lost tags will now issue a warning.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: dplyr</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘dplyr’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:stats’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     filter, lag</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:base’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     intersect, setdiff, setequal, union</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: magrittr</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>  id:identifier, gender:gender, age:age, outcome:result</span>

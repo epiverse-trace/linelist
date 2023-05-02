@@ -38,7 +38,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">linelist</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -260,15 +260,10 @@ behaviour for lost tagged variables</p></li>
 <li><p><code>names(x) &lt;-</code>: the ‘base R’ approach to renaming
 columns of a <code>linelist</code>; will rename tags as needed to match
 the new column names</p></li>
-<li><p><code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code>: adapted from <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select</a></code>,
-for subsetting columns; an additional argument can be used to subset
-tagged variables as well; will behave according to
+<li><p><code>x[]</code> and <code>x[[]]</code>: for subsetting columns
+using ‘base R’ syntax; will behave according to
 <code>get_lost_tags_actions()</code> if tagged variables are
 lost</p></li>
-<li><p><code>x[]</code> and <code>x[[]]</code>: same as
-<code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select</a></code> but using ‘base R’ syntax; will behave
-according to <code>get_lost_tags_actions()</code> if tagged variables
-are lost</p></li>
 </ul>
 </div>
 </div>
@@ -447,6 +442,12 @@ using any of the following means:</p>
 <span><span class="co"># select tagged variables only</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/select_tags.html">select_tags</a></span><span class="op">(</span><span class="va">date_onset</span>, <span class="va">date_death</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: `select_tags()` was deprecated in linelist 1.0.0.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> This function is deprecated: use the two step `tags_df()` and</span></span>
+<span><span class="co">#&gt;   `dplyr::select()` process instead</span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 2</span></span></span>
 <span><span class="co">#&gt;    date_onset date_death</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
@@ -533,19 +534,15 @@ columns of <code>x</code>:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // tags: [no tagged variable]</span></span></code></pre></div>
 <p>Here, the above command gave a meaningful warning, in which
-<code>select</code> removes some of the variables that were tagged. This
-is because <em>linelist</em> implements a specific <code>select</code>
-method for <code>linelist</code> objects - see <a href="https://epiverse-trace.github.io/linelist/reference/select.linelist.html"><code>?select.linelist</code></a>.
-In fact, looking at the documentation, we can see that
-<code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> can be used to select variables both from the
-dataset and from the tags, using the <code>tags = ...</code> argument.
-For instance, to retain the first 2 variables, and the
-<code>gender</code> tag:</p>
+<code>select</code> removes some of the variables that were tagged.</p>
+<p>We can also use the <code><a href="../reference/has_tag.html">has_tag()</a></code> select helper to select
+columns via their tag. For example, to retain the first 2 variables, and
+the <code>gender</code> tag:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># hybrid selection</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, tags <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"gender"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -573,7 +570,7 @@ instance):</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># hybrid selection</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, tags <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"gender"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -598,7 +595,7 @@ instance):</p>
 <span><span class="co"># hybrid selection - no warning</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"none"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, tags <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"gender"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 3</span></span></span>
@@ -621,7 +618,7 @@ instance):</p>
 <span><span class="co"># hybrid selection - error due to lost tags</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, tags <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"gender"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
 <span></span>
