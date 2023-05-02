@@ -137,9 +137,9 @@ that they have the expected type (e.g. checking that dates are
 <li><p><strong>secured methods</strong>: generic functions which could
 lead to the loss of tagged variables have dedicated methods for
 <em>linelist</em> objects with adapted behaviours, either updating tags
-as needed (<em>e.g.</em> <code>rename</code>,
+as needed (<em>e.g.</em> <code><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename()</a></code>,
 <code>names() &lt;-    ...</code>) or issuing warnings/errors when
-tagged variables are lost (<em>e.g.</em> <code>select</code>,
+tagged variables are lost (<em>e.g.</em> <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code>,
 <code>x[]</code>, <code>x[[]]</code>)</p></li>
 </ol>
 </div>
@@ -259,12 +259,36 @@ when tagged variables would be lost by an operation: issue a warning
 behaviour for lost tagged variables</p></li>
 <li><p><code>names(x) &lt;-</code>: the ‘base R’ approach to renaming
 columns of a <code>linelist</code>; will rename tags as needed to match
-the new column names</p></li>
+the new column names &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p></li>
 <li><p><code>x[]</code> and <code>x[[]]</code>: for subsetting columns
 using ‘base R’ syntax; will behave according to
+<code>get_lost_tags_actions()</code> if tagged variables are lost
+=======</p></li>
+<li><p><code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code>: adapted from <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select()</a></code>,
+for subsetting columns; an additional argument can be used to subset
+tagged variables as well; will behave according to
 <code>get_lost_tags_actions()</code> if tagged variables are
 lost</p></li>
+<li><p><code>x[]</code> and <code>x[[]]</code>: same as
+<code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select()</a></code> but using ‘base R’ syntax; will behave
+according to <code>get_lost_tags_actions()</code> if tagged variables
+are lost</p></li>
 </ul>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>fbf6c3f (Use fct() instead of fct to enable auto-linking)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 </div>
 </div>
 </div>
@@ -378,7 +402,7 @@ we want to double-check which variables have been tagged:</p>
 <code><a href="../reference/set_tags.html">set_tags()</a></code>.</p>
 <p>Let us assume we also want to record the outcome: it is currently
 missing, but can be built from dates of deaths (missing date =
-survived). This can be done by using <code>mutate</code> on
+survived). This can be done by using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate()</a></code> on
 <code>x</code> to create the new variable (remember <code>x</code> is
 not only a <code>linelist</code>, but also a regular <code>tibble</code>
 and this compatible with <code>dplyr</code> verbs), and setting up a new
@@ -534,7 +558,8 @@ columns of <code>x</code>:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // tags: [no tagged variable]</span></span></code></pre></div>
 <p>Here, the above command gave a meaningful warning, in which
-<code>select</code> removes some of the variables that were tagged.</p>
+<code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code> removes some of the variables that were
+tagged.</p>
 <p>We can also use the <code><a href="../reference/has_tag.html">has_tag()</a></code> select helper to select
 columns via their tag. For example, to retain the first 2 variables, and
 the <code>gender</code> tag:</p>
