@@ -71,7 +71,7 @@ In practice, `make_linelist(x)` now errors if `x` inherits from `data.table`
 (#54, @Bisaloo). E.g., `x[1]`. As an indirect effect, this also improves
 compatibility with dplyr verbs that rely on this method (#51).
 * subsetting a linelist with extra tags (e.g., created via 
-`make_linelist(allow_extra = TRUE)`) no longer causes an error (#64, @Bisaloo; 
+`make_linelist(allow_extra = TRUE)`) no longer causes an error (#65, @Bisaloo; 
 reported by @TimTaylor in #63)
 
 # linelist 0.0.1
