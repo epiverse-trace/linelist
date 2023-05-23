@@ -20,3 +20,13 @@ test_that("tests for prune_tags", {
   expect_identical(tags_defaults(), tags(y, TRUE))
   expect_s3_class(y, "linelist")
 })
+
+test_that("prune_tags() doesn't error on a linelist with extra tags", {
+
+  dat <- data.frame(a=1)
+  ll <- make_linelist(dat, a = "a", allow_extra = TRUE)
+
+  expect_no_condition(ll["a"])
+  expect_identical(ll, ll["a"])
+
+})
