@@ -31,7 +31,7 @@ prune_tags <- function(x, lost_action = c("error", "warning", "none")) {
     logical(1)
   )
   new_tags <- old_tags[!has_lost_column]
-  
+
   # We can safely always use strict = FALSE since prune_tags() can only remove
   # tags, and not add new ones.
   # This is easier than tracking if x was created with strict TRUE or FALSE.
