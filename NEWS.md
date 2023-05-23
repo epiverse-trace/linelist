@@ -70,6 +70,9 @@ In practice, `make_linelist(x)` now errors if `x` inherits from `data.table`
 * `[.linelist()` now works to subset by column when including just one argument 
 (#54, @Bisaloo). E.g., `x[1]`. As an indirect effect, this also improves
 compatibility with dplyr verbs that rely on this method (#51).
+* subsetting a linelist with extra tags (e.g., created via 
+`make_linelist(allow_extra = TRUE)`) no longer causes an error (#64, @Bisaloo; 
+reported by @TimTaylor in #63)
 
 # linelist 0.0.1
 
