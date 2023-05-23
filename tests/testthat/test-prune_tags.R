@@ -22,6 +22,7 @@ test_that("tests for prune_tags", {
 })
 
 test_that("prune_tags() doesn't error on a linelist with extra tags", {
+  # https://github.com/epiverse-trace/linelist/issues/63
 
   dat <- data.frame(a=1)
   ll <- make_linelist(dat, a = "a", allow_extra = TRUE)
