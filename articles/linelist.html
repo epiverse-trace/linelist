@@ -259,36 +259,12 @@ when tagged variables would be lost by an operation: issue a warning
 behaviour for lost tagged variables</p></li>
 <li><p><code>names(x) &lt;-</code>: the ‘base R’ approach to renaming
 columns of a <code>linelist</code>; will rename tags as needed to match
-the new column names &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p></li>
+the new column names</p></li>
 <li><p><code>x[]</code> and <code>x[[]]</code>: for subsetting columns
 using ‘base R’ syntax; will behave according to
-<code>get_lost_tags_actions()</code> if tagged variables are lost
-=======</p></li>
-<li><p><code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select()</a></code>: adapted from <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select()</a></code>,
-for subsetting columns; an additional argument can be used to subset
-tagged variables as well; will behave according to
 <code>get_lost_tags_actions()</code> if tagged variables are
 lost</p></li>
-<li><p><code>x[]</code> and <code>x[[]]</code>: same as
-<code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select()</a></code> but using ‘base R’ syntax; will behave
-according to <code>get_lost_tags_actions()</code> if tagged variables
-are lost</p></li>
 </ul>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>fbf6c3f (Use fct() instead of fct to enable auto-linking)</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 </div>
 </div>
 </div>
