@@ -186,22 +186,9 @@ prevent the loss of tagged variables.
 
 * `names(x) <- `: the 'base R' approach to renaming columns of a `linelist`;
   will rename tags as needed to match the new column names
-<<<<<<< HEAD
 
 * `x[]` and `x[[]]`: for subsetting columns using 'base R' syntax; will
   behave according to `get_lost_tags_actions()` if tagged variables are lost
-=======
-  
-* `select()`: adapted from `dplyr::select()`, for subsetting columns; an
-  additional argument can be used to subset tagged variables as well; will
-  behave according to `get_lost_tags_actions()` if tagged variables are lost
-  
-* `x[]` and `x[[]]`: same as `dplyr::select()` but using 'base R' syntax; will
-  behave according to `get_lost_tags_actions()` if tagged variables are lost
-
-
-
->>>>>>> fbf6c3f (Use fct() instead of fct to enable auto-linking)
 
 # Worked example
 
