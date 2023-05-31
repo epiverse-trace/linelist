@@ -27,14 +27,14 @@ Tags are stored as the \code{tags} attribute of the object.
 \examples{
 
 if (require(outbreaks)) {
-## make a linelist
-x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
+  ## make a linelist
+  x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
 
-## check non-null tags
-tags(x)
+  ## check non-null tags
+  tags(x)
 
-## get a list of all tags, including NULL ones
-tags(x, TRUE)
+  ## get a list of all tags, including NULL ones
+  tags(x, TRUE)
 }
 
 }

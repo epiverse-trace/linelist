@@ -40,7 +40,7 @@ if (require(outbreaks)) {
   head(x)
   tags(x)
 
- # This also works with using `dplyr::rename()` because it uses names<-() 
+ # This also works with using `dplyr::rename()` because it uses names<-()
  # under hood
  if (require(dplyr)) {
    x <- x \%>\%

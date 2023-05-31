@@ -27,7 +27,7 @@ The function returns a \code{linelist} object.
 \description{
 This function converts a \code{data.frame} or a \code{tibble} into a \code{linelist} object,
 where different types of epidemiologically relevant data are tagged. This
-includes dates of different events (e.g. onset of symtpom, case reporting),
+includes dates of different events (e.g. onset of symptoms, case reporting),
 information on the patient (e.g. age, gender, location) as well as other
 informations such as the type of case (e.g. confirmed, probable) or the
 outcome of the disease. The output will seem to be the same \code{data.frame}, but
@@ -60,7 +60,8 @@ Dates can be provided in the following formats/types:
 \item \code{Date} objects (e.g. using \code{as.Date} on a \code{character} with a correct date
 format); this is the recommended format
 \item \code{POSIXct/POSIXlt} objects (when a finer scale than days is needed)
-\item \code{numeric} values, typically indicating the number of days since the first case
+\item \code{numeric} values, typically indicating the number of days since the first
+case
 }
 }
 \examples{
@@ -72,10 +73,11 @@ if (require(outbreaks)) {
 
   ## create linelist
   x <- make_linelist(measles_hagelloch_1861,
-                     id = "case_ID",
-                     date_onset = "date_of_prodrome",
-                     age = "age",
-                     gender = "gender")
+    id = "case_ID",
+    date_onset = "date_of_prodrome",
+    age = "age",
+    gender = "gender"
+  )
 
   ## print result - just first few entries
   head(x)
@@ -87,12 +89,10 @@ if (require(outbreaks)) {
 }
 \seealso{
 \itemize{
-\item An overview of the \link{linelist} package
-\item \code{\link[=tags_names]{tags_names()}}: for a list of known tag names
-\item \code{\link[=tags_types]{tags_types()}}: for the associated accepted types/classes
-\item \code{\link[=tags]{tags()}}: for a list of tagged variables in a \code{linelist}
-\item \code{\link[=set_tags]{set_tags()}}: for modifying tags
-\item \code{\link[=tags_df]{tags_df()}}: for selecting variables by tags
+\item An overview of the \link{linelist} package * \code{\link[=tags_names]{tags_names()}}: for a list of known
+tag names * \code{\link[=tags_types]{tags_types()}}: for the associated accepted types/classes *
+\code{\link[=tags]{tags()}}: for a list of tagged variables in a \code{linelist} * \code{\link[=set_tags]{set_tags()}}: for
+modifying tags * \code{\link[=tags_df]{tags_df()}}: for selecting variables by tags
 }
 }
 \author{

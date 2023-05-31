@@ -5,7 +5,7 @@
 \alias{sub_linelist}
 \alias{[<-.linelist}
 \alias{[[<-.linelist}
-\title{Subsetting of linelist objets}
+\title{Subsetting of linelist objects}
 \usage{
 \method{[}{linelist}(x, i, j, drop = FALSE)
 
@@ -41,11 +41,13 @@ depending on the general option set via \code{\link[=lost_tags_action]{lost_tags
 if (require(outbreaks) && require(dplyr) && require(magrittr)) {
   ## create a linelist
   x <- measles_hagelloch_1861 \%>\%
-    tibble() \%>\% 
-    make_linelist(id = "case_ID",
-                  date_onset = "date_of_prodrome",
-                  age = "age",
-                  gender = "gender") \%>\%
+    tibble() \%>\%
+    make_linelist(
+      id = "case_ID",
+      date_onset = "date_of_prodrome",
+      age = "age",
+      gender = "gender"
+    ) \%>\%
     mutate(result = if_else(is.na(date_of_death), "survived", "died")) \%>\%
     set_tags(outcome = "result") \%>\%
     rename(identifier = case_ID)

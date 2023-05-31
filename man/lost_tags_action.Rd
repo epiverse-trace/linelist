@@ -54,6 +54,7 @@ get_lost_tags_action()
 
 # reset to default: warning
 lost_tags_action()
+
 }
 \author{
 Thibaut Jombart \email{thibaut@data.org}

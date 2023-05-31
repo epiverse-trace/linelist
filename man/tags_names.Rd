@@ -15,6 +15,7 @@ specific variable types in a \code{linelist}.
 }
 \examples{
 tags_names()
+
 }
 \seealso{
 \code{\link[=tags_defaults]{tags_defaults()}} for a \code{list} of default values of the tags

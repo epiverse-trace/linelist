@@ -24,13 +24,15 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 
   ## create an invalid linelist - gender is a numeric
   x <- measles_hagelloch_1861 \%>\%
-    tibble() \%>\% 
-    make_linelist(id = "case_ID",
-                  gender = "infector")
+    tibble() \%>\%
+    make_linelist(
+      id = "case_ID",
+      gender = "infector"
+    )
   x
 
   ## the below would issue an error
-  ## note: tryCatch is only used to avoid a genuine error in the example 
+  ## note: tryCatch is only used to avoid a genuine error in the example
   tryCatch(validate_types(x), error = paste)
 
   ## to allow other types, e.g. gender to be integer, character or factor

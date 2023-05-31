@@ -17,7 +17,7 @@ tags will trigger an error}
 If checks pass, a \code{linelist} object; otherwise issues an error.
 }
 \description{
-This function evalutes the validity of the tags of a \code{linelist} object by
+This function evaluates the validity of the tags of a \code{linelist} object by
 checking that: i) tags are present ii) tags is a \code{list} of \code{character} iii)
 that all default tags are present iv) tagged variables exist v) that no extra
 tag exists (if \code{allow_extra} is \code{FALSE}).
@@ -27,11 +27,13 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 
   ## create a valid linelist
   x <- measles_hagelloch_1861 \%>\%
-    tibble() \%>\% 
-    make_linelist(id = "case_ID",
-                  date_onset = "date_of_prodrome",
-                  age = "age",
-                  gender = "gender")
+    tibble() \%>\%
+    make_linelist(
+      id = "case_ID",
+      date_onset = "date_of_prodrome",
+      age = "age",
+      gender = "gender"
+    )
   x
 
   ## validation
@@ -41,7 +43,7 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
   attr(x, "tags") <- list(id = "case_ID")
 
   ## the below issues an error
-  ## note: tryCatch is only used to avoid a genuine error in the example 
+  ## note: tryCatch is only used to avoid a genuine error in the example
   tryCatch(validate_tags(x), error = paste)
 }
 }
