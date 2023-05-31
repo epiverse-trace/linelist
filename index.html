@@ -83,7 +83,6 @@
 </div>
 <!-- badges: start -->
 
-<!-- badges: end -->
 <p><em>linelist</em> provides a safe entry point to the <em>Epiverse</em> software ecosystem, adding a foundational layer through <em>tagging</em>, <em>validation</em>, and <em>safeguarding</em> epidemiological data, to help make data pipelines more straightforward and robust.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -118,8 +117,7 @@
 </ol>
 <p>The short example below illustrates these different features. See the <a href="#Documentation">Documentation</a> section for more in-depth examples and details about <code>linelist</code> objects.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># load packages and a dataset for the example</span></span>
+<code class="sourceCode R"><span><span class="co"># load packages and a dataset for the example</span></span>
 <span><span class="co"># -------------------------------------------</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://epiverse-trace.github.io/linelist/">linelist</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
@@ -131,8 +129,6 @@
 <span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconverse/incidence2" class="external-link">incidence2</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: grates</span></span>
 <span></span>
 <span><span class="va">dataset</span> <span class="op">&lt;-</span> <span class="fu">outbreaks</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/outbreaks/man/mers_korea_2015.html" class="external-link">mers_korea_2015</a></span><span class="op">$</span><span class="va">linelist</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span>
@@ -170,10 +166,11 @@
 <span><span class="co"># ----------------</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">dataset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="reference/make_linelist.html">make_linelist</a></span><span class="op">(</span>date_onset <span class="op">=</span> <span class="st">"dt_onset"</span>, <span class="co"># date of onset</span></span>
-<span>                date_reporting <span class="op">=</span> <span class="st">"dt_report"</span>, <span class="co"># date of reporting</span></span>
-<span>                occupation <span class="op">=</span> <span class="st">"age"</span> <span class="co"># mistake</span></span>
-<span>                <span class="op">)</span></span>
+<span>  <span class="fu"><a href="reference/make_linelist.html">make_linelist</a></span><span class="op">(</span></span>
+<span>    date_onset <span class="op">=</span> <span class="st">"dt_onset"</span>, <span class="co"># date of onset</span></span>
+<span>    date_reporting <span class="op">=</span> <span class="st">"dt_report"</span>, <span class="co"># date of reporting</span></span>
+<span>    occupation <span class="op">=</span> <span class="st">"age"</span> <span class="co"># mistake</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="va">x</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
@@ -203,22 +200,24 @@
 <span><span class="co">#&gt; [1] "dt_report"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $occupation</span></span>
-<span><span class="co">#&gt; [1] "age"</span></span>
-<span></span>
-<span><span class="co"># validation of tagged variables</span></span>
+<span><span class="co">#&gt; [1] "age"</span></span></code></pre></div>
+<p><code><a href="reference/validate_linelist.html">validate_linelist()</a></code> will error if one of your tagged column doesn’t have the correct type:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># validation of tagged variables</span></span>
 <span><span class="co"># ------------------------------</span></span>
 <span><span class="co">## (this flags a likely mistake: occupation should not be an integer)</span></span>
 <span><span class="fu"><a href="reference/validate_linelist.html">validate_linelist</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in validate_types(x, ref_types): Issue when checking class of tag `occupation`:</span></span>
-<span><span class="co">#&gt; Must inherit from class 'character'/'factor', but has class 'integer'</span></span>
-<span></span>
-<span><span class="co"># change tags: fix mistakes, add new ones</span></span>
+<span><span class="co">#&gt; Must inherit from class 'character'/'factor', but has class 'integer'</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># change tags: fix mistakes, add new ones</span></span>
 <span><span class="co"># ---------------------------------------</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="reference/set_tags.html">set_tags</a></span><span class="op">(</span>occupation <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># tag removal</span></span>
-<span>           gender <span class="op">=</span> <span class="st">"sex"</span>, <span class="co"># new tag</span></span>
-<span>           outcome <span class="op">=</span> <span class="st">"outcome"</span></span>
-<span>           <span class="op">)</span></span>
+<span>  <span class="fu"><a href="reference/set_tags.html">set_tags</a></span><span class="op">(</span></span>
+<span>    occupation <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># tag removal</span></span>
+<span>    gender <span class="op">=</span> <span class="st">"sex"</span>, <span class="co"># new tag</span></span>
+<span>    outcome <span class="op">=</span> <span class="st">"outcome"</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="co"># safeguards against actions losing tags</span></span>
 <span><span class="co"># --------------------------------------</span></span>
@@ -226,10 +225,10 @@
 <span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
-<span><span class="co">#&gt;  date_onset:dt_onset</span></span>
-<span></span>
-<span><span class="co">## for stronger pipelines, trigger errors upon loss</span></span>
-<span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="co">#&gt;  date_onset:dt_onset</span></span></code></pre></div>
+<p>For stronger pipelines, you can even trigger errors upon loss:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
@@ -240,14 +239,17 @@
 <span></span>
 <span><span class="co">## to revert to default behaviour (warning upon error)</span></span>
 <span><span class="fu"><a href="reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Lost tags will now issue a warning.</span></span>
-<span></span>
-<span><span class="co"># access content by tags, and build downstream pipelines</span></span>
-<span><span class="co"># ------------------------------------------------------</span></span>
-<span><span class="va">x_no_geo</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="reference/select_tags.html">select_tags</a></span><span class="op">(</span><span class="va">date_onset</span>, <span class="va">outcome</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Lost tags will now issue a warning.</span></span></code></pre></div>
+<p>Alternatively, content can be accessed by tags:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x_no_geo</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"date_onset"</span>, <span class="st">"outcome"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt;  date_reporting:dt_report, gender:sex</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; // linelist object</span></span>
 <span><span class="co">#&gt; # A tibble: 162 × 2</span></span>
-<span><span class="co">#&gt;    date_onset outcome</span></span>
+<span><span class="co">#&gt;    dt_onset   outcome</span></span>
 <span><span class="co">#&gt;    &lt;date&gt;     &lt;fct&gt;  </span></span>
 <span><span class="co">#&gt;  1 2015-05-11 Alive  </span></span>
 <span><span class="co">#&gt;  2 2015-05-18 Alive  </span></span>
@@ -260,6 +262,8 @@
 <span><span class="co">#&gt;  9 NA         Alive  </span></span>
 <span><span class="co">#&gt; 10 2015-05-21 Alive  </span></span>
 <span><span class="co">#&gt; # ℹ 152 more rows</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; // tags: date_onset:dt_onset, outcome:outcome</span></span>
 <span></span>
 <span><span class="va">x_no_geo</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -276,13 +280,17 @@
 <span><span class="co">#&gt;  8 2015-05-26 2015-05-29     F      Alive  </span></span>
 <span><span class="co">#&gt;  9 NA         2015-05-29     M      Alive  </span></span>
 <span><span class="co">#&gt; 10 2015-05-21 2015-05-29     M      Alive  </span></span>
-<span><span class="co">#&gt; # ℹ 152 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 152 more rows</span></span></code></pre></div>
+<p>linelist can also be connected to the incidence2 package for pipelines focused on aggregated count data:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconverse/incidence2" class="external-link">incidence2</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: grates</span></span>
 <span></span>
 <span><span class="va">x_no_geo</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">incidence</span><span class="op">(</span><span class="st">"date_onset"</span>, groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"outcome"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">facet_plot</span><span class="op">(</span>facets <span class="op">=</span> <span class="st">"gender"</span>, fill <span class="op">=</span> <span class="va">outcome</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error: `facet_plot` is defunct and has been removed from incidence2.</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-8-1.png" width="60%"></p>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
