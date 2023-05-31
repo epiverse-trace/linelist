@@ -104,10 +104,11 @@ tags_names()
 # ----------------
 x <- dataset %>%
   tibble() %>%
-  make_linelist(date_onset = "dt_onset", # date of onset
-                date_reporting = "dt_report", # date of reporting
-                occupation = "age" # mistake
-                )
+  make_linelist(
+    date_onset = "dt_onset", # date of onset
+    date_reporting = "dt_report", # date of reporting
+    occupation = "age" # mistake
+  )
 x
 tags(x) # check available tags
 
@@ -119,10 +120,11 @@ validate_linelist(x)
 # change tags: fix mistakes, add new ones
 # ---------------------------------------
 x <- x %>%
-  set_tags(occupation = NULL, # tag removal
-           gender = "sex", # new tag
-           outcome = "outcome"
-           )
+  set_tags(
+    occupation = NULL, # tag removal
+    gender = "sex", # new tag
+    outcome = "outcome"
+  )
 
 # safeguards against actions losing tags
 # --------------------------------------
@@ -144,7 +146,7 @@ lost_tags_action()
 # access content by tags, and build downstream pipelines
 # ------------------------------------------------------
 x_no_geo %>%
-  select_tags(date_onset, outcome)
+  select(has_tag(c("date_onset", "outcome")))
 
 x_no_geo %>%
   tags_df()
@@ -152,8 +154,7 @@ x_no_geo %>%
 x_no_geo %>%
   tags_df() %>%
   incidence("date_onset", groups = c("gender", "outcome")) %>%
-  facet_plot(facets = "gender", fill = outcome)
-
+  plot()
 ```
 
 
