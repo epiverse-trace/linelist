@@ -257,10 +257,16 @@ library(incidence2)
 x_no_geo %>%
   tags_df() %>%
   incidence("date_onset", groups = c("gender", "outcome")) %>%
-  plot()
+  plot(
+    fill = "outcome",
+    angle = 45,
+    nrow = 2,
+    border_colour = "white",
+    legend = "bottom"
+  )
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="60%" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
 
 ## Documentation
 
