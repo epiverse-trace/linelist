@@ -122,10 +122,11 @@ tags_names()
 # ----------------
 x <- dataset %>%
   tibble() %>%
-  make_linelist(date_onset = "dt_onset", # date of onset
-                date_reporting = "dt_report", # date of reporting
-                occupation = "age" # mistake
-                )
+  make_linelist(
+    date_onset = "dt_onset", # date of onset
+    date_reporting = "dt_report", # date of reporting
+    occupation = "age" # mistake
+  )
 x
 #> 
 #> // linelist object
@@ -167,10 +168,11 @@ validate_linelist(x)
 # change tags: fix mistakes, add new ones
 # ---------------------------------------
 x <- x %>%
-  set_tags(occupation = NULL, # tag removal
-           gender = "sex", # new tag
-           outcome = "outcome"
-           )
+  set_tags(
+    occupation = NULL, # tag removal
+    gender = "sex", # new tag
+    outcome = "outcome"
+  )
 
 # safeguards against actions losing tags
 # --------------------------------------
@@ -197,9 +199,13 @@ lost_tags_action()
 # access content by tags, and build downstream pipelines
 # ------------------------------------------------------
 x_no_geo %>%
-  select_tags(date_onset, outcome)
+  select(has_tag(c("date_onset", "outcome")))
+#> Warning in prune_tags(out, lost_action): The following tags have lost their variable:
+#>  date_reporting:dt_report, gender:sex
+#> 
+#> // linelist object
 #> # A tibble: 162 × 2
-#>    date_onset outcome
+#>    dt_onset   outcome
 #>    <date>     <fct>  
 #>  1 2015-05-11 Alive  
 #>  2 2015-05-18 Alive  
@@ -212,6 +218,8 @@ x_no_geo %>%
 #>  9 NA         Alive  
 #> 10 2015-05-21 Alive  
 #> # ℹ 152 more rows
+#> 
+#> // tags: date_onset:dt_onset, outcome:outcome
 
 x_no_geo %>%
   tags_df()
@@ -233,9 +241,10 @@ x_no_geo %>%
 x_no_geo %>%
   tags_df() %>%
   incidence("date_onset", groups = c("gender", "outcome")) %>%
-  facet_plot(facets = "gender", fill = outcome)
-#> Error: `facet_plot` is defunct and has been removed from incidence2.
+  plot()
 ```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="60%" />
 
 ## Documentation
 
