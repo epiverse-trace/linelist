@@ -16,7 +16,6 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![month-download](https://cranlogs.r-pkg.org/badges/linelist)](https://cran.r-project.org/package=linelist)
 [![total-download](https://cranlogs.r-pkg.org/badges/grand-total/linelist)](https://cran.r-project.org/package=linelist)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6556047.svg)](https://doi.org/10.5281/zenodo.6556047)
-
 <!-- badges: end -->
 
 *linelist* provides a safe entry point to the *Epiverse* software
@@ -70,7 +69,6 @@ The short example below illustrates these different features. See the
 details about `linelist` objects.
 
 ``` r
-
 # load packages and a dataset for the example
 # -------------------------------------------
 library(linelist)
@@ -83,8 +81,6 @@ library(dplyr)
 #> The following objects are masked from 'package:base':
 #> 
 #>     intersect, setdiff, setequal, union
-library(incidence2)
-#> Loading required package: grates
 
 dataset <- outbreaks::mers_korea_2015$linelist
 head(dataset)
@@ -157,14 +153,21 @@ tags(x) # check available tags
 #> 
 #> $occupation
 #> [1] "age"
+```
 
+`validate_linelist()` will error if one of your tagged column doesn’t
+have the correct type:
+
+``` r
 # validation of tagged variables
 # ------------------------------
 ## (this flags a likely mistake: occupation should not be an integer)
 validate_linelist(x)
 #> Error in validate_types(x, ref_types): Issue when checking class of tag `occupation`:
 #> Must inherit from class 'character'/'factor', but has class 'integer'
+```
 
+``` r
 # change tags: fix mistakes, add new ones
 # ---------------------------------------
 x <- x %>%
@@ -181,8 +184,11 @@ x_no_geo <- x %>%
   select(-(5:8))
 #> Warning in prune_tags(out, lost_action): The following tags have lost their variable:
 #>  date_onset:dt_onset
+```
 
-## for stronger pipelines, trigger errors upon loss
+For stronger pipelines, you can even trigger errors upon loss:
+
+``` r
 x_no_geo <- x %>%
   lost_tags_action("error") %>% 
   select(-(5:8))
@@ -195,9 +201,11 @@ x_no_geo <- x %>%
 ## to revert to default behaviour (warning upon error)
 lost_tags_action()
 #> Lost tags will now issue a warning.
+```
 
-# access content by tags, and build downstream pipelines
-# ------------------------------------------------------
+Alternatively, content can be accessed by tags:
+
+``` r
 x_no_geo %>%
   select(has_tag(c("date_onset", "outcome")))
 #> Warning in prune_tags(out, lost_action): The following tags have lost their variable:
@@ -237,6 +245,14 @@ x_no_geo %>%
 #>  9 NA         2015-05-29     M      Alive  
 #> 10 2015-05-21 2015-05-29     M      Alive  
 #> # ℹ 152 more rows
+```
+
+linelist can also be connected to the incidence2 package for pipelines
+focused on aggregated count data:
+
+``` r
+library(incidence2)
+#> Loading required package: grates
 
 x_no_geo %>%
   tags_df() %>%
@@ -244,7 +260,7 @@ x_no_geo %>%
   plot()
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="60%" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="60%" />
 
 ## Documentation
 

@@ -13,11 +13,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 # *linelist*: Tagging and Validating Epidemiological Data <img src="man/figures/logo.svg" align="right" width="120" />
 
 <!-- badges: start -->
-
 [![Digital Public Good](https://raw.githubusercontent.com/epiverse-trace/linelist/main/man/figures/dpg_badge.png)](https://digitalpublicgoods.net/registry/linelist.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![cran-check](https://badges.cranchecks.info/summary/linelist.svg)](https://cran.r-project.org/web/checks/check_results_linelist.html)
@@ -27,15 +25,12 @@ knitr::opts_chunk$set(
 [![month-download](https://cranlogs.r-pkg.org/badges/linelist)](https://cran.r-project.org/package=linelist)
 [![total-download](https://cranlogs.r-pkg.org/badges/grand-total/linelist)](https://cran.r-project.org/package=linelist)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6556047.svg)](https://doi.org/10.5281/zenodo.6556047)
-
 <!-- badges: end -->
-
 
 *linelist* provides a safe entry point to the *Epiverse* software ecosystem,
 adding a foundational layer through *tagging*, *validation*, and *safeguarding*
 epidemiological data, to help make data pipelines more straightforward and
 robust.
-
 
 ## Installation
 
@@ -58,9 +53,6 @@ if (!require(remotes)) {
 }
 remotes::install_github("epiverse-trace/linelist", build_vignettes = TRUE)
 ```
-
-
-
 
 ## Usage
 
@@ -85,13 +77,11 @@ The short example below illustrates these different features. See the
 [Documentation](#Documentation) section for more in-depth examples and details
 about `linelist` objects.
 
-```{r error = TRUE, fig.height = 4, fig.width = 8, out.width = "60%"}
-
+```{r}
 # load packages and a dataset for the example
 # -------------------------------------------
 library(linelist)
 library(dplyr)
-library(incidence2)
 
 dataset <- outbreaks::mers_korea_2015$linelist
 head(dataset)
@@ -111,12 +101,19 @@ x <- dataset %>%
   )
 x
 tags(x) # check available tags
+```
 
+`validate_linelist()` will error if one of your tagged column doesn't have the
+correct type:
+
+```{r, error = TRUE}
 # validation of tagged variables
 # ------------------------------
 ## (this flags a likely mistake: occupation should not be an integer)
 validate_linelist(x)
+```
 
+```{r}
 # change tags: fix mistakes, add new ones
 # ---------------------------------------
 x <- x %>%
@@ -131,8 +128,11 @@ x <- x %>%
 ## attemping to remove geographical info but removing dates by mistake
 x_no_geo <- x %>%
   select(-(5:8))
+```
 
-## for stronger pipelines, trigger errors upon loss
+For stronger pipelines, you can even trigger errors upon loss:
+
+```{r error = TRUE}
 x_no_geo <- x %>%
   lost_tags_action("error") %>% 
   select(-(5:8))
@@ -142,23 +142,29 @@ x_no_geo <- x %>%
 
 ## to revert to default behaviour (warning upon error)
 lost_tags_action()
+```
 
-# access content by tags, and build downstream pipelines
-# ------------------------------------------------------
+Alternatively, content can be accessed by tags:
+
+```{r}
 x_no_geo %>%
   select(has_tag(c("date_onset", "outcome")))
 
 x_no_geo %>%
   tags_df()
+```
+
+linelist can also be connected to the incidence2 package for pipelines focused
+on aggregated count data:
+
+```{r, fig.height = 4, fig.width = 8, out.width = "60%"}
+library(incidence2)
 
 x_no_geo %>%
   tags_df() %>%
   incidence("date_onset", groups = c("gender", "outcome")) %>%
   plot()
 ```
-
-
-
 
 ## Documentation
 
@@ -171,14 +177,10 @@ In particular:
 
 * The reference manual ([link](https://epiverse-trace.github.io/linelist/reference/index.html))
 
-
-
-
 ## Getting help
 
 To ask questions or give us some feedback, please use the github
 [issues](https://github.com/epiverse-trace/linelist/issues) system.
-
 
 ## Data privacy
 
@@ -192,7 +194,6 @@ Note that PII is rarely needed for common analytics tasks, so that in many
 instances it may be advisable to remove PII from the data before sharing them
 with analytics teams.
 
-
 ## Development
 
 ### Lifecycle
@@ -202,7 +203,6 @@ lifecycle](https://www.reconverse.org/lifecycle.html). This means that essential
 features and mechanisms should not change drastically, but depending on user
 feedback, functions may be renamed, arguments may change, some functionalities
 may be added, etc.
-
 
 ### Contributions
 
@@ -221,7 +221,6 @@ Please note that the linelist project is released with a
 [Code of Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
-
 ### Notes
 
 This package is a reboot of the RECON package
@@ -229,4 +228,3 @@ This package is a reboot of the RECON package
 new package focuses on the implementation of a *linelist* class. The data
 cleaning features of the original package will eventually be re-implemented for
 *linelist* objects, albeit likely in a separate package.
-
