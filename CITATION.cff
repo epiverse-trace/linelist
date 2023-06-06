@@ -129,17 +129,6 @@ references:
     given-names: Winston
   year: '2023'
 - type: software
-  title: covr
-  abstract: 'covr: Test Coverage for Packages'
-  notes: Suggests
-  url: https://covr.r-lib.org
-  repository: https://CRAN.R-project.org/package=covr
-  authors:
-  - family-names: Hester
-    given-names: Jim
-    email: james.f.hester@gmail.com
-  year: '2023'
-- type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
   notes: Suggests
@@ -185,28 +174,6 @@ references:
   - family-names: Sudre
     given-names: Bertrand
     email: bertrand.sudre@edc.europa.eu
-  year: '2023'
-- type: software
-  title: remotes
-  abstract: 'remotes: R Package Installation from Remote Repositories, Including ''GitHub'''
-  notes: Suggests
-  url: https://remotes.r-lib.org
-  repository: https://CRAN.R-project.org/package=remotes
-  authors:
-  - family-names: Csárdi
-    given-names: Gábor
-    email: csardi.gabor@gmail.com
-  - family-names: Hester
-    given-names: Jim
-    email: jim.hester@rstudio.com
-  - family-names: Wickham
-    given-names: Hadley
-  - family-names: Chang
-    given-names: Winston
-  - family-names: Morgan
-    given-names: Martin
-  - family-names: Tenenbaum
-    given-names: Dan
   year: '2023'
 - type: software
   title: rmarkdown
