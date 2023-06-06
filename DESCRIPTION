@@ -37,11 +37,9 @@ Imports:
     tidyselect
 Suggests:
     callr,
-    covr,
     knitr,
     magrittr,
     outbreaks,
-    remotes,
     rmarkdown,
     testthat,
     tibble
