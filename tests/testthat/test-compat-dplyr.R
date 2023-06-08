@@ -39,6 +39,16 @@ test_that("Compatibility with dplyr::filter()", {
 
 })
 
+test_that("Compatibility with dplyr::slice()", {
+
+  x %>%
+    dplyr::slice(5:10) %>%
+    expect_s3_class("linelist") %>%
+    dim() %>%
+    expect_identical(c(6L, ncol(x)))
+
+})
+
 # Columns ----
 
 test_that("Compatibility with dplyr::transmute()", {
@@ -119,6 +129,17 @@ test_that("Compatibility with dplyr::rename_with()", {
     dplyr::rename_with(tolower)
 
   expect_identical(x, new_x)
+
+})
+
+test_that("Compatibility with dplyr::select()", {
+
+  x %>% 
+    dplyr::select("case_ID") %>%
+    expect_s3_class("linelist") %>%
+    tags() %>%
+    expect_identical(list(id = "case_ID")) %>%
+    expect_snapshot_warning()
 
 })
 

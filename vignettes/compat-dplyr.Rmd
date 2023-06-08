@@ -97,6 +97,14 @@ There is an incomplete compatibility with `dplyr::mutate()` in that:
 - simple renames without any actual modification of the column don't update the tags. In this scenario, users should rather use `dplyr::rename()`
 - in place column modifications cause tag losses
 
+Although `dplyr::mutate()` is not able to leverage to full power of linelist tags, linelist objects behave as expected the same way a data.frame would:
+
+```{r}
+x %>%
+  mutate(major = age >= 18) |> 
+  head()
+```
+
 ### `dplyr::pull()` ✅
 
 `dplyr::pull()` returns a vector, which results, as expected, in the loss of the linelist class and tags:
@@ -106,6 +114,15 @@ x %>%
   pull(age)
 ```
 
+### `dplyr::relocate()` ✅
+
+```{r}
+x %>%
+  relocate(date_of_prodrome, .before = 1) %>%
+  head()
+```
+
+
 ### `dplyr::rename()` & `dplyr::rename_with()` ✅
 
 `dplyr::rename()` is fully compatible out-of-the-box with linelist, meaning that tags will be updated at the same time that columns are renamed. This is possibly because it uses `names<-()` under the hood, which linelist provides a custom `names<-.linelist()` method for:
@@ -114,13 +131,15 @@ x %>%
 x %>%
   rename(edad = age) %>%
   head()
+
+x %>%
+  rename_with(toupper) %>%
+  head()
 ```
 
 ### `dplyr::select()` ✓ (partial)
 
-`dplyr::select()` is currently only partially compatible with linelist because:
-- renames with `select()` do not correctly update tags
-- linelist provides a custom `select.linelist()` method which adds the ability to select by tags through the `tags` argument. But this means that you cannot use `tags` as a column name for example
+`dplyr::select()` is currently only partially compatible with linelist because renames with `select()` do not correctly update tags
 
 ```{r}
 # Works fine
@@ -140,13 +159,13 @@ x %>%
   head()
 ```
 
-## Verbs operating on groups
+## Verbs operating on groups ✘
 
 Groups are not yet supported. Applying any verb operating on group to a linelist will silently convert it back to a data.frame or tibble.
 
 ## Verbs operating on data.frames
 
-### `bind_rows()` ✅
+### `dplyr::bind_rows()` ✅
 
 ```{r}
 dim(x)
@@ -154,7 +173,7 @@ dim(x)
 dim(bind_rows(x, x))
 ```
 
-### `bind_cols()` ✘
+### `dplyr::bind_cols()` ✘
 
 `bind_cols()` is currently incompatible with linelist:
 - Tags from the second element are lost
@@ -179,3 +198,20 @@ full_join(
 ) %>%
   head()
 ```
+
+## Verbs operating on multiple columns
+
+### `dplyr::pick()` ✘
+
+`pick()` makes tidyselect functions work in usually tidyselect-incompatible functions, such as:
+
+```{r}
+x %>%
+  dplyr::arrange(dplyr::pick(ends_with("loc"))) %>%
+  head()
+```
+
+As such, we could expect it to work with linelist custom tidyselect-like function: `has_tag()` but it's not the case since `pick()` currently strips out all attributes, including the `linelist` class and all tags.
+This unclassing is documented in `?pick`:
+> pick() returns a data frame containing the selected columns for the current group.
+
