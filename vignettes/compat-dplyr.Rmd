@@ -101,7 +101,7 @@ Although `dplyr::mutate()` is not able to leverage to full power of linelist tag
 
 ```{r}
 x %>%
-  mutate(major = age >= 18) |> 
+  mutate(major = age >= 18) %>%
   head()
 ```
 
