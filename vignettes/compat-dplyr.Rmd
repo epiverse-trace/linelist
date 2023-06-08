@@ -20,8 +20,9 @@ One popular ecosystem for data science workflow is the tidyverse and we are goin
 
 ```{r}
 library(linelist)
-library(outbreaks)
 library(dplyr)
+
+data("measles_hagelloch_1861", package = "outbreaks")
 
 x <- make_linelist(
   measles_hagelloch_1861,
