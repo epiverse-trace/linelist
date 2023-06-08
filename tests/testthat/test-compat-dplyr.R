@@ -27,10 +27,12 @@ test_that("Compatibility with dplyr::distinct()", {
 
 test_that("Compatibility with dplyr::filter()", {
 
+  # nolint start: expect_named_linter
   expect_identical(
     names(dplyr::filter(x, dist > mean(dist))),
     names(x)
   )
+  # nolint end: expect_named_linter
 
   expect_identical(
     tags(dplyr::filter(x, dist > mean(dist))),
@@ -134,11 +136,11 @@ test_that("Compatibility with dplyr::rename_with()", {
 
 test_that("Compatibility with dplyr::select()", {
 
-  x %>% 
-    dplyr::select("case_ID") %>%
+  x %>%
+    dplyr::select("dist") %>%
     expect_s3_class("linelist") %>%
     tags() %>%
-    expect_identical(list(id = "case_ID")) %>%
+    expect_identical(list(date_onset = "dist")) %>%
     expect_snapshot_warning()
 
 })
