@@ -20,7 +20,7 @@ by \code{\link[=tags_types]{tags_types()}}}
 If checks pass, a \code{linelist} object; otherwise issues an error.
 }
 \description{
-This function evalutes the validity of a \code{linelist} object by checking the
+This function evaluates the validity of a \code{linelist} object by checking the
 object class, its tags, and the types of the tagged variables. It combines
 validations checks made by \code{\link[=validate_types]{validate_types()}} and \code{\link[=validate_tags]{validate_tags()}}. See
 'Details' section for more information on the checks performed.
@@ -42,11 +42,13 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 
   ## create a valid linelist
   x <- measles_hagelloch_1861 \%>\%
-    tibble() \%>\% 
-    make_linelist(id = "case_ID",
-                  date_onset = "date_of_prodrome",
-                  age = "age",
-                  gender = "gender")
+    tibble() \%>\%
+    make_linelist(
+      id = "case_ID",
+      date_onset = "date_of_prodrome",
+      age = "age",
+      gender = "gender"
+    )
   x
 
   ## validation
@@ -54,14 +56,16 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 
   ## create an invalid linelist - onset date is a factor
   x <- measles_hagelloch_1861 \%>\%
-    tibble() \%>\% 
-    make_linelist(id = "case_ID",
-                  date_onset = "gender",
-                  age = "age")
+    tibble() \%>\%
+    make_linelist(
+      id = "case_ID",
+      date_onset = "gender",
+      age = "age"
+    )
   x
 
   ## the below issues an error
-  ## note: tryCatch is only used to avoid a genuine error in the example 
+  ## note: tryCatch is only used to avoid a genuine error in the example
   tryCatch(validate_linelist(x), error = paste)
 }
 }

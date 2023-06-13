@@ -43,7 +43,7 @@ if (require(outbreaks)) {
 
   # DEPRECATED!
   select_tags(x, "gender", "age")
-  
+
   # Instead, use:
   library(dplyr)
   x \%>\%

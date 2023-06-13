@@ -56,10 +56,11 @@ if (require(outbreaks)) {
 
   ## create linelist
   x <- make_linelist(measles_hagelloch_1861[1:50, ],
-                     id = "case_ID",
-                     date_onset = "date_of_prodrome",
-                     age = "age",
-                     gender = "gender")
+    id = "case_ID",
+    date_onset = "date_of_prodrome",
+    age = "age",
+    gender = "gender"
+  )
   x
 
   ## check tagged variables
@@ -94,11 +95,13 @@ if (require(outbreaks)) {
 
   if (require(dplyr) && require(magrittr)) {
     x <- measles_hagelloch_1861 \%>\%
-      tibble() \%>\% 
-      make_linelist(id = "case_ID",
-                    date_onset = "date_of_prodrome",
-                    age = "age",
-                    gender = "gender") \%>\%
+      tibble() \%>\%
+      make_linelist(
+        id = "case_ID",
+        date_onset = "date_of_prodrome",
+        age = "age",
+        gender = "gender"
+      ) \%>\%
       mutate(result = if_else(is.na(date_of_death), "survived", "died")) \%>\%
       set_tags(outcome = "result") \%>\%
       rename(identifier = case_ID)
@@ -115,10 +118,8 @@ if (require(outbreaks)) {
     x \%>\%
       lost_tags_action("none") \%>\%
       select(starts_with("date"))
-    
   }
 }
-
 
 }
 \author{

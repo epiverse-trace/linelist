@@ -37,9 +37,11 @@ if (require(outbreaks)) {
   tags(x)
 
   ## add new tags and fix an existing one
-  x <- set_tags(x, age = "age",
-                gender = "gender",
-                date_onset = "date_of_prodrome")
+  x <- set_tags(x,
+    age = "age",
+    gender = "gender",
+    date_onset = "date_of_prodrome"
+  )
   tags(x)
 
   ## add non-default tags using allow_extra
@@ -54,7 +56,6 @@ if (require(outbreaks)) {
   ## setting tags providing a list (used to restore old tags here)
   x <- set_tags(x, old_tags)
   tags(x)
-  
 }
 
 }

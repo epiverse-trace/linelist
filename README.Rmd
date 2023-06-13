@@ -157,13 +157,19 @@ x_no_geo %>%
 linelist can also be connected to the incidence2 package for pipelines focused
 on aggregated count data:
 
-```{r, fig.height = 4, fig.width = 8, out.width = "60%"}
+```{r, fig.width=8, fig.height=6}
 library(incidence2)
 
 x_no_geo %>%
   tags_df() %>%
   incidence("date_onset", groups = c("gender", "outcome")) %>%
-  plot()
+  plot(
+    fill = "outcome",
+    angle = 45,
+    nrow = 2,
+    border_colour = "white",
+    legend = "bottom"
+  )
 ```
 
 ## Documentation
