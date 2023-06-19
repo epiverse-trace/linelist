@@ -218,5 +218,5 @@ x %>%
 As such, we could expect it to work with linelist custom tidyselect-like function: `has_tag()` but it's not the case since `pick()` currently strips out all attributes, including the `linelist` class and all tags.
 This unclassing is documented in `?pick`:
 
-> pick() returns a data frame containing the selected columns for the current group.
+> `pick()` returns a data frame containing the selected columns for the current group.
 
