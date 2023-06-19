@@ -2,8 +2,9 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
+  compat-dplyr: compat-dplyr.html
   linelist: linelist.html
-last_built: 2023-06-13T12:29Z
+last_built: 2023-06-19T11:49Z
 urls:
   reference: https://epiverse-trace.github.io/linelist/reference
   article: https://epiverse-trace.github.io/linelist/articles
