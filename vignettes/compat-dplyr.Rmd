@@ -89,12 +89,14 @@ x %>%
 ## Verbs operating on columns
 
 During operations on columns, linelist will:
+
 - stay invisible and conserve tags if no tagged column is affected by the operation
 - trigger `lost_tags_action()` if tagged columns are affected by the operation
 
 ### `dplyr::mutate()` ✓ (partial)
 
 There is an incomplete compatibility with `dplyr::mutate()` in that:
+
 - simple renames without any actual modification of the column don't update the tags. In this scenario, users should rather use `dplyr::rename()`
 - in place column modifications cause tag losses
 
@@ -177,6 +179,7 @@ dim(bind_rows(x, x))
 ### `dplyr::bind_cols()` ✘
 
 `bind_cols()` is currently incompatible with linelist:
+
 - Tags from the second element are lost
 - Warnings are produced about lost tagged, even for tags that are not actually lost
 
@@ -214,5 +217,6 @@ x %>%
 
 As such, we could expect it to work with linelist custom tidyselect-like function: `has_tag()` but it's not the case since `pick()` currently strips out all attributes, including the `linelist` class and all tags.
 This unclassing is documented in `?pick`:
+
 > pick() returns a data frame containing the selected columns for the current group.
 
