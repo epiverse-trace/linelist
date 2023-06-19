@@ -343,17 +343,17 @@ tags are conserved through dplyr operations on rows.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
 <span><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span><span class="co">#&gt; 1      60       58       1861-12-02   1861-12-06    1861-12-12   2      m</span></span>
-<span><span class="co">#&gt; 2     186       45       1861-11-22   1861-11-26          &lt;NA&gt;   6   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 3     170      153       1861-12-07   1861-12-10          &lt;NA&gt;  10      m</span></span>
-<span><span class="co">#&gt; 4      73      180       1861-11-27   1861-12-05          &lt;NA&gt;  11      f</span></span>
-<span><span class="co">#&gt; 5     177      184       1861-11-07   1861-11-11          &lt;NA&gt;   8      f</span></span>
+<span><span class="co">#&gt; 1     118      116       1861-12-02   1861-12-06          &lt;NA&gt;   2      f</span></span>
+<span><span class="co">#&gt; 2      72       12       1861-12-01   1861-12-06          &lt;NA&gt;  10      f</span></span>
+<span><span class="co">#&gt; 3     175      173       1861-11-12   1861-11-15          &lt;NA&gt;   2      m</span></span>
+<span><span class="co">#&gt; 4     129        7       1861-12-05   1861-12-07          &lt;NA&gt;   4      f</span></span>
+<span><span class="co">#&gt; 5      59       58       1861-11-30   1861-12-04          &lt;NA&gt;  10      f</span></span>
 <span><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span><span class="co">#&gt; 1        24     0           yes 250.0   210</span></span>
-<span><span class="co">#&gt; 2        57     0           yes 212.5    90</span></span>
-<span><span class="co">#&gt; 3        38     2           yes 132.5    80</span></span>
-<span><span class="co">#&gt; 4        47     2           yes 182.5    55</span></span>
-<span><span class="co">#&gt; 5        17     1           yes 182.5   200</span></span>
+<span><span class="co">#&gt; 1        40     0           yes 127.5 147.5</span></span>
+<span><span class="co">#&gt; 2        32     2           yes 195.0  27.5</span></span>
+<span><span class="co">#&gt; 3         9     0           yes 212.5 107.5</span></span>
+<span><span class="co">#&gt; 4         6     0           yes 240.0 225.0</span></span>
+<span><span class="co">#&gt; 5        24     2           yes 250.0 210.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
 </div>
@@ -361,19 +361,26 @@ tags are conserved through dplyr operations on rows.</p>
 <div class="section level2">
 <h2 id="verbs-operating-on-columns">Verbs operating on columns<a class="anchor" aria-label="anchor" href="#verbs-operating-on-columns"></a>
 </h2>
-<p>During operations on columns, linelist will: - stay invisible and
-conserve tags if no tagged column is affected by the operation - trigger
-<code><a href="../reference/lost_tags_action.html">lost_tags_action()</a></code> if tagged columns are affected by the
-operation</p>
+<p>During operations on columns, linelist will:</p>
+<ul>
+<li>stay invisible and conserve tags if no tagged column is affected by
+the operation</li>
+<li>trigger <code><a href="../reference/lost_tags_action.html">lost_tags_action()</a></code> if tagged columns are
+affected by the operation</li>
+</ul>
 <div class="section level3">
 <h3 id="dplyrmutate-partial">
 <code>dplyr::mutate()</code> ✓ (partial)<a class="anchor" aria-label="anchor" href="#dplyrmutate-partial"></a>
 </h3>
 <p>There is an incomplete compatibility with
-<code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">dplyr::mutate()</a></code> in that: - simple renames without any
-actual modification of the column don’t update the tags. In this
-scenario, users should rather use <code><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">dplyr::rename()</a></code> - in
-place column modifications cause tag losses</p>
+<code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">dplyr::mutate()</a></code> in that:</p>
+<ul>
+<li>simple renames without any actual modification of the column don’t
+update the tags. In this scenario, users should rather use
+<code><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">dplyr::rename()</a></code>
+</li>
+<li>in place column modifications cause tag losses</li>
+</ul>
 <p>Although <code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">dplyr::mutate()</a></code> is not able to leverage to full
 power of linelist tags, linelist objects behave as expected the same way
 a data.frame would:</p>
@@ -582,9 +589,12 @@ a linelist will silently convert it back to a data.frame or tibble.</p>
 <h3 id="dplyrbind_cols">
 <code>dplyr::bind_cols()</code> ✘<a class="anchor" aria-label="anchor" href="#dplyrbind_cols"></a>
 </h3>
-<p><code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols()</a></code> is currently incompatible with linelist: -
-Tags from the second element are lost - Warnings are produced about lost
-tagged, even for tags that are not actually lost</p>
+<p><code><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols()</a></code> is currently incompatible with linelist:</p>
+<ul>
+<li>Tags from the second element are lost</li>
+<li>Warnings are produced about lost tagged, even for tags that are not
+actually lost</li>
+</ul>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html" class="external-link">bind_cols</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/warning.html" class="external-link">suppressWarnings</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">case_ID</span>, <span class="va">date_of_prodrome</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -667,8 +677,11 @@ tidyselect-incompatible functions, such as:</p>
 tidyselect-like function: <code><a href="../reference/has_tag.html">has_tag()</a></code> but it’s not the case
 since <code><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">pick()</a></code> currently strips out all attributes, including
 the <code>linelist</code> class and all tags. This unclassing is
-documented in <code><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">?pick</a></code>: &gt; pick() returns a data frame
-containing the selected columns for the current group.</p>
+documented in <code><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">?pick</a></code>:</p>
+<blockquote>
+<p><code><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">pick()</a></code> returns a data frame containing the selected
+columns for the current group.</p>
+</blockquote>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

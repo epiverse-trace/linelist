@@ -62,7 +62,8 @@
 <h2 class="pkg-version" data-toc-text="0.0.2" id="linelist-002">linelist 0.0.2<a class="anchor" aria-label="anchor" href="#linelist-002"></a></h2>
 <div class="section level3">
 <h3 id="new-features-0-0-2">New features<a class="anchor" aria-label="anchor" href="#new-features-0-0-2"></a></h3>
-<ul><li>
+<ul><li><p>Increased compatibility with dplyr is now documented and ensured through tests of all dplyr verbs on linelist objects as part of our testing &amp; continuous integration system, as well as a new vignette: <a href="https://epiverse-trace.github.io/linelist/articles/compat-dplyr.html" class="uri">https://epiverse-trace.github.io/linelist/articles/compat-dplyr.html</a></p></li>
+<li>
 <p>A new selection helper is provided for tidyverse users, based on the existing selectors provided by the tidyselect package: <code><a href="../reference/has_tag.html">has_tag()</a></code> (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/61" class="external-link">#61</a>). By feeding it a character vector of tags to operate on, you can work with dplyr verbs on specific tagged columns without having to explicitly use the column names:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
