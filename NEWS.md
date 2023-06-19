@@ -2,6 +2,11 @@
 
 ## New features
 
+* Increased compatibility with dplyr is now documented and ensured through
+tests of all dplyr verbs on linelist objects as part of our testing & continuous
+integration system, as well as a new vignette: 
+<https://epiverse-trace.github.io/linelist/articles/compat-dplyr.html>
+
 * A new selection helper is provided for tidyverse users, based on the existing
 selectors provided by the tidyselect package: `has_tag()` (@Bisaloo, #61). By 
 feeding it a character vector of tags to operate on, you can work with dplyr
