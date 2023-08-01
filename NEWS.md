@@ -79,6 +79,10 @@ compatibility with dplyr verbs that rely on this method (#51).
 `make_linelist(allow_extra = TRUE)`) no longer causes an error (#65, @Bisaloo; 
 reported by @TimTaylor in #63)
 
+## Internal changes
+
+* testthat tests now run in parallel (#76, @Bisaloo)
+
 # linelist 0.0.1
 
 This is the first proof-of-concept release on CRAN.
