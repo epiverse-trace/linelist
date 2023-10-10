@@ -6,16 +6,14 @@
 #' but it can also accept a dataset as first argument, so that it can be used in
 #' pipelines as well.
 #'
-#' @param x either a `character`, or an optional `linelist` object; if a
-#'   `character`, it needs matching `warning` (default), `error` or `none` (see
-#'   below)
-#'
 #' @param action a `character` indicating the behaviour to adopt when tagged
 #'   variables have been lost: "error" (default) will issue an error; "warning"
 #'   will issue a warning; "none" will do nothing
 #'
 #' @param quiet a `logical` indicating if a message should be displayed; only
 #'   used outside pipelines
+#'   
+#' @param x deprecated
 #'
 #' @return if a a `linelist` is provided, it returns the object unchanged;
 #'   otherwise, returns `NULL`; the option itself is set in
@@ -47,35 +45,22 @@
 #' # reset to default: warning
 #' lost_tags_action()
 #'
-lost_tags_action <- function(x = NULL,
-                             action = c("warning", "error", "none"),
-                             quiet = FALSE) {
+lost_tags_action <- function(action = c("warning", "error", "none"),
+                             quiet = FALSE,
+                             x = NULL) {
   linelist_options <- options("linelist")$linelist
 
-  if (is.null(x)) {
-    x <- "warning"
+  action <- match.arg(action)
+  linelist_options$lost_tags_action <- action
+  options("linelist" = linelist_options)
+  if (!quiet) {
+    if (action == "warning") msg <- "Lost tags will now issue a warning."
+    if (action == "error") msg <- "Lost tags will now issue an error."
+    if (action == "none") msg <- "Lost tags will now be ignored."
+    message(msg)
   }
+  return(invisible(NULL))
 
-  # behaviour 1: action is passed through `x`
-  if (!is.null(x) && is.character(x) && length(x) == 1L) {
-    action <- match.arg(x, c("warning", "error", "none"))
-    linelist_options$lost_tags_action <- action
-    options("linelist" = linelist_options)
-    if (!quiet) {
-      if (action == "warning") msg <- "Lost tags will now issue a warning."
-      if (action == "error") msg <- "Lost tags will now issue an error."
-      if (action == "none") msg <- "Lost tags will now be ignored."
-      message(msg)
-    }
-    return(invisible(NULL))
-
-    # behaviour 2 (in pipeline): first argument is a dataset
-  } else {
-    action <- match.arg(action)
-    linelist_options$lost_tags_action <- action
-    options("linelist" = linelist_options)
-    return(x)
-  }
 }
 
 
