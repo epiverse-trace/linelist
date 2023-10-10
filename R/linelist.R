@@ -117,11 +117,6 @@
 #'
 #'     x %>%
 #'       select(starts_with("date"))
-#'
-#'     ## disable warnings on the fly
-#'     x %>%
-#'       lost_tags_action("none") %>%
-#'       select(starts_with("date"))
 #'   }
 #' }
 #'
