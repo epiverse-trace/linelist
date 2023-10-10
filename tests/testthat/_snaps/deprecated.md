@@ -2,7 +2,8 @@
 
     Code
       select_tags(x, "date_onset", "age")
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       `select_tags()` was deprecated in linelist 1.0.0.
       i This function is deprecated: use the two step `tags_df()` and `dplyr::select()` process instead
     Output
@@ -62,7 +63,8 @@
 
     Code
       select(x, tags = c("date_onset", "age"))
-    Warning <lifecycle_warning_deprecated>
+    Condition
+      Warning:
       The `tags` argument of `select()` is deprecated as of linelist 1.0.0.
       i It is now recommended to leverage the `has_tag()` selection helper rather than this argument.
     Output
