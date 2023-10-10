@@ -15,9 +15,7 @@
 #'   
 #' @param x deprecated
 #'
-#' @return if a a `linelist` is provided, it returns the object unchanged;
-#'   otherwise, returns `NULL`; the option itself is set in
-#'   `options("linelist")`
+#' @return returns `NULL`; the option itself is set in `options("linelist")`
 #'
 #' @export
 #'
