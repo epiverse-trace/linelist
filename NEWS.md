@@ -1,11 +1,12 @@
-# linelist 0.0.2
+# linelist 1.0.0
 
 ## New features
 
 * Increased compatibility with dplyr is now documented and ensured through
 tests of all dplyr verbs on linelist objects as part of our testing & continuous
 integration system, as well as a new vignette: 
-<https://epiverse-trace.github.io/linelist/articles/compat-dplyr.html>
+<https://epiverse-trace.github.io/linelist/articles/compat-dplyr.html> 
+(@Bisaloo, #53)
 
 * A new selection helper is provided for tidyverse users, based on the existing
 selectors provided by the tidyselect package: `has_tag()` (@Bisaloo, #61). By 
@@ -18,10 +19,16 @@ names:
     dplyr::select(has_tag(c("id", "date_of_onset")))
   ```
 
+## Breaking changes
+
+* It is no longer possible to use `lost_tags_action()` within a pipeline. It 
+must now be set as a separate step. This makes the internal code more robust and
+clarifies what is part of the pipeline versus a global option (@Bisaloo, #79).
+
 * The `select_tags()` function is now deprecated to ensure we provide just one
 clear way to address a given issue and that our "happy path" is clearly
-signposted. If you were using this function, we now recommend using the more 
-explicit two-steps process:
+signposted (@Bisaloo, #61). If you were using this function, we now recommend 
+using the more explicit two-steps process:
 
   ```r
   # Deprecated
@@ -62,10 +69,11 @@ of the `select.linelist()` method. It is now recommend instead to use the new
 `dplyr::rename()`, including appropriate modification of the tags. (@Bisaloo, 
 #60)
 
+## Documentaiton
+
 * added a hex logo thanks to David Mascarina's contribution
 
 * added short lay description to README thanks to Emma Marty's contribution
-
 
 ## Bug fixes
 
