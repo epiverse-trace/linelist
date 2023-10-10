@@ -5,30 +5,22 @@
 \alias{get_lost_tags_action}
 \title{Check and set behaviour for lost tags}
 \usage{
-lost_tags_action(
-  x = NULL,
-  action = c("warning", "error", "none"),
-  quiet = FALSE
-)
+lost_tags_action(action = c("warning", "error", "none"), quiet = FALSE, x)
 
 get_lost_tags_action()
 }
 \arguments{
-\item{x}{either a \code{character}, or an optional \code{linelist} object; if a
-\code{character}, it needs matching \code{warning} (default), \code{error} or \code{none} (see
-below)}
-
 \item{action}{a \code{character} indicating the behaviour to adopt when tagged
 variables have been lost: "error" (default) will issue an error; "warning"
 will issue a warning; "none" will do nothing}
 
 \item{quiet}{a \code{logical} indicating if a message should be displayed; only
 used outside pipelines}
+
+\item{x}{deprecated}
 }
 \value{
-if a a \code{linelist} is provided, it returns the object unchanged;
-otherwise, returns \code{NULL}; the option itself is set in
-\code{options("linelist")}
+returns \code{NULL}; the option itself is set in \code{options("linelist")}
 }
 \description{
 This function determines the behaviour to adopt when tagged variables of a
