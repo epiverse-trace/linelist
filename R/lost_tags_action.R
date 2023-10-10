@@ -47,7 +47,14 @@
 #'
 lost_tags_action <- function(action = c("warning", "error", "none"),
                              quiet = FALSE,
-                             x = NULL) {
+                             x) {
+  
+  if (!missing(x) || inherits(action, "linelist")) {
+    stop(
+      "Using `lost_tags_action()` in a pipeline is deprecated", call. = FALSE
+    )
+  }
+  
   linelist_options <- options("linelist")$linelist
 
   action <- match.arg(action)
