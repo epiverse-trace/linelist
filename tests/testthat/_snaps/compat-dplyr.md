@@ -8,3 +8,8 @@
     The following tags have lost their variable:
      date_outcome:speed
 
+# Compatibility with dplyr::select()
+
+    The following tags have lost their variable:
+     date_outcome:speed
+
