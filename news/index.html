@@ -59,10 +59,10 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.0.2" id="linelist-002">linelist 0.0.2<a class="anchor" aria-label="anchor" href="#linelist-002"></a></h2>
+<h2 class="pkg-version" data-toc-text="1.0.0" id="linelist-100">linelist 1.0.0<a class="anchor" aria-label="anchor" href="#linelist-100"></a></h2>
 <div class="section level3">
-<h3 id="new-features-0-0-2">New features<a class="anchor" aria-label="anchor" href="#new-features-0-0-2"></a></h3>
-<ul><li><p>Increased compatibility with dplyr is now documented and ensured through tests of all dplyr verbs on linelist objects as part of our testing &amp; continuous integration system, as well as a new vignette: <a href="https://epiverse-trace.github.io/linelist/articles/compat-dplyr.html" class="uri">https://epiverse-trace.github.io/linelist/articles/compat-dplyr.html</a></p></li>
+<h3 id="new-features-1-0-0">New features<a class="anchor" aria-label="anchor" href="#new-features-1-0-0"></a></h3>
+<ul><li><p>Increased compatibility with dplyr is now documented and ensured through tests of all dplyr verbs on linelist objects as part of our testing &amp; continuous integration system, as well as a new vignette: <a href="https://epiverse-trace.github.io/linelist/articles/compat-dplyr.html" class="uri">https://epiverse-trace.github.io/linelist/articles/compat-dplyr.html</a> (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/53" class="external-link">#53</a>)</p></li>
 <li>
 <p>A new selection helper is provided for tidyverse users, based on the existing selectors provided by the tidyselect package: <code><a href="../reference/has_tag.html">has_tag()</a></code> (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/61" class="external-link">#61</a>). By feeding it a character vector of tags to operate on, you can work with dplyr verbs on specific tagged columns without having to explicitly use the column names:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -70,8 +70,12 @@
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"date_of_onset"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </li>
+</ul></div>
+<div class="section level3">
+<h3 id="breaking-changes-1-0-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-1-0-0"></a></h3>
+<ul><li><p>It is no longer possible to use <code><a href="../reference/lost_tags_action.html">lost_tags_action()</a></code> within a pipeline. It must now be set as a separate step. This makes the internal code more robust and clarifies what is part of the pipeline versus a global option (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/79" class="external-link">#79</a>).</p></li>
 <li>
-<p>The <code><a href="../reference/select_tags.html">select_tags()</a></code> function is now deprecated to ensure we provide just one clear way to address a given issue and that our “happy path” is clearly signposted. If you were using this function, we now recommend using the more explicit two-steps process:</p>
+<p>The <code><a href="../reference/select_tags.html">select_tags()</a></code> function is now deprecated to ensure we provide just one clear way to address a given issue and that our “happy path” is clearly signposted (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/61" class="external-link">#61</a>). If you were using this function, we now recommend using the more explicit two-steps process:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Deprecated</span></span>
@@ -100,18 +104,21 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span>tags <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"date_of_onset"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </li>
 <li><p>The custom <code>rename.linelist()</code> method has been removed as providing a custom <code>names&lt;-().linelist</code> method is sufficient to ensure compatibility with <code><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">dplyr::rename()</a></code>, including appropriate modification of the tags. (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/60" class="external-link">#60</a>)</p></li>
-<li><p>added a hex logo thanks to David Mascarina’s contribution</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentaiton-1-0-0">Documentaiton<a class="anchor" aria-label="anchor" href="#documentaiton-1-0-0"></a></h3>
+<ul><li><p>added a hex logo thanks to David Mascarina’s contribution</p></li>
 <li><p>added short lay description to README thanks to Emma Marty’s contribution</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="bug-fixes-0-0-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-0-2"></a></h3>
+<h3 id="bug-fixes-1-0-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-0"></a></h3>
 <ul><li>linelist is now explicitly marked as incompatible with data.table. In practice, <code>make_linelist(x)</code> now errors if <code>x</code> inherits from <code>data.table</code> (<a href="https://github.com/epiverse-trace/linelist/issues/55" class="external-link">#55</a>, <a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, based on discussions with <a href="https://github.com/TimTaylor" class="external-link">@TimTaylor</a>).</li>
 <li>
 <code>[.linelist()</code> now works to subset by column when including just one argument (<a href="https://github.com/epiverse-trace/linelist/issues/54" class="external-link">#54</a>, <a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>). E.g., <code>x[1]</code>. As an indirect effect, this also improves compatibility with dplyr verbs that rely on this method (<a href="https://github.com/epiverse-trace/linelist/issues/51" class="external-link">#51</a>).</li>
 <li>subsetting a linelist with extra tags (e.g., created via <code>make_linelist(allow_extra = TRUE)</code>) no longer causes an error (<a href="https://github.com/epiverse-trace/linelist/issues/65" class="external-link">#65</a>, <a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>; reported by <a href="https://github.com/TimTaylor" class="external-link">@TimTaylor</a> in <a href="https://github.com/epiverse-trace/linelist/issues/63" class="external-link">#63</a>)</li>
 </ul></div>
 <div class="section level3">
-<h3 id="internal-changes-0-0-2">Internal changes<a class="anchor" aria-label="anchor" href="#internal-changes-0-0-2"></a></h3>
+<h3 id="internal-changes-1-0-0">Internal changes<a class="anchor" aria-label="anchor" href="#internal-changes-1-0-0"></a></h3>
 <ul><li>testthat tests now run in parallel (<a href="https://github.com/epiverse-trace/linelist/issues/76" class="external-link">#76</a>, <a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>)</li>
 <li>testthat tests now warn on partial matching (<a href="https://github.com/epiverse-trace/linelist/issues/76" class="external-link">#76</a>, <a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>)</li>
 </ul></div>

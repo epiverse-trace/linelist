@@ -77,24 +77,14 @@ pipelines as well.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lost_tags_action</span><span class="op">(</span></span>
-<span>  x <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  action <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"warning"</span>, <span class="st">"error"</span>, <span class="st">"none"</span><span class="op">)</span>,</span>
-<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lost_tags_action</span><span class="op">(</span>action <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"warning"</span>, <span class="st">"error"</span>, <span class="st">"none"</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">x</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">get_lost_tags_action</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>x</dt>
-<dd><p>either a <code>character</code>, or an optional <code>linelist</code> object; if a
-<code>character</code>, it needs matching <code>warning</code> (default), <code>error</code> or <code>none</code> (see
-below)</p></dd>
-
-
-<dt>action</dt>
+    <dl><dt>action</dt>
 <dd><p>a <code>character</code> indicating the behaviour to adopt when tagged
 variables have been lost: "error" (default) will issue an error; "warning"
 will issue a warning; "none" will do nothing</p></dd>
@@ -104,14 +94,16 @@ will issue a warning; "none" will do nothing</p></dd>
 <dd><p>a <code>logical</code> indicating if a message should be displayed; only
 used outside pipelines</p></dd>
 
+
+<dt>x</dt>
+<dd><p>deprecated</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>if a a <code>linelist</code> is provided, it returns the object unchanged;
-otherwise, returns <code>NULL</code>; the option itself is set in
-<code>options("linelist")</code></p>
+<p>returns <code>NULL</code>; the option itself is set in <code>options("linelist")</code></p>
 
 
     </div>
