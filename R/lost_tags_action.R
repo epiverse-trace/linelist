@@ -12,7 +12,7 @@
 #'
 #' @param quiet a `logical` indicating if a message should be displayed; only
 #'   used outside pipelines
-#'   
+#'
 #' @param x deprecated
 #'
 #' @return returns `NULL`; the option itself is set in `options("linelist")`
@@ -46,18 +46,18 @@
 lost_tags_action <- function(action = c("warning", "error", "none"),
                              quiet = FALSE,
                              x) {
-  
+
   if (!missing(x) || inherits(action, "linelist")) {
     stop(
       "Using `lost_tags_action()` in a pipeline is deprecated", call. = FALSE
     )
   }
-  
+
   linelist_options <- options("linelist")$linelist
 
   action <- match.arg(action)
   linelist_options$lost_tags_action <- action
-  options("linelist" = linelist_options)
+  options(linelist = linelist_options)
   if (!quiet) {
     if (action == "warning") msg <- "Lost tags will now issue a warning."
     if (action == "error") msg <- "Lost tags will now issue an error."
