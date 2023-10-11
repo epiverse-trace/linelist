@@ -8,10 +8,10 @@
 [![Digital Public
 Good](https://raw.githubusercontent.com/epiverse-trace/linelist/main/man/figures/dpg_badge.png)](https://digitalpublicgoods.net/registry/linelist.html)
 [![License:
-MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/mit/)
 [![cran-check](https://badges.cranchecks.info/summary/linelist.svg)](https://cran.r-project.org/web/checks/check_results_linelist.html)
 [![R-CMD-check](https://github.com/epiverse-trace/linelist/workflows/R-CMD-check/badge.svg)](https://github.com/epiverse-trace/linelist/actions)
-[![codecov](https://codecov.io/gh/epiverse-trace/linelist/branch/main/graph/badge.svg?token=JGTCEY0W02)](https://codecov.io/gh/epiverse-trace/linelist)
+[![codecov](https://codecov.io/gh/epiverse-trace/linelist/branch/main/graph/badge.svg?token=JGTCEY0W02)](https://app.codecov.io/gh/epiverse-trace/linelist)
 [![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg)](https://www.reconverse.org/lifecycle.html#experimental)
 [![month-download](https://cranlogs.r-pkg.org/badges/linelist)](https://cran.r-project.org/package=linelist)
 [![total-download](https://cranlogs.r-pkg.org/badges/grand-total/linelist)](https://cran.r-project.org/package=linelist)
@@ -192,8 +192,7 @@ For stronger pipelines, you can even trigger errors upon loss:
 x_no_geo <- x %>%
   lost_tags_action("error") %>% 
   select(-(5:8))
-#> Error in prune_tags(out, lost_action): The following tags have lost their variable:
-#>  date_onset:dt_onset
+#> Error: Using `lost_tags_action()` in a pipeline is deprecated
 
 x_no_geo <- x %>%
   select(-(5:7))
