@@ -2,13 +2,14 @@ Package: linelist
 Title: Tagging and Validating Epidemiological Data
 Version: 1.0.0
 Authors@R: 
-    c(person(given = "Thibaut",
-             family = "Jombart",
-             role = c("aut", "cre"),
-             email = "thibaut@data.org"),
+    c(
       person(given = "Hugo",
              family = "Gruson",
-             role = "aut"),
+             role = c("aut", "cre"),
+             email = "hugo@data.org"),
+      person(given = "Thibaut",
+             family = "Jombart",
+             role = c("aut", "ccp")),
       person(given = "Pietro",
              family = "Monticone",
              role = "ctb", 
