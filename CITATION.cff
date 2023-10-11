@@ -15,18 +15,18 @@ abstract: Provides tools to help storing and handling case line list data. The '
   or disease outcome. Once tagged, these variables can be seamlessly used in downstream
   analyses, making data pipelines more robust and reliable.
 authors:
-- family-names: Jombart
-  given-names: Thibaut
-  email: thibaut@data.org
 - family-names: Gruson
   given-names: Hugo
+  email: hugo@data.org
+- family-names: Jombart
+  given-names: Thibaut
 repository: https://CRAN.R-project.org/package=linelist
 repository-code: https://github.com/epiverse-trace/linelist
 url: https://epiverse-trace.github.io/linelist/
 contact:
-- family-names: Jombart
-  given-names: Thibaut
-  email: thibaut@data.org
+- family-names: Gruson
+  given-names: Hugo
+  email: hugo@data.org
 keywords:
 - data
 - data-structures
