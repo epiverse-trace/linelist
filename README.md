@@ -189,10 +189,13 @@ x_no_geo <- x %>%
 For stronger pipelines, you can even trigger errors upon loss:
 
 ``` r
+lost_tags_action("error")
+#> Lost tags will now issue an error.
+
 x_no_geo <- x %>%
-  lost_tags_action("error") %>% 
   select(-(5:8))
-#> Error: Using `lost_tags_action()` in a pipeline is deprecated
+#> Error in prune_tags(out, lost_action): The following tags have lost their variable:
+#>  date_onset:dt_onset
 
 x_no_geo <- x %>%
   select(-(5:7))
