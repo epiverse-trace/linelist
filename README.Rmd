@@ -133,8 +133,9 @@ x_no_geo <- x %>%
 For stronger pipelines, you can even trigger errors upon loss:
 
 ```{r error = TRUE}
+lost_tags_action("error")
+
 x_no_geo <- x %>%
-  lost_tags_action("error") %>% 
   select(-(5:8))
 
 x_no_geo <- x %>%
