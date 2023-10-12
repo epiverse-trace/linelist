@@ -38,11 +38,11 @@ Imports:
     lifecycle,
     tidyselect
 Suggests:
-    callr,
     knitr,
     magrittr,
     outbreaks,
     rmarkdown,
     testthat,
-    tibble
+    tibble,
+    withr
 VignetteBuilder: knitr

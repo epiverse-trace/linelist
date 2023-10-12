@@ -91,6 +91,8 @@ reported by @TimTaylor in #63)
 
 * testthat tests now run in parallel (#76, @Bisaloo)
 * testthat tests now warn on partial matching (#76, @Bisaloo)
+* tests for initial value of `lost_tags_action` now uses the withr package 
+rather than callr
 
 # linelist 0.0.1
 
