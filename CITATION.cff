@@ -8,7 +8,7 @@ message: 'To cite package "linelist" in publications use:'
 type: software
 license: MIT
 title: 'linelist: Tagging and Validating Epidemiological Data'
-version: 1.0.0
+version: 1.0.0.9000
 abstract: Provides tools to help storing and handling case line list data. The 'linelist'
   class adds a tagging system to classical 'data.frame' objects to identify key epidemiological
   data such as dates of symptom onset, epidemiological case definition, age, gender
