@@ -133,7 +133,7 @@
 #' @export
 #'
 #' @rdname sub_linelist
-`$<-.linelist` <- function(x, i, j, value) {
+`$<-.linelist` <- function(x, name, value) {
   lost_action <- get_lost_tags_action()
   out <- NextMethod()
   old_tags <- tags(x, show_null = TRUE)
