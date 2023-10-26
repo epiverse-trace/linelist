@@ -5,18 +5,15 @@
 #' takes the appropriate action if this is the case (warning, error, or ignore,
 #' depending on the general option set via [lost_tags_action()]) .
 #'
+#' @inheritParams base::Extract
 #' @param x a `linelist` object
-#'
 #' @param i a vector of `integer` or `logical` to subset the rows of the
 #'   `linelist`
-#'
 #' @param j a vector of `character`, `integer`, or `logical` to subset the
 #'   columns of the `linelist`
-#'
 #' @param drop a `logical` indicating if, when a single column is selected, the
 #'   `data.frame` class should be dropped to return a simple vector, in which
 #'   case the `linelist` class is lost as well; defaults to `FALSE`
-#'
 #' @param value the replacement to be used for the entries identified in `x`
 #'
 #' @return If no drop is happening, a `linelist`. Otherwise an atomic vector.
