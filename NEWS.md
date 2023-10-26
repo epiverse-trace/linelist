@@ -1,5 +1,18 @@
 # linelist (development version)
 
+## New features
+
+* linelist objects now have a new custom `$<-.linelist()` to prevent tag loss
+when subsetting a linelist object (@Bisaloo, #86). This completes the
+functionality already provided by the `[<-.linelist()` and `[[<-.linelist()`
+methods.
+
+  ```r
+  x$tagged_column <- NULL
+  #> Warning in prune_tags(out, lost_action): The following tags have lost their variable:
+  #>  tag:tagged_column
+  ```
+
 # linelist 1.0.0
 
 ## New features
