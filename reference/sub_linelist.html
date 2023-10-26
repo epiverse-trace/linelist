@@ -81,7 +81,10 @@ depending on the general option set via <code><a href="lost_tags_action.html">lo
 [(x, i, j) &lt;- value
 
 # S3 method for linelist
-[[(x, i, j) &lt;- value</code></pre></div>
+[[(x, i, j) &lt;- value
+
+# S3 method for linelist
+$(x, name) &lt;- value</code></pre></div>
     </div>
 
     <div class="section level2">
@@ -108,6 +111,13 @@ case the <code>linelist</code> class is lost as well; defaults to <code>FALSE</c
 
 <dt>value</dt>
 <dd><p>the replacement to be used for the entries identified in <code>x</code></p></dd>
+
+
+<dt>name</dt>
+<dd><p>A literal character string or a <a href="https://rdrr.io/r/base/name.html" class="external-link">name</a> (possibly <a href="https://rdrr.io/r/base/Quotes.html" class="external-link">backtick</a>
+    quoted).  For extraction, this is normally (see under
+    ‘Environments’) partially matched to the <code><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></code>
+    of the object.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -152,31 +162,35 @@ lost through subsetting; default is to issue a warning</p></li>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">x</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span></span>
 <span class="r-in"><span>  <span class="va">x</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x</span><span class="op">$</span><span class="va">age</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>  id:identifier</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>  date_onset:date_of_prodrome</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>  age:age</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> // linelist object</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 188 × 11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    infector date_of_rash date_of_death   age gender family_ID class</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>       45 1861-11-25   <span style="color: #BB0000;">NA</span>                7 f             41 1    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>       45 1861-11-27   <span style="color: #BB0000;">NA</span>                6 f             41 1    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>      172 1861-12-02   <span style="color: #BB0000;">NA</span>                4 f             41 0    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>      180 1861-11-28   <span style="color: #BB0000;">NA</span>               13 m             61 2    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>       45 1861-11-27   <span style="color: #BB0000;">NA</span>                8 f             42 1    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>      180 1861-11-29   <span style="color: #BB0000;">NA</span>               12 m             42 2    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>       42 1861-11-28   <span style="color: #BB0000;">NA</span>                6 m             26 0    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>       45 1861-11-26   <span style="color: #BB0000;">NA</span>               10 m             44 1    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>      182 1861-11-30   <span style="color: #BB0000;">NA</span>               13 m             44 2    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>       45 1861-11-25   <span style="color: #BB0000;">NA</span>                7 f             29 1    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 188 × 10</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    infector date_of_rash date_of_death gender family_ID class complications</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>       45 1861-11-25   <span style="color: #BB0000;">NA</span>            f             41 1     yes          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>       45 1861-11-27   <span style="color: #BB0000;">NA</span>            f             41 1     yes          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>      172 1861-12-02   <span style="color: #BB0000;">NA</span>            f             41 0     yes          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>      180 1861-11-28   <span style="color: #BB0000;">NA</span>            m             61 2     yes          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>       45 1861-11-27   <span style="color: #BB0000;">NA</span>            f             42 1     yes          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>      180 1861-11-29   <span style="color: #BB0000;">NA</span>            m             42 2     yes          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>       42 1861-11-28   <span style="color: #BB0000;">NA</span>            m             26 0     yes          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>       45 1861-11-26   <span style="color: #BB0000;">NA</span>            m             44 1     yes          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>      182 1861-11-30   <span style="color: #BB0000;">NA</span>            m             44 2     yes          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>       45 1861-11-25   <span style="color: #BB0000;">NA</span>            f             29 1     yes          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 178 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: complications &lt;fct&gt;, x_loc &lt;dbl&gt;, y_loc &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   result &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: x_loc &lt;dbl&gt;, y_loc &lt;dbl&gt;, result &lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> // tags: gender:gender, age:age, outcome:result </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> // tags: gender:gender, outcome:result </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
