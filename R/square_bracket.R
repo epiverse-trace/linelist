@@ -56,7 +56,7 @@
 #'
 #'   x[[2]] <- NULL
 #'   x
-#'   
+#'
 #'   x$age <- NULL
 #'   x
 #' }
@@ -131,7 +131,7 @@
 }
 
 #' @export
-#' 
+#'
 #' @rdname sub_linelist
 `$<-.linelist` <- function(x, i, j, value) {
   lost_action <- get_lost_tags_action()
