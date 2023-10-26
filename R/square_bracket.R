@@ -56,6 +56,9 @@
 #'
 #'   x[[2]] <- NULL
 #'   x
+#'   
+#'   x$age <- NULL
+#'   x
 #' }
 `[.linelist` <- function(x, i, j, drop = FALSE) {
   # Strategy for subsetting
@@ -120,6 +123,17 @@
 #' @rdname sub_linelist
 
 `[[<-.linelist` <- function(x, i, j, value) {
+  lost_action <- get_lost_tags_action()
+  out <- NextMethod()
+  old_tags <- tags(x, TRUE)
+  out <- restore_tags(out, old_tags, lost_action)
+  out
+}
+
+#' @export
+#' 
+#' @rdname sub_linelist
+`$<-.linelist` <- function(x, i, j, value) {
   lost_action <- get_lost_tags_action()
   out <- NextMethod()
   old_tags <- tags(x, TRUE)
