@@ -5,6 +5,7 @@
 \alias{sub_linelist}
 \alias{[<-.linelist}
 \alias{[[<-.linelist}
+\alias{$<-.linelist}
 \title{Subsetting of linelist objects}
 \usage{
 \method{[}{linelist}(x, i, j, drop = FALSE)
@@ -12,6 +13,8 @@
 \method{[}{linelist}(x, i, j) <- value
 
 \method{[[}{linelist}(x, i, j) <- value
+
+\method{$}{linelist}(x, i, j) <- value
 }
 \arguments{
 \item{x}{a \code{linelist} object}
@@ -58,6 +61,9 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
   x
 
   x[[2]] <- NULL
+  x
+  
+  x$age <- NULL
   x
 }
 }
