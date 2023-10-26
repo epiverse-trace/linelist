@@ -97,3 +97,31 @@ test_that("tests for [[<- operator", {
   x[[1]] <- NULL
   expect_identical(ncol(x), 0L)
 })
+
+test_that("$<- operator detects tag loss", {
+
+  # errors
+  lost_tags_action("warning", quiet = TRUE)
+  x <- make_linelist(cars, id = "speed", age = "dist")
+  msg <- "The following tags have lost their variable:\n id:speed"
+  expect_warning(x$speed <- NULL, msg)
+  
+  lost_tags_action("error", quiet = TRUE)
+  x <- make_linelist(cars, id = "speed", age = "dist")
+  msg <- "The following tags have lost their variable:\n id:speed"
+  expect_error(x$speed <- NULL, msg)
+
+  lost_tags_action("none", quiet = TRUE)
+  x <- make_linelist(cars, id = "speed", age = "dist")
+  x$speed <- NULL
+  x$dist <- NULL
+  expect_identical(ncol(x), 0L)
+})
+
+test_that("$<- allows innocuous tag modification", {
+
+  x <- make_linelist(cars, id = "speed", age = "dist")
+  expect_no_condition(x$speed <- 1L)
+  expect_identical(x$speed, rep(1L, nrow(x)))
+
+})
