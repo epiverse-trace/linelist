@@ -5,8 +5,7 @@ test_that("tests for prune_tags", {
   msg <- "Must inherit from class 'linelist', but has class 'data.frame'."
   expect_error(prune_tags(cars), msg)
 
-  x$speed <- NULL
-  attr(x, "names") <- "belette" # hack needed as names<- is now safe
+  attr(x, "names") <- c("new1", "new2") # hack needed as names<- is now safe
   msg <- paste(
     "The following tags have lost their variable:",
     " date_onset:dist, age:speed",
