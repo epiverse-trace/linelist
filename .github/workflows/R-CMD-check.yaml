@@ -29,6 +29,8 @@ jobs:
       R_KEEP_PKG_SOURCE: yes
 
     steps:
+      - uses: GitHubSecurityLab/actions-permissions/monitor@v1
+
       - uses: actions/checkout@v2
 
       - uses: r-lib/actions/setup-pandoc@v2

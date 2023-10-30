@@ -19,6 +19,8 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - uses: GitHubSecurityLab/actions-permissions/monitor@v1
+
       - name: Checkout repos
         uses: actions/checkout@v2
 
