@@ -45,4 +45,6 @@ Suggests:
     rmarkdown,
     testthat,
     tibble
+Config/Needs/website:
+    epiverse-trace/epiversetheme
 VignetteBuilder: knitr
