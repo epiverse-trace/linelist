@@ -1,13 +1,12 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/master/examples
 # The action runs when:
-# - A new release is published
 # - The DESCRIPTION or inst/CITATION are modified
 # - Can be run manually
 # For customizing the triggers, visit https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
 on:
-  release:
-    types: [published]
   push:
+    tags-ignore:
+      - '*'
     paths:
       - DESCRIPTION
       - inst/CITATION
@@ -52,4 +51,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git add CITATION.cff
           git commit -m 'Update CITATION.cff' || echo "No changes to commit"
+          git pull --rebase origin ${{ github.ref.name }}
           git push origin || echo "No changes to commit"
