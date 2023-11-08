@@ -1,6 +1,7 @@
 test_that("tests for [ operator", {
   x <- make_linelist(cars, id = "speed", age = "dist")
-
+  on.exit(lost_tags_action())
+  
   # errors
   lost_tags_action("warning", quiet = TRUE)
   msg <- "The following tags have lost their variable:\n age:dist"
@@ -52,6 +53,7 @@ test_that("tests for [ operator", {
 })
 
 test_that("tests for [<- operator", {
+  on.exit(lost_tags_action())
 
   # errors
   lost_tags_action("warning", quiet = TRUE)
@@ -75,6 +77,7 @@ test_that("tests for [<- operator", {
 })
 
 test_that("tests for [[<- operator", {
+  on.exit(lost_tags_action())
 
   # errors
   lost_tags_action("warning", quiet = TRUE)
@@ -99,6 +102,7 @@ test_that("tests for [[<- operator", {
 })
 
 test_that("$<- operator detects tag loss", {
+  on.exit(lost_tags_action())
 
   # errors
   lost_tags_action("warning", quiet = TRUE)
