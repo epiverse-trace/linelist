@@ -104,8 +104,8 @@ reported by @TimTaylor in #63)
 
 ## Internal changes
 
-* testthat tests now run in parallel (#76, @Bisaloo)
-* testthat tests now warn on partial matching (#76, @Bisaloo)
+* testthat tests now run in parallel (#77, @Bisaloo)
+* testthat tests now warn on partial matching (#77, @Bisaloo)
 
 # linelist 0.0.1
 
