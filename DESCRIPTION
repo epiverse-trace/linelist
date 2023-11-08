@@ -43,6 +43,8 @@ Suggests:
     magrittr,
     outbreaks,
     rmarkdown,
+    spelling,
     testthat,
     tibble
 VignetteBuilder: knitr
+Language: en-GB

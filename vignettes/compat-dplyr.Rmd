@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-linelist philoshopy is to prevent you from accidentally losing valuable data, but to otherwise be totally transparent and not interfere with your workflow.
+linelist philosophy is to prevent you from accidentally losing valuable data, but to otherwise be totally transparent and not interfere with your workflow.
 
 One popular ecosystem for data science workflow is the tidyverse and we are going the extra mile to ensure linelist compatibility with the tidyverse. All dplyr verbs are thoroughly tested in the `tests/test-compat-dplyr.R` file.
 
