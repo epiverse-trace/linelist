@@ -84,7 +84,7 @@ of the `select.linelist()` method. It is now recommend instead to use the new
 `dplyr::rename()`, including appropriate modification of the tags. (@Bisaloo, 
 #60)
 
-## Documentaiton
+## Documentation
 
 * added a hex logo thanks to David Mascarina's contribution
 
