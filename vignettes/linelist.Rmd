@@ -195,7 +195,7 @@ prevent the loss of tagged variables.
 ## Example dataset
 
 In this example, we use the case line list of the Hagelloch 1861 measles
-outbreak, distributed by the *outbreaks* pacakge as `measles_hagelloch_1861` .
+outbreak, distributed by the *outbreaks* package as `measles_hagelloch_1861` .
 
 ```{r}
 data(measles_hagelloch_1861, package = "outbreaks")

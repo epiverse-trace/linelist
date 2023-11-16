@@ -43,6 +43,10 @@ Suggests:
     magrittr,
     outbreaks,
     rmarkdown,
+    spelling,
     testthat,
     tibble
+Config/Needs/website:
+    epiverse-trace/epiversetheme
 VignetteBuilder: knitr
+Language: en-GB
