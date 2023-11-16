@@ -8,10 +8,6 @@
 #' seamlessly used in downstream analyses, making data pipelines more robust and
 #' reliable.
 #'
-#' @docType package
-#'
-#' @name linelist
-#'
 #' @aliases linelist
 #'
 #' @author Thibaut Jombart \email{thibaut@@data.org}
@@ -120,4 +116,9 @@
 #'   }
 #' }
 #'
+#' @keywords internal
+"_PACKAGE"
+
+## usethis namespace: start
+## usethis namespace: end
 NULL
