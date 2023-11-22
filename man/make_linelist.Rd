@@ -10,12 +10,10 @@ make_linelist(x, ..., allow_extra = FALSE)
 \item{x}{a \code{data.frame} or a \code{tibble} containing case line list data, with
 cases in rows and variables in columns}
 
-\item{...}{a series of tags provided as \code{tag_name = "column_name"}, where
-\code{tag_name} indicates any of the known variables listed in 'Details';
-alternatively, a named \code{list} of variables to be tagged, where names
-indicate the types of variable (to be selected from \code{\link[=tags_names]{tags_names()}}), and
-values indicate their name in the input \code{data.frame}; see details for a
-list of known variable types and their expected content}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A series of tags provided as
+\code{tag_name = "column_name"}, where \code{tag_name} indicates any of the known
+variables listed in 'Details' and values indicate their name in \code{x}; see
+details for a list of known variable types and their expected content}
 
 \item{allow_extra}{a \code{logical} indicating if additional data tags not
 currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
@@ -84,15 +82,29 @@ if (require(outbreaks)) {
 
   ## check tags
   tags(x)
+
+  ## Tags can also be passed as a list with the splice operator (!!!)
+  my_tags <- list(
+    id = "case_ID",
+    date_onset = "date_of_prodrome",
+    age = "age",
+    gender = "gender"
+  )
+  new_x <- make_linelist(measles_hagelloch_1861, !!!my_tags)
+  
+  ## The output is strictly equivalent to the previous one
+  identical(x, new_x)
 }
 
 }
 \seealso{
 \itemize{
-\item An overview of the \link{linelist} package * \code{\link[=tags_names]{tags_names()}}: for a list of known
-tag names * \code{\link[=tags_types]{tags_types()}}: for the associated accepted types/classes *
-\code{\link[=tags]{tags()}}: for a list of tagged variables in a \code{linelist} * \code{\link[=set_tags]{set_tags()}}: for
-modifying tags * \code{\link[=tags_df]{tags_df()}}: for selecting variables by tags
+\item An overview of the \link{linelist} package
+\item \code{\link[=tags_names]{tags_names()}}: for a list of known tag names
+\item \code{\link[=tags_types]{tags_types()}}: for the associated accepted types/classes
+\item \code{\link[=tags]{tags()}}: for a list of tagged variables in a \code{linelist}
+\item \code{\link[=set_tags]{set_tags()}}: for modifying tags
+\item \code{\link[=tags_df]{tags_df()}}: for selecting variables by tags
 }
 }
 \author{

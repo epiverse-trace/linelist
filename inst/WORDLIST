@@ -13,6 +13,7 @@ epi
 etc
 github
 lifecycle
+rlang's
 testthat
 tibble
 tidyselect
