@@ -51,8 +51,15 @@ set_tags <- function(x, ..., allow_extra = FALSE) {
 
   old_tags <- attr(x, "tags")
   defaults <- tags_defaults()
-  new_tags <- list(...)
+  new_tags <- rlang::list2(...)
+  
   if (length(new_tags) && is.list(new_tags[[1]])) {
+    warning(
+      "The use of a list of tags is deprecated. ",
+      "Please use the splice operator (!!!) instead. ",
+      "More information is available in the examples and in the ",
+      "?rlang::`dyn-dots` documentation."
+    )
     new_tags <- new_tags[[1]]
   }
 

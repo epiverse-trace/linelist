@@ -12,12 +12,10 @@
 #' @param x a `data.frame` or a `tibble` containing case line list data, with
 #'   cases in rows and variables in columns
 #'
-#' @param ... a series of tags provided as `tag_name = "column_name"`, where
-#'   `tag_name` indicates any of the known variables listed in 'Details';
-#'   alternatively, a named `list` of variables to be tagged, where names
-#'   indicate the types of variable (to be selected from [tags_names()]), and
-#'   values indicate their name in the input `data.frame`; see details for a
-#'   list of known variable types and their expected content
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A series of tags provided as
+#'   `tag_name = "column_name"`, where `tag_name` indicates any of the known
+#'   variables listed in 'Details' and values indicate their name in `x`; see
+#'   details for a list of known variable types and their expected content
 #'
 #' @param allow_extra a `logical` indicating if additional data tags not
 #'   currently recognized by `linelist` should be allowed; if `FALSE`, unknown
@@ -25,10 +23,12 @@
 #'
 #' @seealso
 #'
-#' * An overview of the [linelist] package * [tags_names()]: for a list of known
-#' tag names * [tags_types()]: for the associated accepted types/classes *
-#' [tags()]: for a list of tagged variables in a `linelist` * [set_tags()]: for
-#' modifying tags * [tags_df()]: for selecting variables by tags
+#' * An overview of the [linelist] package 
+#' * [tags_names()]: for a list of known tag names 
+#' * [tags_types()]: for the associated accepted types/classes 
+#' * [tags()]: for a list of tagged variables in a `linelist` 
+#' * [set_tags()]: for modifying tags 
+#' * [tags_df()]: for selecting variables by tags
 #'
 #' @details Known variable types include:
 #'
@@ -97,6 +97,18 @@
 #'
 #'   ## check tags
 #'   tags(x)
+#'
+#'   ## Tags can also be passed as a list with the splice operator (!!!)
+#'   my_tags <- list(
+#'     id = "case_ID",
+#'     date_onset = "date_of_prodrome",
+#'     age = "age",
+#'     gender = "gender"
+#'   )
+#'   new_x <- make_linelist(measles_hagelloch_1861, !!!my_tags)
+#'   
+#'   ## The output is strictly equivalent to the previous one
+#'   identical(x, new_x)
 #' }
 #'
 make_linelist <- function(x,
@@ -107,15 +119,22 @@ make_linelist <- function(x,
   assertNotDataTable(x)
   checkmate::assertLogical(allow_extra)
 
+  args <- rlang::list2(...)
+
+  if (length(args) && is.list(args[[1]])) {
+    warning(
+      "The use of a list of tags is deprecated. ",
+      "Please use the splice operator (!!!) instead. ",
+      "More information is available in the examples and in the ",
+      "?rlang::`dyn-dots` documentation."
+    )
+    args <- args[[1]]
+  }
+
   # The approach is to replace default values with user-provided ones, and then
   # tag each variable in turn. Validation the tagged variables is done
   # elsewhere.
   tags <- tags_defaults()
-
-  args <- list(...)
-  if (length(args) && is.list(args[[1]])) {
-    args <- args[[1]]
-  }
 
   tags <- modify_defaults(tags, args, strict = !allow_extra)
 
