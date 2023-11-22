@@ -1,5 +1,50 @@
 # linelist (development version)
 
+## Breaking changes
+
+* `make_linelist()` and `set_tags()` no longer accept a named list of characters
+as input. Instead, `make_linelist()`, `set_tags()` and `tags_types()` now use
+[rlang's dynamic dots](https://rlang.r-lib.org/reference/dyn-dots.html), which 
+means that you can splice list arguments. This implementation is more robust,
+better tested, and makes it explicit that users want to splice the list.
+
+  * Before:
+  ```r
+  my_tags <- list(
+    id = "case_ID",
+    date_onset = "date_of_prodrome",
+    age = "age",
+    gender = "gender"
+  )
+  make_linelist(obj, my_tags)
+  # OR
+  make_linelist(
+    obj,
+    id = "case_ID",
+    date_onset = "date_of_prodrome",
+    age = "age",
+    gender = "gender"
+  )
+  ```
+  * Now:
+  ```r
+  my_tags <- list(
+    id = "case_ID",
+    date_onset = "date_of_prodrome",
+    age = "age",
+    gender = "gender"
+  )
+  make_linelist(obj, !!!my_tags)
+  # OR
+  make_linelist(
+    obj,
+    id = "case_ID",
+    date_onset = "date_of_prodrome",
+    age = "age",
+    gender = "gender"
+  )
+  ```
+
 ## New features
 
 * linelist objects now have a new custom `$<-.linelist()` to prevent tag loss
