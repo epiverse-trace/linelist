@@ -23,11 +23,11 @@
 #'
 #' @seealso
 #'
-#' * An overview of the [linelist] package 
-#' * [tags_names()]: for a list of known tag names 
-#' * [tags_types()]: for the associated accepted types/classes 
-#' * [tags()]: for a list of tagged variables in a `linelist` 
-#' * [set_tags()]: for modifying tags 
+#' * An overview of the [linelist] package
+#' * [tags_names()]: for a list of known tag names
+#' * [tags_types()]: for the associated accepted types/classes
+#' * [tags()]: for a list of tagged variables in a `linelist`
+#' * [set_tags()]: for modifying tags
 #' * [tags_df()]: for selecting variables by tags
 #'
 #' @details Known variable types include:
@@ -106,7 +106,7 @@
 #'     gender = "gender"
 #'   )
 #'   new_x <- make_linelist(measles_hagelloch_1861, !!!my_tags)
-#'   
+#'
 #'   ## The output is strictly equivalent to the previous one
 #'   identical(x, new_x)
 #' }
