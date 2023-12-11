@@ -13,3 +13,9 @@ test_that("deprecating warning for select.linelist()", {
   expect_snapshot(select(x, tags = c("date_onset", "age")))
 
 })
+
+test_that("deprecating warning for make_linelist(x, list())", {
+
+  expect_snapshot(make_linelist(cars, list(date_onset = "dist", age = "speed")))
+
+})
