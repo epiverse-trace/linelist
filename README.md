@@ -316,13 +316,6 @@ arguments may change, some functionalities may be added, etc.
 Contributions are welcome via [pull
 requests](https://github.com/epiverse-trace/linelist/pulls).
 
-Contributors to the project include:
-
-- Thibaut Jombart (author)
-- David Mascarina (logo)
-- Emma Marty (communication)
-- Pietro Monticone (contributor)
-
 ### Code of Conduct
 
 Please note that the linelist project is released with a [Code of
