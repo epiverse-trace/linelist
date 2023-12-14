@@ -212,7 +212,7 @@ x <- measles_hagelloch_1861 %>%
                 date_death = "date_of_death",
                 age = "age",
                 gender = "gender")
-x
+head(x)
 ```
 
 The printing of the object confirms that the tags have been added. If we want to
