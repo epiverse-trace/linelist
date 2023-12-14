@@ -256,12 +256,12 @@ checking the class of the object</p></li>
 <p>These are dedicated S3 methods for existing generics which can be
 used to prevent the loss of tagged variables.</p>
 <ul>
-<li><p><code>lost_tags_actions()</code>: to set the behaviour to adopt
+<li><p><code><a href="../reference/lost_tags_action.html">lost_tags_action()</a></code>: to set the behaviour to adopt
 when tagged variables would be lost by an operation: issue a warning
 (default), an error, or ignore</p></li>
-<li><p><code>get_lost_tags_actions()</code>: to check the current
+<li><p><code><a href="../reference/lost_tags_action.html">get_lost_tags_action()</a></code>: to check the current
 behaviour for lost tagged variables</p></li>
-<li><p><code>names(x) &lt;-</code>: the ‘base R’ approach to renaming
+<li><p><code>names&lt;-()</code>: the ‘base R’ approach to renaming
 columns of a <code>linelist</code>; will rename tags as needed to match
 the new column names</p></li>
 <li><p><code>x[]</code> and <code>x[[]]</code>: for subsetting columns
@@ -379,7 +379,7 @@ survived). This can be done by using <code><a href="https://dplyr.tidyverse.org/
 <code>x</code> to create the new variable (remember <code>x</code> is
 not only a <code>linelist</code>, but also a regular <code>tibble</code>
 and this compatible with <code>dplyr</code> verbs), and setting up a new
-tag using <code>set_tags</code>:</p>
+tag using <code><a href="../reference/set_tags.html">set_tags()</a></code>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
@@ -435,45 +435,51 @@ using any of the following means:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># select tagged variables only</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/select_tags.html">select_tags</a></span><span class="op">(</span><span class="va">date_onset</span>, <span class="va">date_death</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: `select_tags()` was deprecated in linelist 1.0.0.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> This function is deprecated: use the two step `tags_df()` and</span></span>
-<span><span class="co">#&gt;   `dplyr::select()` process instead</span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
-<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"date_onset"</span>, <span class="st">"date_death"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt;  gender:gender, age:age</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; // linelist object</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 2</span></span></span>
-<span><span class="co">#&gt;    date_onset date_death</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1861-11-21 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1861-11-23 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1861-11-28 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1861-11-27 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1861-11-22 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1861-11-26 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1861-11-24 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1861-11-21 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1861-11-26 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1861-11-21 <span style="color: #BB0000;">NA</span>        </span></span>
+<span><span class="co">#&gt;    date_of_prodrome date_of_death</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1861-11-21       <span style="color: #BB0000;">NA</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1861-11-23       <span style="color: #BB0000;">NA</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1861-11-28       <span style="color: #BB0000;">NA</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1861-11-27       <span style="color: #BB0000;">NA</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1861-11-22       <span style="color: #BB0000;">NA</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1861-11-26       <span style="color: #BB0000;">NA</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1861-11-24       <span style="color: #BB0000;">NA</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1861-11-21       <span style="color: #BB0000;">NA</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1861-11-26       <span style="color: #BB0000;">NA</span>           </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1861-11-21       <span style="color: #BB0000;">NA</span>           </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 178 more rows</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; // tags: date_onset:date_of_prodrome, date_death:date_of_death</span></span>
 <span></span>
 <span><span class="co"># select tagged variables only with renaming on the fly</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/select_tags.html">select_tags</a></span><span class="op">(</span>onset <span class="op">=</span> <span class="va">date_onset</span>, <span class="va">date_death</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 2</span></span></span>
-<span><span class="co">#&gt;    onset      date_death</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1861-11-21 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1861-11-23 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1861-11-28 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1861-11-27 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1861-11-22 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1861-11-26 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1861-11-24 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1861-11-21 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1861-11-26 <span style="color: #BB0000;">NA</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1861-11-21 <span style="color: #BB0000;">NA</span>        </span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span>onset <span class="op">=</span> <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"date_onset"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt;  date_death:date_of_death, gender:gender, age:age</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; // linelist object</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 1</span></span></span>
+<span><span class="co">#&gt;    onset     </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1861-11-21</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1861-11-23</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1861-11-28</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1861-11-27</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1861-11-22</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1861-11-26</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1861-11-24</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1861-11-21</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1861-11-26</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1861-11-21</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 178 more rows</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; // tags: date_onset:onset</span></span>
 <span></span>
 <span><span class="co"># get all tagged variables in a data.frame</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>

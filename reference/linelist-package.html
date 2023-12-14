@@ -148,7 +148,7 @@ behaviour when tagged variables are lost</p></li>
 <span class="r-in"><span>  <span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">## extract tagged variables</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="select_tags.html">select_tags</a></span><span class="op">(</span><span class="va">x</span>, <span class="st">"gender"</span>, <span class="st">"age"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"age"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">## robust renaming</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"identifier"</span></span></span>
@@ -196,9 +196,8 @@ behaviour when tagged variables are lost</p></li>
 <span class="r-in"><span>      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">starts_with</a></span><span class="op">(</span><span class="st">"date"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">}</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`select_tags()` was deprecated in linelist 1.0.0.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> This function is deprecated: use the two step `tags_df()` and</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   `dplyr::select()` process instead</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>  id:case_ID, date_onset:date_of_prodrome</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following tags have lost their variable:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>  id:identifier, gender:gender, age:age</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Lost tags will now be ignored.</span>
