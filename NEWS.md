@@ -135,6 +135,8 @@ of the `select.linelist()` method. It is now recommend instead to use the new
 
 * added short lay description to README thanks to Emma Marty's contribution
 
+* fixed some typos in package documentation (@pitmonticone, #30)
+
 ## Bug fixes
 
 * linelist is now explicitly marked as incompatible with data.table. 
