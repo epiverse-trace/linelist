@@ -125,7 +125,7 @@
 <p>A new selection helper is provided for tidyverse users, based on the existing selectors provided by the tidyselect package: <code><a href="../reference/has_tag.html">has_tag()</a></code> (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/61" class="external-link">#61</a>). By feeding it a character vector of tags to operate on, you can work with dplyr verbs on specific tagged columns without having to explicitly use the column names:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"date_of_onset"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </li>
 </ul></div>
@@ -137,28 +137,28 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># Deprecated</span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/select_tags.html">select_tags</a></span><span class="op">(</span><span class="st">"age"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Instead use</span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">age</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Or</span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"age"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"age"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </li>
 <li>
 <p>The custom <code><a href="../reference/select.linelist.html">select.linelist()</a></code> method has been deprecated as providing a custom <code>[.linelist()</code> is sufficient to ensure compatibility with <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select()</a></code> default methods, including triggering <code><a href="../reference/lost_tags_action.html">lost_tags_action()</a></code> on tag removal (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/61" class="external-link">#61</a>). A full deletion of this method is not possible at the moment because we want to provide a smooth transition for users that relied on the custom <code>tags</code> argument of the <code><a href="../reference/select.linelist.html">select.linelist()</a></code> method. It is now recommend instead to use the new <code><a href="../reference/has_tag.html">has_tag()</a></code> selection helper:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"date_of_onset"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Instead of</span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span>tags <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"date_of_onset"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </li>
 <li><p>The custom <code>rename.linelist()</code> method has been removed as providing a custom <code>names&lt;-().linelist</code> method is sufficient to ensure compatibility with <code><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">dplyr::rename()</a></code>, including appropriate modification of the tags. (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/60" class="external-link">#60</a>)</p></li>
@@ -167,6 +167,7 @@
 <h3 id="documentation-1-0-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-1-0-0"></a></h3>
 <ul><li><p>added a hex logo thanks to David Mascarina’s contribution</p></li>
 <li><p>added short lay description to README thanks to Emma Marty’s contribution</p></li>
+<li><p>fixed some typos in package documentation (<a href="https://github.com/pitmonticone" class="external-link">@pitmonticone</a>, <a href="https://github.com/epiverse-trace/linelist/issues/30" class="external-link">#30</a>)</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-1-0-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-0"></a></h3>
