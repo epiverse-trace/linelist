@@ -91,7 +91,7 @@ if (require(outbreaks)) {
     gender = "gender"
   )
   new_x <- make_linelist(measles_hagelloch_1861, !!!my_tags)
-  
+
   ## The output is strictly equivalent to the previous one
   identical(x, new_x)
 }
