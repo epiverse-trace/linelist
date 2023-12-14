@@ -63,6 +63,7 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rmarkdown, local::.
+          needs: README
 
       - name: Compile the readme
         run: |
