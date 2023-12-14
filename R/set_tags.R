@@ -39,7 +39,7 @@
 #'   tags(x)
 #'
 #'   ## setting tags providing a list (used to restore old tags here)
-#'   x <- set_tags(x, old_tags)
+#'   x <- set_tags(x, !!!old_tags)
 #'   tags(x)
 #' }
 #'
