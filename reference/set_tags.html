@@ -137,10 +137,9 @@ tags will trigger an error</p></dd>
 <span class="r-in"><span>  <span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">## setting tags providing a list (used to restore old tags here)</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">set_tags</span><span class="op">(</span><span class="va">x</span>, <span class="va">old_tags</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">set_tags</span><span class="op">(</span><span class="va">x</span>, <span class="op">!</span><span class="op">!</span><span class="op">!</span><span class="va">old_tags</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The use of a list of tags is deprecated. Please use the splice operator (!!!) instead. More information is available in the examples and in the ?rlang::`dyn-dots` documentation.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $date_onset</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "date_of_prodrome"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
