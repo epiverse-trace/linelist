@@ -10,10 +10,6 @@ Authors@R:
       person(given = "Thibaut",
              family = "Jombart",
              role = c("aut", "ccp")),
-      person(given = "Pietro",
-             family = "Monticone",
-             role = "ctb", 
-             email = "pit.monticone@gmail.com"),
       person(given = "Tim",
              family = "Taylor",
              role = "ctb")
