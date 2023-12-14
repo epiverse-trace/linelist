@@ -69,7 +69,7 @@ if (require(outbreaks)) {
   tags(x)
 
   ## extract tagged variables
-  select_tags(x, "gender", "age")
+  select(x, has_tag(c("gender", "age")))
 
   ## robust renaming
   names(x)[1] <- "identifier"
