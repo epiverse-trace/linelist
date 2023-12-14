@@ -138,9 +138,6 @@ existing tags and the corresponding variables.
 
 * `tags_names()`: to list all recognized tag names; details on what the tags represent can be found at [`?make_linelist`](https://epiverse-trace.github.io/linelist/reference/make_linelist.html)
 
-* `select_tags():` to select columns of a `linelist` based on tags using *dplyr*
-  compatible syntax
-
 * `tags_df()`: to obtain a `data.frame` of all the tagged variables in a `linelist`
 
 ### Validation
