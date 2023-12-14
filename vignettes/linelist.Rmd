@@ -132,7 +132,7 @@ existing tags and the corresponding variables.
 * `make_linelist()`: to create a `linelist` object by tagging key epi variables in
   a `data.frame` or a `tibble`
 
-* `set_tags():` to add, remove, or modify tags in a `linelist`
+* `set_tags()`: to add, remove, or modify tags in a `linelist`
 
 * `tags()`: to list variables which have been tagged in a `linelist`
 
