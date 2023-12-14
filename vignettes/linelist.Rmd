@@ -161,13 +161,13 @@ a separate package.
 These are dedicated S3 methods for existing generics which can be used to
 prevent the loss of tagged variables.
 
-* `lost_tags_actions()`: to set the behaviour to adopt when tagged variables
+* `lost_tags_action()`: to set the behaviour to adopt when tagged variables
   would be lost by an operation: issue a warning (default), an error, or ignore
 
-* `get_lost_tags_actions()`: to check the current behaviour for lost tagged
+* `get_lost_tags_action()`: to check the current behaviour for lost tagged
   variables
 
-* `names(x) <- `: the 'base R' approach to renaming columns of a `linelist`;
+* `names<-()`: the 'base R' approach to renaming columns of a `linelist`;
   will rename tags as needed to match the new column names
 
 * `x[]` and `x[[]]`: for subsetting columns using 'base R' syntax; will
@@ -231,7 +231,7 @@ Let us assume we also want to record the outcome: it is currently missing, but
 can be built from dates of deaths (missing date = survived). This can be done by
 using `mutate()` on `x` to create the new variable (remember `x` is not only a
 `linelist`, but also a regular `tibble` and this compatible with `dplyr` verbs),
-and setting up a new tag using `set_tags`:
+and setting up a new tag using `set_tags()`:
 
 ```{r}
 x <- x %>%
