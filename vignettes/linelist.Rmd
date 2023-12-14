@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
 library(linelist)
 ```
 
-
 # Motivations
 
 Outbreak analytics pipelines often start with *case line lists*, which are data
@@ -39,8 +38,6 @@ functional, it often means that each analysis step will:
 The aim of *linelist* is to take care of these pre-requisites once and for all
 before downstream analyses, thus helping to make data pipelines more robust and
 straightforward.
-
-
 
 # linelist in a nutshell 
 
@@ -64,7 +61,6 @@ symptom onset, age, gender, disease outcome)
    ...`) or issuing warnings/errors when tagged variables are lost (*e.g.*
    `select()`, `x[]`, `x[[]]`)
 
-
 ## Should I use *linelist*?
 
 *linelist* is designed to add a robust, foundational layer to your data
@@ -82,7 +78,6 @@ scripts. Here are a few hints to gauge if you should consider using the package.
 * you are looking to build re-useable analysis scripts, *i.e.* which will work
   on other datasets with minimal added changes
 
-
 **Conversely, you probably do not need it if ...**:
 
 * you work on historical data, which has likely already been curated/validated
@@ -90,11 +85,8 @@ scripts. Here are a few hints to gauge if you should consider using the package.
 
 * you perform some quick, simple analysis of your data, which you will not need
   to expand on later
-  
+
 * your analysis scripts are very specific and will not be re-used elsewhere
-
-
-
 
 # Getting started
 
@@ -120,13 +112,9 @@ remotes::install_github("epiverse-trace/linelist", build_vignettes = TRUE)
 
 Once installed, you can load the package in your R session using:
 
-```{r }
-
+```{r}
 library(linelist)
-
 ```
-
-
 
 ## Key functionalities
 
@@ -145,16 +133,15 @@ existing tags and the corresponding variables.
   a `data.frame` or a `tibble`
 
 * `set_tags():` to add, remove, or modify tags in a `linelist`
-  
+
 * `tags()`: to list variables which have been tagged in a `linelist`
 
 * `tags_names()`: to list all recognized tag names; details on what the tags represent can be found at [`?make_linelist`](https://epiverse-trace.github.io/linelist/reference/make_linelist.html)
 
 * `select_tags():` to select columns of a `linelist` based on tags using *dplyr*
   compatible syntax
-  
-* `tags_df()`: to obtain a `data.frame` of all the tagged variables in a `linelist`
 
+* `tags_df()`: to obtain a `data.frame` of all the tagged variables in a `linelist`
 
 ### Validation
 
@@ -171,7 +158,6 @@ a separate package.
 * `validate_linelist()`: general validation of *linelist* objects, equivalent to
   running both `validate_tags()` and `validate_types()`, and checking the class
   of the object
-
 
 ### Secured methods
 
@@ -217,8 +203,7 @@ analyses, after having checked their tag name in `?make_linelist`:
 We first load a few useful packages, and create a `linelist` with the above
 information:
 
-```{r }
-
+```{r}
 library(tibble) # data.frame but with nice printing
 library(dplyr) # for data handling
 library(magrittr) # for the %>% operator
@@ -231,16 +216,13 @@ x <- measles_hagelloch_1861 %>%
                 age = "age",
                 gender = "gender")
 x
-
 ```
 
 The printing of the object confirms that the tags have been added. If we want to
 double-check which variables have been tagged:
 
-```{r }
-
+```{r}
 tags(x)
-
 ```
 
 
@@ -254,26 +236,22 @@ using `mutate()` on `x` to create the new variable (remember `x` is not only a
 `linelist`, but also a regular `tibble` and this compatible with `dplyr` verbs),
 and setting up a new tag using `set_tags`:
 
-```{r }
-
+```{r}
 x <- x %>%
   mutate(
     inferred_outcome = if_else(is.na(date_of_death), "survived", "died")
   ) %>%
   set_tags(outcome = "inferred_outcome")
 x
-
 ```
 
 If we wanted to undo the above, i.e. remove the `outcome` tag, we only need set
 it to `NULL`:
 
-```{r }
-
+```{r}
 x <- x %>%
   set_tags(outcome = NULL)
 tags(x)
-
 ```
 
 
@@ -283,8 +261,7 @@ Now that key variables have been tagged in `x`, we can used these pre-defined
 fields in downstream analyses, without having to worry about variable names and
 types. We could access tagged variables using any of the following means:
 
-```{r }
-
+```{r}
 # select tagged variables only
 x %>%
   select_tags(date_onset, date_death)
@@ -296,9 +273,7 @@ x %>%
 # get all tagged variables in a data.frame
 x %>%
   tags_df()
-
 ```
-
 
 ## Using safeguards
 
@@ -308,12 +283,10 @@ removal of key tagged variables. *linelist* provides a safeguard mechanism
 against this. For instance, let's assume we want to select only some columns of
 `x`:
 
-```{r }
-
+```{r}
 # hybrid selection
 x %>%
   select(1:2)
-
 ```
 
 Here, the above command gave a meaningful warning, in which `select()` removes
@@ -322,12 +295,10 @@ some of the variables that were tagged.
 We can also use the `has_tag()` select helper to select columns via their tag.
 For example, to retain the first 2 variables, and the `gender` tag:
 
-```{r }
-
+```{r}
 # hybrid selection
 x %>%
   select(1:2, has_tag("gender"))
-
 ```
 
 Again, we observe a warning as before due to the loss of tagged variables in the
