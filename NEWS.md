@@ -131,7 +131,7 @@ of the `select.linelist()` method. It is now recommend instead to use the new
 
 ## Documentation
 
-* added a hex logo thanks to David Mascarina's contribution
+* added a hex logo thanks to @dgmascarina contribution
 
 * added short lay description to README thanks to Emma Marty's contribution
 
