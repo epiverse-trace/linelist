@@ -172,8 +172,8 @@
 <span></span>
 <span><span class="co"># build a linelist</span></span>
 <span><span class="co"># ----------------</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">dataset</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">dataset</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/make_linelist.html">make_linelist</a></span><span class="op">(</span></span>
 <span>    date_onset <span class="op">=</span> <span class="st">"dt_onset"</span>, <span class="co"># date of onset</span></span>
 <span>    date_reporting <span class="op">=</span> <span class="st">"dt_report"</span>, <span class="co"># date of reporting</span></span>
@@ -220,7 +220,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># change tags: fix mistakes, add new ones</span></span>
 <span><span class="co"># ---------------------------------------</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/set_tags.html">set_tags</a></span><span class="op">(</span></span>
 <span>    occupation <span class="op">=</span> <span class="cn">NULL</span>, <span class="co"># tag removal</span></span>
 <span>    gender <span class="op">=</span> <span class="st">"sex"</span>, <span class="co"># new tag</span></span>
@@ -230,7 +230,7 @@
 <span><span class="co"># safeguards against actions losing tags</span></span>
 <span><span class="co"># --------------------------------------</span></span>
 <span><span class="co">## attemping to remove geographical info but removing dates by mistake</span></span>
-<span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:dt_onset</span></span></code></pre></div>
@@ -239,12 +239,12 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Lost tags will now issue an error.</span></span>
 <span></span>
-<span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:dt_onset</span></span>
 <span></span>
-<span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">## to revert to default behaviour (warning upon error)</span></span>
@@ -252,7 +252,7 @@
 <span><span class="co">#&gt; Lost tags will now issue a warning.</span></span></code></pre></div>
 <p>Alternatively, content can be accessed by tags:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x_no_geo</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">x_no_geo</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"date_onset"</span>, <span class="st">"outcome"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_reporting:dt_report, gender:sex</span></span>
@@ -275,7 +275,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // tags: date_onset:dt_onset, outcome:outcome</span></span>
 <span></span>
-<span><span class="va">x_no_geo</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x_no_geo</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 162 × 4</span></span>
 <span><span class="co">#&gt;    date_onset date_reporting gender outcome</span></span>
@@ -296,9 +296,9 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.reconverse.org/incidence2/" class="external-link">incidence2</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: grates</span></span>
 <span></span>
-<span><span class="va">x_no_geo</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">incidence</span><span class="op">(</span><span class="st">"date_onset"</span>, groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"outcome"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/magrittr/man/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x_no_geo</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">incidence</span><span class="op">(</span><span class="st">"date_onset"</span>, groups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"outcome"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span></span>
 <span>    fill <span class="op">=</span> <span class="st">"outcome"</span>,</span>
 <span>    angle <span class="op">=</span> <span class="fl">45</span>,</span>
