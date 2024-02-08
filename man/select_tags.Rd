@@ -58,7 +58,4 @@ if (require(outbreaks)) {
 \item \code{\link[=tags_df]{tags_df()}} to get a \code{data.frame} of all tags
 }
 }
-\author{
-Thibaut Jombart \email{thibaut@data.org}
-}
 \keyword{deprecated}

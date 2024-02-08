@@ -107,6 +107,3 @@ if (require(outbreaks)) {
 \item \code{\link[=tags_df]{tags_df()}}: for selecting variables by tags
 }
 }
-\author{
-Thibaut Jombart \email{thibaut@data.org}
-}

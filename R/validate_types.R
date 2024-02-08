@@ -10,8 +10,6 @@
 #' @param ref_types a `list` providing allowed types for all tags, as returned
 #'   by [tags_types()]
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return A named `list`.
 #'
 #' @seealso

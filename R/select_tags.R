@@ -15,8 +15,6 @@
 #' @param ... the tagged variables to select, using [dplyr::select()] compatible
 #'   terminology; see [tags_names()] for default values
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return A `data.frame` of tagged variables.
 #'
 #' @export

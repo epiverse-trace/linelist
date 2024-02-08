@@ -48,6 +48,3 @@ get_lost_tags_action()
 lost_tags_action()
 
 }
-\author{
-Thibaut Jombart \email{thibaut@data.org}
-}

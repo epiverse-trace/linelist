@@ -10,8 +10,6 @@
 #'
 #' @aliases linelist
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @section Main functions:
 #'
 #'   * [make_linelist()]: to create `linelist` objects from a `data.frame` or a

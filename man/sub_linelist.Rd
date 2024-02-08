@@ -81,6 +81,3 @@ lost through subsetting; default is to issue a warning
 \item \code{\link[=get_lost_tags_action]{get_lost_tags_action()}} to check the current the behaviour
 }
 }
-\author{
-Thibaut Jombart \email{thibaut@data.org}
-}

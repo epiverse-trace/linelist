@@ -15,8 +15,6 @@
 #'
 #' @param ref_types a `list` providing allowed types for all tags
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return `TRUE` if the test is successful; otherwise, a `character` indicating
 #'   the issue
 #'

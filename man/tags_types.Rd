@@ -42,6 +42,3 @@ tags_types(sequence = "DNAbin", allow_extra = TRUE)
 \item \code{\link[=validate_linelist]{validate_linelist()}} uses \code{\link[=tags_types]{tags_types()}} for validating tags
 }
 }
-\author{
-Thibaut Jombart \email{thibaut@data.org}
-}

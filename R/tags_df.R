@@ -8,8 +8,6 @@
 #'
 #' @export
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return A `data.frame` of tagged variables.
 #'
 #' @examples

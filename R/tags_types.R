@@ -8,8 +8,6 @@
 #'
 #' @inheritParams make_linelist
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return A named `list`.
 #'
 #' @seealso

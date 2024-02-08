@@ -18,8 +18,6 @@
 #'
 #' @seealso [prune_tags()] for removing tags which have lost their variables
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return The function returns a `linelist` object with updated tags.
 #'
 

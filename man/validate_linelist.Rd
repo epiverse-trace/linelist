@@ -76,6 +76,3 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 \item \code{\link[=validate_tags]{validate_tags()}} to perform a series of checks on the tags
 }
 }
-\author{
-Thibaut Jombart \email{thibaut@data.org}
-}

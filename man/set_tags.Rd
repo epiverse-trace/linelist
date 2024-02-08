@@ -60,6 +60,3 @@ if (require(outbreaks)) {
 \seealso{
 \code{\link[=make_linelist]{make_linelist()}} to create a \code{linelist} object
 }
-\author{
-Thibaut Jombart \email{thibaut@data.org}
-}

@@ -8,8 +8,6 @@
 #' @param remove_tags a `logical` indicating if tags should be removed from the
 #'   attributes; defaults to `TRUE`
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @noRd
 #'
 #' @return The function returns the same object without the `linelist` class.

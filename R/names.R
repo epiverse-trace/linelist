@@ -11,8 +11,6 @@
 #'
 #' @export
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @examples
 #' if (require(outbreaks)) {
 #'

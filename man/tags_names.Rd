@@ -20,6 +20,3 @@ tags_names()
 \seealso{
 \code{\link[=tags_defaults]{tags_defaults()}} for a \code{list} of default values of the tags
 }
-\author{
-Thibaut Jombart \email{thibaut@data.org}
-}

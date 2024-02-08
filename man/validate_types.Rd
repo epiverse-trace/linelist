@@ -46,6 +46,3 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 \item \code{\link[=validate_linelist]{validate_linelist()}} to combine \code{validate_tags} and \code{validate_types}
 }
 }
-\author{
-Thibaut Jombart \email{thibaut@data.org}
-}

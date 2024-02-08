@@ -11,8 +11,6 @@
 #'
 #' @export
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return The function returns a named `list` where names indicate generic
 #'   types of data, and values indicate which column they correspond to.
 #'

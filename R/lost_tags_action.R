@@ -23,8 +23,6 @@
 #'
 #' @aliases lost_tags_action get_lost_tags_action
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @examples
 #' # reset default - done automatically at package loading
 #' lost_tags_action()

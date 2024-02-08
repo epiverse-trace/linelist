@@ -29,8 +29,6 @@
 #'
 #' @aliases sub_linelist
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @examples
 #' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
 #'   ## create a linelist

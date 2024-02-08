@@ -22,8 +22,6 @@
 #'
 #' @inheritParams set_tags
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return If checks pass, a `linelist` object; otherwise issues an error.
 #'
 #' @seealso

@@ -36,6 +36,3 @@ if (require(outbreaks) && require(dplyr) && require(magrittr)) {
   tags_df(x)
 }
 }
-\author{
-Thibaut Jombart \email{thibaut@data.org}
-}

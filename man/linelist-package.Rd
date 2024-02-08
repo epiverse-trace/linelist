@@ -3,7 +3,6 @@
 \docType{package}
 \name{linelist-package}
 \alias{linelist-package}
-\alias{_PACKAGE}
 \alias{linelist}
 \title{Base Tools for Storing and Handling Case Line Lists}
 \description{
@@ -130,6 +129,17 @@ Useful links:
 
 }
 \author{
-Thibaut Jombart \email{thibaut@data.org}
+\strong{Maintainer}: Hugo Gruson \email{hugo@data.org}
+
+Authors:
+\itemize{
+  \item Thibaut Jombart [conceptor]
+}
+
+Other contributors:
+\itemize{
+  \item Tim Taylor [contributor]
+}
+
 }
 \keyword{internal}

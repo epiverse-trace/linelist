@@ -10,8 +10,6 @@
 #'
 #' @export
 #'
-#' @author Thibaut Jombart \email{thibaut@@data.org}
-#'
 #' @return The function returns a `linelist` object.
 #'
 #' @examples
