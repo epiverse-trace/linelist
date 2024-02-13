@@ -38,8 +38,8 @@
 #'   * `names() <-` and `rename` (see [dplyr::rename()]): will rename tags as
 #'   needed
 #'
-#'   * `x[...] <-` and `x[[...]] <-` (see [sub_linelist]): will adopt the desired
-#'   behaviour when tagged variables are lost
+#'   * `x[...] <-` and `x[[...]] <-` (see [sub_linelist]): will adopt the
+#'    desired behaviour when tagged variables are lost
 #'
 #'   * `print()`: prints info about the `linelist` in addition to the
 #'   `data.frame` or `tibble`
