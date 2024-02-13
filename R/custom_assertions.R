@@ -21,4 +21,3 @@ assert_not_data_table <- function(
   res <- check_not_data_table(x)
   checkmate::makeAssertion(x, res, .var.name, add)
 }
-assertNotDataTable <- assert_not_data_table
