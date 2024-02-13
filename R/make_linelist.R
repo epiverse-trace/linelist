@@ -4,7 +4,7 @@
 #' where different types of epidemiologically relevant data are tagged. This
 #' includes dates of different events (e.g. onset of symptoms, case reporting),
 #' information on the patient (e.g. age, gender, location) as well as other
-#' informations such as the type of case (e.g. confirmed, probable) or the
+#' information such as the type of case (e.g. confirmed, probable) or the
 #' outcome of the disease. The output will seem to be the same `data.frame`, but
 #' `linelist`-aware packages will then be able to automatically use tagged
 #' fields for further data cleaning and analysis.
