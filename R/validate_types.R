@@ -41,6 +41,15 @@ validate_types <- function(x, ref_types = tags_types()) {
 
   df_to_check <- tags_df(x)
 
+  if (!all(names(df_to_check) %in% names(ref_types))) {
+    stop(
+      "Allowed types for tag ",
+      toString(paste0("`", setdiff(names(df_to_check), names(ref_types)), "`")),
+      " are not documented in `ref_types`.",
+      call. = FALSE
+    )
+  }
+
   for (i in seq_len(ncol(df_to_check))) {
     res <- validate_type(
       df_to_check[[i]],

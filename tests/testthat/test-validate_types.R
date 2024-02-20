@@ -30,3 +30,19 @@ test_that("tests for validate_types", {
     validate_types(x, ref_types = tags_types(outcome = "numeric"))
   )
 })
+
+test_that("missing ref_type in validate_types()", {
+  # Single missing
+  x <- make_linelist(cars, age = "speed", d = "dist", allow_extra = TRUE)
+  expect_error(
+    validate_types(x),
+    "Allowed types for tag `d` are not documented in `ref_types`."
+  )
+
+  # Two missing
+  x <- make_linelist(cars, a = "speed", d = "dist", allow_extra = TRUE)
+  expect_error(
+    validate_types(x),
+    "Allowed types for tag `a`, `d` are not documented in `ref_types`."
+  )
+})

@@ -26,15 +26,6 @@
 #'
 
 validate_type <- function(x, tag, ref_types = tags_types()) {
-  checkmate::assertAtomicVector(x)
-  if (!tag %in% names(ref_types)) {
-    msg <- sprintf(
-      "Allowed types for tag `%s` are not documented in `ref_types`",
-      tag
-    )
-    stop(msg)
-  }
-
   allowed_types <- ref_types[[tag]]
   checkmate::check_multi_class(x, allowed_types, null.ok = TRUE)
 }
