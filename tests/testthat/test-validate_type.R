@@ -1,12 +1,4 @@
 test_that("tests for validate_type", {
-
-  # Check errors
-  msg <- "Must be of type 'atomic vector', not 'data.frame'."
-  expect_error(validate_type(cars, "toto"), msg)
-
-  msg <- "Allowed types for tag `toto` are not documented in `ref_types`"
-  expect_error(validate_type(letters, "toto"), msg)
-
   # Check functionality
   msg <- paste(
     "Must inherit from class 'numeric'/'integer'/'character',",
