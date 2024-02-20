@@ -58,6 +58,28 @@ methods.
   #>  tag:tagged_column
   ```
 
+* Validation failures in `validate_types()` now integrate a delayed error 
+mechanism. This ensures that the error message will return all the invalid tag
+types at once rather than having to go through multiple trials and runs.
+
+  * Before: only the first invalid tag type is returned.
+  ```r
+  # No warning about age, even though it also has an invalid type
+  x <- make_linelist(cars, age = "speed", gender = "dist")
+  validate_types(x, ref_types = tags_types(age = "factor"))
+  #> Error in validate_types(x, ref_types = tags_types(age = "factor")) : 
+  #>   Issue when checking class of tag `gender`:
+  #> Must inherit from class 'character'/'factor', but has class 'numeric'
+  ```
+  * Now: the error message returns all the invalid tag types at once.
+  ```r
+  x <- make_linelist(cars, age = "speed", gender = "dist")
+  validate_types(x, ref_types = tags_types(age = "factor"))
+  #> Some tags have the wrong class:
+  #>   - gender: Must inherit from class 'character'/'factor', but has class 'numeric'
+  #>   - age: Must inherit from class 'factor', but has class 'numeric'
+  ```
+
 # linelist 1.0.0
 
 ## New features
