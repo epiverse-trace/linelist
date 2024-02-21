@@ -11,8 +11,8 @@ test_that("tests for prune_tags", {
     " date_onset:dist, age:speed",
     sep = "\n"
   )
-  expect_error(prune_tags(x), msg)
-  expect_warning(prune_tags(x, "warning"), msg)
+  expect_error(prune_tags(x), msg, class = "linelist_error")
+  expect_warning(prune_tags(x, "warning"), msg, class = "linelist_warning")
 
   # Check functionality
   y <- prune_tags(x, "none")
