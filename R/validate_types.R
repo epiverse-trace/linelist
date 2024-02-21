@@ -67,7 +67,7 @@ validate_types <- function(x, ref_types = tags_types()) {
     stop(
       "Some tags have the wrong class:\n",
       sprintf(
-        "  - %s: %s\n", 
+        "  - %s: %s\n",
         names(df_to_check)[!has_correct_types],
         type_checks[!has_correct_types]
       ),
