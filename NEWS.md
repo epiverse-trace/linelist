@@ -108,6 +108,10 @@ types at once rather than having to go through multiple trials and runs.
 
 ## Internal changes
 
+* Internal duplication in the specification of the tags supported by linelist
+by default has been removed. This makes it easier to add or remove tags in the
+future, and reduces the risk of inconsistencies between the different parts of
+the package (@Bisaloo, #111).
 * The internal `tag_variable()` function has been replace by a vectorized
 alternative `tag_variable`, thus improving performance in `make_linelist()` and
 `set_tags()` about twofold. The error message when tags are specified by 
