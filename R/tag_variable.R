@@ -6,10 +6,8 @@
 #'
 #' @param x a `data.frame` or a `tibble`, with at least one column
 #'
-#' @param var_type a `character` indicating the generic data to be tagged
-#'
-#' @param var_name a `character` or an `integer` indicating the columns of the
-#'   dataset corresponding to this type of data
+#' @param tag A named list with tag names as list names and names or positions
+#' of columns to tag as list values. Values can be `NULL` to remove a tag.
 #'
 #' @noRd
 #'
@@ -19,36 +17,34 @@
 #' @details If used several times, the previous tag is removed silently.
 #'
 
-tag_variable <- function(x, var_type, var_name) {
+tag_variables <- function(x, tags) {
 
-  # Approach: 'tagging' a variable means that an item named after `var_type` is
-  # added to the list `tags` stored as an attribute of the object. Its value,
-  # `var_name`, either refers to a column of the data.frame, or is NULL.
+  tag_errors <- checkmate::makeAssertCollection()
 
-  # assert inputs
-  if (missing(var_name)) {
-    var_name <- NULL
+  by_position <- vapply(tags, is.numeric, logical(1))
+  if (any(unlist(tags[by_position]) > ncol(x))) {
+    stop(
+      "Tags specified by position must be lower than the number of columns.",
+      call. = FALSE
+    )
   }
-  checkmate::assertDataFrame(x, min.cols = 1)
-  checkmate::assertCharacter(var_type, len = 1L)
-  if (is.numeric(var_name)) {
-    checkmate::assertNumber(var_name, lower = 1L, upper = ncol(x))
-    var_name <- names(x)[var_name]
-  }
-  checkmate::assertChoice(var_name, choices = names(x), null.ok = TRUE)
+  tags[by_position] <- names(x)[unlist(tags[by_position])]
 
-  # create tags attribute if needed; this is a named list used to store the
-  # variable name corresponding to known variable types
+  # assert_choice() gives clearer error messages than assert_subset() so we
+  # use it in a loop with a assertion collection to ensure all issues are
+  # returned in the first run.
+  lapply(tags, function(tag) {
+    checkmate::assert_choice(tag, names(x), null.ok = TRUE, add = tag_errors)
+  })
+  checkmate::reportAssertions(tag_errors)
+
+  # We cannot rely on the fact that non-existing attributes are NULL, because
+  # modifyList() doesn't work on NULL
   if (is.null(attr(x, "tags"))) {
     attr(x, "tags") <- list()
   }
 
-  # extract the tags list, add new values, re-add to the object note that we
-  # need to ensure that tags set to NULL are kept in the list, so we want to
-  # avoid things like tags[[]] <- NULL which would remove the item altogether
-  tags <- attr(x, "tags")
-  tags[var_type] <- list(var_name)
-  attr(x, "tags") <- tags
+  attr(x, "tags") <- modifyList(attr(x, "tags"), tags, keep.null = TRUE)
 
   x
 }
