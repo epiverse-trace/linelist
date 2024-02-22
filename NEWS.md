@@ -110,9 +110,9 @@ types at once rather than having to go through multiple trials and runs.
 
 * The internal `tag_variable()` function has been replace by a vectorized
 alternative `tag_variable`, thus improving performance in `make_linelist()` and
-`set_tags()`. The error message when tags are specified by position with a
-number larger than the number of columns in the dataset to tag has also been
-clarified (@Bisaloo, #110).
+`set_tags()` about twofold. The error message when tags are specified by 
+position with a number larger than the number of columns in the dataset to tag
+has also been clarified (@Bisaloo, #110).
 
 # linelist 1.0.0
 
