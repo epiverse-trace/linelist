@@ -11,19 +11,11 @@
 #' tags_defaults()
 #'
 tags_defaults <- function() {
-  list(
-    id = NULL,
-    date_onset = NULL,
-    date_reporting = NULL,
-    date_admission = NULL,
-    date_discharge = NULL,
-    date_outcome = NULL,
-    date_death = NULL,
-    gender = NULL,
-    age = NULL,
-    location = NULL,
-    occupation = NULL,
-    hcw = NULL,
-    outcome = NULL
+  setNames(
+    vector(
+      "list",
+      length = length(tags_types())
+    ),
+    names(tags_types())
   )
 }
