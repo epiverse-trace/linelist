@@ -7,8 +7,13 @@ test_that("tests for make_linelist", {
   msg <- "Must have at least 1 cols, but has 0 cols."
   expect_error(make_linelist(data.frame()), msg)
 
-  msg <- "Must be element of set \\{'speed','dist'\\}, but is 'bar'." # nolint
+  msg <- "Must be element of set \\{'speed','dist'\\}, but is" # nolint
   expect_error(make_linelist(cars, outcome = "bar"), msg)
+
+  expect_error(
+    make_linelist(cars, outcome = "bar", age = "bla"), 
+    "2 assertions failed"
+  )
 
   msg <- "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
   expect_error(

@@ -136,12 +136,9 @@ make_linelist <- function(x,
 
   tags <- modify_defaults(tags, args, strict = !allow_extra)
 
-  out <- x
-  for (i in seq_along(tags)) {
-    out <- tag_variable(out, var_type = names(tags)[i], var_name = tags[[i]])
-  }
+  x <- tag_variables(x, tags)
 
   # shape output and return object
-  class(out) <- c("linelist", class(out))
-  out
+  class(x) <- c("linelist", class(x))
+  x
 }
