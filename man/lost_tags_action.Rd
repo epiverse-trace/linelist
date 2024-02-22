@@ -25,9 +25,7 @@ returns \code{NULL}; the option itself is set in \code{options("linelist")}
 \description{
 This function determines the behaviour to adopt when tagged variables of a
 \code{linelist} are lost e.g. through subsetting. This is achieved using \code{options}
-defined for the \code{linelist} package. The function can be used in isolation,
-but it can also accept a dataset as first argument, so that it can be used in
-pipelines as well.
+defined for the \code{linelist} package.
 }
 \examples{
 # reset default - done automatically at package loading

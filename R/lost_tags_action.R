@@ -2,9 +2,7 @@
 #'
 #' This function determines the behaviour to adopt when tagged variables of a
 #' `linelist` are lost e.g. through subsetting. This is achieved using `options`
-#' defined for the `linelist` package. The function can be used in isolation,
-#' but it can also accept a dataset as first argument, so that it can be used in
-#' pipelines as well.
+#' defined for the `linelist` package.
 #'
 #' @param action a `character` indicating the behaviour to adopt when tagged
 #'   variables have been lost: "error" (default) will issue an error; "warning"
