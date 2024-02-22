@@ -436,7 +436,7 @@ using any of the following means:</p>
 <code class="sourceCode R"><span><span class="co"># select tagged variables only</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"date_onset"</span>, <span class="st">"date_death"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  gender:gender, age:age</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
@@ -460,7 +460,7 @@ using any of the following means:</p>
 <span><span class="co"># select tagged variables only with renaming on the fly</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span>onset <span class="op">=</span> <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"date_onset"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_death:date_of_death, gender:gender, age:age</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
@@ -512,7 +512,7 @@ columns of <code>x</code>:</p>
 <code class="sourceCode R"><span><span class="co"># hybrid selection</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
@@ -542,7 +542,7 @@ the <code>gender</code> tag:</p>
 <code class="sourceCode R"><span><span class="co"># hybrid selection</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"gender"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
@@ -570,7 +570,7 @@ instance):</p>
 <code class="sourceCode R"><span><span class="co"># hybrid selection</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"gender"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
@@ -622,7 +622,7 @@ instance):</p>
 <span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"gender"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt; Error: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
 <span></span>
 <span><span class="co"># note that `lost_tags_action` sets the behavior for any later operation, so we</span></span>
