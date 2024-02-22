@@ -47,6 +47,32 @@ better tested, and makes it explicit that users want to splice the list.
 
 ## New features
 
+* linelist warnings and errors in the case of a tag loss now have a custom 
+class, which means it is easier to silence them specifically, or to catch them
+programmatically for advanced error handling. One example of a new advanced 
+condition handling that was before not possible is:
+
+  ``` r
+  warning_counter <- 0
+  
+  withCallingHandlers({
+    x <- linelist::make_linelist(cars, date_onset = "dist", age = "speed")
+    x <- x[, -1]
+    x <- x[, -1]
+    warning("This is not a linelist warning", call. = FALSE)
+  }, linelist_warning = function(w) {
+    warning_counter <<- warning_counter + 1
+  })
+  #> Warning: The following tags have lost their variable:
+  #>  age:speed
+  #> Warning: The following tags have lost their variable:
+  #>  date_onset:dist
+  #> Warning: This is not a linelist warning
+  
+  warning("This pipeline generated ", warning_counter, " linelist warnings.")
+  #> Warning: This pipeline generated 2 linelist warnings.
+  ```
+
 * linelist objects now have a new custom `$<-.linelist()` to prevent tag loss
 when subsetting a linelist object (@Bisaloo, #86). This completes the
 functionality already provided by the `[<-.linelist()` and `[[<-.linelist()`
