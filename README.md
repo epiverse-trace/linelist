@@ -163,8 +163,8 @@ have the correct type:
 # ------------------------------
 ## (this flags a likely mistake: occupation should not be an integer)
 validate_linelist(x)
-#> Error in validate_types(x, ref_types): Issue when checking class of tag `occupation`:
-#> Must inherit from class 'character'/'factor', but has class 'integer'
+#> Error: Some tags have the wrong class:
+#>   - occupation: Must inherit from class 'character'/'factor', but has class 'integer'
 ```
 
 ``` r
@@ -182,7 +182,7 @@ x <- x %>%
 ## attemping to remove geographical info but removing dates by mistake
 x_no_geo <- x %>%
   select(-(5:8))
-#> Warning in prune_tags(out, lost_action): The following tags have lost their variable:
+#> Warning: The following tags have lost their variable:
 #>  date_onset:dt_onset
 ```
 
@@ -194,7 +194,7 @@ lost_tags_action("error")
 
 x_no_geo <- x %>%
   select(-(5:8))
-#> Error in prune_tags(out, lost_action): The following tags have lost their variable:
+#> Error: The following tags have lost their variable:
 #>  date_onset:dt_onset
 
 x_no_geo <- x %>%
@@ -210,7 +210,7 @@ Alternatively, content can be accessed by tags:
 ``` r
 x_no_geo %>%
   select(has_tag(c("date_onset", "outcome")))
-#> Warning in prune_tags(out, lost_action): The following tags have lost their variable:
+#> Warning: The following tags have lost their variable:
 #>  date_reporting:dt_report, gender:sex
 #> 
 #> // linelist object
