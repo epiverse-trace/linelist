@@ -13,9 +13,11 @@ epi
 etc
 github
 lifecycle
+rlang
 rlang's
 testthat
 tibble
 tidyselect
 tidyverse
 unclassing
+vctrs
