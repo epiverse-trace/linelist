@@ -118,6 +118,11 @@ alternative `tag_variable`, thus improving performance in `make_linelist()` and
 position with a number larger than the number of columns in the dataset to tag
 has also been clarified (@Bisaloo, #110).
 
+## Documentation
+
+* linelist now provides a design vignette for future contributors or maintainers
+(@Bisaloo, #112).
+
 # linelist 1.0.0
 
 ## New features
