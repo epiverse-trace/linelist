@@ -35,6 +35,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/compat-dplyr.html">Compatibility with dplyr</a>
+    <a class="dropdown-item" href="../articles/design-principles.html">Design Principles for linelist</a>
   </div>
 </li>
 <li class="active nav-item">
@@ -157,6 +158,11 @@
 <span><span class="co">#&gt;   - gender: Must inherit from class 'character'/'factor', but has class 'numeric'</span></span>
 <span><span class="co">#&gt;   - age: Must inherit from class 'factor', but has class 'numeric'</span></span></code></pre></div>
 </li>
+</ul></div>
+<div class="section level3">
+<h3 id="internal-changes-development-version">Internal changes<a class="anchor" aria-label="anchor" href="#internal-changes-development-version"></a></h3>
+<ul><li>Internal duplication in the specification of the tags supported by linelist by default has been removed. This makes it easier to add or remove tags in the future, and reduces the risk of inconsistencies between the different parts of the package (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/111" class="external-link">#111</a>).</li>
+<li>The internal <code>tag_variable()</code> function has been replace by a vectorized alternative <code>tag_variable</code>, thus improving performance in <code><a href="../reference/make_linelist.html">make_linelist()</a></code> and <code><a href="../reference/set_tags.html">set_tags()</a></code> about twofold. The error message when tags are specified by position with a number larger than the number of columns in the dataset to tag has also been clarified (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/110" class="external-link">#110</a>).</li>
 </ul></div>
 </div>
     <div class="section level2">

@@ -59,6 +59,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/compat-dplyr.html">Compatibility with dplyr</a>
+    <a class="dropdown-item" href="../articles/design-principles.html">Design Principles for linelist</a>
   </div>
 </li>
 <li class="nav-item">
@@ -345,17 +346,17 @@ tags are conserved through dplyr operations on rows.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
 <span><span class="co">#&gt;   case_ID infector date_of_prodrome date_of_rash date_of_death age gender</span></span>
-<span><span class="co">#&gt; 1     140        6       1861-12-05   1861-12-10          &lt;NA&gt;   2   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 2     119      116       1861-12-01   1861-12-08          &lt;NA&gt;   0      f</span></span>
-<span><span class="co">#&gt; 3     157      156       1861-12-04   1861-12-07          &lt;NA&gt;   4      f</span></span>
-<span><span class="co">#&gt; 4     176      146       1861-12-11   1861-12-15          &lt;NA&gt;   0   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 5     107       19       1861-11-30   1861-12-07          &lt;NA&gt;  12      f</span></span>
+<span><span class="co">#&gt; 1      14      181       1861-11-22   1861-11-29          &lt;NA&gt;  13      f</span></span>
+<span><span class="co">#&gt; 2      67       11       1861-12-02   1861-12-07          &lt;NA&gt;  11      f</span></span>
+<span><span class="co">#&gt; 3      41      180       1861-11-27   1861-11-29          &lt;NA&gt;  12      m</span></span>
+<span><span class="co">#&gt; 4     137       16       1861-12-01   1861-12-06          &lt;NA&gt;  10      f</span></span>
+<span><span class="co">#&gt; 5      27       10       1861-11-30   1861-12-02    1861-12-14   5      m</span></span>
 <span><span class="co">#&gt;   family_ID class complications x_loc y_loc</span></span>
-<span><span class="co">#&gt; 1        58     0           yes 195.0 130.0</span></span>
-<span><span class="co">#&gt; 2        40     0           yes 127.5 147.5</span></span>
-<span><span class="co">#&gt; 3        31     0           yes 182.5  55.0</span></span>
-<span><span class="co">#&gt; 4        64     0           yes  72.5 152.5</span></span>
-<span><span class="co">#&gt; 5        34     2           yes 170.0  17.5</span></span>
+<span><span class="co">#&gt; 1        22     2           yes 227.5 185.0</span></span>
+<span><span class="co">#&gt; 2        55     2           yes 267.5 127.5</span></span>
+<span><span class="co">#&gt; 3        59     2           yes 185.0  80.0</span></span>
+<span><span class="co">#&gt; 4        12     2           yes  97.5 155.0</span></span>
+<span><span class="co">#&gt; 5        29     0           yes 240.0  75.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // tags: id:case_ID, date_onset:date_of_prodrome, gender:gender, age:age</span></span></code></pre></div>
 </div>
