@@ -1,0 +1,42 @@
+---
+title: "Design Principles for linelist"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Design Principles for linelist}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette outlines the design decisions that have been taken during the development of the `{linest}` R package, and provides some of the reasoning, and possible pros and cons of each decision.
+
+This document is primarily intended to be read by those interested in understanding the code within the package and for potential package contributors.
+
+## Scope
+
+linelist provides a lightweight layer to add tags to data.frame columns. This allows:
+
+- column identification without renaming
+- extra feature for the tagged columns, such as the ability to warn when a tagged column is dropped, or when its data type is incompatible with the expected one.
+
+## Input/Output/Interoperability
+
+Because of its scope, linelist is intended to provide maximum compatibility with data.frames, or packages defining subclasses of data.frames.
+
+We prefer not adding a new feature, rather than having this feature alter the usual behaviour of a data.frame.
+
+`make_linelist()` is the main user-facing function of this package. It takes a data.frame/tibble/X as input as returns an output of class `c("linelist", "data.frame")`/`c("linelist", "tibble")`/`c("linelist", "X")`.
+
+## Design decisions
+
+- Wherever possible, linelist should not provide its own method, but degrade gracefully and rely on the superclass method. This is to ensure that linelist is as compatible as possible with other packages and data types.
+
+## Dependencies
+
+Because of its strong interoperability with the tidyverse package, it is accepted for linelist to depend on low-level tidyverse or r-lib packages, such as rlang, vctrs or tidyselect.
