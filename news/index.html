@@ -17,7 +17,7 @@
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="../logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">linelist</a>
 
-    <small class="nav-text text-muted me-auto version-number" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9000</small>
+    <small class="nav-text text-muted me-auto version-number" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,11 +62,11 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="linelist-development-version">linelist (development version)<a class="anchor" aria-label="anchor" href="#linelist-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="1.1.0" id="linelist-110">linelist 1.1.0<a class="anchor" aria-label="anchor" href="#linelist-110"></a></h2>
 <div class="section level3">
-<h3 id="breaking-changes-development-version">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-development-version"></a></h3>
+<h3 id="breaking-changes-1-1-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-1-1-0"></a></h3>
 <ul><li>
-<p><code><a href="../reference/make_linelist.html">make_linelist()</a></code> and <code><a href="../reference/set_tags.html">set_tags()</a></code> no longer accept a named list of characters as input. Instead, <code><a href="../reference/make_linelist.html">make_linelist()</a></code>, <code><a href="../reference/set_tags.html">set_tags()</a></code> and <code><a href="../reference/tags_types.html">tags_types()</a></code> now use <a href="https://rlang.r-lib.org/reference/dyn-dots.html" class="external-link">rlang’s dynamic dots</a>, which means that you can splice list arguments. This implementation is more robust, better tested, and makes it explicit that users want to splice the list.</p>
+<p><code><a href="../reference/make_linelist.html">make_linelist()</a></code> and <code><a href="../reference/set_tags.html">set_tags()</a></code> no longer accept a named list of characters as input. Instead, <code><a href="../reference/make_linelist.html">make_linelist()</a></code>, <code><a href="../reference/set_tags.html">set_tags()</a></code> and <code><a href="../reference/tags_types.html">tags_types()</a></code> now use <a href="https://rlang.r-lib.org/reference/dyn-dots.html" class="external-link">rlang’s dynamic dots</a>, which means that you can splice list arguments. This implementation is more robust, better tested, and makes it explicit that users want to splice the list (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/96" class="external-link">#96</a>).</p>
 <ul><li>Before:</li>
 </ul><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
@@ -106,9 +106,9 @@
 </li>
 </ul></div>
 <div class="section level3">
-<h3 id="new-features-development-version">New features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
+<h3 id="new-features-1-1-0">New features<a class="anchor" aria-label="anchor" href="#new-features-1-1-0"></a></h3>
 <ul><li>
-<p>linelist warnings and errors in the case of a tag loss now have a custom class, which means it is easier to silence them specifically, or to catch them programmatically for advanced error handling. One example of a new advanced condition handling that was before not possible is:</p>
+<p>linelist warnings and errors in the case of a tag loss now have a custom class (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/109" class="external-link">#109</a>), which means it is easier to silence them specifically, or to catch them programmatically for advanced error handling. One example of a new advanced condition handling that was before not possible is:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">warning_counter</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
@@ -139,7 +139,7 @@
 <span><span class="co">#&gt;  tag:tagged_column</span></span></code></pre></div>
 </li>
 <li>
-<p>Validation failures in <code><a href="../reference/validate_types.html">validate_types()</a></code> now integrate a delayed error mechanism. This ensures that the error message will return all the invalid tag types at once rather than having to go through multiple trials and runs.</p>
+<p>Validation failures in <code><a href="../reference/validate_types.html">validate_types()</a></code> now integrate a delayed error mechanism (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/106" class="external-link">#106</a>). This ensures that the error message will return all the invalid tag types at once rather than having to go through multiple trials and runs.</p>
 <ul><li>Before: only the first invalid tag type is returned.</li>
 </ul><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
@@ -160,12 +160,12 @@
 </li>
 </ul></div>
 <div class="section level3">
-<h3 id="internal-changes-development-version">Internal changes<a class="anchor" aria-label="anchor" href="#internal-changes-development-version"></a></h3>
+<h3 id="internal-changes-1-1-0">Internal changes<a class="anchor" aria-label="anchor" href="#internal-changes-1-1-0"></a></h3>
 <ul><li>Internal duplication in the specification of the tags supported by linelist by default has been removed. This makes it easier to add or remove tags in the future, and reduces the risk of inconsistencies between the different parts of the package (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/111" class="external-link">#111</a>).</li>
 <li>The internal <code>tag_variable()</code> function has been replace by a vectorized alternative <code>tag_variable</code>, thus improving performance in <code><a href="../reference/make_linelist.html">make_linelist()</a></code> and <code><a href="../reference/set_tags.html">set_tags()</a></code> about twofold. The error message when tags are specified by position with a number larger than the number of columns in the dataset to tag has also been clarified (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/110" class="external-link">#110</a>).</li>
 </ul></div>
 <div class="section level3">
-<h3 id="documentation-development-version">Documentation<a class="anchor" aria-label="anchor" href="#documentation-development-version"></a></h3>
+<h3 id="documentation-1-1-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-1-1-0"></a></h3>
 <ul><li>linelist now provides a design vignette for future contributors or maintainers (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/112" class="external-link">#112</a>).</li>
 </ul></div>
 </div>
