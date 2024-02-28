@@ -6,7 +6,8 @@
 as input. Instead, `make_linelist()`, `set_tags()` and `tags_types()` now use
 [rlang's dynamic dots](https://rlang.r-lib.org/reference/dyn-dots.html), which 
 means that you can splice list arguments. This implementation is more robust,
-better tested, and makes it explicit that users want to splice the list.
+better tested, and makes it explicit that users want to splice the list 
+(@Bisaloo, #96).
 
   * Before:
   ```r
@@ -48,9 +49,9 @@ better tested, and makes it explicit that users want to splice the list.
 ## New features
 
 * linelist warnings and errors in the case of a tag loss now have a custom 
-class, which means it is easier to silence them specifically, or to catch them
-programmatically for advanced error handling. One example of a new advanced 
-condition handling that was before not possible is:
+class (@Bisaloo, #109), which means it is easier to silence them specifically, 
+or to catch them programmatically for advanced error handling. One example of a
+new advanced condition handling that was before not possible is:
 
   ``` r
   warning_counter <- 0
@@ -85,8 +86,9 @@ methods.
   ```
 
 * Validation failures in `validate_types()` now integrate a delayed error 
-mechanism. This ensures that the error message will return all the invalid tag
-types at once rather than having to go through multiple trials and runs.
+mechanism (@Bisaloo, #106). This ensures that the error message will return all
+the invalid tag types at once rather than having to go through multiple trials
+and runs.
 
   * Before: only the first invalid tag type is returned.
   ```r
