@@ -16,6 +16,7 @@
 #'
 #' @details If used several times, the previous tag is removed silently.
 #'
+#' @importFrom utils modifyList
 
 tag_variables <- function(x, tags) {
 

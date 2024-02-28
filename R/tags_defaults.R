@@ -5,6 +5,8 @@
 #'
 #' @export
 #'
+#' @importFrom stats setNames
+#'
 #' @return A named `list`.
 #'
 #' @examples
