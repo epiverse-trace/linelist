@@ -216,8 +216,8 @@
 <span><span class="co"># ------------------------------</span></span>
 <span><span class="co">## (this flags a likely mistake: occupation should not be an integer)</span></span>
 <span><span class="fu"><a href="reference/validate_linelist.html">validate_linelist</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in validate_types(x, ref_types): Issue when checking class of tag `occupation`:</span></span>
-<span><span class="co">#&gt; Must inherit from class 'character'/'factor', but has class 'integer'</span></span></code></pre></div>
+<span><span class="co">#&gt; Error: Some tags have the wrong class:</span></span>
+<span><span class="co">#&gt;   - occupation: Must inherit from class 'character'/'factor', but has class 'integer'</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># change tags: fix mistakes, add new ones</span></span>
 <span><span class="co"># ---------------------------------------</span></span>
@@ -233,7 +233,7 @@
 <span><span class="co">## attemping to remove geographical info but removing dates by mistake</span></span>
 <span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:dt_onset</span></span></code></pre></div>
 <p>For stronger pipelines, you can even trigger errors upon loss:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -242,7 +242,7 @@
 <span></span>
 <span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt; Error: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:dt_onset</span></span>
 <span></span>
 <span><span class="va">x_no_geo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -255,7 +255,7 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x_no_geo</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"date_onset"</span>, <span class="st">"outcome"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
+<span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_reporting:dt_report, gender:sex</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>

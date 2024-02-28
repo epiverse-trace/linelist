@@ -99,17 +99,16 @@
     
     
 <p>This vignette outlines the design decisions that have been taken
-during the development of the <code>{linest}</code> R package, and
-provides some of the reasoning, and possible pros and cons of each
-decision.</p>
+during the development of the linelist R package, and provides some of
+the reasoning, and possible pros and cons of each decision.</p>
 <p>This document is primarily intended to be read by those interested in
 understanding the code within the package and for potential package
 contributors.</p>
 <div class="section level2">
 <h2 id="scope">Scope<a class="anchor" aria-label="anchor" href="#scope"></a>
 </h2>
-<p>linelist provides a lightweight layer to add tags to data.frame
-columns. This allows:</p>
+<p>linelist provides a lightweight layer to add tags to
+<code>data.frame</code> columns. This allows:</p>
 <ul>
 <li>column identification without renaming</li>
 <li>extra feature for the tagged columns, such as the ability to warn
@@ -125,10 +124,17 @@ compatibility with data.frames, or packages defining subclasses of
 data.frames.</p>
 <p>We prefer not adding a new feature, rather than having this feature
 alter the usual behaviour of a data.frame.</p>
+<p>One notable exception to this rule are <code>data.table</code> since
+they differ too much from the standard <code>data.frame</code>
+behaviour, which makes it difficult to ensure compatibility.</p>
 <p><code><a href="../reference/make_linelist.html">make_linelist()</a></code> is the main user-facing function of this
-package. It takes a data.frame/tibble/X as input as returns an output of
-class
-<code>c("linelist", "data.frame")</code>/<code>c("linelist", "tibble")</code>/<code>c("linelist", "X")</code>.</p>
+package. It takes a
+<code>data.frame</code>/<code>tibble</code>/<code>X</code> as input as
+returns an output of class
+<code>c("linelist", "data.frame")</code>/<code>c("linelist", "tibble")</code>/<code>c("linelist", "X")</code>.
+As a consequence, differences in behaviour between
+<code>data.frame</code> and <code>tibble</code> are still present after
+conversation to a <code>linelist</code> object.</p>
 </div>
 <div class="section level2">
 <h2 id="design-decisions">Design decisions<a class="anchor" aria-label="anchor" href="#design-decisions"></a>
@@ -143,9 +149,9 @@ types.</li>
 <div class="section level2">
 <h2 id="dependencies">Dependencies<a class="anchor" aria-label="anchor" href="#dependencies"></a>
 </h2>
-<p>Because of its strong interoperability with the tidyverse package, it
-is accepted for linelist to depend on low-level tidyverse or r-lib
-packages, such as rlang, vctrs or tidyselect.</p>
+<p>Because of its strong interoperability with the tidyverse packages,
+it is accepted for linelist to depend on low-level tidyverse or r-lib
+packages, such as <a href="https://rlang.r-lib.org/" class="external-link">rlang</a>, <a href="https://vctrs.r-lib.org/" class="external-link">vctrs</a> or <a href="https://tidyselect.r-lib.org/" class="external-link">tidyselect</a>.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
