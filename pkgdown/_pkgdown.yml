@@ -1,6 +1,8 @@
 url: https://epiverse-trace.github.io/linelist/
 template:
   package: epiversetheme
+development:
+  mode: auto
 
 reference:
   - title: Package Overview
