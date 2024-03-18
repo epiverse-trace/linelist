@@ -33,6 +33,8 @@ Our stable versions are released on CRAN, and can be installed using:
 install.packages("linelist", build_vignettes = TRUE)
 ```
 
+<div class="pkgdown-devel">
+
 ### Development version
 
 The development version of *linelist* can be installed from
@@ -44,6 +46,8 @@ if (!require(remotes)) {
 }
 remotes::install_github("epiverse-trace/linelist", build_vignettes = TRUE)
 ```
+
+</div>
 
 ## Usage
 
