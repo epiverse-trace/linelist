@@ -50,10 +50,10 @@ The development version of *linelist* can be installed from
 [GitHub](https://github.com/) with:
 
 ```{r, eval=FALSE}
-if (!require(remotes)) {
-  install.packages("remotes")
+if (!require(pak)) {
+  install.packages("pak")
 }
-remotes::install_github("epiverse-trace/linelist", build_vignettes = TRUE)
+pak::pak("epiverse-trace/linelist")
 ```
 
 :::
