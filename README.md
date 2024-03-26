@@ -12,7 +12,7 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![cran-check](https://badges.cranchecks.info/summary/linelist.svg)](https://cran.r-project.org/web/checks/check_results_linelist.html)
 [![R-CMD-check](https://github.com/epiverse-trace/linelist/workflows/R-CMD-check/badge.svg)](https://github.com/epiverse-trace/linelist/actions)
 [![codecov](https://codecov.io/gh/epiverse-trace/linelist/branch/main/graph/badge.svg?token=JGTCEY0W02)](https://app.codecov.io/gh/epiverse-trace/linelist)
-[![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg)](https://www.reconverse.org/lifecycle.html#experimental)
+[![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-maturing.svg)](https://www.reconverse.org/lifecycle.html#maturing)
 [![month-download](https://cranlogs.r-pkg.org/badges/linelist)](https://cran.r-project.org/package=linelist)
 [![total-download](https://cranlogs.r-pkg.org/badges/grand-total/linelist)](https://cran.r-project.org/package=linelist)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6532786.svg)](https://doi.org/10.5281/zenodo.6532786)
@@ -309,11 +309,10 @@ sharing them with analytics teams.
 
 ### Lifecycle
 
-This package is currently *experimental*, as defined by the [RECON
-software lifecycle](https://www.reconverse.org/lifecycle.html). This
-means that essential features and mechanisms should not change
-drastically, but depending on user feedback, functions may be renamed,
-arguments may change, some functionalities may be added, etc.
+This package is currently *maturing*, as defined by the [RECON software
+lifecycle](https://www.reconverse.org/lifecycle.html). This means that
+essential features and mechanisms are present and stable but minor
+breaking changes, or function renames may still occur sporadically.
 
 ### Contributions
 
