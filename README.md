@@ -15,7 +15,7 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg)](https://www.reconverse.org/lifecycle.html#experimental)
 [![month-download](https://cranlogs.r-pkg.org/badges/linelist)](https://cran.r-project.org/package=linelist)
 [![total-download](https://cranlogs.r-pkg.org/badges/grand-total/linelist)](https://cran.r-project.org/package=linelist)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6556047.svg)](https://doi.org/10.5281/zenodo.6556047)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6532786.svg)](https://doi.org/10.5281/zenodo.6532786)
 <!-- badges: end -->
 
 *linelist* provides a safe entry point to the *Epiverse* software
