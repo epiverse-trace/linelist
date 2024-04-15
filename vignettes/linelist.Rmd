@@ -281,7 +281,6 @@ against this. For instance, let's assume we want to select only some columns of
 `x`:
 
 ```{r}
-# hybrid selection
 x %>%
   select(1:2)
 ```
