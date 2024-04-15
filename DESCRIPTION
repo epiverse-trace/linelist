@@ -49,6 +49,7 @@ Suggests:
     testthat,
     tibble
 Config/Needs/website:
+    r-lib/pkgdown,
     epiverse-trace/epiversetheme
 VignetteBuilder: knitr
 Language: en-GB
