@@ -38,8 +38,8 @@ Specific methods commonly used to handle \code{data.frame} are provided for
 alter or lose tagged variables (and may thus break downstream data
 pipelines).
 \itemize{
-\item \verb{names() <-} and \code{rename} (see \code{\link[dplyr:rename]{dplyr::rename()}}): will rename tags as
-needed
+\item \verb{names() <-} (and related functions, such as \code{\link[dplyr:rename]{dplyr::rename()}}) will
+rename tags as needed
 \item \verb{x[...] <-} and \verb{x[[...]] <-} (see \link{sub_linelist}): will adopt the
 desired behaviour when tagged variables are lost
 \item \code{print()}: prints info about the \code{linelist} in addition to the

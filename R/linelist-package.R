@@ -35,8 +35,8 @@
 #'   alter or lose tagged variables (and may thus break downstream data
 #'   pipelines).
 #'
-#'   * `names() <-` and `rename` (see [dplyr::rename()]): will rename tags as
-#'   needed
+#'   * `names() <-` (and related functions, such as [dplyr::rename()]) will
+#'   rename tags as needed
 #'
 #'   * `x[...] <-` and `x[[...]] <-` (see [sub_linelist]): will adopt the
 #'    desired behaviour when tagged variables are lost
