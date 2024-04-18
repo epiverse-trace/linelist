@@ -1,3 +1,9 @@
+# linelist 1.1.2
+
+## Minor change
+
+* Fix URL in CITATION (@Bisaloo, #123)
+
 # linelist 1.1.1
 
 ## Minor change

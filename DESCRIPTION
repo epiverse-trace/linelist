@@ -1,6 +1,6 @@
 Package: linelist
 Title: Tagging and Validating Epidemiological Data
-Version: 1.1.1
+Version: 1.1.2
 Authors@R: 
     c(
       person(given = "Hugo",
