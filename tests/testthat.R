@@ -1,8 +1,8 @@
 library(testthat)
 library(linelist)
 
-test_results <- test_check("linelist")
+test_results <- as.data.frame(test_check("linelist"))
 
-if (any(as.data.frame(test_results)$warning > 0)) {
+if (any(test_results$warning > 0) && Sys.getenv("NOT_CRAN", FALSE)) {
   stop("tests failed with warnings")
 }

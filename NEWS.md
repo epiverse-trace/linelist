@@ -1,5 +1,10 @@
 # linelist (development version)
 
+## Minor change
+
+* Tests no longer error on warnings on CRAN, to avoid false positives on a 
+platform where we have limited control (@Bisaloo, #123).
+
 # linelist 1.1.0
 
 ## Breaking changes
