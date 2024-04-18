@@ -32,7 +32,7 @@ case the \code{linelist} class is lost as well; defaults to \code{FALSE}}
 \item{value}{the replacement to be used for the entries identified in \code{x}}
 
 \item{name}{
-    A literal character string or a \link[base]{name} (possibly \link[base]{backtick}
+    a literal character string or a \link[base]{name} (possibly \link[base]{backtick}
     quoted).  For extraction, this is normally (see under
     \sQuote{Environments}) partially matched to the \code{\link[base]{names}}
     of the object.
