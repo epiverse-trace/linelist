@@ -40,7 +40,7 @@
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="index.html">linelist</a>
 
-    <small class="nav-text text-muted me-auto version-number" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.9000</small>
+    <small class="nav-text text-muted me-auto version-number" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,6 +60,7 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="articles/compat-dplyr.html">Compatibility with dplyr</a>
     <a class="dropdown-item" href="articles/design-principles.html">Design Principles for linelist</a>
+    <a class="dropdown-item" href="articles/software-permissions.html">Software permissions and regulations</a>
   </div>
 </li>
 <li class="nav-item">
@@ -103,16 +104,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"linelist"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="development-version">Development version<a class="anchor" aria-label="anchor" href="#development-version"></a>
-</h3>
-<p>The development version of <em>linelist</em> can be installed from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"epiverse-trace/linelist"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-</div>
+
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -336,7 +328,7 @@
 <div class="section level3">
 <h3 id="lifecycle">Lifecycle<a class="anchor" aria-label="anchor" href="#lifecycle"></a>
 </h3>
-<p>This package is currently <em>experimental</em>, as defined by the <a href="https://www.reconverse.org/lifecycle.html" class="external-link">RECON software lifecycle</a>. This means that essential features and mechanisms should not change drastically, but depending on user feedback, functions may be renamed, arguments may change, some functionalities may be added, etc.</p>
+<p>This package is currently <em>maturing</em>, as defined by the <a href="https://www.reconverse.org/lifecycle.html" class="external-link">RECON software lifecycle</a>. This means that essential features and mechanisms are present and stable but minor breaking changes, or function renames may still occur sporadically.</p>
 </div>
 <div class="section level3">
 <h3 id="contributions">Contributions<a class="anchor" aria-label="anchor" href="#contributions"></a>
@@ -376,8 +368,8 @@
 <h2 data-toc-skip>Code of Conduct</h2>
 <ul class="list-unstyled">
 <li>
-<p><a href="https://docs.google.com/document/d/e/2PACX-1vSi9qlNRvh6nSSlHEcM8mpB9XQHDQyo2I12VG--r5SwciJ5UdRzhUp3sYXJhXoyYg/pub" class="external-link">Código de Conducta</a></p>
-<p><a href="https://docs.google.com/document/u/1/d/e/2PACX-1vRcwl2uaKdEQT5iS-9MroDMKsd81oR8v1gdlY1kHTTjgGEbLKfcWxtdrkvVRhJJGQalsgC1A4K4YiDe/pub" class="external-link">Code of Conduct</a></p>
+<p><a href="https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT_es.md" class="external-link">Código de Conducta</a></p>
+<p><a href="https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT_en.md" class="external-link">Code of Conduct</a></p>
 </li>
 </ul>
 </div>
@@ -399,20 +391,7 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://digitalpublicgoods.net/registry/linelist.html" class="external-link"><img src="https://raw.githubusercontent.com/epiverse-trace/linelist/main/man/figures/dpg_badge.png" alt="Digital Public Good"></a></li>
-<li><a href="https://opensource.org/license/mit" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></li>
-<li><a href="https://cran.r-project.org/web/checks/check_results_linelist.html" class="external-link"><img src="https://badges.cranchecks.info/summary/linelist.svg" alt="cran-check"></a></li>
-<li><a href="https://github.com/epiverse-trace/linelist/actions" class="external-link"><img src="https://github.com/epiverse-trace/linelist/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://app.codecov.io/gh/epiverse-trace/linelist" class="external-link"><img src="https://codecov.io/gh/epiverse-trace/linelist/branch/main/graph/badge.svg?token=JGTCEY0W02" alt="codecov"></a></li>
-<li><a href="https://www.reconverse.org/lifecycle.html#experimental" class="external-link"><img src="https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-experimental.svg" alt="lifecycle-experimental"></a></li>
-<li><a href="https://cran.r-project.org/package=linelist" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/linelist" alt="month-download"></a></li>
-<li><a href="https://cran.r-project.org/package=linelist" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/grand-total/linelist" alt="total-download"></a></li>
-<li><a href="https://doi.org/10.5281/zenodo.6556047" class="external-link"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.6556047.svg" alt="DOI"></a></li>
-</ul>
-</div>
+
 
   </aside>
 </div>
