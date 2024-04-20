@@ -1,4 +1,4 @@
-# linelist (development version)
+# linelist 1.1.3
 
 ## Minor change
 
