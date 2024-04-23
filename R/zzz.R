@@ -1,3 +1,3 @@
 .onLoad <- function(libname, pkgname) {
-  lost_tags_action("warning", quiet = TRUE)
+  lost_tags_action(Sys.setenv("LINELIST_LOST_ACTION", "warning"), quiet = TRUE)
 }
