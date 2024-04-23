@@ -323,3 +323,11 @@ x %>%
 get_lost_tags_action() # check current behaviour
 lost_tags_action() # reset default
 ```
+
+### Changing tag loss action permanently
+
+If you wish to change the `lost_tags_action` in a way that persists across R sessions, you can do so by setting the `LINELIST_LOST_ACTION` environment variable. For example, your `.Renviron` file could contain the following line:
+
+```text
+LINELIST_LOST_ACTION="error"
+```
