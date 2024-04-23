@@ -1,5 +1,9 @@
 # linelist (development version)
 
+## New features
+
+* Default tag loss condition can now permanently be set via an environment variable `LINELIST_LOST_ACTION` (@Bisaloo, #126). The environment variable needs to be set before the R session is started due to the way R environment variables work. This allow users to set a stricter default behaviour for tag loss if they want to ensure tag loss never go unnoticed (#104).
+
 # linelist 1.1.3
 
 ## Minor change
