@@ -301,7 +301,7 @@ Again, we observe a warning as before due to the loss of tagged variables in the
 operation. This behaviour can be silenced if needed, or could be changed to
 issue an error (for stronger pipelines for instance):
 
-```{r error = TRUE}
+```{r error = TRUE, purl = FALSE}
 # hybrid selection
 x %>%
   select(1:2, has_tag("gender"))
