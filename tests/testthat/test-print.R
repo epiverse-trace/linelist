@@ -5,3 +5,7 @@ test_that("tests for print.linelist", {
   y <- make_linelist(cars)
   expect_snapshot_output(print(y))
 })
+
+test_that("testthat warnings are promoted to error locally and on CI", {
+  expect_identical(warning("test"), "test")
+})
