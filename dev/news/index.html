@@ -64,6 +64,10 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="linelist-development-version">linelist (development version)<a class="anchor" aria-label="anchor" href="#linelist-development-version"></a></h2>
 <div class="section level3">
+<h3 id="internal-change-development-version">Internal change<a class="anchor" aria-label="anchor" href="#internal-change-development-version"></a></h3>
+<ul><li>Promotion of testthat warnings to errors on CI is restored, thanks to a report and suggestion by <a href="https://github.com/krlmlr" class="external-link">@krlmlr</a>. This was accidentally removed during <a href="https://github.com/epiverse-trace/linelist/issues/123" class="external-link">#123</a> (<a href="https://github.com/epiverse-trace/linelist/issues/128" class="external-link">#128</a>).</li>
+</ul></div>
+<div class="section level3">
 <h3 id="new-features-development-version">New features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
 <ul><li>Default tag loss condition can now permanently be set via an environment variable <code>LINELIST_LOST_ACTION</code> (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/126" class="external-link">#126</a>). The environment variable needs to be set before the R session is started due to the way R environment variables work. This allow users to set a stricter default behaviour for tag loss if they want to ensure tag loss never go unnoticed (<a href="https://github.com/epiverse-trace/linelist/issues/104" class="external-link">#104</a>).</li>
 </ul></div>
