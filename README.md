@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# *linelist*: Tagging and Validating Epidemiological Data <img src="man/figures/logo.svg" align="right" width="120" />
+# **linelist**: Tagging and Validating Epidemiological Data <img src="man/figures/logo.svg" align="right" width="120" />
 
 <!-- badges: start -->
 
@@ -37,7 +37,7 @@ install.packages("linelist", build_vignettes = TRUE)
 
 ### Development version
 
-The development version of *linelist* can be installed from
+The development version of linelist can be installed from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -51,10 +51,14 @@ pak::pak("epiverse-trace/linelist")
 
 ## Usage
 
-<img src="man/figures/linelist_infographics.png" width="60%" />
+``` r
+knitr::include_graphics("man/figures/linelist_infographics.png")
+```
 
-*linelist* works by tagging key epidemiological data in a `data.frame`
-or a `tibble` to facilitate and strengthen data pipelines. The resulting
+<img src="man/figures/linelist_infographics.png" alt="Graphical summary of the linelist R package, with emphasis of these 4 key features: 1. Tag key epi variables, 2. Validate tagged data, 3. Safeguards vs accidental loss / alteration, 4. Robust data for stronger pipelines](man/figures/linelist_infographics.png" width="60%" />
+
+linelist works by tagging key epidemiological data in a `data.frame` or
+a `tibble` to facilitate and strengthen data pipelines. The resulting
 object is a `linelist` object, which extends `data.frame` (or `tibble`)
 by providing three types of features:
 
@@ -69,7 +73,7 @@ by providing three types of features:
     common data handling operations
 
 The short example below illustrates these different features. See the
-[Documentation](#Documentation) section for more in-depth examples and
+[Documentation](#documentation) section for more in-depth examples and
 details about `linelist` objects.
 
 ``` r
@@ -272,7 +276,7 @@ x_no_geo %>%
   )
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" alt="Epicurves (daily incidence) by sex and outcome via the incidence2 R package." width="100%" />
 
 ## Documentation
 
@@ -281,11 +285,11 @@ More detailed documentation can be found at:
 
 In particular:
 
-- A general introduction to *linelist*
-  ([link](https://epiverse-trace.github.io/linelist/articles/linelist.html))
+- [A general introduction to
+  linelist](https://epiverse-trace.github.io/linelist/articles/linelist.html)
 
-- The reference manual
-  ([link](https://epiverse-trace.github.io/linelist/reference/index.html))
+- [The reference
+  manual](https://epiverse-trace.github.io/linelist/reference/index.html)
 
 ## Getting help
 
@@ -295,7 +299,7 @@ To ask questions or give us some feedback, please use the github
 ## Data privacy
 
 Case line lists may contain personally identifiable information (PII).
-While *linelist* provides a way to store this data in R, it does not
+While linelist provides a way to store this data in R, it does not
 currently provide tools for data anonymization. The user is responsible
 for respecting individual privacy and ensuring PII is handled with the
 required level of confidentiality, in compliance with applicable laws
@@ -330,6 +334,6 @@ By contributing to this project, you agree to abide by its terms.
 This package is a reboot of the RECON package
 [linelist](https://github.com/reconhub/linelist). Unlike its
 predecessor, the new package focuses on the implementation of a
-*linelist* class. The data cleaning features of the original package
-will eventually be re-implemented for *linelist* objects, albeit likely
+`linelist` class. The data cleaning features of the original package
+will eventually be re-implemented for `linelist` objects, albeit likely
 in a separate package.
