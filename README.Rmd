@@ -60,7 +60,11 @@ pak::pak("epiverse-trace/linelist")
 
 ## Usage
 
-<img src="man/figures/linelist_infographics.png" width="60%" />
+```{r}
+#| fig.alt: "Graphical summary of the linelist R package, with emphasis of these 4 key features: 1. Tag key epi variables, 2. Validate tagged data, 3. Safeguards vs accidental loss / alteration, 4. Robust data for stronger pipelines](man/figures/linelist_infographics.png"
+#| out.width: "60%"
+knitr::include_graphics("man/figures/linelist_infographics.png")
+```
 
 *linelist* works by tagging key epidemiological data in a `data.frame` or a
 `tibble` to facilitate and strengthen data pipelines. The resulting object is a
@@ -162,7 +166,7 @@ x_no_geo %>%
 linelist can also be connected to the incidence2 package for pipelines focused
 on aggregated count data:
 
-```{r, fig.width=8, fig.height=6}
+```{r, fig.width=8, fig.height=6, fig.alt="Epicurves (daily incidence) by sex and outcome via the incidence2 R package."}
 library(incidence2)
 
 x_no_geo %>%
