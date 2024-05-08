@@ -184,9 +184,9 @@ https://epiverse-trace.github.io/linelist/
 
 In particular:
 
-* A general introduction to *linelist* ([link](https://epiverse-trace.github.io/linelist/articles/linelist.html))
+* [A general introduction to *linelist*](https://epiverse-trace.github.io/linelist/articles/linelist.html)
 
-* The reference manual ([link](https://epiverse-trace.github.io/linelist/reference/index.html))
+* [The reference manual](https://epiverse-trace.github.io/linelist/reference/index.html)
 
 ## Getting help
 
