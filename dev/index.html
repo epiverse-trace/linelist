@@ -88,7 +88,7 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
 <img src="logo.svg" class="logo" alt=""><h1 id="linelist-tagging-and-validating-epidemiological-data-">
-<em>linelist</em>: Tagging and Validating Epidemiological Data <a class="anchor" aria-label="anchor" href="#linelist-tagging-and-validating-epidemiological-data-"></a>
+<strong>linelist</strong>: Tagging and Validating Epidemiological Data <a class="anchor" aria-label="anchor" href="#linelist-tagging-and-validating-epidemiological-data-"></a>
 </h1>
 </div>
 <!-- badges: start -->
@@ -107,7 +107,7 @@
 <div class="section level3 pkgdown-devel">
 <h3 id="development-version">Development version<a class="anchor" aria-label="anchor" href="#development-version"></a>
 </h3>
-<p>The development version of <em>linelist</em> can be installed from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>The development version of linelist can be installed from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://pak.r-lib.org/" class="external-link">pak</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
@@ -118,15 +118,17 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p><img src="reference/figures/linelist_infographics.png" width="60%"></p>
-<p><em>linelist</em> works by tagging key epidemiological data in a <code>data.frame</code> or a <code>tibble</code> to facilitate and strengthen data pipelines. The resulting object is a <code>linelist</code> object, which extends <code>data.frame</code> (or <code>tibble</code>) by providing three types of features:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html" class="external-link">include_graphics</a></span><span class="op">(</span><span class="st">"man/figures/linelist_infographics.png"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/linelist_infographics.png" alt="Graphical summary of the linelist R package, with emphasis of these 4 key features: 1. Tag key epi variables, 2. Validate tagged data, 3. Safeguards vs accidental loss / alteration, 4. Robust data for stronger pipelines](man/figures/linelist_infographics.png" width="60%"></p>
+<p>linelist works by tagging key epidemiological data in a <code>data.frame</code> or a <code>tibble</code> to facilitate and strengthen data pipelines. The resulting object is a <code>linelist</code> object, which extends <code>data.frame</code> (or <code>tibble</code>) by providing three types of features:</p>
 <ol style="list-style-type: decimal">
 <li><p>a <strong>tagging system</strong> to identify key data, enabling access to these data using their tags rather than actual names, which may change over time and across datasets</p></li>
 <li><p><strong>validation</strong> of the tagged variables (making sure they are present and of the right type/class)</p></li>
 <li><p><strong>safeguards</strong> against accidental losses of tagged variables in common data handling operations</p></li>
 </ol>
-<p>The short example below illustrates these different features. See the <a href="#Documentation">Documentation</a> section for more in-depth examples and details about <code>linelist</code> objects.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<p>The short example below illustrates these different features. See the <a href="#documentation">Documentation</a> section for more in-depth examples and details about <code>linelist</code> objects.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># load packages and a dataset for the example</span></span>
 <span><span class="co"># -------------------------------------------</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://epiverse-trace.github.io/linelist/">linelist</a></span><span class="op">)</span></span>
@@ -212,14 +214,14 @@
 <span><span class="co">#&gt; $occupation</span></span>
 <span><span class="co">#&gt; [1] "age"</span></span></code></pre></div>
 <p><code><a href="reference/validate_linelist.html">validate_linelist()</a></code> will error if one of your tagged column doesn’t have the correct type:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># validation of tagged variables</span></span>
 <span><span class="co"># ------------------------------</span></span>
 <span><span class="co">## (this flags a likely mistake: occupation should not be an integer)</span></span>
 <span><span class="fu"><a href="reference/validate_linelist.html">validate_linelist</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error: Some tags have the wrong class:</span></span>
 <span><span class="co">#&gt;   - occupation: Must inherit from class 'character'/'factor', but has class 'integer'</span></span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># change tags: fix mistakes, add new ones</span></span>
 <span><span class="co"># ---------------------------------------</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -237,7 +239,7 @@
 <span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:dt_onset</span></span></code></pre></div>
 <p>For stronger pipelines, you can even trigger errors upon loss:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Lost tags will now issue an error.</span></span>
 <span></span>
@@ -253,7 +255,7 @@
 <span><span class="fu"><a href="reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Lost tags will now issue a warning.</span></span></code></pre></div>
 <p>Alternatively, content can be accessed by tags:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x_no_geo</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"date_onset"</span>, <span class="st">"outcome"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
@@ -294,7 +296,7 @@
 <span><span class="co">#&gt; 10 2015-05-21 2015-05-29     M      Alive  </span></span>
 <span><span class="co">#&gt; # ℹ 152 more rows</span></span></code></pre></div>
 <p>linelist can also be connected to the incidence2 package for pipelines focused on aggregated count data:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.reconverse.org/incidence2/" class="external-link">incidence2</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: grates</span></span>
 <span></span>
@@ -308,7 +310,7 @@
 <span>    border_colour <span class="op">=</span> <span class="st">"white"</span>,</span>
 <span>    legend <span class="op">=</span> <span class="st">"bottom"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-8-1.png" width="100%"></p>
+<p><img src="reference/figures/README-unnamed-chunk-9-1.png" alt="Epicurves (daily incidence) by sex and outcome via the incidence2 R package." width="100%"></p>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
@@ -316,8 +318,8 @@
 <p>More detailed documentation can be found at: <a href="https://epiverse-trace.github.io/linelist/" class="uri">https://epiverse-trace.github.io/linelist/</a></p>
 <p>In particular:</p>
 <ul>
-<li><p>A general introduction to <em>linelist</em> (<a href="https://epiverse-trace.github.io/linelist/articles/linelist.html">link</a>)</p></li>
-<li><p>The reference manual (<a href="https://epiverse-trace.github.io/linelist/reference/index.html">link</a>)</p></li>
+<li><p><a href="https://epiverse-trace.github.io/linelist/articles/linelist.html">A general introduction to linelist</a></p></li>
+<li><p><a href="https://epiverse-trace.github.io/linelist/reference/index.html">The reference manual</a></p></li>
 </ul>
 </div>
 <div class="section level2">
@@ -328,7 +330,7 @@
 <div class="section level2">
 <h2 id="data-privacy">Data privacy<a class="anchor" aria-label="anchor" href="#data-privacy"></a>
 </h2>
-<p>Case line lists may contain personally identifiable information (PII). While <em>linelist</em> provides a way to store this data in R, it does not currently provide tools for data anonymization. The user is responsible for respecting individual privacy and ensuring PII is handled with the required level of confidentiality, in compliance with applicable laws and regulations for storing and sharing PII.</p>
+<p>Case line lists may contain personally identifiable information (PII). While linelist provides a way to store this data in R, it does not currently provide tools for data anonymization. The user is responsible for respecting individual privacy and ensuring PII is handled with the required level of confidentiality, in compliance with applicable laws and regulations for storing and sharing PII.</p>
 <p>Note that PII is rarely needed for common analytics tasks, so that in many instances it may be advisable to remove PII from the data before sharing them with analytics teams.</p>
 </div>
 <div class="section level2">
@@ -352,7 +354,7 @@
 <div class="section level3">
 <h3 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a>
 </h3>
-<p>This package is a reboot of the RECON package <a href="https://github.com/reconhub/linelist" class="external-link">linelist</a>. Unlike its predecessor, the new package focuses on the implementation of a <em>linelist</em> class. The data cleaning features of the original package will eventually be re-implemented for <em>linelist</em> objects, albeit likely in a separate package.</p>
+<p>This package is a reboot of the RECON package <a href="https://github.com/reconhub/linelist" class="external-link">linelist</a>. Unlike its predecessor, the new package focuses on the implementation of a <code>linelist</code> class. The data cleaning features of the original package will eventually be re-implemented for <code>linelist</code> objects, albeit likely in a separate package.</p>
 </div>
 </div>
 </div>
