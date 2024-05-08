@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# *linelist*: Tagging and Validating Epidemiological Data <img src="man/figures/logo.svg" align="right" width="120" />
+# **linelist**: Tagging and Validating Epidemiological Data <img src="man/figures/logo.svg" align="right" width="120" />
 
 <!-- badges: start -->
 [![Digital Public Good](https://raw.githubusercontent.com/epiverse-trace/linelist/main/man/figures/dpg_badge.png)](https://digitalpublicgoods.net/registry/linelist.html)
@@ -46,7 +46,7 @@ install.packages("linelist", build_vignettes = TRUE)
 
 ### Development version
 
-The development version of *linelist* can be installed from
+The development version of linelist can be installed from
 [GitHub](https://github.com/) with:
 
 ```{r, eval=FALSE}
@@ -66,7 +66,7 @@ pak::pak("epiverse-trace/linelist")
 knitr::include_graphics("man/figures/linelist_infographics.png")
 ```
 
-*linelist* works by tagging key epidemiological data in a `data.frame` or a
+linelist works by tagging key epidemiological data in a `data.frame` or a
 `tibble` to facilitate and strengthen data pipelines. The resulting object is a
 `linelist` object, which extends `data.frame` (or `tibble`) by providing three
 types of features:
@@ -188,7 +188,7 @@ https://epiverse-trace.github.io/linelist/
 
 In particular:
 
-* [A general introduction to *linelist*](https://epiverse-trace.github.io/linelist/articles/linelist.html)
+* [A general introduction to linelist](https://epiverse-trace.github.io/linelist/articles/linelist.html)
 
 * [The reference manual](https://epiverse-trace.github.io/linelist/reference/index.html)
 
@@ -200,7 +200,7 @@ To ask questions or give us some feedback, please use the github
 ## Data privacy
 
 Case line lists may contain personally identifiable information (PII). While
-*linelist* provides a way to store this data in R, it does not currently provide
+linelist provides a way to store this data in R, it does not currently provide
 tools for data anonymization. The user is responsible for respecting individual
 privacy and ensuring PII is handled with the required level of confidentiality,
 in compliance with applicable laws and regulations for storing and sharing PII.
@@ -232,6 +232,6 @@ By contributing to this project, you agree to abide by its terms.
 
 This package is a reboot of the RECON package
 [linelist](https://github.com/reconhub/linelist). Unlike its predecessor, the
-new package focuses on the implementation of a *linelist* class. The data
+new package focuses on the implementation of a `linelist` class. The data
 cleaning features of the original package will eventually be re-implemented for
-*linelist* objects, albeit likely in a separate package.
+`linelist` objects, albeit likely in a separate package.
