@@ -1,12 +1,12 @@
 pandoc: 3.1.11
 pkgdown: 2.0.9.9000
-pkgdown_sha: 2fa8ef9bdae961e2b4413fa8ca70fae2fd33660f
+pkgdown_sha: fd9a50ccd6bd08d6422fa7c195e45d75f168adce
 articles:
   compat-dplyr: compat-dplyr.html
   design-principles: design-principles.html
   linelist: linelist.html
   software-permissions: software-permissions.html
-last_built: 2024-05-08T09:56Z
+last_built: 2024-05-21T15:26Z
 urls:
   reference: https://epiverse-trace.github.io/linelist/reference
   article: https://epiverse-trace.github.io/linelist/articles
