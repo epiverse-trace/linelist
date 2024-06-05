@@ -1,90 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/articles/compat-dplyr.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/articles/design-principles.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/articles/linelist.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/articles/software-permissions.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/index.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/has_tag.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/linelist-package.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/lost_tags_action.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/make_linelist.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/names-set-.linelist.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/print.linelist.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/select.linelist.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/select_tags.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/set_tags.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/sub_linelist.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/tags.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/tags_defaults.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/tags_df.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/tags_names.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/tags_types.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/validate_linelist.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/validate_tags.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/linelist/dev/reference/validate_types.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/LICENSE-text.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/LICENSE.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/articles/compat-dplyr.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/articles/design-principles.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/articles/index.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/articles/linelist.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/articles/software-permissions.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/authors.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/index.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/news/index.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/has_tag.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/index.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/linelist-package.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/lost_tags_action.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/make_linelist.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/names-set-.linelist.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/print.linelist.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/select.linelist.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/select_tags.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/set_tags.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/sub_linelist.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/tags.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/tags_defaults.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/tags_df.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/tags_names.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/tags_types.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/validate_linelist.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/validate_tags.html</loc></url>
+<url><loc>https://epiverse-trace.github.io/linelist/dev/reference/validate_types.html</loc></url>
 </urlset>
+
