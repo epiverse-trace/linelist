@@ -7,8 +7,8 @@ test_that("tests for make_linelist", {
   msg <- "Must have at least 1 cols, but has 0 cols."
   expect_error(make_linelist(data.frame()), msg)
 
-  msg <- "Must be element of set \\{'speed','dist'\\}, but is" # nolint
-  expect_error(make_linelist(cars, outcome = "bar"), msg)
+  msg <- "Must be element of set {'speed','dist'}, but is"
+  expect_error(make_linelist(cars, outcome = "bar"), msg, fixed = TRUE)
 
   expect_error(
     make_linelist(cars, outcome = "bar", age = "bla"), 

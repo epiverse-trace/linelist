@@ -8,8 +8,8 @@ test_that("tests for set_tags()", {
   msg <- "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
   expect_error(set_tags(x, toto = 1), msg, fixed = TRUE)
 
-  msg <- "Must be element of set \\{'speed','dist'\\}, but is" # nolint
-  expect_error(set_tags(x, outcome = "toto"), msg)
+  msg <- "Must be element of set {'speed','dist'}, but is"
+  expect_error(set_tags(x, outcome = "toto"), msg, fixed = TRUE)
 
 
   # Check functionality
