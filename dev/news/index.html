@@ -74,8 +74,7 @@
 <p><code><a href="../reference/make_linelist.html">make_linelist()</a></code> and <code><a href="../reference/set_tags.html">set_tags()</a></code> no longer accept a named list of characters as input. Instead, <code><a href="../reference/make_linelist.html">make_linelist()</a></code>, <code><a href="../reference/set_tags.html">set_tags()</a></code> and <code><a href="../reference/tags_types.html">tags_types()</a></code> now use <a href="https://rlang.r-lib.org/reference/dyn-dots.html" class="external-link">rlang’s dynamic dots</a>, which means that you can splice list arguments. This implementation is more robust, better tested, and makes it explicit that users want to splice the list (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/96" class="external-link">#96</a>).</p>
 <ul><li>Before:</li>
 </ul><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">my_tags</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">my_tags</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  id <span class="op">=</span> <span class="st">"case_ID"</span>,</span>
 <span>  date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span>
 <span>  age <span class="op">=</span> <span class="st">"age"</span>,</span>
@@ -92,8 +91,7 @@
 <span><span class="op">)</span></span></code></pre></div>
 <ul><li>Now:</li>
 </ul><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">my_tags</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">my_tags</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  id <span class="op">=</span> <span class="st">"case_ID"</span>,</span>
 <span>  date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span>
 <span>  age <span class="op">=</span> <span class="st">"age"</span>,</span>
@@ -115,8 +113,7 @@
 <ul><li>
 <p>linelist warnings and errors in the case of a tag loss now have a custom class (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/109" class="external-link">#109</a>), which means it is easier to silence them specifically, or to catch them programmatically for advanced error handling. One example of a new advanced condition handling that was before not possible is:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">warning_counter</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<code class="sourceCode R"><span><span class="va">warning_counter</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">withCallingHandlers</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">linelist</span><span class="fu">::</span><span class="fu"><a href="../reference/make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">cars</span>, date_onset <span class="op">=</span> <span class="st">"dist"</span>, age <span class="op">=</span> <span class="st">"speed"</span><span class="op">)</span></span>
@@ -138,8 +135,7 @@
 <li>
 <p>linelist objects now have a new custom <code>$&lt;-.linelist()</code> to prevent tag loss when subsetting a linelist object (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/86" class="external-link">#86</a>). This completes the functionality already provided by the <code>[&lt;-.linelist()</code> and <code>[[&lt;-.linelist()</code> methods.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">x</span><span class="op">$</span><span class="va">tagged_column</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">$</span><span class="va">tagged_column</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
 <span><span class="co">#&gt; Warning in prune_tags(out, lost_action): The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  tag:tagged_column</span></span></code></pre></div>
 </li>
@@ -147,8 +143,7 @@
 <p>Validation failures in <code><a href="../reference/validate_types.html">validate_types()</a></code> now integrate a delayed error mechanism (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/106" class="external-link">#106</a>). This ensures that the error message will return all the invalid tag types at once rather than having to go through multiple trials and runs.</p>
 <ul><li>Before: only the first invalid tag type is returned.</li>
 </ul><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># No warning about age, even though it also has an invalid type</span></span>
+<code class="sourceCode R"><span><span class="co"># No warning about age, even though it also has an invalid type</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">cars</span>, age <span class="op">=</span> <span class="st">"speed"</span>, gender <span class="op">=</span> <span class="st">"dist"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/validate_types.html">validate_types</a></span><span class="op">(</span><span class="va">x</span>, ref_types <span class="op">=</span> <span class="fu"><a href="../reference/tags_types.html">tags_types</a></span><span class="op">(</span>age <span class="op">=</span> <span class="st">"factor"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error in validate_types(x, ref_types = tags_types(age = "factor")) : </span></span>
@@ -156,8 +151,7 @@
 <span><span class="co">#&gt; Must inherit from class 'character'/'factor', but has class 'numeric'</span></span></code></pre></div>
 <ul><li>Now: the error message returns all the invalid tag types at once.</li>
 </ul><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">cars</span>, age <span class="op">=</span> <span class="st">"speed"</span>, gender <span class="op">=</span> <span class="st">"dist"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/make_linelist.html">make_linelist</a></span><span class="op">(</span><span class="va">cars</span>, age <span class="op">=</span> <span class="st">"speed"</span>, gender <span class="op">=</span> <span class="st">"dist"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/validate_types.html">validate_types</a></span><span class="op">(</span><span class="va">x</span>, ref_types <span class="op">=</span> <span class="fu"><a href="../reference/tags_types.html">tags_types</a></span><span class="op">(</span>age <span class="op">=</span> <span class="st">"factor"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Some tags have the wrong class:</span></span>
 <span><span class="co">#&gt;   - gender: Must inherit from class 'character'/'factor', but has class 'numeric'</span></span>
@@ -182,8 +176,7 @@
 <li>
 <p>A new selection helper is provided for tidyverse users, based on the existing selectors provided by the tidyselect package: <code><a href="../reference/has_tag.html">has_tag()</a></code> (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/61" class="external-link">#61</a>). By feeding it a character vector of tags to operate on, you can work with dplyr verbs on specific tagged columns without having to explicitly use the column names:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"date_of_onset"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </li>
 </ul></div>
@@ -193,8 +186,7 @@
 <li>
 <p>The <code><a href="../reference/select_tags.html">select_tags()</a></code> function is now deprecated to ensure we provide just one clear way to address a given issue and that our “happy path” is clearly signposted (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/61" class="external-link">#61</a>). If you were using this function, we now recommend using the more explicit two-steps process:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># Deprecated</span></span>
+<code class="sourceCode R"><span><span class="co"># Deprecated</span></span>
 <span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/select_tags.html">select_tags</a></span><span class="op">(</span><span class="st">"age"</span><span class="op">)</span></span>
 <span></span>
@@ -211,8 +203,7 @@
 <li>
 <p>The custom <code><a href="../reference/select.linelist.html">select.linelist()</a></code> method has been deprecated as providing a custom <code>[.linelist()</code> is sufficient to ensure compatibility with <code><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">dplyr::select()</a></code> default methods, including triggering <code><a href="../reference/lost_tags_action.html">lost_tags_action()</a></code> on tag removal (<a href="https://github.com/Bisaloo" class="external-link">@Bisaloo</a>, <a href="https://github.com/epiverse-trace/linelist/issues/61" class="external-link">#61</a>). A full deletion of this method is not possible at the moment because we want to provide a smooth transition for users that relied on the custom <code>tags</code> argument of the <code><a href="../reference/select.linelist.html">select.linelist()</a></code> method. It is now recommend instead to use the new <code><a href="../reference/has_tag.html">has_tag()</a></code> selection helper:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"id"</span>, <span class="st">"date_of_onset"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Instead of</span></span>
