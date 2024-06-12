@@ -1,14 +1,15 @@
-# -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.5.0
+# --------------------------------------------
+# CITATION file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
-# -----------------------------------------------------------
+# --------------------------------------------
  
 cff-version: 1.2.0
 message: 'To cite package "linelist" in publications use:'
 type: software
 license: MIT
 title: 'linelist: Tagging and Validating Epidemiological Data'
-version: 1.0.0.9000
+version: 1.1.3.9000
+doi: 10.5281/zenodo.6532786
 abstract: Provides tools to help storing and handling case line list data. The 'linelist'
   class adds a tagging system to classical 'data.frame' objects to identify key epidemiological
   data such as dates of symptom onset, epidemiological case definition, age, gender
@@ -18,8 +19,22 @@ authors:
 - family-names: Gruson
   given-names: Hugo
   email: hugo@data.org
+  orcid: https://orcid.org/0000-0002-4094-1476
 - family-names: Jombart
   given-names: Thibaut
+preferred-citation:
+  type: manual
+  title: 'linelist: Tagging and Validating Epidemiological Data'
+  authors:
+  - family-names: Gruson
+    given-names: Hugo
+    email: hugo@data.org
+    orcid: https://orcid.org/0000-0002-4094-1476
+  - family-names: Jombart
+    given-names: Thibaut
+  year: '2024'
+  doi: 10.5281/zenodo.6532786
+  url: https://epiverse-trace.github.io/linelist/
 repository: https://CRAN.R-project.org/package=linelist
 repository-code: https://github.com/epiverse-trace/linelist
 url: https://epiverse-trace.github.io/linelist/
@@ -27,6 +42,7 @@ contact:
 - family-names: Gruson
   given-names: Hugo
   email: hugo@data.org
+  orcid: https://orcid.org/0000-0002-4094-1476
 keywords:
 - data
 - data-structures
@@ -35,6 +51,7 @@ keywords:
 - outbreaks
 - r
 - r-package
+- sdg-3
 - structured-data
 references:
 - type: software
@@ -43,11 +60,10 @@ references:
   url: https://www.R-project.org/
   authors:
   - name: R Core Team
-  location:
-    name: Vienna, Austria
-  year: '2023'
   institution:
     name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2024'
   version: '>= 3.1.0'
 - type: software
   title: checkmate
@@ -60,7 +76,7 @@ references:
     given-names: Michel
     email: michellang@gmail.com
     orcid: https://orcid.org/0000-0001-9754-0393
-  year: '2023'
+  year: '2024'
 - type: software
   title: dplyr
   abstract: 'dplyr: A Grammar of Data Manipulation'
@@ -84,7 +100,7 @@ references:
     given-names: Davis
     email: davis@posit.co
     orcid: https://orcid.org/0000-0003-4777-038X
-  year: '2023'
+  year: '2024'
 - type: software
   title: lifecycle
   abstract: 'lifecycle: Manage the Life Cycle of your Package Functions'
@@ -94,12 +110,26 @@ references:
   authors:
   - family-names: Henry
     given-names: Lionel
-    email: lionel@rstudio.com
+    email: lionel@posit.co
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
+    email: hadley@posit.co
     orcid: https://orcid.org/0000-0003-4757-117X
-  year: '2023'
+  year: '2024'
+- type: software
+  title: rlang
+  abstract: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'
+  notes: Imports
+  url: https://rlang.r-lib.org
+  repository: https://CRAN.R-project.org/package=rlang
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2024'
 - type: software
   title: tidyselect
   abstract: 'tidyselect: Select from a Set of Strings'
@@ -109,11 +139,11 @@ references:
   authors:
   - family-names: Henry
     given-names: Lionel
-    email: lionel@rstudio.com
+    email: lionel@posit.co
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@rstudio.com
-  year: '2023'
+    email: hadley@posit.co
+  year: '2024'
 - type: software
   title: callr
   abstract: 'callr: Call R from R'
@@ -127,7 +157,7 @@ references:
     orcid: https://orcid.org/0000-0001-7098-9676
   - family-names: Chang
     given-names: Winston
-  year: '2023'
+  year: '2024'
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -139,7 +169,7 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2023'
+  year: '2024'
 - type: software
   title: magrittr
   abstract: 'magrittr: A Forward-Pipe Operator for R'
@@ -153,7 +183,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@rstudio.com
-  year: '2023'
+  year: '2024'
 - type: software
   title: outbreaks
   abstract: 'outbreaks: A Collection of Disease Outbreak Data'
@@ -174,7 +204,7 @@ references:
   - family-names: Sudre
     given-names: Bertrand
     email: bertrand.sudre@edc.europa.eu
-  year: '2023'
+  year: '2024'
 - type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
@@ -217,7 +247,22 @@ references:
     given-names: Richard
     email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2023'
+  year: '2024'
+- type: software
+  title: spelling
+  abstract: 'spelling: Tools for Spell Checking in R'
+  notes: Suggests
+  url: https://ropensci.r-universe.dev/spelling
+  repository: https://CRAN.R-project.org/package=spelling
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroen@berkeley.edu
+    orcid: https://orcid.org/0000-0002-4035-0289
+  - family-names: Hester
+    given-names: Jim
+    email: james.hester@rstudio.com
+  year: '2024'
 - type: software
   title: testthat
   abstract: 'testthat: Unit Testing for R'
@@ -228,7 +273,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2023'
+  year: '2024'
 - type: software
   title: tibble
   abstract: 'tibble: Simple Data Frames'
@@ -243,4 +288,5 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@rstudio.com
-  year: '2023'
+  year: '2024'
+
