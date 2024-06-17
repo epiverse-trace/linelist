@@ -89,6 +89,9 @@ library(dplyr)
 #> The following objects are masked from 'package:base':
 #> 
 #>     intersect, setdiff, setequal, union
+```
+
+``` r
 
 dataset <- outbreaks::mers_korea_2015$linelist
 head(dataset)
@@ -113,6 +116,9 @@ head(dataset)
 #> 4     2015_22   2015-05-16 2015-05-20 2015-05-26   Alive       <NA>
 #> 5     2015_22   2015-05-17 2015-05-17 2015-05-26   Alive       <NA>
 #> 6     2015_22   2015-05-15 2015-05-17 2015-05-28    Dead 2015-06-01
+```
+
+``` r
 
 # check known tagged variables
 # ----------------------------
@@ -121,6 +127,9 @@ tags_names()
 #>  [5] "date_discharge" "date_outcome"   "date_death"     "gender"        
 #>  [9] "age"            "location"       "occupation"     "hcw"           
 #> [13] "outcome"
+```
+
+``` r
 
 # build a linelist
 # ----------------
@@ -152,6 +161,9 @@ x
 #> #   dt_end_exp <date>, dt_diag <date>, outcome <fct>, dt_death <date>
 #> 
 #> // tags: date_onset:dt_onset, date_reporting:dt_report, occupation:age
+```
+
+``` r
 tags(x) # check available tags
 #> $date_onset
 #> [1] "dt_onset"
@@ -199,11 +211,17 @@ For stronger pipelines, you can even trigger errors upon loss:
 ``` r
 lost_tags_action("error")
 #> Lost tags will now issue an error.
+```
+
+``` r
 
 x_no_geo <- x %>%
   select(-(5:8))
 #> Error: The following tags have lost their variable:
 #>  date_onset:dt_onset
+```
+
+``` r
 
 x_no_geo <- x %>%
   select(-(5:7))
@@ -238,6 +256,9 @@ x_no_geo %>%
 #> # ℹ 152 more rows
 #> 
 #> // tags: date_onset:dt_onset, outcome:outcome
+```
+
+``` r
 
 x_no_geo %>%
   tags_df()
@@ -263,6 +284,9 @@ focused on aggregated count data:
 ``` r
 library(incidence2)
 #> Loading required package: grates
+```
+
+``` r
 
 x_no_geo %>%
   tags_df() %>%
