@@ -50,10 +50,10 @@ prune_tags <- function(x, lost_action = c("error", "warning", "none")) {
       lost_tags_txt
     )
     if (lost_action == "warning") {
-      warning(warningCondition(msg, class = "linelist_warning"))
+      warning(warningCondition(msg, class = "linelist_warning"), call. = FALSE)
     }
     if (lost_action == "error") {
-      stop(errorCondition(msg, class = "linelist_error"))
+      stop(errorCondition(msg, class = "linelist_error"), call. = FALSE)
     }
   }
 
