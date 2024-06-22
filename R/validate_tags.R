@@ -44,10 +44,9 @@ validate_tags <- function(x, allow_extra = FALSE) {
   checkmate::assert_class(x, "linelist")
   x_tags <- tags(x, show_null = TRUE)
 
-  if (is.null(x_tags)) {
-    msg <- "`x` has no tags attribute"
-    stop(msg)
-  }
+  stopifnot(
+    "`x` has no tags attribute" = !is.null(x_tags)
+  )
 
   # check that x is a list, and each tag is a `character`
   checkmate::assert_list(x_tags, types = c("character", "null"))
@@ -56,11 +55,11 @@ validate_tags <- function(x, allow_extra = FALSE) {
   default_present <- tags_names() %in% names(x_tags)
   if (!all(default_present)) {
     missing_tags <- tags_names()[!default_present]
-    msg <- sprintf(
-      "The following default tags are missing:\n%s",
-      toString(missing_tags)
+    stop(
+      "The following default tags are missing:\n",
+      toString(missing_tags),
+      call. = FALSE
     )
-    stop(msg)
   }
 
   # check there is no extra value
@@ -68,12 +67,12 @@ validate_tags <- function(x, allow_extra = FALSE) {
     is_extra <- !names(x_tags) %in% tags_names()
     if (any(is_extra)) {
       extra_tags <- names(x_tags)[is_extra]
-      msg <- sprintf(
-        "The following tags are not part of the defaults:\n%s\n%s",
+      stop(
+        "The following tags are not part of the defaults:\n",
         toString(extra_tags),
-        "Consider using `allow_extra = TRUE` to allow additional tags."
+        "\nConsider using `allow_extra = TRUE` to allow additional tags.",
+        call. = FALSE
       )
-      stop(msg)
     }
   }
 
@@ -82,11 +81,10 @@ validate_tags <- function(x, allow_extra = FALSE) {
   var_exists <- x_tags_vec %in% names(x)
   if (!all(var_exists)) {
     missing_var <- x_tags_vec[!var_exists]
-    msg <- sprintf(
-      "The following tagged variables are missing:\n%s",
+    stop(
+      "The following tagged variables are missing:\n",
       paste0(names(missing_var), ":", missing_var, collapse = ", ")
     )
-    stop(msg)
   }
 
   x
