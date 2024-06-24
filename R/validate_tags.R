@@ -83,7 +83,8 @@ validate_tags <- function(x, allow_extra = FALSE) {
     missing_var <- x_tags_vec[!var_exists]
     stop(
       "The following tagged variables are missing:\n",
-      paste0(names(missing_var), ":", missing_var, collapse = ", ")
+      paste0(names(missing_var), ":", missing_var, collapse = ", "),
+      call. = FALSE
     )
   }
 
