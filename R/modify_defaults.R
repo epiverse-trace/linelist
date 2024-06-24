@@ -20,13 +20,13 @@
 modify_defaults <- function(defaults, x, strict = TRUE) {
   extra <- setdiff(names(x), names(defaults))
   if (strict && (length(extra) > 0L)) {
-    msg <- paste0(
+    stop(
       "Unknown variable types: ",
       toString(extra),
       "\n  ",
-      "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
+      "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`",
+      call. = FALSE
     )
-    stop(msg)
   }
   utils::modifyList(defaults, x, keep.null = TRUE) # keep.null is needed here
 }

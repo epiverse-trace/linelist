@@ -4,7 +4,7 @@ check_not_data_table <- function(x) {
   if (inherits(x, "data.table")) {
     return("must NOT be a data.table")
   }
-  return(TRUE)
+  TRUE
 }
 
 assert_not_data_table <- function(
@@ -16,7 +16,7 @@ assert_not_data_table <- function(
     stop(sprintf(
       "argument \"%s\" is missing, with no default",
       .var.name
-    ))
+    ), call. = FALSE)
   }
   res <- check_not_data_table(x)
   checkmate::makeAssertion(x, res, .var.name, add)

@@ -15,6 +15,8 @@ linters: all_linters(
     ),
     function_argument_linter = NULL,
     indentation_linter = NULL, # unstable as of lintr 3.1.0
+    one_call_pipe_linter = NULL,
+    object_overwrite_linter = NULL,
     # Use minimum R declared in DESCRIPTION or fall back to current R version.
     # Install etdev package from https://github.com/epiverse-trace/etdev
     backport_linter(if (length(x <- etdev::extract_min_r_version())) x else getRversion())
@@ -29,5 +31,11 @@ exclusions: list(
     "data-raw" = list(
       missing_package_linter = Inf,
       namespace_linter = Inf
-    )
+    ),
+    # RcppExports.R is auto-generated and will not pass many linters. In
+    # particular, it can create very long lines.
+    "R/RcppExports.R",
+    # R/stanmodels.R is auto-generated and will not pass many linters. In
+    # particular, it uses `sapply()`.
+    "R/stanmodels.R"
   )

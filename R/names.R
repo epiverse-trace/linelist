@@ -58,12 +58,11 @@
   old_names <- names(x)
   new_names <- names(out)
   if (anyNA(new_names)) {
-    msg <- paste(
-      "Suggested naming would result in `NA` for some column names.",
+    stop(
+      "Suggested naming would result in `NA` for some column names.\n",
       "Did you provide less names than columns targetted for renaming?",
-      sep = "\n"
+      call. = FALSE
     )
-    stop(msg)
   }
 
   # Step 2

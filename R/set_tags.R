@@ -56,7 +56,8 @@ set_tags <- function(x, ..., allow_extra = FALSE) {
       "The use of a list of tags is deprecated. ",
       "Please use the splice operator (!!!) instead. ",
       "More information is available in the examples and in the ",
-      "?rlang::`dyn-dots` documentation."
+      "?rlang::`dyn-dots` documentation.",
+      call. = FALSE
     )
     new_tags <- new_tags[[1]]
   }
