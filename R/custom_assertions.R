@@ -4,7 +4,7 @@ check_not_data_table <- function(x) {
   if (inherits(x, "data.table")) {
     return("must NOT be a data.table")
   }
-  return(TRUE)
+  TRUE
 }
 
 assert_not_data_table <- function(
