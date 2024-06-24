@@ -129,7 +129,7 @@
     Code
       make_linelist(cars, list(date_onset = "dist", age = "speed"))
     Condition
-      Warning in `make_linelist()`:
+      Warning:
       The use of a list of tags is deprecated. Please use the splice operator (!!!) instead. More information is available in the examples and in the ?rlang::`dyn-dots` documentation.
     Output
       
@@ -193,7 +193,7 @@
     Code
       set_tags(x, list(date_onset = "dist", age = "speed"))
     Condition
-      Warning in `set_tags()`:
+      Warning:
       The use of a list of tags is deprecated. Please use the splice operator (!!!) instead. More information is available in the examples and in the ?rlang::`dyn-dots` documentation.
     Output
       
