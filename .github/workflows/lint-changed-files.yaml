@@ -32,7 +32,7 @@ jobs:
         with:
           extra-packages: |
             any::gh
-            any::lintr
+            r-lib/lintr
             any::purrr
             epiverse-trace/etdev
           needs: check
