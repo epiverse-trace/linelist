@@ -36,7 +36,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../articles/linelist.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../articles/linelist.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
@@ -68,7 +68,7 @@
       <img src="../logo.svg" class="logo" alt=""><h1>An introduction to linelist</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/linelist/blob/v1.1.4/vignettes/linelist.Rmd" class="external-link"><code>vignettes/linelist.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/linelist/blob/main/vignettes/linelist.Rmd" class="external-link"><code>vignettes/linelist.Rmd</code></a></small>
       <div class="d-none name"><code>linelist.Rmd</code></div>
     </div>
 
@@ -356,8 +356,8 @@ missing, but can be built from dates of deaths (missing date =
 survived). This can be done by using <code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate()</a></code> on
 <code>x</code> to create the new variable (remember <code>x</code> is
 not only a <code>linelist</code>, but also a regular <code>tibble</code>
-and this compatible with <code>dplyr</code> verbs), and setting up a new
-tag using <code><a href="../reference/set_tags.html">set_tags()</a></code>:</p>
+and this is compatible with <code>dplyr</code> verbs), and setting up a
+new tag using <code><a href="../reference/set_tags.html">set_tags()</a></code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
@@ -386,7 +386,7 @@ tag using <code><a href="../reference/set_tags.html">set_tags()</a></code>:</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // tags: date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age, outcome:inferred_outcome</span></span></code></pre></div>
 <p>If we wanted to undo the above, i.e. remove the <code>outcome</code>
-tag, we only need set it to <code>NULL</code>:</p>
+tag, we only need to set it to <code>NULL</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/set_tags.html">set_tags</a></span><span class="op">(</span>outcome <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
