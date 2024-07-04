@@ -230,7 +230,7 @@ Tags can be added / removed / changed using `set_tags()`.
 Let us assume we also want to record the outcome: it is currently missing, but
 can be built from dates of deaths (missing date = survived). This can be done by
 using `mutate()` on `x` to create the new variable (remember `x` is not only a
-`linelist`, but also a regular `tibble` and this compatible with `dplyr` verbs),
+`linelist`, but also a regular `tibble` and this is compatible with `dplyr` verbs),
 and setting up a new tag using `set_tags()`:
 
 ```{r}
@@ -242,7 +242,7 @@ x <- x %>%
 x
 ```
 
-If we wanted to undo the above, i.e. remove the `outcome` tag, we only need set
+If we wanted to undo the above, i.e. remove the `outcome` tag, we only need to set
 it to `NULL`:
 
 ```{r}

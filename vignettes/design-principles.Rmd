@@ -34,7 +34,7 @@ We prefer not adding a new feature, rather than having this feature alter the us
 One notable exception to this rule are `data.table` since they differ too much from the standard `data.frame` behaviour, which makes it difficult to ensure compatibility.
 
 `make_linelist()` is the main user-facing function of this package. It takes a `data.frame`/`tibble`/`X` as input as returns an output of class `c("linelist", "data.frame")`/`c("linelist", "tibble")`/`c("linelist", "X")`.
-As a consequence, differences in behaviour between `data.frame` and `tibble` are still present after conversation to a `linelist` object.
+As a consequence, differences in behaviour between `data.frame` and `tibble` are still present after conversion to a `linelist` object.
 
 ## Design decisions
 
