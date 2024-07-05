@@ -12,11 +12,10 @@
 #'
 #' @examples
 #'
-#' if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+#' if (require(outbreaks) && require(magrittr)) {
 #'
 #'   ## create a tibble linelist
 #'   x <- measles_hagelloch_1861 %>%
-#'     tibble() %>%
 #'     make_linelist(
 #'       id = "case_ID",
 #'       date_onset = "date_of_prodrome",
