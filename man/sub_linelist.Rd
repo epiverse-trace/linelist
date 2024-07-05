@@ -51,7 +51,6 @@ depending on the general option set via \code{\link[=lost_tags_action]{lost_tags
 if (require(outbreaks) && require(dplyr) && require(magrittr)) {
   ## create a linelist
   x <- measles_hagelloch_1861 \%>\%
-    tibble() \%>\%
     make_linelist(
       id = "case_ID",
       date_onset = "date_of_prodrome",
