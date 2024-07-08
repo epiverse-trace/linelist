@@ -82,11 +82,10 @@ data.frame."><meta property="og:image" content="https://epiverse-trace.github.io
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/reconhub/outbreaks" class="external-link">outbreaks</a></span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">## create a tibble linelist</span></span></span>
 <span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="make_linelist.html">make_linelist</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>      id <span class="op">=</span> <span class="st">"case_ID"</span>,</span></span>
 <span class="r-in"><span>      date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span></span>
@@ -98,20 +97,195 @@ data.frame."><meta property="og:image" content="https://epiverse-trace.github.io
 <span class="r-in"><span>  <span class="co">## get a data.frame of all tagged variables</span></span></span>
 <span class="r-in"><span>  <span class="fu">tags_df</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 188 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       id date_onset gender   age</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1 1861-11-21 f          7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     2 1861-11-23 f          6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     3 1861-11-28 f          4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4 1861-11-27 m         13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     5 1861-11-22 f          8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     6 1861-11-26 m         12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     7 1861-11-24 m          6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     8 1861-11-21 m         10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     9 1861-11-26 m         13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    10 1861-11-21 f          7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 178 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      id date_onset gender age</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 1861-11-21      f   7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 1861-11-23      f   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3 1861-11-28      f   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 1861-11-27      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     5 1861-11-22      f   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     6 1861-11-26      m  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7     7 1861-11-24      m   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     8 1861-11-21      m  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     9 1861-11-26      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   10 1861-11-21      f   7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   11 1861-11-25      f  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   12 1861-11-20      f   7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13   13 1861-11-30      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14   14 1861-11-22      f  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15   15 1861-11-24      m   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16   16 1861-11-21      f  15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   17 1861-11-20      f  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18   18 1861-11-23      f   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19   19 1861-11-20      m  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20   20 1861-11-22      m  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21   21 1861-11-23      f  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22   22 1861-11-21      f  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23   23 1861-11-21      f   7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24   24 1861-11-30      m   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25   25 1861-11-30      f  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26   26 1861-11-22      m   7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27   27 1861-11-30      m   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28   28 1861-11-25      f  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29   29 1861-11-30      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30   30 1861-11-25      f  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31   31 1861-11-21      f   9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32   32 1861-11-21      m   7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33   33 1861-11-24      f   7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34   34 1861-11-21      m  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35   35 1861-11-25      f  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36   36 1861-12-01      m  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37   37 1861-11-25      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38   38 1861-11-29   &lt;NA&gt;  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39   39 1861-11-23      m  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40   40 1861-12-03      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41   41 1861-11-27      m  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42   42 1861-11-15      f   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43   43 1861-11-26      m   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44   44 1861-11-22      m  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45   45 1861-11-11      m   7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46   46 1861-11-21      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47   47 1861-11-24      f  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48   48 1861-12-01      f   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49   49 1861-11-28      m  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50   50 1861-12-02      f   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51   51 1861-12-01      m   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52   52 1861-11-29      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53   53 1861-11-30      m   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54   54 1861-12-02      m   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55   55 1861-12-01      f  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56   56 1861-11-22      m   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57   57 1861-12-01      m   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58   58 1861-11-22      m   9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59   59 1861-11-30      f  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60   60 1861-12-02      m   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61   61 1861-12-01      f   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62   62 1861-12-02      m  14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63   63 1861-11-29      m  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64   64 1861-11-21      m   7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65   65 1861-12-01      m   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66   66 1861-12-03      f   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67   67 1861-12-02      f  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68   68 1861-11-30      f   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69   69 1861-12-13      m   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70   70 1861-11-28      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71   71 1861-12-01      f  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72   72 1861-12-01      f  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73   73 1861-11-27      f  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74   74 1861-11-21      f  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75   75 1861-11-29      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76   76 1861-12-03      m   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77   77 1861-11-27      f   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78   78 1861-11-22      f  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79   79 1861-11-27      f   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80   80 1861-11-30      m  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81   81 1861-12-01      m  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82   82 1861-11-22      m   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83   83 1861-12-01      f  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84   84 1861-11-30      m   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85   85 1861-12-02      f   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86   86 1861-12-03      f   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87   87 1861-12-02      f  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88   88 1861-12-02      f  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89   89 1861-12-02      f   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90   90 1861-12-02      m  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91   91 1861-12-03      f   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92   92 1861-12-04      f   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93   93 1861-11-22      m   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94   94 1861-11-20      f   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95   95 1861-12-04      m   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96   96 1861-11-30      m   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97   97 1861-11-21      m  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98   98 1861-12-01      m   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99   99 1861-12-04      m   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100 100 1861-12-03      m  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101 101 1861-12-04      f   7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102 102 1861-12-03      m  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103 103 1861-12-03   &lt;NA&gt;  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104 104 1861-12-04      m   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105 105 1861-12-05      m   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106 106 1861-11-23      m   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107 107 1861-11-30      f  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108 108 1861-12-04      m   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109 109 1861-12-05      f   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110 110 1861-12-04      m   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111 111 1861-12-01      m  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112 112 1861-12-03      m  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113 113 1861-12-04      f   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114 114 1861-12-01   &lt;NA&gt;  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115 115 1861-12-01      f  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116 116 1861-11-21      m   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117 117 1861-12-02      m  14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118 118 1861-12-02      f   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119 119 1861-12-01      f   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120 120 1861-12-06      m   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121 121 1861-12-06      m  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122 122 1861-12-05      f   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123 123 1861-12-03      f   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124 124 1861-12-05      m   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125 125 1861-12-07      f   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126 126 1861-12-05   &lt;NA&gt;   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127 127 1861-12-07      m   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128 128 1861-12-03      m   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 129 129 1861-12-05      f   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 130 130 1861-11-30      f  12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 131 131 1861-12-05      m   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 132 132 1861-12-03      m  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 133 133 1861-12-05      f   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134 134 1861-12-01      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 135 135 1861-12-06      m   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 136 136 1861-11-29      f  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 137 137 1861-12-01      f  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 138 138 1861-12-01   &lt;NA&gt;  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 139 139 1861-12-07   &lt;NA&gt;  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140 140 1861-12-05   &lt;NA&gt;   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141 141 1862-01-24      f   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 142 142 1861-12-05      m   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 143 143 1861-12-05      f  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 144 144 1861-12-06      m   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 145 145 1861-11-23      f   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 146 146 1861-12-01      f   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 147 147 1861-12-03      f   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 148 148 1861-12-03      f  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 149 149 1861-12-05      m   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 150 150 1861-12-11      m   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 151 151 1861-12-07      f   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 152 152 1861-12-06      f   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 153 153 1861-11-24      f  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 154 154 1861-12-03      f   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 155 155 1861-12-09      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 156 156 1861-11-22      m   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 157 157 1861-12-04      f   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 158 158 1861-12-04      f   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 159 159 1861-12-09      f   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 160 160 1861-12-12      f   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 161 161 1861-12-12      f   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 162 162 1861-12-12      f   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 163 163 1861-12-13      f   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 164 164 1861-12-13      m   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 165 165 1861-12-15      m   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 166 166 1861-12-04      m   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 167 167 1861-12-14      m   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 168 168 1861-12-09      m   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 169 169 1861-12-04      m   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 170 170 1861-12-07      m  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 171 171 1861-12-15      m   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 172 172 1861-11-19      f   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 173 173 1861-11-01      m   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 174 174 1861-11-08      f   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 175 175 1861-11-12      m   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 176 176 1861-12-11   &lt;NA&gt;   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 177 177 1861-11-07      f   8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 178 178 1861-11-07      m   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 179 179 1861-11-18      f   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 180 180 1861-11-17      m  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 181 181 1861-11-13      f  10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 182 182 1861-11-15      m  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 183 183 1861-11-11      m   4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184 184 1861-10-30   &lt;NA&gt;  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 185 185 1861-12-03      m   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 186 186 1861-11-22   &lt;NA&gt;   6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 187 187 1861-12-07      m   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 188 188 1861-11-23   &lt;NA&gt;   1</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
