@@ -72,6 +72,12 @@ test_that("Compatibility with dplyr::mutate(.keep)", {
     expect_s3_class("linelist") %>%
     expect_snapshot_warning()
 
+  x %>%
+    dplyr::mutate(speed = as.integer(speed)) %>%
+    expect_s3_class("linelist") %>%
+    tags() %>%
+    expect_identical(tags(x))
+
 })
 
 test_that("Compatibility with dplyr::relocate()", {
