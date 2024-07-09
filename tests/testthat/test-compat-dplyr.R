@@ -143,6 +143,13 @@ test_that("Compatibility with dplyr::select()", {
     expect_identical(list(date_onset = "dist")) %>%
     expect_snapshot_warning()
 
+  # Even when renames happen
+  x %>%
+    dplyr::select(dist, vitesse = speed) %>%
+    expect_s3_class("linelist") %>%
+    tags() %>%
+    expect_identical(list(date_onset = "dist", date_outcome = "vitesse"))
+
 })
 
 # Data.frames ----
