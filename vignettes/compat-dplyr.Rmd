@@ -140,9 +140,9 @@ x %>%
   head()
 ```
 
-### `dplyr::select()` ✓ (partial)
+### `dplyr::select()` ✅
 
-`dplyr::select()` is currently only partially compatible with linelist because renames with `select()` do not correctly update tags
+`dplyr::select()` is fully compatible with linelist, including when columns are renamed in a `select()`:
 
 ```{r}
 # Works fine
@@ -150,15 +150,9 @@ x %>%
   select(case_ID, date_of_prodrome, gender, age) %>%
   head()
 
-# Tags are not updated!
+# Tags are updated!
 x %>%
   select(case_ID, date_of_prodrome, gender, edad = age) %>%
-  head()
-
-# Instead, split the selecting and renaming steps:
-x %>%
-  select(case_ID, date_of_prodrome, gender, age) %>%
-  rename(edad = age) %>%
   head()
 ```
 
