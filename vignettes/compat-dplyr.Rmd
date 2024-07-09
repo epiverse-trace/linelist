@@ -95,16 +95,24 @@ During operations on columns, linelist will:
 
 ### `dplyr::mutate()` ✓ (partial)
 
-There is an incomplete compatibility with `dplyr::mutate()` in that:
-
-- simple renames without any actual modification of the column don't update the tags. In this scenario, users should rather use `dplyr::rename()`
-- in place column modifications cause tag losses
+There is an incomplete compatibility with `dplyr::mutate()` in that simple renames without any actual modification of the column don't update the tags. In this scenario, users should rather use `dplyr::rename()`
 
 Although `dplyr::mutate()` is not able to leverage to full power of linelist tags, linelist objects behave as expected the same way a data.frame would:
 
 ```{r}
+# In place modification doesn't lose tags
+x %>%
+  mutate(age = as.integer(age)) %>%
+  head()
+
+# New columns don't affect existing tags
 x %>%
   mutate(major = age >= 18) %>%
+  head()
+
+# .keep = "unused" generate expected tag loss conditions
+x %>%
+  mutate(edad = age, .keep = "unused") %>%
   head()
 ```
 
