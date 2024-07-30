@@ -17,6 +17,7 @@ linters: all_linters(
     indentation_linter = NULL, # unstable as of lintr 3.1.0
     one_call_pipe_linter = NULL,
     object_overwrite_linter = NULL,
+    line_length_linter(120L),
     # Use minimum R declared in DESCRIPTION or fall back to current R version.
     # Install etdev package from https://github.com/epiverse-trace/etdev
     backport_linter(if (length(x <- etdev::extract_min_r_version())) x else getRversion())
