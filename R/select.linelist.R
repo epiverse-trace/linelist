@@ -31,9 +31,8 @@ select.linelist <- function(.data, ..., tags) {
     lifecycle::deprecate_warn(
       "1.0.0",
       "select(tags)",
-      details = paste(
-        "It is now recommended to leverage the `has_tag()` selection helper",
-        "rather than this argument."
+      details = tr_(
+        "It is now recommended to leverage the `has_tag()` selection helper rather than this argument."
       )
     )
     return(select(.data, ..., has_tag(tags)))

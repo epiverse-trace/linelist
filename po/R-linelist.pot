@@ -1,0 +1,97 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: linelist 1.1.4.9000\n"
+"POT-Creation-Date: 2024-07-30 16:49+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lost_tags_action.R:52
+msgid "Using `lost_tags_action()` in a pipeline is deprecated"
+msgstr ""
+
+#: lost_tags_action.R:63
+msgid "Lost tags will now issue a warning."
+msgstr ""
+
+#: lost_tags_action.R:64
+msgid "Lost tags will now issue an error."
+msgstr ""
+
+#: lost_tags_action.R:65
+msgid "Lost tags will now be ignored."
+msgstr ""
+
+#: modify_defaults.R:24
+msgid "Unknown variable types:"
+msgstr ""
+
+#: modify_defaults.R:27
+msgid "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
+msgstr ""
+
+#: names.R:62
+msgid "Suggested naming would result in `NA` for some column names."
+msgstr ""
+
+#: names.R:63
+msgid "Did you provide less names than columns targetted for renaming?"
+msgstr ""
+
+#: print.linelist.R:43
+msgid "// linelist object"
+msgstr ""
+
+#: print.linelist.R:47
+msgid "[no tagged variable]"
+msgstr ""
+
+#: print.linelist.R:49
+msgid "// tags:"
+msgstr ""
+
+#: prune_tags.R:49
+msgid "The following tags have lost their variable:"
+msgstr ""
+
+#: select.linelist.R:35
+msgid ""
+"It is now recommended to leverage the `has_tag()` selection helper rather "
+"than this argument."
+msgstr ""
+
+#: select_tags.R:61
+msgid "This function is deprecated:"
+msgstr ""
+
+#: select_tags.R:62
+msgid "use the two step `tags_df()` and `dplyr::select()` process instead"
+msgstr ""
+
+#: tag_variable.R:29
+msgid "Tags specified by position must be lower than the number of columns."
+msgstr ""
+
+#: validate_tags.R:59
+msgid "The following default tags are missing:"
+msgstr ""
+
+#: validate_tags.R:71
+msgid "The following tags are not part of the defaults:"
+msgstr ""
+
+#: validate_tags.R:73
+msgid "Consider using `allow_extra = TRUE` to allow additional tags."
+msgstr ""
+
+#: validate_types.R:46
+msgid "Allowed types for tag %s are not documented in `ref_types`."
+msgstr ""
+
+#: validate_types.R:67
+msgid "Some tags have the wrong class:"
+msgstr ""

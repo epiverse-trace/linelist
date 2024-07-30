@@ -21,10 +21,10 @@ modify_defaults <- function(defaults, x, strict = TRUE) {
   extra <- setdiff(names(x), names(defaults))
   if (strict && (length(extra) > 0L)) {
     stop(
-      "Unknown variable types: ",
+      tr_("Unknown variable types: "),
       toString(extra),
       "\n  ",
-      "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`",
+      tr_("Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"),
       call. = FALSE
     )
   }

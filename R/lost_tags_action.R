@@ -49,7 +49,8 @@ lost_tags_action <- function(action = c("warning", "error", "none"),
 
   if (!missing(x) || inherits(action, "linelist")) {
     stop(
-      "Using `lost_tags_action()` in a pipeline is deprecated", call. = FALSE
+      tr_("Using `lost_tags_action()` in a pipeline is deprecated"), 
+      call. = FALSE
     )
   }
 
@@ -59,9 +60,9 @@ lost_tags_action <- function(action = c("warning", "error", "none"),
   linelist_options$lost_tags_action <- action
   options(linelist = linelist_options)
   if (!quiet) {
-    if (action == "warning") msg <- "Lost tags will now issue a warning."
-    if (action == "error") msg <- "Lost tags will now issue an error."
-    if (action == "none") msg <- "Lost tags will now be ignored."
+    if (action == "warning") msg <- tr_("Lost tags will now issue a warning.")
+    if (action == "error") msg <- tr_("Lost tags will now issue an error.")
+    if (action == "none") msg <- tr_("Lost tags will now be ignored.")
     message(msg)
   }
   return(invisible(NULL))

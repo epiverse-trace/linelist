@@ -45,7 +45,7 @@ prune_tags <- function(x, lost_action = c("error", "warning", "none")) {
       sep = ":",
       collapse = ", "
     )
-    msg <- paste(
+    msg <- tr_(
       "The following tags have lost their variable:\n",
       lost_tags_txt
     )

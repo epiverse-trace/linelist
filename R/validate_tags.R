@@ -55,9 +55,9 @@ validate_tags <- function(x, allow_extra = FALSE) {
   default_present <- tags_names() %in% names(x_tags)
   if (!all(default_present)) {
     missing_tags <- tags_names()[!default_present]
-    stop(
+    stop(tr_(
       "The following default tags are missing:\n",
-      toString(missing_tags),
+      toString(missing_tags)),
       call. = FALSE
     )
   }
@@ -67,10 +67,10 @@ validate_tags <- function(x, allow_extra = FALSE) {
     is_extra <- !names(x_tags) %in% tags_names()
     if (any(is_extra)) {
       extra_tags <- names(x_tags)[is_extra]
-      stop(
+      stop(tr_(
         "The following tags are not part of the defaults:\n",
         toString(extra_tags),
-        "\nConsider using `allow_extra = TRUE` to allow additional tags.",
+        "\nConsider using `allow_extra = TRUE` to allow additional tags."),
         call. = FALSE
       )
     }

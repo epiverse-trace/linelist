@@ -25,8 +25,9 @@ tag_variables <- function(x, tags) {
   by_position <- vapply(tags, is.numeric, logical(1))
   if (any(unlist(tags[by_position]) > ncol(x))) {
     stop(
-      "Tags specified by position must be lower than the number of columns.",
-      call. = FALSE
+      tr_(
+        "Tags specified by position must be lower than the number of columns."
+      ), call. = FALSE
     )
   }
   tags[by_position] <- names(x)[unlist(tags[by_position])]
