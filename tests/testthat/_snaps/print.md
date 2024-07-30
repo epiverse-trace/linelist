@@ -54,7 +54,7 @@
     49    24  120
     50    25   85
     
-    // tags: date_onset:dist, date_outcome:speed 
+    // tags: date_onset:dist, date_outcome:speed
 
 ---
 
@@ -112,5 +112,5 @@
     49    24  120
     50    25   85
     
-    // tags: [no tagged variable] 
+    // tags: [no tagged variable]
 

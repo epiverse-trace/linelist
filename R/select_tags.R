@@ -58,7 +58,7 @@ select_tags <- function(x, ...) {
     "select_tags()",
     details =
       tr_(
-        "This function is deprecated:",
+        "This function is deprecated: ",
         "use the two step `tags_df()` and `dplyr::select()` process instead"
       )
   )

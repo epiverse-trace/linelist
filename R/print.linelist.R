@@ -46,6 +46,6 @@ print.linelist <- function(x, ...) {
   if (tags_txt == "") {
     tags_txt <- tr_("[no tagged variable]")
   }
-  cat(tr_("\n// tags:", tags_txt, "\n"))
+  cat(tr_("\n// tags: ", tags_txt, "\n"))
   invisible(x)
 }

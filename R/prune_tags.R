@@ -46,7 +46,7 @@ prune_tags <- function(x, lost_action = c("error", "warning", "none")) {
       collapse = ", "
     )
     msg <- tr_(
-      "The following tags have lost their variable:\n",
+      "The following tags have lost their variable:\n ",
       lost_tags_txt
     )
     if (lost_action == "warning") {
