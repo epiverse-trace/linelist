@@ -122,7 +122,7 @@
       49    24  120
       50    25   85
       
-      // tags: date_onset:dist, age:speed 
+      // tags: date_onset:dist, age:speed
 
 # deprecating warning for make_linelist(x, list())
 
@@ -186,7 +186,7 @@
       49    24  120
       50    25   85
       
-      // tags: date_onset:dist, age:speed 
+      // tags: date_onset:dist, age:speed
 
 # deprecating warning for list in set_tags()
 
@@ -250,5 +250,5 @@
       49    24  120
       50    25   85
       
-      // tags: date_onset:dist, age:speed 
+      // tags: date_onset:dist, age:speed
 
