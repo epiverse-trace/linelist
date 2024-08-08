@@ -1,6 +1,4 @@
-test_that("tests for validate_linelist", {
-
-  # errors
+test_that("validate_linelist() detects invalid objects", {
   msg <- "Must inherit from class 'linelist', but has class 'NULL'."
   expect_error(validate_linelist(NULL), msg)
 
@@ -17,8 +15,22 @@ test_that("tests for validate_linelist", {
     validate_linelist(x), 
     "- gender: Must inherit from class 'character'/'factor'"
   )
+})
 
-  # Functionalities
-  x <- make_linelist(cars)
-  expect_identical(x, validate_linelist(x))
+test_that("validate_linelist() allows valid objects", {
+
+  x <- make_linelist(cars, id = "speed")
+
+  # Print a message
+  expect_message(
+    validate_linelist(x),
+    "valid"
+  )
+
+  # And returns invisibly...
+  v <- suppressMessages(expect_invisible(validate_linelist(x)))
+
+  # ...an identical object
+  expect_identical(x, v)
+
 })
