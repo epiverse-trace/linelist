@@ -22,7 +22,8 @@
 #'
 #' @inheritParams set_tags
 #'
-#' @return If checks pass, a `linelist` object; otherwise issues an error.
+#' @return If checks pass, a `linelist` object (invisibly); otherwise issues an
+#' error.
 #'
 #' @seealso
 #' * [tags_types()] to change allowed types
@@ -68,5 +69,5 @@ validate_linelist <- function(x,
 
   message("'", checkmate::vname(x), "' is a valid linelist object")
 
-  x
+  invisible(x)
 }
