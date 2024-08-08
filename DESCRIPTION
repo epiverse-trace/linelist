@@ -25,7 +25,7 @@ URL: https://epiverse-trace.github.io/linelist/, https://github.com/epiverse-tra
 BugReports: https://github.com/epiverse-trace/linelist/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Config/Needs/README:

@@ -17,7 +17,8 @@ tags will trigger an error}
 by \code{\link[=tags_types]{tags_types()}}}
 }
 \value{
-If checks pass, a \code{linelist} object; otherwise issues an error.
+If checks pass, a \code{linelist} object (invisibly); otherwise issues an
+error.
 }
 \description{
 This function evaluates the validity of a \code{linelist} object by checking the
