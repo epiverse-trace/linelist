@@ -66,5 +66,7 @@ validate_linelist <- function(x,
   validate_tags(x, allow_extra)
   validate_types(x, ref_types)
 
+  message("'", checkmate::vname(x), "' is a valid linelist object")
+
   x
 }
