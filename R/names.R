@@ -58,10 +58,10 @@
   old_names <- names(x)
   new_names <- names(out)
   if (anyNA(new_names)) {
-    stop(
+    stop(tr_(
       "Suggested naming would result in `NA` for some column names.\n",
-      "Did you provide less names than columns targetted for renaming?",
-      call. = FALSE
+      "Did you provide less names than columns targetted for renaming?"
+      ), call. = FALSE
     )
   }
 

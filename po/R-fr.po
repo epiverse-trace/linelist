@@ -1,0 +1,98 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: linelist 1.1.4.9000\n"
+"POT-Creation-Date: 2024-07-30 16:49+0200\n"
+"PO-Revision-Date: 2024-07-30 16:49+0200\n"
+"Last-Translator: Hugo Gruson\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: lost_tags_action.R:52
+msgid "Using `lost_tags_action()` in a pipeline is deprecated"
+msgstr "L'utilisation de `lost_tags_action()` dans une pipeline est dépréciée"
+
+#: lost_tags_action.R:63
+msgid "Lost tags will now issue a warning."
+msgstr "Les étiquettes perdues émettront maintenant un avertissement."
+
+#: lost_tags_action.R:64
+msgid "Lost tags will now issue an error."
+msgstr "Les étiquettes perdues émettront maintenant une erreur."
+
+#: lost_tags_action.R:65
+msgid "Lost tags will now be ignored."
+msgstr "Les étiquettes perdues seront maintenant ignorées."
+
+#: modify_defaults.R:24
+msgid "Unknown variable types:"
+msgstr "Type de variable inconnu :"
+
+#: modify_defaults.R:27
+msgid "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
+msgstr "N'utiliser que les étiquettes listées dans `tags_names()`, ou définir `allow_extra = TRUE`"
+
+#: names.R:62
+msgid "Suggested naming would result in `NA` for some column names."
+msgstr "Le nommage suggéré entraînerait des `NA` pour certains noms de colonnes."
+
+#: names.R:63
+msgid "Did you provide less names than columns targetted for renaming?"
+msgstr "Avez-vous fourni moins de noms que de colonnes ciblées pour le renommage ?"
+
+#: print.linelist.R:43
+msgid "// linelist object"
+msgstr "// objet linelist"
+
+#: print.linelist.R:47
+msgid "[no tagged variable]"
+msgstr "[aucune variable étiquetée]"
+
+#: print.linelist.R:49
+msgid "// tags:"
+msgstr "// étiquettes"
+
+#: prune_tags.R:49
+msgid "The following tags have lost their variable:"
+msgstr "Les étiquettes ci-après ont perdu leur variable :"
+
+#: select.linelist.R:35
+msgid ""
+"It is now recommended to leverage the `has_tag()` selection helper rather "
+"than this argument."
+msgstr "Il est maintenant recommander d'utiliser la fonction d'aide à la sélection `has_tag()` plutôt que cet argument."
+
+#: select_tags.R:61
+msgid "This function is deprecated:"
+msgstr "Cette fonction n'est plus recommandée :"
+
+#: select_tags.R:62
+msgid "use the two step `tags_df()` and `dplyr::select()` process instead"
+msgstr "utiliser le processus en deux étapes `tags_df()` et `dplyr::select()` à la place"
+
+#: tag_variable.R:29
+msgid "Tags specified by position must be lower than the number of columns."
+msgstr "Les étiquettes spécifiées par position doivent être inférieures au nombre de colonnes."
+
+#: validate_tags.R:59
+msgid "The following default tags are missing:"
+msgstr "Les étiquettes par défaut ci-après sont manquantes :"
+
+#: validate_tags.R:71
+msgid "The following tags are not part of the defaults:"
+msgstr "Les étiquettes ci-après ne font pas partie des étiquettes par défaut :"
+
+#: validate_tags.R:73
+msgid "Consider using `allow_extra = TRUE` to allow additional tags."
+msgstr "Il est possible d'utiliser `allow_extra = TRUE` pour créer des étiquettes supplémentaires."
+
+#: validate_types.R:46
+msgid "Allowed types for tag %s are not documented in `ref_types`."
+msgstr "Les types autorisés pour l'étiquette %s ne sont pas documentés dans `ref_types`."
+
+#: validate_types.R:67
+msgid "Some tags have the wrong class:"
+msgstr "Certaines étiquettes n'ont pas la bonne classe :"
