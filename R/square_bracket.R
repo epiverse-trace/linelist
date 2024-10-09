@@ -68,7 +68,7 @@
   # Note that the [ operator's implementation is messy and does not seem to pass
   # the drop argument well when using NextMethod(); also it does not allow extra
   # args, in case we wanted to use them; so declassing the object instead using
-  # the drop_linelist() function
+  # the datatagr::drop_datatagr() function
 
   lost_action <- get_lost_tags_action()
 
@@ -80,12 +80,12 @@
     # default value. When we subset this way, drop is always considered to be
     # TRUE. We let warnings from user-specified drop values surface.
     if (missing(drop)) {
-      out <- drop_linelist(x)[i]
+      out <- datatagr::drop_datatagr(x)[i]
     } else {
-      out <- drop_linelist(x)[i, drop = drop]
+      out <- datatagr::drop_datatagr(x)[i, drop = drop]
     }
   } else {
-    out <- drop_linelist(x)[i, j, drop = drop]
+    out <- datatagr::drop_datatagr(x)[i, j, drop = drop]
   }
 
   # Case 1

@@ -10,7 +10,7 @@ test_that("Compatibility with dplyr::arrange()", {
 
   expect_s3_class(ordered_x, "linelist")
   expect_identical(
-    drop_linelist(ordered_x),
+    datatagr::drop_datatagr(ordered_x),
     dplyr::arrange(cars, dist)
   )
 
