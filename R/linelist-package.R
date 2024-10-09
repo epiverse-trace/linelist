@@ -21,11 +21,11 @@
 #'
 #'   * [labels_df()]: to get a `data.frame` of all tagged variables
 #'
-#'   * [lost_tags_action()]: to change the behaviour of actions where tagged
+#'   * [lost_labels_action()]: to change the behaviour of actions where tagged
 #'   variables are lost (e.g. removing columns storing tagged variables) to
 #'   issue warnings, errors, or do nothing
 #'
-#'   * [get_lost_tags_action()]: to check the current behaviour of actions where
+#'   * [get_lost_labels_action()]: to check the current behaviour of actions where
 #'   tagged variables are lost
 #'
 #' @section Dedicated methods:
@@ -72,15 +72,15 @@
 #'   x[, 2:5]
 #'
 #'   ## to silence warnings when taggs are dropped
-#'   lost_tags_action("none")
+#'   lost_labels_action("none")
 #'   x[, 2:5]
 #'
 #'   ## to trigger errors when taggs are dropped
-#'   # lost_tags_action("error")
+#'   # lost_labels_action("error")
 #'   # x[, 2:5]
 #'
 #'   ## reset default behaviour
-#'   lost_tags_action()
+#'   lost_labels_action()
 #'
 #'
 #'   # using tidyverse style

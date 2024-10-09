@@ -161,17 +161,17 @@ a separate package.
 These are dedicated S3 methods for existing generics which can be used to
 prevent the loss of tagged variables.
 
-* `lost_tags_action()`: to set the behaviour to adopt when tagged variables
+* `lost_labels_action()`: to set the behaviour to adopt when tagged variables
   would be lost by an operation: issue a warning (default), an error, or ignore
 
-* `get_lost_tags_action()`: to check the current behaviour for lost tagged
+* `get_lost_labels_action()`: to check the current behaviour for lost tagged
   variables
 
 * `names<-()`: the 'base R' approach to renaming columns of a `linelist`;
   will rename tags as needed to match the new column names
 
 * `x[]` and `x[[]]`: for subsetting columns using 'base R' syntax; will
-  behave according to `get_lost_tags_actions()` if tagged variables are lost
+  behave according to `get_lost_labels_actions()` if tagged variables are lost
 
 # Worked example
 
@@ -307,26 +307,26 @@ x %>%
   select(1:2, has_label("gender"))
 
 # hybrid selection - no warning
-lost_tags_action("none")
+lost_labels_action("none")
 
 x %>%
   select(1:2, has_label("gender"))
 
 # hybrid selection - error due to lost tags
-lost_tags_action("error")
+lost_labels_action("error")
 
 x %>%
   select(1:2, has_label("gender"))
 
-# note that `lost_tags_action` sets the behavior for any later operation, so we
+# note that `lost_labels_action` sets the behavior for any later operation, so we
 # need to reset the default
-get_lost_tags_action() # check current behaviour
-lost_tags_action() # reset default
+get_lost_labels_action() # check current behaviour
+lost_labels_action() # reset default
 ```
 
 ### Changing tag loss action permanently
 
-If you wish to change the `lost_tags_action` in a way that persists across R sessions, you can do so by setting the `LINELIST_LOST_ACTION` environment variable. For example, your `.Renviron` file could contain the following line:
+If you wish to change the `lost_labels_action` in a way that persists across R sessions, you can do so by setting the `LINELIST_LOST_ACTION` environment variable. For example, your `.Renviron` file could contain the following line:
 
 ```text
 LINELIST_LOST_ACTION="error"

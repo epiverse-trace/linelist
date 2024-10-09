@@ -91,7 +91,7 @@ x %>%
 During operations on columns, linelist will:
 
 - stay invisible and conserve tags if no tagged column is affected by the operation
-- trigger `lost_tags_action()` if tagged columns are affected by the operation
+- trigger `lost_labels_action()` if tagged columns are affected by the operation
 
 ### `dplyr::mutate()` ✓ (partial)
 

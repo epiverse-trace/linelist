@@ -3,7 +3,7 @@
 #' The `[]` and `[[]]` operators for `linelist` objects behaves like for regular
 #' `data.frame` or `tibble`, but check that tagged variables are not lost, and
 #' takes the appropriate action if this is the case (warning, error, or ignore,
-#' depending on the general option set via [lost_tags_action()]) .
+#' depending on the general option set via [lost_labels_action()]) .
 #'
 #' @inheritParams base::Extract
 #' @param x a `linelist` object
@@ -19,9 +19,9 @@
 #' @return If no drop is happening, a `linelist`. Otherwise an atomic vector.
 #'
 #' @seealso
-#' * [lost_tags_action()] to set the behaviour to adopt when tags are
+#' * [lost_labels_action()] to set the behaviour to adopt when tags are
 #'   lost through subsetting; default is to issue a warning
-#' * [get_lost_tags_action()] to check the current the behaviour
+#' * [get_lost_labels_action()] to check the current the behaviour
 #'
 #' @export
 #'
@@ -70,7 +70,7 @@
   # args, in case we wanted to use them; so declassing the object instead using
   # the datatagr::drop_datatagr() function
 
-  lost_action <- get_lost_tags_action()
+  lost_action <- get_lost_labels_action()
 
   # Handle the corner case where only 1 arg is passed (x[i]) to subset by column
   n_args <- nargs() - !missing(drop)
@@ -105,7 +105,7 @@
 #' @rdname sub_linelist
 
 `[<-.linelist` <- function(x, i, j, value) {
-  lost_action <- get_lost_tags_action()
+  lost_action <- get_lost_labels_action()
   out <- NextMethod()
   old_tags <- labels(x, show_null = TRUE)
   out <- restore_tags(out, old_tags, lost_action)
@@ -117,7 +117,7 @@
 #' @rdname sub_linelist
 
 `[[<-.linelist` <- function(x, i, j, value) {
-  lost_action <- get_lost_tags_action()
+  lost_action <- get_lost_labels_action()
   out <- NextMethod()
   old_tags <- labels(x, show_null = TRUE)
   out <- restore_tags(out, old_tags, lost_action)
@@ -128,7 +128,7 @@
 #'
 #' @rdname sub_linelist
 `$<-.linelist` <- function(x, name, value) {
-  lost_action <- get_lost_tags_action()
+  lost_action <- get_lost_labels_action()
   out <- NextMethod()
   old_tags <- labels(x, show_null = TRUE)
   out <- restore_tags(out, old_tags, lost_action)
