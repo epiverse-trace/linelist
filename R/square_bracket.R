@@ -95,7 +95,7 @@
 
   # Case 2
   old_tags <- labels(x, show_null = TRUE)
-  out <- restore_tags(out, old_tags, lost_action)
+  out <- datatagr::restore_labels(out, old_tags, lost_action)
 
   out
 }
@@ -108,7 +108,7 @@
   lost_action <- get_lost_labels_action()
   out <- NextMethod()
   old_tags <- labels(x, show_null = TRUE)
-  out <- restore_tags(out, old_tags, lost_action)
+  out <- datatagr::restore_labels(out, old_tags, lost_action)
   out
 }
 
@@ -120,7 +120,7 @@
   lost_action <- get_lost_labels_action()
   out <- NextMethod()
   old_tags <- labels(x, show_null = TRUE)
-  out <- restore_tags(out, old_tags, lost_action)
+  out <- datatagr::restore_labels(out, old_tags, lost_action)
   out
 }
 
@@ -131,6 +131,6 @@
   lost_action <- get_lost_labels_action()
   out <- NextMethod()
   old_tags <- labels(x, show_null = TRUE)
-  out <- restore_tags(out, old_tags, lost_action)
+  out <- datatagr::restore_labels(out, old_tags, lost_action)
   out
 }
