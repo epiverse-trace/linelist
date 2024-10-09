@@ -105,7 +105,7 @@
 #'
 #'     ## extract tagged variables
 #'     x %>%
-#'       select(has_tag(c("gender", "age")))
+#'       select(has_label(c("gender", "age")))
 #'
 #'     x %>%
 #'       labels()

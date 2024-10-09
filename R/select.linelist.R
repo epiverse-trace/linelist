@@ -6,14 +6,14 @@
 #'
 #' This function was deprecated to ensure full compatibility with the default
 #' [dplyr::select()] methods. The tag selection feature is now possible via the
-#' [has_tag()] selection helper.
+#' [has_label()] selection helper.
 #'
 #' @param .data a `linelist` object
 #'
 #' @param ... the variables to select, using `dplyr` compatible syntax
 #'
 #' @param tags `r lifecycle::badge("deprecated")` It is now recommended to
-#'   leverage the [has_tag()] selection helper rather than this argument.
+#'   leverage the [has_label()] selection helper rather than this argument.
 #'
 #'
 #' @importFrom dplyr select
@@ -32,11 +32,11 @@ select.linelist <- function(.data, ..., tags) {
       "1.0.0",
       "select(tags)",
       details = paste(
-        "It is now recommended to leverage the `has_tag()` selection helper",
+        "It is now recommended to leverage the `has_label()` selection helper",
         "rather than this argument."
       )
     )
-    return(select(.data, ..., has_tag(tags)))
+    return(select(.data, ..., has_label(tags)))
   }
 
   NextMethod()

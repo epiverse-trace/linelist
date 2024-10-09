@@ -261,11 +261,11 @@ types. We could access tagged variables using any of the following means:
 ```{r}
 # select tagged variables only
 x %>%
-  select(has_tag(c("date_onset", "date_death")))
+  select(has_label(c("date_onset", "date_death")))
 
 # select tagged variables only with renaming on the fly
 x %>%
-  select(onset = has_tag("date_onset"))
+  select(onset = has_label("date_onset"))
 
 # get all tagged variables in a data.frame
 x %>%
@@ -288,13 +288,13 @@ x %>%
 Here, the above command gave a meaningful warning, in which `select()` removes
 some of the variables that were tagged.
 
-We can also use the `has_tag()` select helper to select columns via their tag.
+We can also use the `has_label()` select helper to select columns via their tag.
 For example, to retain the first 2 variables, and the `gender` tag:
 
 ```{r}
 # hybrid selection
 x %>%
-  select(1:2, has_tag("gender"))
+  select(1:2, has_label("gender"))
 ```
 
 Again, we observe a warning as before due to the loss of tagged variables in the
@@ -304,19 +304,19 @@ issue an error (for stronger pipelines for instance):
 ```{r error = TRUE, purl = FALSE}
 # hybrid selection
 x %>%
-  select(1:2, has_tag("gender"))
+  select(1:2, has_label("gender"))
 
 # hybrid selection - no warning
 lost_tags_action("none")
 
 x %>%
-  select(1:2, has_tag("gender"))
+  select(1:2, has_label("gender"))
 
 # hybrid selection - error due to lost tags
 lost_tags_action("error")
 
 x %>%
-  select(1:2, has_tag("gender"))
+  select(1:2, has_label("gender"))
 
 # note that `lost_tags_action` sets the behavior for any later operation, so we
 # need to reset the default
