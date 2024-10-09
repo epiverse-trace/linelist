@@ -17,7 +17,7 @@
 #' if (require(outbreaks)) {
 #'   ## create a linelist
 #'   x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_rash")
-#'   tags(x)
+#'   labels(x)
 #'
 #'   ## add new tags and fix an existing one
 #'   x <- set_tags(x,
@@ -25,20 +25,20 @@
 #'     gender = "gender",
 #'     date_onset = "date_of_prodrome"
 #'   )
-#'   tags(x)
+#'   labels(x)
 #'
 #'   ## add non-default tags using allow_extra
 #'   x <- set_tags(x, severe = "complications", allow_extra = TRUE)
-#'   tags(x)
+#'   labels(x)
 #'
 #'   ## remove tags by setting them to NULL
-#'   old_tags <- tags(x)
+#'   old_tags <- labels(x)
 #'   x <- set_tags(x, age = NULL, gender = NULL)
-#'   tags(x)
+#'   labels(x)
 #'
 #'   ## setting tags providing a list (used to restore old tags here)
 #'   x <- set_tags(x, !!!old_tags)
-#'   tags(x)
+#'   labels(x)
 #' }
 #'
 set_tags <- function(x, ..., allow_extra = FALSE) {

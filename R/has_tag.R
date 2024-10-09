@@ -33,7 +33,7 @@ has_tag <- function(
 ) {
 
   dat <- tidyselect::peek_data(fn = "has_tag")
-  dat_tags <- tags(dat)
+  dat_tags <- labels(dat)
 
   cols_to_extract <- dat_tags[names(dat_tags) %in% tags]
 

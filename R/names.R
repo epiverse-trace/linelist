@@ -31,7 +31,7 @@
 #'
 #'   ## see results: tags have been updated
 #'   head(x)
-#'   tags(x)
+#'   labels(x)
 #'
 #'  # This also works with using `dplyr::rename()` because it uses names<-()
 #'  # under hood
@@ -39,7 +39,7 @@
 #'    x <- x %>%
 #'      rename(case_id= case_label)
 #'    head(x)
-#'    tags(x)
+#'    labels(x)
 #'  }
 #' }
 `names<-.linelist` <- function(x, value) {
@@ -66,7 +66,7 @@
   }
 
   # Step 2
-  out_tags <- tags(x, TRUE)
+  out_tags <- labels(x, TRUE)
   for (i in seq_along(out_tags)) {
     if (!is.null(out_tags[[i]])) {
       idx <- match(out_tags[[i]], old_names)

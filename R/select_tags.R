@@ -20,7 +20,7 @@
 #' @export
 #'
 #' @seealso
-#' * [tags()] for existing tags in a `linelist`
+#' * [labels()] for existing tags in a `linelist`
 #' * [labels_df()] to get a `data.frame` of all tags
 #'
 #' @examples
@@ -39,7 +39,7 @@
 #'   head(x)
 #'
 #'   ## check tagged variables
-#'   tags(x)
+#'   labels(x)
 #'
 #'   # DEPRECATED!
 #'   select_tags(x, "gender", "age")

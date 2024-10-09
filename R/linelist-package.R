@@ -17,7 +17,7 @@
 #'
 #'   * [set_tags()]: to change or add tagged variables in a `linelist`
 #'
-#'   * [tags()]: to get the list of tags of a `linelist`
+#'   * [labels()]: to get the list of tags of a `linelist`
 #'
 #'   * [labels_df()]: to get a `data.frame` of all tagged variables
 #'
@@ -62,7 +62,7 @@
 #'   x
 #'
 #'   ## check tagged variables
-#'   tags(x)
+#'   labels(x)
 #'
 #'   ## robust renaming
 #'   names(x)[1] <- "identifier"
@@ -108,7 +108,7 @@
 #'       select(has_tag(c("gender", "age")))
 #'
 #'     x %>%
-#'       tags()
+#'       labels()
 #'
 #'     x %>%
 #'       select(starts_with("date"))

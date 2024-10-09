@@ -26,7 +26,7 @@
 #' * An overview of the [linelist] package
 #' * [tags_names()]: for a list of known tag names
 #' * [tags_types()]: for the associated accepted types/classes
-#' * [tags()]: for a list of tagged variables in a `linelist`
+#' * [labels()]: for a list of tagged variables in a `linelist`
 #' * [set_tags()]: for modifying tags
 #' * [labels_df()]: for selecting variables by tags
 #'
@@ -94,7 +94,7 @@
 #'   head(x)
 #'
 #'   ## check tags
-#'   tags(x)
+#'   labels(x)
 #'
 #'   ## Tags can also be passed as a list with the splice operator (!!!)
 #'   my_tags <- list(

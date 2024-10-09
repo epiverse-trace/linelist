@@ -16,7 +16,7 @@ test_that("tests for prune_tags", {
 
   # Check functionality
   y <- prune_tags(x, "none")
-  expect_identical(tags_defaults(), tags(y, TRUE))
+  expect_identical(tags_defaults(), labels(y, TRUE))
   expect_s3_class(y, "linelist")
 })
 

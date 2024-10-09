@@ -42,7 +42,7 @@
 print.linelist <- function(x, ...) {
   cat("\n// linelist object\n")
   print(datatagr::drop_datatagr(x, remove_labels = TRUE))
-  tags_txt <- paste(names(tags(x)), unlist(tags(x)), sep = ":", collapse = ", ")
+  tags_txt <- paste(names(labels(x)), unlist(labels(x)), sep = ":", collapse = ", ")
   if (tags_txt == "") {
     tags_txt <- "[no tagged variable]"
   }
