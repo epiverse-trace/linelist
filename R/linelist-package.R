@@ -19,7 +19,7 @@
 #'
 #'   * [tags()]: to get the list of tags of a `linelist`
 #'
-#'   * [tags_df()]: to get a `data.frame` of all tagged variables
+#'   * [labels_df()]: to get a `data.frame` of all tagged variables
 #'
 #'   * [lost_tags_action()]: to change the behaviour of actions where tagged
 #'   variables are lost (e.g. removing columns storing tagged variables) to

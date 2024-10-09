@@ -28,7 +28,7 @@
 #' * [tags_types()]: for the associated accepted types/classes
 #' * [tags()]: for a list of tagged variables in a `linelist`
 #' * [set_tags()]: for modifying tags
-#' * [tags_df()]: for selecting variables by tags
+#' * [labels_df()]: for selecting variables by tags
 #'
 #' @details Known variable types include:
 #'

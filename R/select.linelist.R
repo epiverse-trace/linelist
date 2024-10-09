@@ -23,7 +23,7 @@
 #' @return The function returns a `linelist` with selected columns.
 #'
 #' @seealso
-#' * [tags_df()] to return a `data.frame` of all tagged variables
+#' * [labels_df()] to return a `data.frame` of all tagged variables
 #'
 select.linelist <- function(.data, ..., tags) {
 

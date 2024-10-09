@@ -4,7 +4,7 @@
 #' @description
 #' `r lifecycle::badge("deprecated")`
 
-#' This function was  equivalent to running successively [tags_df()] and
+#' This function was  equivalent to running successively [labels_df()] and
 #' [dplyr::select()] on a `linelist` object.
 #' To encourage users to understand what is going on and in order to follow the
 #' software engineering good practice of providing just one way to do a given
@@ -21,7 +21,7 @@
 #'
 #' @seealso
 #' * [tags()] for existing tags in a `linelist`
-#' * [tags_df()] to get a `data.frame` of all tags
+#' * [labels_df()] to get a `data.frame` of all tags
 #'
 #' @examples
 #' if (require(outbreaks)) {
@@ -47,7 +47,7 @@
 #'   # Instead, use:
 #'   library(dplyr)
 #'   x %>%
-#'     tags_df() %>%
+#'     labels_df() %>%
 #'     select(gender, age)
 #' }
 #'
@@ -59,11 +59,11 @@ select_tags <- function(x, ...) {
     details =
       paste(
         "This function is deprecated:",
-        "use the two step `tags_df()` and `dplyr::select()` process instead"
+        "use the two step `labels_df()` and `dplyr::select()` process instead"
       )
   )
 
-  df <- tags_df(x)
+  df <- labels_df(x)
   dplyr::select(df, ...)
 
 }
