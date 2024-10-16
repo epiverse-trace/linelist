@@ -5,7 +5,7 @@ test_that("tests for set_tags()", {
   msg <- "Must inherit from class 'linelist', but has class 'data.frame'."
   expect_error(set_tags(cars), msg)
 
-  msg <- "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
+  msg <- "Use only tags listed in `labels()`, or set `allow_extra = TRUE`"
   expect_error(set_tags(x, toto = 1), msg, fixed = TRUE)
 
   msg <- "Must be element of set {'speed','dist'}, but is"

@@ -18,7 +18,6 @@
 #'
 #' @examples
 #' if (require(outbreaks) && require(magrittr)) {
-#'
 #'   ## create a valid linelist
 #'   x <- measles_hagelloch_1861 %>%
 #'     make_linelist(
@@ -51,9 +50,9 @@ validate_tags <- function(x, allow_extra = FALSE) {
   checkmate::assert_list(x_tags, types = c("character", "null"))
 
   # check that defaults are present
-  default_present <- tags_names() %in% names(x_tags)
+  default_present <- labels() %in% names(x_tags)
   if (!all(default_present)) {
-    missing_tags <- tags_names()[!default_present]
+    missing_tags <- labels()[!default_present]
     stop(
       "The following default tags are missing:\n",
       toString(missing_tags),
@@ -63,7 +62,7 @@ validate_tags <- function(x, allow_extra = FALSE) {
 
   # check there is no extra value
   if (!allow_extra) {
-    is_extra <- !names(x_tags) %in% tags_names()
+    is_extra <- !names(x_tags) %in% labels()
     if (any(is_extra)) {
       extra_tags <- names(x_tags)[is_extra]
       stop(

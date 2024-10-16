@@ -1,12 +1,11 @@
 test_that("tests for tags_types", {
-
   # Check errors
-  msg <- "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
+  msg <- "Use only tags listed in `labels()`, or set `allow_extra = TRUE`"
   expect_error(tags_types(toto = "ilestbo"), msg, fixed = TRUE)
 
   # Check functionality
   x <- tags_types()
-  expect_identical(tags_names(), names(x))
+  expect_identical(labels(), names(x))
   expect_type(x, "list")
   expect_true(all(sapply(x, is.character)))
 

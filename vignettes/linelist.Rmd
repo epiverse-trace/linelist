@@ -136,7 +136,7 @@ existing tags and the corresponding variables.
 
 * `labels()`: to list variables which have been tagged in a `linelist`
 
-* `tags_names()`: to list all recognized tag names; details on what the tags represent can be found at [`?make_linelist`](https://epiverse-trace.github.io/linelist/reference/make_linelist.html)
+* `labels()`: to list all recognized tag names; details on what the tags represent can be found at [`?make_linelist`](https://epiverse-trace.github.io/linelist/reference/make_linelist.html)
 
 * `labels_df()`: to obtain a `data.frame` of all the tagged variables in a `linelist`
 
