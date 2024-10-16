@@ -78,7 +78,6 @@
 #' @examples
 #'
 #' if (require(outbreaks)) {
-#'
 #'   ## dataset we will convert to linelist
 #'   head(measles_hagelloch_1861)
 #'
@@ -137,7 +136,7 @@ make_linelist <- function(x,
 
   tags <- modify_defaults(tags, args, strict = !allow_extra)
 
-  x <- tag_variables(x, tags)
+  x <- datatagr::label_variables(x, tags)
 
   # shape output and return object
   class(x) <- c("linelist", class(x))
