@@ -17,15 +17,15 @@
 #'
 #'   * [set_tags()]: to change or add tagged variables in a `linelist`
 #'
-#'   * [tags()]: to get the list of tags of a `linelist`
+#'   * [labels()]: to get the list of tags of a `linelist`
 #'
-#'   * [tags_df()]: to get a `data.frame` of all tagged variables
+#'   * [labels_df()]: to get a `data.frame` of all tagged variables
 #'
-#'   * [lost_tags_action()]: to change the behaviour of actions where tagged
+#'   * [lost_labels_action()]: to change the behaviour of actions where tagged
 #'   variables are lost (e.g. removing columns storing tagged variables) to
 #'   issue warnings, errors, or do nothing
 #'
-#'   * [get_lost_tags_action()]: to check the current behaviour of actions where
+#'   * [get_lost_labels_action()]: to check the current behaviour of actions where
 #'   tagged variables are lost
 #'
 #' @section Dedicated methods:
@@ -62,7 +62,7 @@
 #'   x
 #'
 #'   ## check tagged variables
-#'   tags(x)
+#'   labels(x)
 #'
 #'   ## robust renaming
 #'   names(x)[1] <- "identifier"
@@ -72,15 +72,15 @@
 #'   x[, 2:5]
 #'
 #'   ## to silence warnings when taggs are dropped
-#'   lost_tags_action("none")
+#'   lost_labels_action("none")
 #'   x[, 2:5]
 #'
 #'   ## to trigger errors when taggs are dropped
-#'   # lost_tags_action("error")
+#'   # lost_labels_action("error")
 #'   # x[, 2:5]
 #'
 #'   ## reset default behaviour
-#'   lost_tags_action()
+#'   lost_labels_action()
 #'
 #'
 #'   # using tidyverse style
@@ -105,10 +105,10 @@
 #'
 #'     ## extract tagged variables
 #'     x %>%
-#'       select(has_tag(c("gender", "age")))
+#'       select(has_label(c("gender", "age")))
 #'
 #'     x %>%
-#'       tags()
+#'       labels()
 #'
 #'     x %>%
 #'       select(starts_with("date"))

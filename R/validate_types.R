@@ -38,7 +38,7 @@
 validate_types <- function(x, ref_types = tags_types()) {
   checkmate::assert_class(x, "linelist")
 
-  df_to_check <- tags_df(x)
+  df_to_check <- labels_df(x)
 
   if (!all(names(df_to_check) %in% names(ref_types))) {
     stop(

@@ -12,7 +12,7 @@
 #'
 #' @seealso
 #' * [tags_defaults()] for the default tags
-#' * [validate_types()] uses [tags_types()] for validating tags
+#' * [validate_tags()] uses [tags_types()] for validating tags
 #' * [validate_linelist()] uses [tags_types()] for validating tags
 #'
 #' @examples
@@ -28,18 +28,18 @@
 tags_types <- function(..., allow_extra = FALSE) {
   defaults <- list(
     id = c("numeric", "integer", "character"),
-    date_onset = date_types,
-    date_reporting = date_types,
-    date_admission = date_types,
-    date_discharge = date_types,
-    date_outcome = date_types,
-    date_death = date_types,
-    gender = category_types,
-    age = numeric_types,
-    location = category_types,
-    occupation = category_types,
-    hcw = binary_types,
-    outcome = category_types
+    date_onset = datatagr::type('date'),
+    date_reporting = datatagr::type('date'),
+    date_admission = datatagr::type('date'),
+    date_discharge = datatagr::type('date'),
+    date_outcome = datatagr::type('date'),
+    date_death = datatagr::type('date'),
+    gender = datatagr::type('category'),
+    age = datatagr::type('numeric'),
+    location = datatagr::type('category'),
+    occupation = datatagr::type('category'),
+    hcw = datatagr::type('binary'),
+    outcome = datatagr::type('category')
   )
 
   new_values <- rlang::list2(...)
@@ -47,16 +47,3 @@ tags_types <- function(..., allow_extra = FALSE) {
 
   modify_defaults(defaults = defaults, x = new_values, strict = !allow_extra)
 }
-
-
-#' @noRd
-date_types <- c("integer", "numeric", "Date", "POSIXct", "POSIXlt")
-
-#' @noRd
-category_types <- c("character", "factor")
-
-#' @noRd
-numeric_types <- c("numeric", "integer")
-
-#' @noRd
-binary_types <- c("logical", "integer", "character", "factor")

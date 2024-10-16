@@ -134,11 +134,11 @@ existing tags and the corresponding variables.
 
 * `set_tags()`: to add, remove, or modify tags in a `linelist`
 
-* `tags()`: to list variables which have been tagged in a `linelist`
+* `labels()`: to list variables which have been tagged in a `linelist`
 
 * `tags_names()`: to list all recognized tag names; details on what the tags represent can be found at [`?make_linelist`](https://epiverse-trace.github.io/linelist/reference/make_linelist.html)
 
-* `tags_df()`: to obtain a `data.frame` of all the tagged variables in a `linelist`
+* `labels_df()`: to obtain a `data.frame` of all the tagged variables in a `linelist`
 
 ### Validation
 
@@ -161,17 +161,17 @@ a separate package.
 These are dedicated S3 methods for existing generics which can be used to
 prevent the loss of tagged variables.
 
-* `lost_tags_action()`: to set the behaviour to adopt when tagged variables
+* `lost_labels_action()`: to set the behaviour to adopt when tagged variables
   would be lost by an operation: issue a warning (default), an error, or ignore
 
-* `get_lost_tags_action()`: to check the current behaviour for lost tagged
+* `get_lost_labels_action()`: to check the current behaviour for lost tagged
   variables
 
 * `names<-()`: the 'base R' approach to renaming columns of a `linelist`;
   will rename tags as needed to match the new column names
 
 * `x[]` and `x[[]]`: for subsetting columns using 'base R' syntax; will
-  behave according to `get_lost_tags_actions()` if tagged variables are lost
+  behave according to `get_lost_labels_actions()` if tagged variables are lost
 
 # Worked example
 
@@ -219,7 +219,7 @@ The printing of the object confirms that the tags have been added. If we want to
 double-check which variables have been tagged:
 
 ```{r}
-tags(x)
+labels(x)
 ```
 
 
@@ -248,7 +248,7 @@ it to `NULL`:
 ```{r}
 x <- x %>%
   set_tags(outcome = NULL)
-tags(x)
+labels(x)
 ```
 
 
@@ -261,15 +261,15 @@ types. We could access tagged variables using any of the following means:
 ```{r}
 # select tagged variables only
 x %>%
-  select(has_tag(c("date_onset", "date_death")))
+  select(has_label(c("date_onset", "date_death")))
 
 # select tagged variables only with renaming on the fly
 x %>%
-  select(onset = has_tag("date_onset"))
+  select(onset = has_label("date_onset"))
 
 # get all tagged variables in a data.frame
 x %>%
-  tags_df()
+  labels_df()
 ```
 
 ## Using safeguards
@@ -288,13 +288,13 @@ x %>%
 Here, the above command gave a meaningful warning, in which `select()` removes
 some of the variables that were tagged.
 
-We can also use the `has_tag()` select helper to select columns via their tag.
+We can also use the `has_label()` select helper to select columns via their tag.
 For example, to retain the first 2 variables, and the `gender` tag:
 
 ```{r}
 # hybrid selection
 x %>%
-  select(1:2, has_tag("gender"))
+  select(1:2, has_label("gender"))
 ```
 
 Again, we observe a warning as before due to the loss of tagged variables in the
@@ -304,29 +304,29 @@ issue an error (for stronger pipelines for instance):
 ```{r error = TRUE, purl = FALSE}
 # hybrid selection
 x %>%
-  select(1:2, has_tag("gender"))
+  select(1:2, has_label("gender"))
 
 # hybrid selection - no warning
-lost_tags_action("none")
+lost_labels_action("none")
 
 x %>%
-  select(1:2, has_tag("gender"))
+  select(1:2, has_label("gender"))
 
 # hybrid selection - error due to lost tags
-lost_tags_action("error")
+lost_labels_action("error")
 
 x %>%
-  select(1:2, has_tag("gender"))
+  select(1:2, has_label("gender"))
 
-# note that `lost_tags_action` sets the behavior for any later operation, so we
+# note that `lost_labels_action` sets the behavior for any later operation, so we
 # need to reset the default
-get_lost_tags_action() # check current behaviour
-lost_tags_action() # reset default
+get_lost_labels_action() # check current behaviour
+lost_labels_action() # reset default
 ```
 
 ### Changing tag loss action permanently
 
-If you wish to change the `lost_tags_action` in a way that persists across R sessions, you can do so by setting the `LINELIST_LOST_ACTION` environment variable. For example, your `.Renviron` file could contain the following line:
+If you wish to change the `lost_labels_action` in a way that persists across R sessions, you can do so by setting the `LINELIST_LOST_ACTION` environment variable. For example, your `.Renviron` file could contain the following line:
 
 ```text
 LINELIST_LOST_ACTION="error"

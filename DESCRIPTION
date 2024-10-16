@@ -38,7 +38,8 @@ Imports:
     dplyr,
     lifecycle,
     rlang,
-    tidyselect
+    tidyselect,
+    datatagr
 Suggests:
     callr,
     knitr,
@@ -53,3 +54,4 @@ Config/Needs/website:
     epiverse-trace/epiversetheme
 VignetteBuilder: knitr
 Language: en-GB
+Remotes: epiverse-trace/datatagr

@@ -26,9 +26,9 @@
 #' * An overview of the [linelist] package
 #' * [tags_names()]: for a list of known tag names
 #' * [tags_types()]: for the associated accepted types/classes
-#' * [tags()]: for a list of tagged variables in a `linelist`
+#' * [labels()]: for a list of tagged variables in a `linelist`
 #' * [set_tags()]: for modifying tags
-#' * [tags_df()]: for selecting variables by tags
+#' * [labels_df()]: for selecting variables by tags
 #'
 #' @details Known variable types include:
 #'
@@ -78,7 +78,6 @@
 #' @examples
 #'
 #' if (require(outbreaks)) {
-#'
 #'   ## dataset we will convert to linelist
 #'   head(measles_hagelloch_1861)
 #'
@@ -94,7 +93,7 @@
 #'   head(x)
 #'
 #'   ## check tags
-#'   tags(x)
+#'   labels(x)
 #'
 #'   ## Tags can also be passed as a list with the splice operator (!!!)
 #'   my_tags <- list(
@@ -114,7 +113,7 @@ make_linelist <- function(x,
                           allow_extra = FALSE) {
   # assert inputs
   checkmate::assert_data_frame(x, min.cols = 1)
-  assert_not_data_table(x)
+  datatagr::assert_not_data_table(x)
   checkmate::assert_logical(allow_extra)
 
   args <- rlang::list2(...)
@@ -137,7 +136,7 @@ make_linelist <- function(x,
 
   tags <- modify_defaults(tags, args, strict = !allow_extra)
 
-  x <- tag_variables(x, tags)
+  x <- datatagr::label_variables(x, tags)
 
   # shape output and return object
   class(x) <- c("linelist", class(x))

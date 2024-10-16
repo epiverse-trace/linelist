@@ -15,8 +15,8 @@ test_that("tests for set_tags()", {
   # Check functionality
   expect_identical(x, set_tags(x))
   x <- set_tags(x, date_reporting = "speed")
-  expect_identical(tags(x)$date_reporting, "speed")
-  expect_identical(tags(x)$date_onset, "dist")
+  expect_identical(labels(x)$date_reporting, "speed")
+  expect_identical(labels(x)$date_onset, "dist")
 
   x <- set_tags(x, id = "speed", date_outcome = "dist")
   y <- set_tags(x, !!!list(id = "speed", date_outcome = "dist"))
