@@ -9,7 +9,7 @@
 #'
 #' @param x a `linelist` object
 #'
-#' @inheritParams set_tags
+#' @inheritParams set_labels
 #'
 #' @return If checks pass, a `linelist` object; otherwise issues an error.
 #'

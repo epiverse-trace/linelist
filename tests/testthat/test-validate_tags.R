@@ -1,5 +1,4 @@
 test_that("tests for validate_tags", {
-
   # test errors
   msg <- "Must inherit from class 'linelist', but has class 'data.frame'."
   expect_error(validate_tags(cars), msg)
@@ -45,6 +44,6 @@ test_that("tests for validate_tags", {
   x <- make_linelist(cars)
   expect_identical(x, validate_tags(x))
 
-  x <- set_tags(x, date_onset = "dist", toto = "speed", allow_extra = TRUE)
+  x <- set_labels(x, date_onset = "dist", toto = "speed", allow_extra = TRUE)
   expect_identical(x, validate_tags(x, allow_extra = TRUE))
 })

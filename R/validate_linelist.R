@@ -20,7 +20,7 @@
 #'
 #' @inheritParams validate_types
 #'
-#' @inheritParams set_tags
+#' @inheritParams set_labels
 #'
 #' @return If checks pass, a `linelist` object; otherwise issues an error.
 #'
@@ -32,7 +32,6 @@
 #' @examples
 #'
 #' if (require(outbreaks) && require(magrittr)) {
-#'
 #'   ## create a valid linelist
 #'   x <- measles_hagelloch_1861 %>%
 #'     make_linelist(

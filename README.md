@@ -164,7 +164,7 @@ x
 ```
 
 ``` r
-tags(x) # check available tags
+labels(x) # check available tags
 #> $date_onset
 #> [1] "dt_onset"
 #> 
@@ -191,7 +191,7 @@ validate_linelist(x)
 # change tags: fix mistakes, add new ones
 # ---------------------------------------
 x <- x %>%
-  set_tags(
+  set_labels(
     occupation = NULL, # tag removal
     gender = "sex", # new tag
     outcome = "outcome"

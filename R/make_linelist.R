@@ -24,10 +24,9 @@
 #' @seealso
 #'
 #' * An overview of the [linelist] package
-#' * [tags_names()]: for a list of known tag names
 #' * [tags_types()]: for the associated accepted types/classes
 #' * [labels()]: for a list of tagged variables in a `linelist`
-#' * [set_tags()]: for modifying tags
+#' * [set_labels()]: for modifying tags
 #' * [labels_df()]: for selecting variables by tags
 #'
 #' @details Known variable types include:
@@ -134,7 +133,7 @@ make_linelist <- function(x,
   # elsewhere.
   tags <- tags_defaults()
 
-  tags <- modify_defaults(tags, args, strict = !allow_extra)
+  tags <- modify_defaults(tags, args, allow_extra = allow_extra)
 
   x <- datatagr::label_variables(x, tags)
 
