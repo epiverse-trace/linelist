@@ -10,14 +10,11 @@
 #' @return A named `list`.
 #'
 #' @examples
-#' tags_defaults()
+#' label_defaults()
 #'
-tags_defaults <- function() {
+label_defaults <- function() {
   setNames(
-    vector(
-      "list",
-      length = length(tags_types())
-    ),
-    names(tags_types())
+    default_labels(),
+    default_vars()
   )
 }
