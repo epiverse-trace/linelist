@@ -1,3 +1,3 @@
-#' @importFrom datatagr type
+#' @importFrom safeframe type
 #' @export
-datatagr::type
+safeframe::type

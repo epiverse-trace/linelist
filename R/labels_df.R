@@ -1,3 +1,3 @@
-#' @importFrom datatagr labels_df
+#' @importFrom safeframe labels_df
 #' @export
-datatagr::labels_df
+safeframe::labels_df

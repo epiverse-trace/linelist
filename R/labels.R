@@ -1,3 +1,3 @@
-#' @importFrom datatagr labels
+#' @importFrom safeframe labels
 #' @export
-datatagr::labels
+safeframe::labels

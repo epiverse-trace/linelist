@@ -135,7 +135,7 @@ make_linelist <- function(x,
 
   tags <- modify_defaults(tags, args, allow_extra = allow_extra)
 
-  x <- datatagr::label_variables(x, tags)
+  x <- safeframe::label_variables(x, lbl)
 
   # shape output and return object
   class(x) <- c("linelist", class(x))

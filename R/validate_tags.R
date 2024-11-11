@@ -39,8 +39,8 @@
 #'   tryCatch(validate_tags(x), error = paste)
 #' }
 validate_tags <- function(x, allow_extra = FALSE) {
-  checkmate::assert_class(x, "linelist")
-  x_tags <- labels(x, show_null = TRUE)
+  checkmate::assert_class(x, "safeframe")
+  x_labels <- labels(x, show_null = TRUE)
 
   stopifnot(
     "`x` has no tags attribute" = !is.null(x_tags)

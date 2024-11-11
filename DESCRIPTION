@@ -39,7 +39,7 @@ Imports:
     lifecycle,
     rlang,
     tidyselect,
-    datatagr
+    safeframe
 Suggests:
     callr,
     knitr,
@@ -54,4 +54,4 @@ Config/Needs/website:
     epiverse-trace/epiversetheme
 VignetteBuilder: knitr
 Language: en-GB
-Remotes: epiverse-trace/datatagr
+Remotes: epiverse-trace/safeframe
