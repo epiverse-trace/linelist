@@ -33,7 +33,6 @@ modify_defaults <- function(defaults, x, allow_extra = FALSE) {
     if (sum(match) > 1) stop("Duplicates present for default labels. Please
                              provide unique variables for labels and remove any
                              duplicates.")
-    print(x)
     names(result)[match] <- names(x)[matchX]
   }
 

@@ -6,34 +6,33 @@ test_that("tests for make_linelist", {
   msg <- "Must have at least 1 cols, but has 0 cols."
   expect_error(make_linelist(data.frame()), msg)
 
-  msg <- "Must be element of set {'speed','dist'}, but is"
-  expect_error(make_linelist(cars, outcome = "bar"), msg, fixed = TRUE)
-
   expect_error(
-    make_linelist(cars, outcome = "bar", age = "bla"),
-    "2 assertions failed"
+    make_linelist(cars, outcome = "bar", age = "bla", strict = TRUE),
+    "15 assertions failed"
   )
 
-  msg <- "Use only tags listed in `labels()`, or set `allow_extra = TRUE`"
+  msg <- 
+    "There are labels in x that are not in defaults and allow_extra is FALSE"
   expect_error(
     make_linelist(cars, foo = "speed", allow_extra = FALSE),
     msg,
     fixed = TRUE
   )
 
-  # test functionalities
-  expect_identical(tags_defaults(), labels(make_linelist(cars), TRUE))
-
-  x <- make_linelist(cars, date_onset = "dist", date_outcome = "speed")
-  expect_identical(labels(x)$date_onset, "dist")
-  expect_identical(labels(x)$date_outcome, "speed")
+  x <- make_linelist(cars, !!!update_defaults(
+    id = 'dist',
+    date_onset = 'speed'))
+  expect_identical(labels(x)$dist, "Subject ID")
+  expect_identical(labels(x)$speed, "Date of symptom onset")
   expect_null(labels(x)$outcome)
   expect_null(labels(x)$date_reporting)
 
-  x <- make_linelist(cars, foo = "speed", bar = "dist", allow_extra = TRUE)
+  x <- make_linelist(cars, speed = "Miles per hour",
+                     dist = "Distance in miles", allow_extra = TRUE)
   expect_identical(
     labels(x, TRUE),
-    c(tags_defaults(), foo = "speed", bar = "dist")
+    list(speed = "Miles per hour",
+      dist = "Distance in miles")
   )
 })
 

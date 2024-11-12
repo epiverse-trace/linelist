@@ -13,8 +13,8 @@
 #' label_defaults()
 #'
 label_defaults <- function() {
-  setNames(
+  as.list(setNames(
     default_labels(),
     default_vars()
-  )
+  ))
 }

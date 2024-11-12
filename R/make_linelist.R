@@ -1,35 +1,45 @@
 #' Create a linelist from a data.frame
 #'
 #' This function converts a `data.frame` or a `tibble` into a `linelist` object,
-#' where different types of epidemiologically relevant data are tagged. This
+#' where different types of epidemiologically relevant data are labelled. This
 #' includes dates of different events (e.g. onset of symptoms, case reporting),
 #' information on the patient (e.g. age, gender, location) as well as other
 #' information such as the type of case (e.g. confirmed, probable) or the
-#' outcome of the disease. The output will seem to be the same `data.frame`, but
-#' `linelist`-aware packages will then be able to automatically use tagged
+#' outcome of the disease. The output will seem to be the same `data.frame`,
+#' but `linelist`-aware packages will then be able to automatically use tagged
 #' fields for further data cleaning and analysis.
 #'
 #' @param x a `data.frame` or a `tibble` containing case line list data, with
 #'   cases in rows and variables in columns
 #'
-#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A series of tags provided as
-#'   `tag_name = "column_name"`, where `tag_name` indicates any of the known
-#'   variables listed in 'Details' and values indicate their name in `x`; see
-#'   details for a list of known variable types and their expected content
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A series of labels provided as
+#'   `column_name = "label"`, where `column_name` indicates any of the known
+#'   variables listed in 'Details' and values indicate their name in `x`; modify
+#'   `label_defaults()` to match the column names and see details for a list of
+#'   known variable types and their expected content.
 #'
-#' @param allow_extra a `logical` indicating if additional data tags not
+#' @param strict a `logical` indicating whether all labels are required
+#'   (`TRUE`) or whether provided labels are matched to the those present in
+#'   `x` (`FALSE`). If `TRUE` labelled but missing variables will result in
+#'   errors.
+#'
+#' @param allow_extra a `logical` indicating if additional labels not
 #'   currently recognized by `linelist` should be allowed; if `FALSE`, unknown
-#'   tags will trigger an error
+#'   labels will trigger an error
 #'
 #' @seealso
 #'
 #' * An overview of the [linelist] package
-#' * [tags_types()]: for the associated accepted types/classes
+#' * [vars_types()]: for the associated accepted types/classes
 #' * [labels()]: for a list of tagged variables in a `linelist`
 #' * [set_labels()]: for modifying tags
 #' * [labels_df()]: for selecting variables by tags
 #'
-#' @details Known variable types include:
+#' @details `make_linelist` defaults to permissive parameters. That is, it
+#' will be non-strict and allow extra labels by default.
+#'
+#' You can easily change default variables using [update_defaults()].
+#' Default variables and their types include:
 #'
 #' * `id`: a unique case identifier as `numeric` or `character`
 #'
@@ -81,61 +91,49 @@
 #'   head(measles_hagelloch_1861)
 #'
 #'   ## create linelist
-#'   x <- make_linelist(measles_hagelloch_1861,
-#'     id = "case_ID",
-#'     date_onset = "date_of_prodrome",
-#'     age = "age",
-#'     gender = "gender"
+#'   x <- make_linelist(
+#'     measles_hagelloch_1861,
+#'     update_defaults(id = "case_ID", date_onset = "date_of_prodrome")
 #'   )
 #'
 #'   ## print result - just first few entries
 #'   head(x)
 #'
-#'   ## check tags
+#'   ## check labels
 #'   labels(x)
 #'
-#'   ## Tags can also be passed as a list with the splice operator (!!!)
-#'   my_tags <- list(
-#'     id = "case_ID",
-#'     date_onset = "date_of_prodrome",
-#'     age = "age",
-#'     gender = "gender"
+#'   ## you can also add non-standard labels
+#'   x <- make_linelist(
+#'     measles_hagelloch_1861,
+#'     !!!c(
+#'       update_defaults(id = "case_ID", date_onset = "date_of_prodrome"),
+#'       infector = "Disease infector"
+#'     )
 #'   )
-#'   new_x <- make_linelist(measles_hagelloch_1861, !!!my_tags)
-#'
-#'   ## The output is strictly equivalent to the previous one
-#'   identical(x, new_x)
 #' }
 #'
 make_linelist <- function(x,
                           ...,
-                          allow_extra = FALSE) {
+                          strict = FALSE,
+                          allow_extra = TRUE) {
   # assert inputs
   checkmate::assert_data_frame(x, min.cols = 1)
-  datatagr::assert_not_data_table(x)
+  checkmate::assert_logical(strict)
   checkmate::assert_logical(allow_extra)
 
   args <- rlang::list2(...)
 
-  if (length(args) && is.list(args[[1]])) {
-    warning(
-      "The use of a list of tags is deprecated. ",
-      "Please use the splice operator (!!!) instead. ",
-      "More information is available in the examples and in the ",
-      "?rlang::`dyn-dots` documentation.",
-      call. = FALSE
-    )
-    args <- args[[1]]
-  }
-
-  # The approach is to replace default values with user-provided ones, and then
+  # We replace default values with user-provided ones, and then
   # tag each variable in turn. Validation the tagged variables is done
   # elsewhere.
-  tags <- tags_defaults()
+  lbl <- modify_defaults(label_defaults(),
+    args,
+    allow_extra = allow_extra
+  )
+  # Retain only those lbl list values whose name is present in x if !strict
+  if (!strict) lbl <- lbl[names(lbl) %in% names(x)]
 
-  tags <- modify_defaults(tags, args, allow_extra = allow_extra)
-
-  x <- safeframe::label_variables(x, lbl)
+  x <- safeframe::make_safeframe(x, !!!lbl)
 
   # shape output and return object
   class(x) <- c("linelist", class(x))
