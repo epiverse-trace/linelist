@@ -27,8 +27,8 @@ update_or_append <- function(x, ...) {
 
 #' Default column names for a linelist
 #'
-#' @param ... A series of column names provided as `col1, col2` to add columns 
-#' or optionally `id = 'ID', date_onset = 'date_symptom_onset'` to rename 
+#' @param ... A series of column names provided as `col1, col2` to add columns
+#' or optionally `id = 'ID', date_onset = 'date_symptom_onset'` to rename
 #' defaults
 #'
 #' @return
@@ -57,7 +57,7 @@ default_vars <- function(...) {
 
 #' Default labels for a linelist
 #'
-#' @param ... A series of labels provided as `"Label 1", "Label 2"` to add 
+#' @param ... A series of labels provided as `"Label 1", "Label 2"` to add
 #' labels or optionally `"Subject ID" = "Participant ID"` to rename defaults
 #'
 #' @return vector of labels
@@ -87,7 +87,7 @@ default_labels <- function(...) {
 #' Get the default types for linelist variables
 #'
 #' @param ... a series of vectors containing types to append to the defaults.
-#' 
+#'
 #' @note
 #' Use the helper function `type()` to generate known collections of types.
 #'

@@ -1,60 +1,64 @@
-#' Check tagged variables are the right class
+#' Type check variables
 #'
-#' This function checks the class of each tagged variable in a `linelist`
-#' against pre-defined accepted classes in [tags_types()].
+#' This function checks the class of variables in a `linelist` against 
+#' pre-defined accepted classes in [vars_types()] and further specifications.
 #'
 #' @export
 #'
 #' @param x a `linelist` object
 #'
-#' @param ref_types a `list` providing allowed types for all tags, as returned
-#'   by [tags_types()]
+#' @param ref_types a named `list` providing variable names and their allowed 
+#' types. Defaults to output from by [vars_types()], which can be used to update
+#' naming of default variables, for example `vars_types(id = "case_ID")`. Extra
+#' variables can be concatenated, for example 
+#' `c(vars_types, y_loc = type("numeric"))`. 
+#'
+#' @param strict a `logical` indicating whether all defaults must be present
+#'   (`TRUE`) or not (`FALSE`)
 #'
 #' @return A named `list`.
 #'
 #' @seealso
-#' * [tags_types()] to change allowed types
-#' * [validate_tags()] to perform a series of checks on the tags
-#' * [validate_linelist()] to combine `validate_tags` and `validate_types`
+#' * [type()] for classes of types
+#' * [vars_types()] to change allowed types
+#' * [validate_labels()] to perform a series of checks on the tags
+#' * [validate_linelist()] to combine `validate_labels` and `validate_types`
 #'
 #' @examples
 #' if (require(outbreaks) && require(magrittr)) {
-#'
 #'   ## create an invalid linelist - gender is a numeric
 #'   x <- measles_hagelloch_1861 %>%
 #'     make_linelist(
-#'       id = "case_ID",
-#'       gender = "infector"
+#'       !!!update_defaults(id = "case_ID", date_onset = "date_of_prodrome")
 #'     )
 #'   x
-#'
-#'   ## the below would issue an error
+#' 
+#'   ## the below would issue an error, because not all defaults are present
 #'   ## note: tryCatch is only used to avoid a genuine error in the example
-#'   tryCatch(validate_types(x), error = paste)
-#'
-#'   ## to allow other types, e.g. gender to be integer, character or factor
-#'   validate_types(x, tags_types(gender = c("integer", "character", "factor")))
+#'   tryCatch(validate_types(x, strict = TRUE), error = paste)
+#' 
+#'   ## to validate other variables types
+#'   validate_types(x, c(vars_types(), y_loc = type('numeric')))
 #' }
-validate_types <- function(x, ref_types = tags_types()) {
+validate_types <- function(x, ref_types = vars_types(), strict = FALSE) {
   checkmate::assert_class(x, "linelist")
 
-  df_to_check <- labels_df(x)
-
-  if (!all(names(df_to_check) %in% names(ref_types))) {
+  if (strict && !all(names(x) %in% names(ref_types))) {
     stop(
-      "Allowed types for tag ",
-      toString(paste0("`", setdiff(names(df_to_check), names(ref_types)), "`")),
-      " are not documented in `ref_types`.",
+      "Variable ",
+      toString(paste0("`", setdiff(names(x), names(ref_types)), "`")),
+      " are not available in `x`.",
       call. = FALSE
     )
   }
 
+  check_df <- suppressWarnings(x[,names(x) %in% names(ref_types)])
   type_checks <- lapply(
-    names(df_to_check),
-    function(tag) {
-      allowed_types <- ref_types[[tag]]
+    names(check_df),
+    function(type) {
+      allowed_types <- ref_types[[type]]
       checkmate::check_multi_class(
-        df_to_check[[tag]],
+        check_df[[type]],
         allowed_types,
         null.ok = TRUE
       )
@@ -64,10 +68,10 @@ validate_types <- function(x, ref_types = tags_types()) {
 
   if (!all(has_correct_types)) {
     stop(
-      "Some tags have the wrong class:\n",
+      "Some variables have the wrong class:\n",
       sprintf(
         "  - %s: %s\n",
-        names(df_to_check)[!has_correct_types],
+        names(check_df)[!has_correct_types],
         type_checks[!has_correct_types]
       ),
       call. = FALSE

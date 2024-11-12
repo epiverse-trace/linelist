@@ -1,45 +1,40 @@
 test_that("tests for validate_types() basic input checking", {
   expect_error(
-    validate_types(cars), 
+    validate_types(cars),
     "Must inherit from class 'linelist', but has class 'data.frame'."
   )
 })
 
 test_that("validate_types() validates types", {
   # Successful validations
-  x <- make_linelist(cars, age = "speed")
+  x <- make_linelist(cars, !!!update_defaults(id = 'speed'))
   expect_silent(
     expect_identical(
       x,
-      validate_types(x)
+      validate_types(x, vars_types(id = 'speed'))
     )
   )
 
   # Failed validations
-  x <- make_linelist(cars, age = "speed")
-  expect_error(
-    validate_types(x, ref_types = tags_types(age = "factor")), 
-    "age: Must inherit from class 'factor', but has class 'numeric'"
-  )
-
-  x <- make_linelist(cars, age = "speed", gender = "dist")
   expect_snapshot_error(
-    validate_types(x, ref_types = tags_types(age = "factor"))
+    validate_types(x, vars_types(gender = 'dist'))
   )
 })
 
 test_that("missing ref_type in validate_types()", {
   # Single missing
-  x <- make_linelist(cars, age = "speed", d = "dist", allow_extra = TRUE)
+  x <- make_linelist(cars, !!!update_defaults(id = 'speed',
+                                              age = 'dist'))
+  
   expect_error(
-    validate_types(x),
-    "Allowed types for tag `d` are not documented in `ref_types`."
+    validate_types(x, ref_types = list(speed = type('numeric')), strict = TRUE),
+    "Variable `dist` are not available in `x`."
   )
 
   # Two missing
   x <- make_linelist(cars, a = "speed", d = "dist", allow_extra = TRUE)
   expect_error(
-    validate_types(x),
-    "Allowed types for tag `a`, `d` are not documented in `ref_types`."
+    validate_types(x, ref_types = list(a = 'numeric', d = 'boolean'), strict = TRUE),
+    "Variable `speed`, `dist` are not available in `x`."
   )
 })
