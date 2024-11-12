@@ -28,7 +28,7 @@ test_that("modify_defaults throws an error when allow_extra is FALSE and x has e
 
   expect_error(
     modify_defaults(defaults, x),
-    "There are labels in x that are not in defaults and allow_extra is FALSE"
+    "There are labels in x that are not defaults and allow_extra is FALSE"
   )
 })
 

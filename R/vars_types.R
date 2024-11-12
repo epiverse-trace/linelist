@@ -23,7 +23,6 @@
 #' vars_types(id = "case_ID")
 #'
 vars_types <- function(...) {
-  checkmate::assert_list(new_values, types = "character")
   res <- setNames(default_types(), default_vars(...))
 
   res

@@ -12,7 +12,7 @@ test_that("tests for make_linelist", {
   )
 
   msg <-
-    "There are labels in x that are not in defaults and allow_extra is FALSE"
+    "There are labels in x that are not defaults and allow_extra is FALSE"
   expect_error(
     make_linelist(cars, foo = "speed", allow_extra = FALSE),
     msg,
