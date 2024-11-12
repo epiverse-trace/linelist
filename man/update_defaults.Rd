@@ -23,29 +23,38 @@ update_defaults(
 \arguments{
 \item{id}{default column name to replace, using \code{id = "new_id"}}
 
-\item{date_onset}{default column name to replace, using date_ons\code{date_onset = "new_date_onset"}}
+\item{date_onset}{default column name to replace, using
+\code{date_onset = "new_date_onset"}}
 
-\item{date_reporting}{default column name to replace, using date_reporti\code{date_reporting = "new_date_reporting"}}
+\item{date_reporting}{default column name to replace, using
+\code{date_reporting = "new_date_reporting"}}
 
-\item{date_admission}{default column name to replace, using date_admissi\code{date_admission = "new_date_admission"}}
+\item{date_admission}{default column name to replace, using
+\code{date_admission = "new_date_admission"}}
 
-\item{date_discharge}{default column name to replace, using date_dischar\code{date_discharge = "new_date_discharge"}}
+\item{date_discharge}{default column name to replace, using
+\code{date_discharge = "new_date_discharge"}}
 
-\item{date_outcome}{default column name to replace, using date_outco\code{date_outcome = "new_date_outcome"}}
+\item{date_outcome}{default column name to replace, using
+\code{date_outcome = "new_date_outcome"}}
 
-\item{date_death}{default column name to replace, using date_dea\code{date_death = "new_date_death"}}
+\item{date_death}{default column name to replace, using
+\code{date_death = "new_date_death"}}
 
-\item{gender}{default column name to replace, using gend\code{gender = "new_gender"}}
+\item{gender}{default column name to replace, using \code{gender = "new_gender"}}
 
-\item{age}{default column name to replace, using a\code{age = "new_age"}}
+\item{age}{default column name to replace, using \code{age = "new_age"}}
 
-\item{location}{default column name to replace, using locati\code{location = "new_location"}}
+\item{location}{default column name to replace, using
+\code{location = "new_location"}}
 
-\item{occupation}{default column name to replace, using occupati\code{occupation = "new_occupation"}}
+\item{occupation}{default column name to replace, using
+\code{occupation = "new_occupation"}}
 
-\item{hcw}{default column name to replace, using h\code{hcw = "new_hcw"}}
+\item{hcw}{default column name to replace, using \code{hcw = "new_hcw"}}
 
-\item{outcome}{default column name to replace, using outco\code{outcome = "new_outcome"}}
+\item{outcome}{default column name to replace, using
+\code{outcome = "new_outcome"}}
 }
 \value{
 A named \code{list}.

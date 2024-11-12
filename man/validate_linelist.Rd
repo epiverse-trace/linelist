@@ -17,6 +17,9 @@ validate_linelist(
 \item{strict}{a \code{logical} indicating whether all defaults must be present
 (\code{TRUE}) or not (\code{FALSE})}
 
+\item{allow_extra}{a \code{logical} indicating whether non-default variables are
+permitted}
+
 \item{ref_types}{a named \code{list} providing variable names and their allowed
 types. Defaults to output from by \code{\link[=vars_types]{vars_types()}}, which can be used to update
 naming of default variables, for example \code{vars_types(id = "case_ID")}. Extra

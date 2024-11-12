@@ -17,6 +17,8 @@
 #' @export
 #'
 #' @param x a `linelist` object
+#' @param allow_extra a `logical` indicating whether non-default variables are
+#' permitted
 #'
 #' @inheritParams validate_types
 #'

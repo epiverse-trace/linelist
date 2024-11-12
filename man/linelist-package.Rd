@@ -25,8 +25,8 @@ reliable.
 \item \code{\link[=lost_labels_action]{lost_labels_action()}}: to change the behaviour of actions where tagged
 variables are lost (e.g. removing columns storing tagged variables) to
 issue warnings, errors, or do nothing
-\item \code{\link[=get_lost_labels_action]{get_lost_labels_action()}}: to check the current behaviour of actions where
-tagged variables are lost
+\item \code{\link[=get_lost_labels_action]{get_lost_labels_action()}}: to check the current behaviour of actions
+where tagged variables are lost
 }
 }
 
@@ -40,8 +40,8 @@ pipelines).
 \itemize{
 \item \verb{names() <-} (and related functions, such as \code{\link[dplyr:rename]{dplyr::rename()}}) will
 rename tags as needed
-\item \verb{x[...] <-} and \verb{x[[...]] <-} (see \link{sub_linelist}): will adopt the
-desired behaviour when tagged variables are lost
+\item \verb{x[...] <-} and \verb{x[[...]] <-}: will adopt the desired behaviour when
+tagged variables are lost
 \item \code{print()}: prints info about the \code{linelist} in addition to the
 \code{data.frame} or \code{tibble}
 }
