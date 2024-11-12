@@ -4,36 +4,46 @@
 \alias{make_linelist}
 \title{Create a linelist from a data.frame}
 \usage{
-make_linelist(x, ..., allow_extra = FALSE)
+make_linelist(x, ..., strict = FALSE, allow_extra = TRUE)
 }
 \arguments{
 \item{x}{a \code{data.frame} or a \code{tibble} containing case line list data, with
 cases in rows and variables in columns}
 
-\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A series of tags provided as
-\code{tag_name = "column_name"}, where \code{tag_name} indicates any of the known
-variables listed in 'Details' and values indicate their name in \code{x}; see
-details for a list of known variable types and their expected content}
+\item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A series of labels provided as
+\code{column_name = "label"}, where \code{column_name} indicates any of the known
+variables listed in 'Details' and values indicate their name in \code{x}.}
 
-\item{allow_extra}{a \code{logical} indicating if additional data tags not
+\item{strict}{a \code{logical} indicating whether all labels are required
+(\code{TRUE}) or whether provided labels are matched to the those present in
+\code{x} (\code{FALSE}). If \code{TRUE} labelled but missing variables will result in
+errors.}
+
+\item{allow_extra}{a \code{logical} indicating if additional labels not
 currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
-tags will trigger an error}
+labels will trigger an error}
 }
 \value{
 The function returns a \code{linelist} object.
 }
 \description{
 This function converts a \code{data.frame} or a \code{tibble} into a \code{linelist} object,
-where different types of epidemiologically relevant data are tagged. This
+where different types of epidemiologically relevant data are labelled. This
 includes dates of different events (e.g. onset of symptoms, case reporting),
 information on the patient (e.g. age, gender, location) as well as other
 information such as the type of case (e.g. confirmed, probable) or the
-outcome of the disease. The output will seem to be the same \code{data.frame}, but
-\code{linelist}-aware packages will then be able to automatically use tagged
+outcome of the disease. The output will seem to be the same \code{data.frame},
+but \code{linelist}-aware packages will then be able to automatically use tagged
 fields for further data cleaning and analysis.
 }
 \details{
-Known variable types include:
+\code{make_linelist} defaults to permissive parameters. That is, it
+will be non-strict and allow extra labels by default.
+
+You can easily change default variables using \code{\link[=update_defaults]{update_defaults()}} and
+passing the returned object using the \verb{!!!} splice operator.
+
+Default variables and their types include:
 \itemize{
 \item \code{id}: a unique case identifier as \code{numeric} or \code{character}
 \item \code{date_onset}: date of symptom onset (see below for date formats)
@@ -65,45 +75,38 @@ case
 \examples{
 
 if (require(outbreaks)) {
-
   ## dataset we will convert to linelist
   head(measles_hagelloch_1861)
 
   ## create linelist
-  x <- make_linelist(measles_hagelloch_1861,
-    id = "case_ID",
-    date_onset = "date_of_prodrome",
-    age = "age",
-    gender = "gender"
+  x <- make_linelist(
+    measles_hagelloch_1861,
+    !!!update_defaults(id = "case_ID", date_onset = "date_of_prodrome")
   )
 
   ## print result - just first few entries
   head(x)
 
-  ## check tags
-  tags(x)
+  ## check labels
+  labels(x)
 
-  ## Tags can also be passed as a list with the splice operator (!!!)
-  my_tags <- list(
-    id = "case_ID",
-    date_onset = "date_of_prodrome",
-    age = "age",
-    gender = "gender"
+  ## you can also add non-standard labels
+  x <- make_linelist(
+    measles_hagelloch_1861,
+    !!!c(
+      update_defaults(id = "case_ID", date_onset = "date_of_prodrome"),
+      infector = "Disease infector"
+    )
   )
-  new_x <- make_linelist(measles_hagelloch_1861, !!!my_tags)
-
-  ## The output is strictly equivalent to the previous one
-  identical(x, new_x)
 }
 
 }
 \seealso{
 \itemize{
 \item An overview of the \link{linelist} package
-\item \code{\link[=tags_names]{tags_names()}}: for a list of known tag names
-\item \code{\link[=tags_types]{tags_types()}}: for the associated accepted types/classes
-\item \code{\link[=tags]{tags()}}: for a list of tagged variables in a \code{linelist}
-\item \code{\link[=set_tags]{set_tags()}}: for modifying tags
-\item \code{\link[=tags_df]{tags_df()}}: for selecting variables by tags
+\item \code{\link[=vars_types]{vars_types()}}: for the associated accepted types/classes
+\item \code{\link[=labels]{labels()}}: for a list of tagged variables in a \code{linelist}
+\item \code{\link[=set_labels]{set_labels()}}: for modifying tags
+\item \code{\link[=labels_df]{labels_df()}}: for selecting variables by tags
 }
 }

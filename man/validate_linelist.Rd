@@ -4,17 +4,24 @@
 \alias{validate_linelist}
 \title{Checks the content of a linelist object}
 \usage{
-validate_linelist(x, allow_extra = FALSE, ref_types = tags_types())
+validate_linelist(
+  x,
+  strict = FALSE,
+  allow_extra = TRUE,
+  ref_types = vars_types()
+)
 }
 \arguments{
 \item{x}{a \code{linelist} object}
 
-\item{allow_extra}{a \code{logical} indicating if additional data tags not
-currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
-tags will trigger an error}
+\item{strict}{a \code{logical} indicating whether all defaults must be present
+(\code{TRUE}) or not (\code{FALSE})}
 
-\item{ref_types}{a \code{list} providing allowed types for all tags, as returned
-by \code{\link[=tags_types]{tags_types()}}}
+\item{ref_types}{a named \code{list} providing variable names and their allowed
+types. Defaults to output from by \code{\link[=vars_types]{vars_types()}}, which can be used to update
+naming of default variables, for example \code{vars_types(id = "case_ID")}. Extra
+variables can be concatenated, for example
+\code{c(vars_types, y_loc = type("numeric"))}.}
 }
 \value{
 If checks pass, a \code{linelist} object; otherwise issues an error.
@@ -22,7 +29,7 @@ If checks pass, a \code{linelist} object; otherwise issues an error.
 \description{
 This function evaluates the validity of a \code{linelist} object by checking the
 object class, its tags, and the types of the tagged variables. It combines
-validations checks made by \code{\link[=validate_types]{validate_types()}} and \code{\link[=validate_tags]{validate_tags()}}. See
+validations checks made by \code{\link[=validate_types]{validate_types()}} and \code{\link[=validate_labels]{validate_labels()}}. See
 'Details' section for more information on the checks performed.
 }
 \details{
@@ -39,7 +46,6 @@ The following checks are performed:
 \examples{
 
 if (require(outbreaks) && require(magrittr)) {
-
   ## create a valid linelist
   x <- measles_hagelloch_1861 \%>\%
     make_linelist(
@@ -69,8 +75,8 @@ if (require(outbreaks) && require(magrittr)) {
 }
 \seealso{
 \itemize{
-\item \code{\link[=tags_types]{tags_types()}} to change allowed types
+\item \code{\link[=vars_types]{vars_types()}} to change allowed types
 \item \code{\link[=validate_types]{validate_types()}} to check if tagged variables have the right classes
-\item \code{\link[=validate_tags]{validate_tags()}} to perform a series of checks on the tags
+\item \code{\link[=validate_labels]{validate_labels()}} to perform a series of checks on the tags
 }
 }

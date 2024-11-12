@@ -19,13 +19,13 @@ reliable.
 \itemize{
 \item \code{\link[=make_linelist]{make_linelist()}}: to create \code{linelist} objects from a \code{data.frame} or a
 \code{tibble}, with the possibility to tag key epi variables
-\item \code{\link[=set_tags]{set_tags()}}: to change or add tagged variables in a \code{linelist}
-\item \code{\link[=tags]{tags()}}: to get the list of tags of a \code{linelist}
-\item \code{\link[=tags_df]{tags_df()}}: to get a \code{data.frame} of all tagged variables
-\item \code{\link[=lost_tags_action]{lost_tags_action()}}: to change the behaviour of actions where tagged
+\item \code{\link[=set_labels]{set_labels()}}: to change or add tagged variables in a \code{linelist}
+\item \code{\link[=labels]{labels()}}: to get the list of tags of a \code{linelist}
+\item \code{\link[=labels_df]{labels_df()}}: to get a \code{data.frame} of all tagged variables
+\item \code{\link[=lost_labels_action]{lost_labels_action()}}: to change the behaviour of actions where tagged
 variables are lost (e.g. removing columns storing tagged variables) to
 issue warnings, errors, or do nothing
-\item \code{\link[=get_lost_tags_action]{get_lost_tags_action()}}: to check the current behaviour of actions where
+\item \code{\link[=get_lost_labels_action]{get_lost_labels_action()}}: to check the current behaviour of actions where
 tagged variables are lost
 }
 }
@@ -65,7 +65,7 @@ if (require(outbreaks)) {
   x
 
   ## check tagged variables
-  tags(x)
+  labels(x)
 
   ## robust renaming
   names(x)[1] <- "identifier"
@@ -75,15 +75,15 @@ if (require(outbreaks)) {
   x[, 2:5]
 
   ## to silence warnings when taggs are dropped
-  lost_tags_action("none")
+  lost_labels_action("none")
   x[, 2:5]
 
   ## to trigger errors when taggs are dropped
-  # lost_tags_action("error")
+  # lost_labels_action("error")
   # x[, 2:5]
 
   ## reset default behaviour
-  lost_tags_action()
+  lost_labels_action()
 
 
   # using tidyverse style
@@ -101,17 +101,17 @@ if (require(outbreaks)) {
         gender = "gender"
       ) \%>\%
       mutate(result = if_else(is.na(date_of_death), "survived", "died")) \%>\%
-      set_tags(outcome = "result") \%>\%
+      set_labels(outcome = "result") \%>\%
       rename(identifier = case_ID)
 
     head(x)
 
     ## extract tagged variables
     x \%>\%
-      select(has_tag(c("gender", "age")))
+      select(has_label(c("gender", "age")))
 
     x \%>\%
-      tags()
+      labels()
 
     x \%>\%
       select(starts_with("date"))

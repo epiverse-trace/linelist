@@ -2,46 +2,51 @@
 % Please edit documentation in R/validate_types.R
 \name{validate_types}
 \alias{validate_types}
-\title{Check tagged variables are the right class}
+\title{Type check variables}
 \usage{
-validate_types(x, ref_types = tags_types())
+validate_types(x, ref_types = vars_types(), strict = FALSE)
 }
 \arguments{
 \item{x}{a \code{linelist} object}
 
-\item{ref_types}{a \code{list} providing allowed types for all tags, as returned
-by \code{\link[=tags_types]{tags_types()}}}
+\item{ref_types}{a named \code{list} providing variable names and their allowed
+types. Defaults to output from by \code{\link[=vars_types]{vars_types()}}, which can be used to update
+naming of default variables, for example \code{vars_types(id = "case_ID")}. Extra
+variables can be concatenated, for example
+\code{c(vars_types, y_loc = type("numeric"))}.}
+
+\item{strict}{a \code{logical} indicating whether all defaults must be present
+(\code{TRUE}) or not (\code{FALSE})}
 }
 \value{
 A named \code{list}.
 }
 \description{
-This function checks the class of each tagged variable in a \code{linelist}
-against pre-defined accepted classes in \code{\link[=tags_types]{tags_types()}}.
+This function checks the class of variables in a \code{linelist} against
+pre-defined accepted classes in \code{\link[=vars_types]{vars_types()}} and further specifications.
 }
 \examples{
 if (require(outbreaks) && require(magrittr)) {
-
   ## create an invalid linelist - gender is a numeric
   x <- measles_hagelloch_1861 \%>\%
     make_linelist(
-      id = "case_ID",
-      gender = "infector"
+      !!!update_defaults(id = "case_ID", date_onset = "date_of_prodrome")
     )
   x
 
-  ## the below would issue an error
+  ## the below would issue an error, because not all defaults are present
   ## note: tryCatch is only used to avoid a genuine error in the example
-  tryCatch(validate_types(x), error = paste)
+  tryCatch(validate_types(x, strict = TRUE), error = paste)
 
-  ## to allow other types, e.g. gender to be integer, character or factor
-  validate_types(x, tags_types(gender = c("integer", "character", "factor")))
+  ## to validate other variables types
+  validate_types(x, c(vars_types(), y_loc = type("numeric")))
 }
 }
 \seealso{
 \itemize{
-\item \code{\link[=tags_types]{tags_types()}} to change allowed types
-\item \code{\link[=validate_tags]{validate_tags()}} to perform a series of checks on the tags
-\item \code{\link[=validate_linelist]{validate_linelist()}} to combine \code{validate_tags} and \code{validate_types}
+\item \code{\link[=type]{type()}} for classes of types
+\item \code{\link[=vars_types]{vars_types()}} to change allowed types
+\item \code{\link[=validate_labels]{validate_labels()}} to perform a series of checks on the tags
+\item \code{\link[=validate_linelist]{validate_linelist()}} to combine \code{validate_labels} and \code{validate_types}
 }
 }
