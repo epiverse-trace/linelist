@@ -7,22 +7,21 @@
 #'
 #' @return vector
 #'
-#' @examples
 update_or_append <- function(x, ...) {
-    lst <- rlang::dots_list(..., .named = TRUE)
+  lst <- rlang::dots_list(..., .named = TRUE)
 
-    for (i in seq(lst)) {
-        value <- lst[[names(lst)[i]]]
-        if (names(lst)[i] %in% x) {
-            # Update the value if the name is present in x
-            x[names(lst)[i] == x] <- value
-        } else {
-            # Append the value if the name is not present in x
-            x <- c(x, value)
-        }
+  for (i in seq(lst)) {
+    value <- lst[[names(lst)[i]]]
+    if (names(lst)[i] %in% x) {
+      # Update the value if the name is present in x
+      x[names(lst)[i] == x] <- value
+    } else {
+      # Append the value if the name is not present in x
+      x <- c(x, value)
     }
+  }
 
-    x
+  x
 }
 
 #' Default column names for a linelist
@@ -31,28 +30,27 @@ update_or_append <- function(x, ...) {
 #' or optionally `id = 'ID', date_onset = 'date_symptom_onset'` to rename
 #' defaults
 #'
-#' @return
+#' @return vector of variables
 #' @export
 #'
-#' @examples
 default_vars <- function(...) {
-    defaults <- c(
-        "id",
-        "date_onset",
-        "date_reporting",
-        "date_admission",
-        "date_discharge",
-        "date_outcome",
-        "date_death",
-        "gender",
-        "age",
-        "location",
-        "occupation",
-        "hcw",
-        "outcome"
-    )
+  defaults <- c(
+    "id",
+    "date_onset",
+    "date_reporting",
+    "date_admission",
+    "date_discharge",
+    "date_outcome",
+    "date_death",
+    "gender",
+    "age",
+    "location",
+    "occupation",
+    "hcw",
+    "outcome"
+  )
 
-    update_or_append(defaults, ...)
+  update_or_append(defaults, ...)
 }
 
 #' Default labels for a linelist
@@ -63,25 +61,24 @@ default_vars <- function(...) {
 #' @return vector of labels
 #' @export
 #'
-#' @examples
 default_labels <- function(...) {
-    defaults <- c(
-        "Subject ID",
-        "Date of symptom onset",
-        "date_reporting",
-        "Date of hospital admission",
-        "Date of hospital discharge",
-        "Date of case outcome",
-        "Date of death",
-        "Reported gender",
-        "Reported age",
-        "Reported location",
-        "Reported Occupation",
-        "Healthcare Worker",
-        "Case outcome"
-    )
+  defaults <- c(
+    "Subject ID",
+    "Date of symptom onset",
+    "date_reporting",
+    "Date of hospital admission",
+    "Date of hospital discharge",
+    "Date of case outcome",
+    "Date of death",
+    "Reported gender",
+    "Reported age",
+    "Reported location",
+    "Reported Occupation",
+    "Healthcare Worker",
+    "Case outcome"
+  )
 
-    update_or_append(defaults, ...)
+  update_or_append(defaults, ...)
 }
 
 #' Get the default types for linelist variables
@@ -94,26 +91,25 @@ default_labels <- function(...) {
 #' @return list of types
 #' @export
 #'
-#' @examples
 default_types <- function(...) {
-    extra <- rlang::list2(...)
-    checkmate::assert_list(extra, null.ok = TRUE)
-    defaults <- list(
-        c("numeric", "integer", "character"),
-        type("date"),
-        type("date"),
-        type("date"),
-        type("date"),
-        type("date"),
-        type("date"),
-        type("category"),
-        type("numeric"),
-        type("category"),
-        type("category"),
-        type("binary"),
-        type("category")
-    )
+  extra <- rlang::list2(...)
+  checkmate::assert_list(extra, null.ok = TRUE)
+  defaults <- list(
+    c("numeric", "integer", "character"),
+    type("date"),
+    type("date"),
+    type("date"),
+    type("date"),
+    type("date"),
+    type("date"),
+    type("category"),
+    type("numeric"),
+    type("category"),
+    type("category"),
+    type("binary"),
+    type("category")
+  )
 
 
-    c(defaults, extra)
+  c(defaults, extra)
 }

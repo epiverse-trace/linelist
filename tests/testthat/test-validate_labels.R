@@ -12,7 +12,7 @@ test_that("tests for validate_labels", {
 
   x <- set_labels(x, speed = "Miles per hour")
   expect_snapshot_error(validate_labels(x, allow_extra = FALSE))
-  
+
   # functionalities
   x <- make_linelist(cars)
   expect_error(validate_labels(x))

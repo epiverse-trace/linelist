@@ -25,8 +25,8 @@
 #'   variables are lost (e.g. removing columns storing tagged variables) to
 #'   issue warnings, errors, or do nothing
 #'
-#'   * [get_lost_labels_action()]: to check the current behaviour of actions where
-#'   tagged variables are lost
+#'   * [get_lost_labels_action()]: to check the current behaviour of actions
+#'   where tagged variables are lost
 #'
 #' @section Dedicated methods:
 #'
@@ -47,72 +47,72 @@
 #' @examples
 #'
 #' if (require(outbreaks)) {
-#'     # using base R style
+#'   # using base R style
 #'
-#'     ## dataset we'll create a linelist from, only using the first 50 entries
-#'     measles_hagelloch_1861[1:50, ]
+#'   ## dataset we'll create a linelist from, only using the first 50 entries
+#'   measles_hagelloch_1861[1:50, ]
 #'
-#'     ## create linelist
-#'     x <- make_linelist(measles_hagelloch_1861[1:50, ],
+#'   ## create linelist
+#'   x <- make_linelist(measles_hagelloch_1861[1:50, ],
+#'     id = "case_ID",
+#'     date_onset = "date_of_prodrome",
+#'     age = "age",
+#'     gender = "gender"
+#'   )
+#'   x
+#'
+#'   ## check tagged variables
+#'   labels(x)
+#'
+#'   ## robust renaming
+#'   names(x)[1] <- "identifier"
+#'   x
+#'
+#'   ## example of dropping tags by mistake - default: warning
+#'   x[, 2:5]
+#'
+#'   ## to silence warnings when taggs are dropped
+#'   lost_labels_action("none")
+#'   x[, 2:5]
+#'
+#'   ## to trigger errors when taggs are dropped
+#'   # lost_labels_action("error")
+#'   # x[, 2:5]
+#'
+#'   ## reset default behaviour
+#'   lost_labels_action()
+#'
+#'
+#'   # using tidyverse style
+#'
+#'   ## example of creating a linelist, adding a new variable, and adding a tag
+#'   ## for it
+#'
+#'   if (require(dplyr) && require(magrittr)) {
+#'     x <- measles_hagelloch_1861 %>%
+#'       tibble() %>%
+#'       make_linelist(
 #'         id = "case_ID",
 #'         date_onset = "date_of_prodrome",
 #'         age = "age",
 #'         gender = "gender"
-#'     )
-#'     x
+#'       ) %>%
+#'       mutate(result = if_else(is.na(date_of_death), "survived", "died")) %>%
+#'       set_labels(outcome = "result") %>%
+#'       rename(identifier = case_ID)
 #'
-#'     ## check tagged variables
-#'     labels(x)
+#'     head(x)
 #'
-#'     ## robust renaming
-#'     names(x)[1] <- "identifier"
-#'     x
+#'     ## extract tagged variables
+#'     x %>%
+#'       select(has_label(c("gender", "age")))
 #'
-#'     ## example of dropping tags by mistake - default: warning
-#'     x[, 2:5]
+#'     x %>%
+#'       labels()
 #'
-#'     ## to silence warnings when taggs are dropped
-#'     lost_labels_action("none")
-#'     x[, 2:5]
-#'
-#'     ## to trigger errors when taggs are dropped
-#'     # lost_labels_action("error")
-#'     # x[, 2:5]
-#'
-#'     ## reset default behaviour
-#'     lost_labels_action()
-#'
-#'
-#'     # using tidyverse style
-#'
-#'     ## example of creating a linelist, adding a new variable, and adding a tag
-#'     ## for it
-#'
-#'     if (require(dplyr) && require(magrittr)) {
-#'         x <- measles_hagelloch_1861 %>%
-#'             tibble() %>%
-#'             make_linelist(
-#'                 id = "case_ID",
-#'                 date_onset = "date_of_prodrome",
-#'                 age = "age",
-#'                 gender = "gender"
-#'             ) %>%
-#'             mutate(result = if_else(is.na(date_of_death), "survived", "died")) %>%
-#'             set_labels(outcome = "result") %>%
-#'             rename(identifier = case_ID)
-#'
-#'         head(x)
-#'
-#'         ## extract tagged variables
-#'         x %>%
-#'             select(has_label(c("gender", "age")))
-#'
-#'         x %>%
-#'             labels()
-#'
-#'         x %>%
-#'             select(starts_with("date"))
-#'     }
+#'     x %>%
+#'       select(starts_with("date"))
+#'   }
 #' }
 #'
 #' @keywords internal

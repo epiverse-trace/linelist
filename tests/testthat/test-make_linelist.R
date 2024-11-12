@@ -11,7 +11,7 @@ test_that("tests for make_linelist", {
     "15 assertions failed"
   )
 
-  msg <- 
+  msg <-
     "There are labels in x that are not in defaults and allow_extra is FALSE"
   expect_error(
     make_linelist(cars, foo = "speed", allow_extra = FALSE),
@@ -20,19 +20,24 @@ test_that("tests for make_linelist", {
   )
 
   x <- make_linelist(cars, !!!update_defaults(
-    id = 'dist',
-    date_onset = 'speed'))
+    id = "dist",
+    date_onset = "speed"
+  ))
   expect_identical(labels(x)$dist, "Subject ID")
   expect_identical(labels(x)$speed, "Date of symptom onset")
   expect_null(labels(x)$outcome)
   expect_null(labels(x)$date_reporting)
 
-  x <- make_linelist(cars, speed = "Miles per hour",
-                     dist = "Distance in miles", allow_extra = TRUE)
+  x <- make_linelist(cars,
+    speed = "Miles per hour",
+    dist = "Distance in miles", allow_extra = TRUE
+  )
   expect_identical(
     labels(x, TRUE),
-    list(speed = "Miles per hour",
-      dist = "Distance in miles")
+    list(
+      speed = "Miles per hour",
+      dist = "Distance in miles"
+    )
   )
 })
 

@@ -20,7 +20,7 @@
 #'
 #' @inheritParams validate_types
 #'
-#' @inheritParams set_labels
+#' @inheritParams safeframe::set_labels
 #'
 #' @return If checks pass, a `linelist` object; otherwise issues an error.
 #'

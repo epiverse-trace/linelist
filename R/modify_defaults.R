@@ -41,7 +41,9 @@ modify_defaults <- function(defaults, x, allow_extra = FALSE) {
   if (!allow_extra) {
     extra_elements <- setdiff(unlist(x), unlist(defaults))
     if (length(extra_elements) > 0) {
-      stop("There are labels in x that are not in defaults and allow_extra is FALSE")
+      stop(
+        "There are labels in x that are not defaults and allow_extra is FALSE"
+      )
     }
   }
 

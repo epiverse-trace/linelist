@@ -146,14 +146,14 @@ Basic routines are provided to validate *linelist* objects. More advanced
 validation e.g. looking at compatibility of dated events will be implemented in
 a separate package.
 
-* `validate_tags()`: check that tagged variables are present in the dataset,
+* `validate_labels()`: check that tagged variables are present in the dataset,
   that tags match the pre-defined list of tagged variables
 
 * `validate_types()`: check that tagged variables have an acceptable class,
-  as defined in `tags_types()`
+  as defined in `vars_types()`
 
 * `validate_linelist()`: general validation of *linelist* objects, equivalent to
-  running both `validate_tags()` and `validate_types()`, and checking the class
+  running both `validate_labels()` and `validate_types()`, and checking the class
   of the object
 
 ### Secured methods
@@ -208,10 +208,12 @@ library(linelist) # this package!
 
 x <- measles_hagelloch_1861 %>%
   tibble() %>%
-  make_linelist(date_onset = "date_of_prodrome",
-                date_death = "date_of_death",
-                age = "age",
-                gender = "gender")
+  make_linelist(
+    date_onset = "date_of_prodrome",
+    date_death = "date_of_death",
+    age = "age",
+    gender = "gender"
+  )
 head(x)
 ```
 
@@ -318,8 +320,8 @@ lost_labels_action("error")
 x %>%
   select(1:2, has_label("gender"))
 
-# note that `lost_labels_action` sets the behavior for any later operation, so we
-# need to reset the default
+# note that `lost_labels_action` sets the behavior for any later operation, so
+# we need to reset the default
 get_lost_labels_action() # check current behaviour
 lost_labels_action() # reset default
 ```

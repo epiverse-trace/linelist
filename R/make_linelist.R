@@ -14,9 +14,7 @@
 #'
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A series of labels provided as
 #'   `column_name = "label"`, where `column_name` indicates any of the known
-#'   variables listed in 'Details' and values indicate their name in `x`; modify
-#'   `label_defaults()` to match the column names and see details for a list of
-#'   known variable types and their expected content.
+#'   variables listed in 'Details' and values indicate their name in `x`.
 #'
 #' @param strict a `logical` indicating whether all labels are required
 #'   (`TRUE`) or whether provided labels are matched to the those present in
@@ -38,7 +36,9 @@
 #' @details `make_linelist` defaults to permissive parameters. That is, it
 #' will be non-strict and allow extra labels by default.
 #'
-#' You can easily change default variables using [update_defaults()].
+#' You can easily change default variables using [update_defaults()] and
+#' passing the returned object using the `!!!` splice operator.
+#'
 #' Default variables and their types include:
 #'
 #' * `id`: a unique case identifier as `numeric` or `character`
@@ -93,7 +93,7 @@
 #'   ## create linelist
 #'   x <- make_linelist(
 #'     measles_hagelloch_1861,
-#'     update_defaults(id = "case_ID", date_onset = "date_of_prodrome")
+#'     !!!update_defaults(id = "case_ID", date_onset = "date_of_prodrome")
 #'   )
 #'
 #'   ## print result - just first few entries

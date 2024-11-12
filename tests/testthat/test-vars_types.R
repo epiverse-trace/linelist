@@ -1,5 +1,4 @@
 test_that("tests for vars_types", {
-  
   vars_types(test = "test", allow_extra = TRUE)
   # Check errors
   msg <- "Use only tags listed in `labels()`, or set `allow_extra = TRUE`"
@@ -18,13 +17,13 @@ test_that("tests for vars_types", {
 })
 
 test_that("type checking works as expected", {
-  
+
 })
 
 test_that("vars_types fails as expected", {
-  
+
 })
 
 test_that("vars_types succeeds as expected", {
-  
+
 })
