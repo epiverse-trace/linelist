@@ -47,15 +47,15 @@ straightforward.
 line lists, alongside accessors and basic methods. It essentially provides three
 types of functionalities:
 
-1. **tagging**: a *tags* system permits to pre-identify key epidemiological
+1. **labelling**: a *label* permits to easily identify key epidemiological
 variables needed in downstream analyses (e.g. dates of case notification,
 symptom onset, age, gender, disease outcome)
 
-2. **validation**: functions checking that tagged variables are indeed present
+2. **validation**: functions checking that variables are indeed present
    in the `data.frame/tibble`, and that they have the expected type
    (e.g. checking that dates are `Date`, `integer` or `numeric`)
    
-3. **secured methods**: generic functions which could lead to the loss of tagged
+3. **secured methods**: notifying users of operations that lead to the loss of 
    variables have dedicated methods for *linelist* objects with adapted
    behaviours, either updating tags as needed (*e.g.* `rename()`, `names() <-
    ...`) or issuing warnings/errors when tagged variables are lost (*e.g.*
@@ -118,27 +118,28 @@ library(linelist)
 
 ## Key functionalities
 
-A `linelist` object is an instance of a `data.frame` or a `tibble` in which key
-epidemiological variables have been *tagged*. The main features of the packages
-are broken down into the 3 categories outlined above.
+A `linelist` object is an instance of a `safeframe`, which is a `data.frame` or
+a `tibble` in which key variables have been *labelled*. The main features of the
+package is broken down into the 3 categories outlined above. In linelist, 
+epidemiological data is labelled by default.
 
-### Tagging system
+### Labelling system
 
-Tags are paired keys pointing a reference epidemiological variables to the name
-of a column in a `data.frame` or `tibble`. The tagging system permits to
-construct `linelist` objects, modify tags in existing objects, check and access
-existing tags and the corresponding variables.
+Labels are descriptions of epidemiological variables attached to the column 
+(that is, variable) in a `data.frame` or `tibble`. We use R's built in label
+attribute to be interoperable with other packages. 
 
-* `make_linelist()`: to create a `linelist` object by tagging key epi variables in
-  a `data.frame` or a `tibble`
+* `make_linelist()`: to create a `linelist` object by labelling key epi 
+  variables in a `data.frame` or a `tibble` using a set of defaults.
 
-* `set_tags()`: to add, remove, or modify tags in a `linelist`
+* `set_labels()`: to add, remove, or modify tags in a `linelist`
 
-* `labels()`: to list variables which have been tagged in a `linelist`
+* `labels()`: to list variables which have been labelled in a `linelist`
 
-* `labels()`: to list all recognized tag names; details on what the tags represent can be found at [`?make_linelist`](https://epiverse-trace.github.io/linelist/reference/make_linelist.html)
+* `label_defaults()`: to list all default variable names and labels; details on
+   what the tags represent can be found at [`?make_linelist`](https://epiverse-trace.github.io/linelist/reference/make_linelist.html)
 
-* `labels_df()`: to obtain a `data.frame` of all the tagged variables in a `linelist`
+* `labels_df()`: to obtain a `data.frame` of all the labelled variables in a `linelist`
 
 ### Validation
 
@@ -146,25 +147,26 @@ Basic routines are provided to validate *linelist* objects. More advanced
 validation e.g. looking at compatibility of dated events will be implemented in
 a separate package.
 
-* `validate_labels()`: check that tagged variables are present in the dataset,
-  that tags match the pre-defined list of tagged variables
+* `validate_labels()`: check that labelled variables are present in the dataset,
+  that labels match the pre-defined list of labelled variables
 
-* `validate_types()`: check that tagged variables have an acceptable class,
+* `validate_types()`: check that labelled variables have an acceptable class,
   as defined in `vars_types()`
 
 * `validate_linelist()`: general validation of *linelist* objects, equivalent to
-  running both `validate_labels()` and `validate_types()`, and checking the class
-  of the object
+  running both `validate_labels()` and `validate_types()`, and checking the
+  class of the object
 
 ### Secured methods
 
 These are dedicated S3 methods for existing generics which can be used to
-prevent the loss of tagged variables.
+prevent the loss of tagged variables. These are implemented in `safeframe` but
+where relevant, they are re-exported in `linelist`.
 
-* `lost_labels_action()`: to set the behaviour to adopt when tagged variables
+* `lost_labels_action()`: to set the behaviour to adopt when labelled variables
   would be lost by an operation: issue a warning (default), an error, or ignore
 
-* `get_lost_labels_action()`: to check the current behaviour for lost tagged
+* `get_lost_labels_action()`: to check the current behaviour for lost, labelled
   variables
 
 * `names<-()`: the 'base R' approach to renaming columns of a `linelist`;
@@ -189,7 +191,7 @@ head(measles_hagelloch_1861)
 
 ## Creating a *linelist* object
 
-Let us assume we want to tag the following variables to facilitate downstream
+Let us assume we want to label the following variables to facilitate downstream
 analyses, after having checked their tag name in `?make_linelist`:
 
 * the date of symptom onset, here called `prodrome` (tag: `date_onset`)
@@ -209,15 +211,18 @@ library(linelist) # this package!
 x <- measles_hagelloch_1861 %>%
   tibble() %>%
   make_linelist(
+    !!!update_defaults(
     date_onset = "date_of_prodrome",
-    date_death = "date_of_death",
-    age = "age",
-    gender = "gender"
+    date_death = "date_of_death")
   )
 head(x)
 ```
 
-The printing of the object confirms that the tags have been added. If we want to
+All the default variables named consistently in your dataset, will automatically
+be labelled as well. In the example, `age` and `gender` match exactly and are
+auto-labelled. See `default_vars()` for the full list of default names.
+
+The printing of the object confirms that the labels have been added. If we want to
 double-check which variables have been tagged:
 
 ```{r}
@@ -225,9 +230,9 @@ labels(x)
 ```
 
 
-## Changing tags
+## Changing labels
 
-Tags can be added / removed / changed using `set_tags()`.
+Labels can be added / removed / changed using `set_labels()`.
 
 Let us assume we also want to record the outcome: it is currently missing, but
 can be built from dates of deaths (missing date = survived). This can be done by
@@ -240,30 +245,30 @@ x <- x %>%
   mutate(
     inferred_outcome = if_else(is.na(date_of_death), "survived", "died")
   ) %>%
-  set_tags(outcome = "inferred_outcome")
+  set_labels(inferred_outcome = "Inferred outcome of disease")
 x
 ```
 
-If we wanted to undo the above, i.e. remove the `outcome` tag, we only need to set
+If we wanted to undo the above, i.e. remove the `outcome` label, we only need to set
 it to `NULL`:
 
 ```{r}
 x <- x %>%
-  set_tags(outcome = NULL)
+  set_labels(inferred_outcome = NULL)
 labels(x)
 ```
 
 
-## Accessing tagged variables
+## Accessing labelled variables
 
-Now that key variables have been tagged in `x`, we can used these pre-defined
+Now that key variables have been tagged in `x`, we can use these pre-defined
 fields in downstream analyses, without having to worry about variable names and
-types. We could access tagged variables using any of the following means:
+types. We could access labelled variables using any of the following means:
 
 ```{r}
 # select tagged variables only
 x %>%
-  select(has_label(c("date_onset", "date_death")))
+  select(has_label(c("date_of_prodrome", "date_of_death")))
 
 # select tagged variables only with renaming on the fly
 x %>%
@@ -288,10 +293,10 @@ x %>%
 ```
 
 Here, the above command gave a meaningful warning, in which `select()` removes
-some of the variables that were tagged.
+some of the variables that were labelled.
 
-We can also use the `has_label()` select helper to select columns via their tag.
-For example, to retain the first 2 variables, and the `gender` tag:
+We can also use the `has_label()` select helper to select columns via their 
+label. For example, to retain the first 2 variables, and the `gender` label:
 
 ```{r}
 # hybrid selection
@@ -299,8 +304,8 @@ x %>%
   select(1:2, has_label("gender"))
 ```
 
-Again, we observe a warning as before due to the loss of tagged variables in the
-operation. This behaviour can be silenced if needed, or could be changed to
+Again, we observe a warning as before due to the loss of labelled variables in
+the operation. This behaviour can be silenced if needed, or could be changed to
 issue an error (for stronger pipelines for instance):
 
 ```{r error = TRUE, purl = FALSE}
@@ -328,8 +333,10 @@ lost_labels_action() # reset default
 
 ### Changing tag loss action permanently
 
-If you wish to change the `lost_labels_action` in a way that persists across R sessions, you can do so by setting the `LINELIST_LOST_ACTION` environment variable. For example, your `.Renviron` file could contain the following line:
+If you wish to change the `lost_labels_action` in a way that persists across R sessions, you can do so by setting the `SAFEFRAME_LOST_ACTION` environment variable. For example, your `.Renviron` file could contain the following line:
 
 ```text
-LINELIST_LOST_ACTION="error"
+SAFEFRAME_LOST_ACTION="error"
 ```
+
+It is originally implemented in the `safeframe` package, which is why it is not called `LINELIST_LOST_ACTION`.
