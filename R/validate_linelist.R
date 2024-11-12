@@ -2,7 +2,7 @@
 #'
 #' This function evaluates the validity of a `linelist` object by checking the
 #' object class, its tags, and the types of the tagged variables. It combines
-#' validations checks made by [validate_types()] and [validate_tags()]. See
+#' validations checks made by [validate_types()] and [validate_labels()]. See
 #' 'Details' section for more information on the checks performed.
 #'
 #' @details The following checks are performed:
@@ -25,9 +25,9 @@
 #' @return If checks pass, a `linelist` object; otherwise issues an error.
 #'
 #' @seealso
-#' * [tags_types()] to change allowed types
+#' * [vars_types()] to change allowed types
 #' * [validate_types()] to check if tagged variables have the right classes
-#' * [validate_tags()] to perform a series of checks on the tags
+#' * [validate_labels()] to perform a series of checks on the tags
 #'
 #' @examples
 #'
@@ -59,11 +59,12 @@
 #'   tryCatch(validate_linelist(x), error = paste)
 #' }
 validate_linelist <- function(x,
-                              allow_extra = FALSE,
-                              ref_types = tags_types()) {
+                              strict = FALSE,
+                              allow_extra = TRUE,
+                              ref_types = vars_types()) {
   checkmate::assert_class(x, "linelist")
-  validate_tags(x, allow_extra)
-  validate_types(x, ref_types)
+  validate_labels(x, strict, allow_extra)
+  validate_types(x, ref_types, strict)
 
   x
 }
