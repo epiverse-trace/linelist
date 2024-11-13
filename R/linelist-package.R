@@ -51,68 +51,68 @@
 #' @examples
 #'
 #' if (require(outbreaks)) {
-#'     # using base R style
+#'   # using base R style
 #'
-#'     ## dataset we'll create a linelist from, only using the first 50 entries
-#'     measles_hagelloch_1861[1:50, ]
+#'   ## dataset we'll create a linelist from, only using the first 50 entries
+#'   measles_hagelloch_1861[1:50, ]
 #'
-#'     ## create linelist
-#'     x <- make_linelist(
-#'         measles_hagelloch_1861[1:50, ],
-#'         !!!update_defaults(id = "case_ID")
-#'     )
-#'     x
+#'   ## create linelist
+#'   x <- make_linelist(
+#'     measles_hagelloch_1861[1:50, ],
+#'     !!!update_defaults(id = "case_ID")
+#'   )
+#'   x
 #'
-#'     ## check labelled variables
-#'     labels(x)
+#'   ## check labelled variables
+#'   labels(x)
 #'
-#'     ## robust renaming
-#'     x <- set_labels(x, case_ID = "identifier")
-#'     x
+#'   ## robust renaming
+#'   x <- set_labels(x, case_ID = "identifier")
+#'   x
 #'
-#'     ## example of dropping labels by mistake - default: warning
-#'     x[, 2:5]
+#'   ## example of dropping labels by mistake - default: warning
+#'   x[, 2:5]
 #'
-#'     ## to silence warnings when taggs are dropped
-#'     lost_labels_action("none")
-#'     x[, 2:5]
+#'   ## to silence warnings when taggs are dropped
+#'   lost_labels_action("none")
+#'   x[, 2:5]
 #'
-#'     ## to trigger errors when taggs are dropped
-#'     # lost_labels_action("error")
-#'     # x[, 2:5]
+#'   ## to trigger errors when taggs are dropped
+#'   # lost_labels_action("error")
+#'   # x[, 2:5]
 #'
-#'     ## reset default behaviour
-#'     lost_labels_action()
+#'   ## reset default behaviour
+#'   lost_labels_action()
 #'
 #'
-#'     # using tidyverse style
+#'   # using tidyverse style
 #'
-#'     ## example of creating a linelist, adding a new variable, and adding a tag
-#'     ## for it
+#'   ## example of creating a linelist, adding a new variable, and adding a tag
+#'   ## for it
 #'
-#'     if (require(dplyr) && require(magrittr)) {
-#'         x <- measles_hagelloch_1861 %>%
-#'             tibble() %>%
-#'             make_linelist(!!!update_defaults(
-#'                 id = "case_ID",
-#'                 date_onset = "date_of_prodrome"
-#'             )) %>%
-#'             mutate(result = if_else(is.na(date_of_death), "survived", "died")) %>%
-#'             set_labels(result = "Mortality outcome") %>%
-#'             rename(identifier = case_ID)
+#'   if (require(dplyr) && require(magrittr)) {
+#'     x <- measles_hagelloch_1861 %>%
+#'       tibble() %>%
+#'       make_linelist(!!!update_defaults(
+#'         id = "case_ID",
+#'         date_onset = "date_of_prodrome"
+#'       )) %>%
+#'       mutate(result = if_else(is.na(date_of_death), "survived", "died")) %>%
+#'       set_labels(result = "Mortality outcome") %>%
+#'       rename(identifier = case_ID)
 #'
-#'         head(x)
+#'     head(x)
 #'
-#'         ## extract labelled variables
-#'         x %>%
-#'             select(has_label(c("gender", "age")))
+#'     ## extract labelled variables
+#'     x %>%
+#'       select(has_label(c("gender", "age")))
 #'
-#'         x %>%
-#'             labels()
+#'     x %>%
+#'       labels()
 #'
-#'         x %>%
-#'             select(starts_with("date"))
-#'     }
+#'     x %>%
+#'       select(starts_with("date"))
+#'   }
 #' }
 #'
 #' @keywords internal

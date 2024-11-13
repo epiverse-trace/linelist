@@ -212,8 +212,9 @@ x <- measles_hagelloch_1861 %>%
   tibble() %>%
   make_linelist(
     !!!update_defaults(
-    date_onset = "date_of_prodrome",
-    date_death = "date_of_death")
+      date_onset = "date_of_prodrome",
+      date_death = "date_of_death"
+    )
   )
 head(x)
 ```

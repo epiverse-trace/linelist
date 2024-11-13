@@ -11,5 +11,5 @@ test_that("tests for vars_types", {
   expect_error(vars_types(fail = "case_ID"), msg, fixed = TRUE)
 
   x <- vars_types(date_outcome = "Date")
-  expect_identical(x$Date, type('Date'))
+  expect_identical(x$Date, type("Date"))
 })
