@@ -2,7 +2,7 @@
 % Please edit documentation in R/defaults.R
 \name{update_or_append}
 \alias{update_or_append}
-\title{Internal. Update or append to a vector}
+\title{Update or append to a vector}
 \usage{
 update_or_append(x, ...)
 }
@@ -17,5 +17,5 @@ no expected equivalent in the origin, write \verb{"newVar1", "newVar2"}}
 vector
 }
 \description{
-Internal. Update or append to a vector
+Internal function. Helper to assist in updating the default vectors.
 }

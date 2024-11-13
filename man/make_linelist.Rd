@@ -12,7 +12,9 @@ cases in rows and variables in columns}
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A series of labels provided as
 \code{column_name = "label"}, where \code{column_name} indicates any of the known
-variables listed in 'Details' and values indicate their name in \code{x}.}
+variables listed in 'Details' and values indicate their name in \code{x}. This
+requires matching all the defaults, and it is recommended to use
+\code{update_defaults()} for robust handling.}
 
 \item{strict}{a \code{logical} indicating whether all labels are required
 (\code{TRUE}) or whether provided labels are matched to the those present in
@@ -24,7 +26,8 @@ currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unkn
 labels will trigger an error}
 }
 \value{
-The function returns a \code{linelist} object.
+The function returns a \code{linelist} object, which is interoperable
+with \code{safeframe} objects
 }
 \description{
 This function converts a \code{data.frame} or a \code{tibble} into a \code{linelist} object,
@@ -38,10 +41,12 @@ fields for further data cleaning and analysis.
 }
 \details{
 \code{make_linelist} defaults to permissive parameters. That is, it
-will be non-strict and allow extra labels by default.
+will be non-strict and allow extra labels by default. This is carried
+forward throughout the entire package. It will provide warnings if
+data is lost by default.
 
 You can easily change default variables using \code{\link[=update_defaults]{update_defaults()}} and
-passing the returned object using the \verb{!!!} splice operator.
+passing the returned object using the \verb{!!!} splice operator (see examples).
 
 Default variables and their types include:
 \itemize{
@@ -104,6 +109,7 @@ if (require(outbreaks)) {
 \seealso{
 \itemize{
 \item An overview of the \link{linelist} package
+\item \code{\link[=update_defaults]{update_defaults()}}: to easily set the variables from the default values
 \item \code{\link[=vars_types]{vars_types()}}: for the associated accepted types/classes
 \item \code{\link[=labels]{labels()}}: for a list of tagged variables in a \code{linelist}
 \item \code{\link[=set_labels]{set_labels()}}: for modifying tags

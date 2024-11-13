@@ -16,7 +16,7 @@ test_that("validate_linelist() detects invalid objects", {
 
 test_that("validate_linelist() allows valid objects", {
 
-  x <- make_linelist(cars, id = "speed")
+  x <- make_linelist(cars, !!!update_defaults(id = "speed"))
 
   # Print a message
   expect_message(

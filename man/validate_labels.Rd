@@ -25,16 +25,12 @@ tag exists (if \code{allow_extra} is \code{FALSE}).
 }
 \examples{
 if (require(outbreaks) && require(magrittr)) {
-  ## create a valid linelist
+  ## create a valid linelist using only defaults
   x <- measles_hagelloch_1861 \%>\%
-    make_linelist(
-      id = "case_ID",
-      date_onset = "date_of_prodrome",
-      age = "age",
-      gender = "gender"
-    )
+    make_linelist()
   x
 
+  ## rename the id default
   x <- make_linelist(
     measles_hagelloch_1861,
     !!!update_defaults(id = "case_ID")

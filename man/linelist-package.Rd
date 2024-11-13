@@ -7,26 +7,27 @@
 \title{Base Tools for Storing and Handling Case Line Lists}
 \description{
 The \emph{linelist} package provides tools to help storing and handling case line
-list data. The \code{linelist} class adds a tagging system to classical
+list data. The \code{linelist} class adds a labelling system to classical
 \code{data.frame} or \code{tibble} objects which permits to identify key
 epidemiological data such as dates of symptom onset, epi case definition,
-age, gender or disease outcome. Once tagged, these variables can be
+age, gender or disease outcome. Once labelled, these variables can be
 seamlessly used in downstream analyses, making data pipelines more robust and
-reliable.
+reliable. This package builds on \code{safeframe} to provide defaults relevant
+for linelists.
 }
 \section{Main functions}{
 
 \itemize{
 \item \code{\link[=make_linelist]{make_linelist()}}: to create \code{linelist} objects from a \code{data.frame} or a
-\code{tibble}, with the possibility to tag key epi variables
-\item \code{\link[=set_labels]{set_labels()}}: to change or add tagged variables in a \code{linelist}
-\item \code{\link[=labels]{labels()}}: to get the list of tags of a \code{linelist}
-\item \code{\link[=labels_df]{labels_df()}}: to get a \code{data.frame} of all tagged variables
-\item \code{\link[=lost_labels_action]{lost_labels_action()}}: to change the behaviour of actions where tagged
-variables are lost (e.g. removing columns storing tagged variables) to
+\code{tibble}, with the possibility to label key epi variables
+\item \code{\link[=set_labels]{set_labels()}}: to change or add labelled variables in a \code{linelist}
+\item \code{\link[=labels]{labels()}}: to get the list of labels of a \code{linelist}
+\item \code{\link[=labels_df]{labels_df()}}: to get a \code{data.frame} of all labelled variables
+\item \code{\link[=lost_labels_action]{lost_labels_action()}}: to change the behaviour of actions where labelled
+variables are lost (e.g. removing columns storing labelled variables) to
 issue warnings, errors, or do nothing
 \item \code{\link[=get_lost_labels_action]{get_lost_labels_action()}}: to check the current behaviour of actions
-where tagged variables are lost
+where labelled variables are lost
 }
 }
 
@@ -35,87 +36,86 @@ where tagged variables are lost
 
 Specific methods commonly used to handle \code{data.frame} are provided for
 \code{linelist} objects, typically to help flag or prevent actions which could
-alter or lose tagged variables (and may thus break downstream data
+alter or lose labelled variables (and may thus break downstream data
 pipelines).
 \itemize{
 \item \verb{names() <-} (and related functions, such as \code{\link[dplyr:rename]{dplyr::rename()}}) will
-rename tags as needed
+rename labels as needed
 \item \verb{x[...] <-} and \verb{x[[...]] <-}: will adopt the desired behaviour when
-tagged variables are lost
+labelled variables are lost
 \item \code{print()}: prints info about the \code{linelist} in addition to the
 \code{data.frame} or \code{tibble}
 }
+
+These methods are implemented in \code{safeframe}, which provides all the
+utilities in the \code{linelist} package.
 }
 
 \examples{
 
 if (require(outbreaks)) {
-  # using base R style
+    # using base R style
 
-  ## dataset we'll create a linelist from, only using the first 50 entries
-  measles_hagelloch_1861[1:50, ]
+    ## dataset we'll create a linelist from, only using the first 50 entries
+    measles_hagelloch_1861[1:50, ]
 
-  ## create linelist
-  x <- make_linelist(measles_hagelloch_1861[1:50, ],
-    id = "case_ID",
-    date_onset = "date_of_prodrome",
-    age = "age",
-    gender = "gender"
-  )
-  x
+    ## create linelist
+    x <- make_linelist(
+        measles_hagelloch_1861[1:50, ],
+        !!!update_defaults(id = "case_ID")
+    )
+    x
 
-  ## check tagged variables
-  labels(x)
+    ## check labelled variables
+    labels(x)
 
-  ## robust renaming
-  names(x)[1] <- "identifier"
-  x
+    ## robust renaming
+    x <- set_labels(x, case_ID = "identifier")
+    x
 
-  ## example of dropping tags by mistake - default: warning
-  x[, 2:5]
+    ## example of dropping labels by mistake - default: warning
+    x[, 2:5]
 
-  ## to silence warnings when taggs are dropped
-  lost_labels_action("none")
-  x[, 2:5]
+    ## to silence warnings when taggs are dropped
+    lost_labels_action("none")
+    x[, 2:5]
 
-  ## to trigger errors when taggs are dropped
-  # lost_labels_action("error")
-  # x[, 2:5]
+    ## to trigger errors when taggs are dropped
+    # lost_labels_action("error")
+    # x[, 2:5]
 
-  ## reset default behaviour
-  lost_labels_action()
+    ## reset default behaviour
+    lost_labels_action()
 
 
-  # using tidyverse style
+    # using tidyverse style
 
-  ## example of creating a linelist, adding a new variable, and adding a tag
-  ## for it
+    ## example of creating a linelist, adding a new variable, and adding a tag
+    ## for it
 
-  if (require(dplyr) && require(magrittr)) {
-    x <- measles_hagelloch_1861 \%>\%
-      tibble() \%>\%
-      make_linelist(
-        id = "case_ID",
-        date_onset = "date_of_prodrome",
-        age = "age",
-        gender = "gender"
-      ) \%>\%
-      mutate(result = if_else(is.na(date_of_death), "survived", "died")) \%>\%
-      set_labels(outcome = "result") \%>\%
-      rename(identifier = case_ID)
+    if (require(dplyr) && require(magrittr)) {
+        x <- measles_hagelloch_1861 \%>\%
+            tibble() \%>\%
+            make_linelist(!!!update_defaults(
+                id = "case_ID",
+                date_onset = "date_of_prodrome"
+            )) \%>\%
+            mutate(result = if_else(is.na(date_of_death), "survived", "died")) \%>\%
+            set_labels(result = "Mortality outcome") \%>\%
+            rename(identifier = case_ID)
 
-    head(x)
+        head(x)
 
-    ## extract tagged variables
-    x \%>\%
-      select(has_label(c("gender", "age")))
+        ## extract labelled variables
+        x \%>\%
+            select(has_label(c("gender", "age")))
 
-    x \%>\%
-      labels()
+        x \%>\%
+            labels()
 
-    x \%>\%
-      select(starts_with("date"))
-  }
+        x \%>\%
+            select(starts_with("date"))
+    }
 }
 
 }

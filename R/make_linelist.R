@@ -14,7 +14,9 @@
 #'
 #' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A series of labels provided as
 #'   `column_name = "label"`, where `column_name` indicates any of the known
-#'   variables listed in 'Details' and values indicate their name in `x`.
+#'   variables listed in 'Details' and values indicate their name in `x`. This
+#'   requires matching all the defaults, and it is recommended to use
+#'   `update_defaults()` for robust handling.
 #'
 #' @param strict a `logical` indicating whether all labels are required
 #'   (`TRUE`) or whether provided labels are matched to the those present in
@@ -28,16 +30,19 @@
 #' @seealso
 #'
 #' * An overview of the [linelist] package
+#' * [update_defaults()]: to easily set the variables from the default values
 #' * [vars_types()]: for the associated accepted types/classes
 #' * [labels()]: for a list of tagged variables in a `linelist`
 #' * [set_labels()]: for modifying tags
 #' * [labels_df()]: for selecting variables by tags
 #'
 #' @details `make_linelist` defaults to permissive parameters. That is, it
-#' will be non-strict and allow extra labels by default.
+#' will be non-strict and allow extra labels by default. This is carried
+#' forward throughout the entire package. It will provide warnings if
+#' data is lost by default.
 #'
 #' You can easily change default variables using [update_defaults()] and
-#' passing the returned object using the `!!!` splice operator.
+#' passing the returned object using the `!!!` splice operator (see examples).
 #'
 #' Default variables and their types include:
 #'
@@ -82,7 +87,8 @@
 #'
 #' @export
 #'
-#' @return The function returns a `linelist` object.
+#' @return The function returns a `linelist` object, which is interoperable
+#' with `safeframe` objects
 #'
 #' @examples
 #'

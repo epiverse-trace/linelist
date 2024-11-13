@@ -1,4 +1,6 @@
-#' Internal. Update or append to a vector
+#' Update or append to a vector
+#'
+#' Internal function. Helper to assist in updating the default vectors.
 #'
 #' @param x origin vector
 #' @param ... (named) list of values to update or append. `hcw = "hacw"` will

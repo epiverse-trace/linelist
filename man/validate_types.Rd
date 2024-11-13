@@ -13,7 +13,7 @@ validate_types(x, ref_types = vars_types(), strict = FALSE)
 types. Defaults to output from by \code{\link[=vars_types]{vars_types()}}, which can be used to update
 naming of default variables, for example \code{vars_types(id = "case_ID")}. Extra
 variables can be concatenated, for example
-\code{c(vars_types, y_loc = type("numeric"))}.}
+\code{c(vars_types(), y_loc = type("numeric"))}.}
 
 \item{strict}{a \code{logical} indicating whether all defaults must be present
 (\code{TRUE}) or not (\code{FALSE})}
@@ -27,19 +27,22 @@ pre-defined accepted classes in \code{\link[=vars_types]{vars_types()}} and furt
 }
 \examples{
 if (require(outbreaks) && require(magrittr)) {
-  ## create an invalid linelist - gender is a numeric
+  x <- make_linelist(
+    measles_hagelloch_1861,
+    !!!update_defaults(id = "case_ID")
+  )
+  validate_types(x, ref_types = c(vars_types(), y_loc = type("numeric")))
+
+  ## create an invalid linelist - onset date is a factor
   x <- measles_hagelloch_1861 \%>\%
-    make_linelist(
-      !!!update_defaults(id = "case_ID", date_onset = "date_of_prodrome")
-    )
+    make_linelist(!!!update_defaults(gender = "date_of_prodrome"))
   x
 
-  ## the below would issue an error, because not all defaults are present
+  ## the below issues an error
   ## note: tryCatch is only used to avoid a genuine error in the example
-  tryCatch(validate_types(x, strict = TRUE), error = paste)
-
-  ## to validate other variables types
-  validate_types(x, c(vars_types(), y_loc = type("numeric")))
+  tryCatch(validate_types(x,
+    ref_types = vars_types(gender = "date_of_prodrome")
+  ), error = paste)
 }
 }
 \seealso{
