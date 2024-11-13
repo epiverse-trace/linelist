@@ -27,7 +27,8 @@ variables can be concatenated, for example
 \code{c(vars_types, y_loc = type("numeric"))}.}
 }
 \value{
-If checks pass, a \code{linelist} object; otherwise issues an error.
+If checks pass, a \code{linelist} object (invisibly); otherwise issues an
+error.
 }
 \description{
 This function evaluates the validity of a \code{linelist} object by checking the

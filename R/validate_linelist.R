@@ -24,7 +24,8 @@
 #'
 #' @inheritParams safeframe::set_labels
 #'
-#' @return If checks pass, a `linelist` object; otherwise issues an error.
+#' @return If checks pass, a `linelist` object (invisibly); otherwise issues an
+#' error.
 #'
 #' @seealso
 #' * [vars_types()] to change allowed types
@@ -68,5 +69,7 @@ validate_linelist <- function(x,
   validate_labels(x, strict, allow_extra)
   validate_types(x, ref_types, strict)
 
-  x
+  message("'", checkmate::vname(x), "' is a valid linelist object")
+
+  invisible(x)
 }
