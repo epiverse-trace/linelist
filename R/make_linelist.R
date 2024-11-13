@@ -127,13 +127,13 @@ make_linelist <- function(x,
   checkmate::assert_logical(strict)
   checkmate::assert_logical(allow_extra)
 
-  args <- rlang::list2(...)
+  labs <- rlang::list2(...)
 
   # We replace default values with user-provided ones, and then
   # tag each variable in turn. Validation the tagged variables is done
   # elsewhere.
   lbl <- modify_defaults(label_defaults(),
-    args,
+    labs,
     allow_extra = allow_extra
   )
   # Retain only those lbl list values whose name is present in x if !strict

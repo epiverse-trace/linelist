@@ -28,12 +28,12 @@ modify_defaults <- function(defaults, x, allow_extra = FALSE) {
   # 2. Replace the names in defaults, of those matching elements, with the names
   # of the matching elements in x
   for (label in matching_labels) {
-    match <- defaults == label
+    matchDefaults <- defaults == label
     matchX <- x == label
-    if (sum(match) > 1) stop("Duplicates present for default labels. Please
-                             provide unique variables for labels and remove any
-                             duplicates.")
-    names(result)[match] <- names(x)[matchX]
+    if (sum(matchDefaults) > 1) stop("Duplicates present for default labels.
+                              Please provide unique variables for labels and
+                              remove any duplicates.", call. = FALSE)
+    names(result)[matchDefaults] <- names(x)[matchX]
   }
 
   # 3. If allow_extra is FALSE and there are elements in x that are not in
@@ -42,7 +42,8 @@ modify_defaults <- function(defaults, x, allow_extra = FALSE) {
     extra_elements <- setdiff(unlist(x), unlist(defaults))
     if (length(extra_elements) > 0) {
       stop(
-        "There are labels in x that are not defaults and allow_extra is FALSE"
+        "There are labels in x that are not defaults and allow_extra is FALSE",
+        call. = FALSE
       )
     }
   }
