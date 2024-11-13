@@ -4,7 +4,9 @@ Hagelloch
 Lifecycle
 ORCID
 PII
+R's
 RECON
+RStudio
 SaMD
 codecov
 conceptor
@@ -12,13 +14,15 @@ cran
 dplyr
 epi
 etc
+favor
 github
 lifecycle
+linelists
+pkgdown
 rlang
 rlang's
+safeframe
 testthat
-tibble
 tidyselect
 tidyverse
-unclassing
 vctrs

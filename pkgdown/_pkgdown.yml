@@ -7,20 +7,28 @@ development:
 reference:
   - title: Package Overview
     contents:
-    - linelist
+      - linelist
   - title: Make and Validate `linelist`
     contents:
-    - make_linelist
-    - validate_linelist
-    - validate_types
+      - make_linelist
+      - validate_linelist
+      - validate_types
   - title: S3 Methods for `linelist` Objects
     contents:
-    - ends_with("\\.linelist") 
-    - -has_keyword("deprecated")
-  - title: Manipulate `linelist` Tags
+      - ends_with("\\.linelist")
+      - -has_keyword("deprecated")
+  - title: Manipulate `linelist` Labels
     contents:
-    - contains("tag")
-    - -has_keyword("deprecated")
+      - contains("label")
+      - -has_keyword("deprecated")
+  - title: Default values for `linelist`
+    contents:
+      - contains("default")
+      - -has_keyword("deprecated")
+  - title: Handling types in `linelist`
+    contents:
+      - contains("types")
+      - -has_keyword("deprecated")
   - title: Deprecated Functions
     contents:
-    - has_keyword("deprecated")
+      - has_keyword("deprecated")

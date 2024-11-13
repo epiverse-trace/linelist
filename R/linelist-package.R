@@ -1,48 +1,52 @@
 #' Base Tools for Storing and Handling Case Line Lists
 #'
 #' The *linelist* package provides tools to help storing and handling case line
-#' list data. The `linelist` class adds a tagging system to classical
+#' list data. The `linelist` class adds a labelling system to classical
 #' `data.frame` or `tibble` objects which permits to identify key
 #' epidemiological data such as dates of symptom onset, epi case definition,
-#' age, gender or disease outcome. Once tagged, these variables can be
+#' age, gender or disease outcome. Once labelled, these variables can be
 #' seamlessly used in downstream analyses, making data pipelines more robust and
-#' reliable.
+#' reliable. This package builds on `safeframe` to provide defaults relevant
+#' for linelists.
 #'
 #' @aliases linelist
 #'
 #' @section Main functions:
 #'
 #'   * [make_linelist()]: to create `linelist` objects from a `data.frame` or a
-#'   `tibble`, with the possibility to tag key epi variables
+#'   `tibble`, with the possibility to label key epi variables
 #'
-#'   * [set_tags()]: to change or add tagged variables in a `linelist`
+#'   * [set_labels()]: to change or add labelled variables in a `linelist`
 #'
-#'   * [tags()]: to get the list of tags of a `linelist`
+#'   * [labels()]: to get the list of labels of a `linelist`
 #'
-#'   * [tags_df()]: to get a `data.frame` of all tagged variables
+#'   * [labels_df()]: to get a `data.frame` of all labelled variables
 #'
-#'   * [lost_tags_action()]: to change the behaviour of actions where tagged
-#'   variables are lost (e.g. removing columns storing tagged variables) to
+#'   * [lost_labels_action()]: to change the behaviour of actions where labelled
+#'   variables are lost (e.g. removing columns storing labelled variables) to
 #'   issue warnings, errors, or do nothing
 #'
-#'   * [get_lost_tags_action()]: to check the current behaviour of actions where
-#'   tagged variables are lost
+#'   * [get_lost_labels_action()]: to check the current behaviour of actions
+#'   where labelled variables are lost
 #'
 #' @section Dedicated methods:
 #'
 #'   Specific methods commonly used to handle `data.frame` are provided for
 #'   `linelist` objects, typically to help flag or prevent actions which could
-#'   alter or lose tagged variables (and may thus break downstream data
+#'   alter or lose labelled variables (and may thus break downstream data
 #'   pipelines).
 #'
 #'   * `names() <-` (and related functions, such as [dplyr::rename()]) will
-#'   rename tags as needed
+#'   rename labels as needed
 #'
-#'   * `x[...] <-` and `x[[...]] <-` (see [sub_linelist]): will adopt the
-#'    desired behaviour when tagged variables are lost
+#'   * `x[...] <-` and `x[[...]] <-`: will adopt the desired behaviour when
+#'   labelled variables are lost
 #'
 #'   * `print()`: prints info about the `linelist` in addition to the
 #'   `data.frame` or `tibble`
+#'
+#'   These methods are implemented in `safeframe`, which provides all the
+#'   utilities in the `linelist` package.
 #'
 #' @examples
 #'
@@ -53,34 +57,32 @@
 #'   measles_hagelloch_1861[1:50, ]
 #'
 #'   ## create linelist
-#'   x <- make_linelist(measles_hagelloch_1861[1:50, ],
-#'     id = "case_ID",
-#'     date_onset = "date_of_prodrome",
-#'     age = "age",
-#'     gender = "gender"
+#'   x <- make_linelist(
+#'     measles_hagelloch_1861[1:50, ],
+#'     !!!update_defaults(id = "case_ID")
 #'   )
 #'   x
 #'
-#'   ## check tagged variables
-#'   tags(x)
+#'   ## check labelled variables
+#'   labels(x)
 #'
 #'   ## robust renaming
-#'   names(x)[1] <- "identifier"
+#'   x <- set_labels(x, case_ID = "identifier")
 #'   x
 #'
-#'   ## example of dropping tags by mistake - default: warning
+#'   ## example of dropping labels by mistake - default: warning
 #'   x[, 2:5]
 #'
 #'   ## to silence warnings when taggs are dropped
-#'   lost_tags_action("none")
+#'   lost_labels_action("none")
 #'   x[, 2:5]
 #'
 #'   ## to trigger errors when taggs are dropped
-#'   # lost_tags_action("error")
+#'   # lost_labels_action("error")
 #'   # x[, 2:5]
 #'
 #'   ## reset default behaviour
-#'   lost_tags_action()
+#'   lost_labels_action()
 #'
 #'
 #'   # using tidyverse style
@@ -91,24 +93,22 @@
 #'   if (require(dplyr) && require(magrittr)) {
 #'     x <- measles_hagelloch_1861 %>%
 #'       tibble() %>%
-#'       make_linelist(
+#'       make_linelist(!!!update_defaults(
 #'         id = "case_ID",
-#'         date_onset = "date_of_prodrome",
-#'         age = "age",
-#'         gender = "gender"
-#'       ) %>%
+#'         date_onset = "date_of_prodrome"
+#'       )) %>%
 #'       mutate(result = if_else(is.na(date_of_death), "survived", "died")) %>%
-#'       set_tags(outcome = "result") %>%
+#'       set_labels(result = "Mortality outcome") %>%
 #'       rename(identifier = case_ID)
 #'
 #'     head(x)
 #'
-#'     ## extract tagged variables
+#'     ## extract labelled variables
 #'     x %>%
-#'       select(has_tag(c("gender", "age")))
+#'       select(has_label(c("gender", "age")))
 #'
 #'     x %>%
-#'       tags()
+#'       labels()
 #'
 #'     x %>%
 #'       select(starts_with("date"))

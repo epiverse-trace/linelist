@@ -7,26 +7,27 @@
 \title{Base Tools for Storing and Handling Case Line Lists}
 \description{
 The \emph{linelist} package provides tools to help storing and handling case line
-list data. The \code{linelist} class adds a tagging system to classical
+list data. The \code{linelist} class adds a labelling system to classical
 \code{data.frame} or \code{tibble} objects which permits to identify key
 epidemiological data such as dates of symptom onset, epi case definition,
-age, gender or disease outcome. Once tagged, these variables can be
+age, gender or disease outcome. Once labelled, these variables can be
 seamlessly used in downstream analyses, making data pipelines more robust and
-reliable.
+reliable. This package builds on \code{safeframe} to provide defaults relevant
+for linelists.
 }
 \section{Main functions}{
 
 \itemize{
 \item \code{\link[=make_linelist]{make_linelist()}}: to create \code{linelist} objects from a \code{data.frame} or a
-\code{tibble}, with the possibility to tag key epi variables
-\item \code{\link[=set_tags]{set_tags()}}: to change or add tagged variables in a \code{linelist}
-\item \code{\link[=tags]{tags()}}: to get the list of tags of a \code{linelist}
-\item \code{\link[=tags_df]{tags_df()}}: to get a \code{data.frame} of all tagged variables
-\item \code{\link[=lost_tags_action]{lost_tags_action()}}: to change the behaviour of actions where tagged
-variables are lost (e.g. removing columns storing tagged variables) to
+\code{tibble}, with the possibility to label key epi variables
+\item \code{\link[=set_labels]{set_labels()}}: to change or add labelled variables in a \code{linelist}
+\item \code{\link[=labels]{labels()}}: to get the list of labels of a \code{linelist}
+\item \code{\link[=labels_df]{labels_df()}}: to get a \code{data.frame} of all labelled variables
+\item \code{\link[=lost_labels_action]{lost_labels_action()}}: to change the behaviour of actions where labelled
+variables are lost (e.g. removing columns storing labelled variables) to
 issue warnings, errors, or do nothing
-\item \code{\link[=get_lost_tags_action]{get_lost_tags_action()}}: to check the current behaviour of actions where
-tagged variables are lost
+\item \code{\link[=get_lost_labels_action]{get_lost_labels_action()}}: to check the current behaviour of actions
+where labelled variables are lost
 }
 }
 
@@ -35,16 +36,19 @@ tagged variables are lost
 
 Specific methods commonly used to handle \code{data.frame} are provided for
 \code{linelist} objects, typically to help flag or prevent actions which could
-alter or lose tagged variables (and may thus break downstream data
+alter or lose labelled variables (and may thus break downstream data
 pipelines).
 \itemize{
 \item \verb{names() <-} (and related functions, such as \code{\link[dplyr:rename]{dplyr::rename()}}) will
-rename tags as needed
-\item \verb{x[...] <-} and \verb{x[[...]] <-} (see \link{sub_linelist}): will adopt the
-desired behaviour when tagged variables are lost
+rename labels as needed
+\item \verb{x[...] <-} and \verb{x[[...]] <-}: will adopt the desired behaviour when
+labelled variables are lost
 \item \code{print()}: prints info about the \code{linelist} in addition to the
 \code{data.frame} or \code{tibble}
 }
+
+These methods are implemented in \code{safeframe}, which provides all the
+utilities in the \code{linelist} package.
 }
 
 \examples{
@@ -56,34 +60,32 @@ if (require(outbreaks)) {
   measles_hagelloch_1861[1:50, ]
 
   ## create linelist
-  x <- make_linelist(measles_hagelloch_1861[1:50, ],
-    id = "case_ID",
-    date_onset = "date_of_prodrome",
-    age = "age",
-    gender = "gender"
+  x <- make_linelist(
+    measles_hagelloch_1861[1:50, ],
+    !!!update_defaults(id = "case_ID")
   )
   x
 
-  ## check tagged variables
-  tags(x)
+  ## check labelled variables
+  labels(x)
 
   ## robust renaming
-  names(x)[1] <- "identifier"
+  x <- set_labels(x, case_ID = "identifier")
   x
 
-  ## example of dropping tags by mistake - default: warning
+  ## example of dropping labels by mistake - default: warning
   x[, 2:5]
 
   ## to silence warnings when taggs are dropped
-  lost_tags_action("none")
+  lost_labels_action("none")
   x[, 2:5]
 
   ## to trigger errors when taggs are dropped
-  # lost_tags_action("error")
+  # lost_labels_action("error")
   # x[, 2:5]
 
   ## reset default behaviour
-  lost_tags_action()
+  lost_labels_action()
 
 
   # using tidyverse style
@@ -94,24 +96,22 @@ if (require(outbreaks)) {
   if (require(dplyr) && require(magrittr)) {
     x <- measles_hagelloch_1861 \%>\%
       tibble() \%>\%
-      make_linelist(
+      make_linelist(!!!update_defaults(
         id = "case_ID",
-        date_onset = "date_of_prodrome",
-        age = "age",
-        gender = "gender"
-      ) \%>\%
+        date_onset = "date_of_prodrome"
+      )) \%>\%
       mutate(result = if_else(is.na(date_of_death), "survived", "died")) \%>\%
-      set_tags(outcome = "result") \%>\%
+      set_labels(result = "Mortality outcome") \%>\%
       rename(identifier = case_ID)
 
     head(x)
 
-    ## extract tagged variables
+    ## extract labelled variables
     x \%>\%
-      select(has_tag(c("gender", "age")))
+      select(has_label(c("gender", "age")))
 
     x \%>\%
-      tags()
+      labels()
 
     x \%>\%
       select(starts_with("date"))

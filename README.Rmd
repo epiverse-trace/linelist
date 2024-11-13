@@ -108,7 +108,7 @@ x <- dataset %>%
     occupation = "age" # mistake
   )
 x
-tags(x) # check available tags
+labels(x) # check available tags
 ```
 
 `validate_linelist()` will error if one of your tagged column doesn't have the
@@ -125,7 +125,7 @@ validate_linelist(x)
 # change tags: fix mistakes, add new ones
 # ---------------------------------------
 x <- x %>%
-  set_tags(
+  set_labels(
     occupation = NULL, # tag removal
     gender = "sex", # new tag
     outcome = "outcome"
@@ -141,7 +141,7 @@ x_no_geo <- x %>%
 For stronger pipelines, you can even trigger errors upon loss:
 
 ```{r error = TRUE}
-lost_tags_action("error")
+lost_labels_action("error")
 
 x_no_geo <- x %>%
   select(-(5:8))
@@ -150,7 +150,7 @@ x_no_geo <- x %>%
   select(-(5:7))
 
 ## to revert to default behaviour (warning upon error)
-lost_tags_action()
+lost_labels_action()
 ```
 
 Alternatively, content can be accessed by tags:
@@ -160,7 +160,7 @@ x_no_geo %>%
   select(has_tag(c("date_onset", "outcome")))
 
 x_no_geo %>%
-  tags_df()
+  labels_df()
 ```
 
 linelist can also be connected to the incidence2 package for pipelines focused
@@ -170,7 +170,7 @@ on aggregated count data:
 library(incidence2)
 
 x_no_geo %>%
-  tags_df() %>%
+  labels_df() %>%
   incidence("date_onset", groups = c("gender", "outcome")) %>%
   plot(
     fill = "outcome",
