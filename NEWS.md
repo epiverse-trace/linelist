@@ -1,5 +1,22 @@
 # linelist (development version)
 
+# linelist 2.0
+
+Major release, as a result of factoring out core functionality to the **safeframe** package. **safeframe** changes the internal logic from object level tags to column level labels, to be interoperable with the base R labelling system. This release makes **linelist** compatible with the labelling system.
+
+This major release should be considered as breaking previous scripts by default. This is the result of the major changes, which also directly affects the function design and arguments. Please review documentation if you want to upgrade to the new version, and if you depend on stability, fix your linelist version to the latest public release.
+
+## Internal change
+
+* Remove internal functionality in favor of implementation in **safeframe**.
+* Add functionality to handle default values, specific to **linelist**.
+* Re-export **safeframe** functions that are of value in linelist.
+* Significantly reduced **linelist** codebase, while maintaining functionality.
+
+## New features
+
+* We now use base R labelling, which is also displayed in RStudio and in autocomplete.
+
 # linelist 1.1.4
 
 ## Internal change
