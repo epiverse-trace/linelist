@@ -9,6 +9,8 @@
 #'
 #' @return vector
 #'
+#' @keywords internal
+#'
 update_or_append <- function(x, ...) {
   lst <- rlang::dots_list(..., .named = TRUE)
 

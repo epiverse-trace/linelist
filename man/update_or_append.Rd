@@ -19,3 +19,4 @@ vector
 \description{
 Internal function. Helper to assist in updating the default vectors.
 }
+\keyword{internal}
