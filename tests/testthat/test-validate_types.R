@@ -7,7 +7,7 @@ test_that("tests for validate_types() basic input checking", {
 
 test_that("validate_types() validates types", {
   # Successful validations
-  x <- make_linelist(cars, !!!update_defaults(id = "speed"))
+  x <- make_linelist(cars, speed = "id"))
   expect_silent(
     expect_identical(
       x,

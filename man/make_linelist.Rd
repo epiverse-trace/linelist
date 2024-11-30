@@ -4,7 +4,7 @@
 \alias{make_linelist}
 \title{Create a linelist from a data.frame}
 \usage{
-make_linelist(x, ..., strict = FALSE, allow_extra = TRUE)
+make_linelist(x, ..., allow_extra = FALSE)
 }
 \arguments{
 \item{x}{a \code{data.frame} or a \code{tibble} containing case line list data, with
@@ -16,18 +16,12 @@ variables listed in 'Details' and values indicate their name in \code{x}. This
 requires matching all the defaults, and it is recommended to use
 \code{update_defaults()} for robust handling.}
 
-\item{strict}{a \code{logical} indicating whether all labels are required
-(\code{TRUE}) or whether provided labels are matched to the those present in
-\code{x} (\code{FALSE}). If \code{TRUE} labelled but missing variables will result in
-errors.}
-
 \item{allow_extra}{a \code{logical} indicating if additional labels not
 currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
 labels will trigger an error}
 }
 \value{
-The function returns a \code{linelist} object, which is interoperable
-with \code{safeframe} objects
+The function returns a \code{linelist} object.
 }
 \description{
 This function converts a \code{data.frame} or a \code{tibble} into a \code{linelist} object,
@@ -40,15 +34,7 @@ but \code{linelist}-aware packages will then be able to automatically use tagged
 fields for further data cleaning and analysis.
 }
 \details{
-\code{make_linelist} defaults to permissive parameters. That is, it
-will be non-strict and allow extra labels by default. This is carried
-forward throughout the entire package. It will provide warnings if
-data is lost by default.
-
-You can easily change default variables using \code{\link[=update_defaults]{update_defaults()}} and
-passing the returned object using the \verb{!!!} splice operator (see examples).
-
-Default variables and their types include:
+Default variables and their types are:
 \itemize{
 \item \code{id}: a unique case identifier as \code{numeric} or \code{character}
 \item \code{date_onset}: date of symptom onset (see below for date formats)
@@ -80,39 +66,44 @@ case
 \examples{
 
 if (require(outbreaks)) {
+
   ## dataset we will convert to linelist
   head(measles_hagelloch_1861)
 
   ## create linelist
-  x <- make_linelist(
-    measles_hagelloch_1861,
-    !!!update_defaults(id = "case_ID", date_onset = "date_of_prodrome")
+  x <- make_linelist(measles_hagelloch_1861,
+    case_ID = "id",
+    date_of_prodrome = "date_onset",
+    age = "age",
+    gender = "gender"
   )
 
   ## print result - just first few entries
   head(x)
 
-  ## check labels
-  labels(x)
+  ## check tags
+  tags(x)
 
-  ## you can also add non-standard labels
-  x <- make_linelist(
-    measles_hagelloch_1861,
-    !!!c(
-      update_defaults(id = "case_ID", date_onset = "date_of_prodrome"),
-      infector = "Disease infector"
-    )
+  ## Tags can also be passed as a list with the splice operator (!!!)
+  my_tags <- list(
+    case_ID = "id",
+    ate_of_prodrome = "date_onset",
+    age = "age",
+    gender = "gender"
   )
+  new_x <- make_linelist(measles_hagelloch_1861, !!!my_tags)
+
+  ## The output is strictly equivalent to the previous one
+  identical(x, new_x)
 }
 
 }
 \seealso{
 \itemize{
 \item An overview of the \link{linelist} package
-\item \code{\link[=update_defaults]{update_defaults()}}: to easily set the variables from the default values
 \item \code{\link[=vars_types]{vars_types()}}: for the associated accepted types/classes
 \item \code{\link[=labels]{labels()}}: for a list of tagged variables in a \code{linelist}
-\item \code{\link[=set_labels]{set_labels()}}: for modifying tags
-\item \code{\link[=labels_df]{labels_df()}}: for selecting variables by tags
+\item \code{\link[=set_labels]{set_labels()}}: for modifying labels
+\item \code{\link[=labels_df]{labels_df()}}: for selecting variables by labels
 }
 }

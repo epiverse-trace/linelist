@@ -1,23 +1,13 @@
-#' Generate default tags for a linelist
-#'
-#' This function returns a named list providing the default tags for a
-#' `linelist` object (all default to NULL).
+#' Default labels recognized by \pkg{linelist}
 #'
 #' @export
 #'
-#' @importFrom stats setNames
-#'
-#' @return A named `list`.
+#' @return A character vector with the default labels recognized by 
+#' \pkg{linelist}
 #'
 #' @examples
 #' label_defaults()
 #'
 label_defaults <- function() {
-  setNames(
-    vector(
-      "list",
-      length = length(vars_types())
-    ),
-    names(vars_types())
-  )
+  names(vars_types())
 }

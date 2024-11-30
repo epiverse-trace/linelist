@@ -7,7 +7,7 @@ test_that("tests for validate_labels", {
   msg <- "`x` has no labels"
   expect_error(validate_labels(x), msg)
 
-  x <- make_linelist(cars, !!!update_defaults(id = "dist"))
+  x <- make_linelist(cars, dist = "id")
   expect_snapshot_error(validate_labels(x, strict = TRUE))
 
   x <- set_labels(x, speed = "Miles per hour")

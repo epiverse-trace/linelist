@@ -2,16 +2,16 @@
 % Please edit documentation in R/label_defaults.R
 \name{label_defaults}
 \alias{label_defaults}
-\title{Generate default tags for a linelist}
+\title{Default labels recognized by \pkg{linelist}}
 \usage{
 label_defaults()
 }
 \value{
-A named \code{list}.
+A character vector with the default labels recognized by
+\pkg{linelist}
 }
 \description{
-This function returns a named list providing the default tags for a
-\code{linelist} object (all default to NULL).
+Default labels recognized by \pkg{linelist}
 }
 \examples{
 label_defaults()

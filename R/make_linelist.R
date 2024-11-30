@@ -18,11 +18,6 @@
 #'   requires matching all the defaults, and it is recommended to use
 #'   `update_defaults()` for robust handling.
 #'
-#' @param strict a `logical` indicating whether all labels are required
-#'   (`TRUE`) or whether provided labels are matched to the those present in
-#'   `x` (`FALSE`). If `TRUE` labelled but missing variables will result in
-#'   errors.
-#'
 #' @param allow_extra a `logical` indicating if additional labels not
 #'   currently recognized by `linelist` should be allowed; if `FALSE`, unknown
 #'   labels will trigger an error
@@ -30,21 +25,12 @@
 #' @seealso
 #'
 #' * An overview of the [linelist] package
-#' * [update_defaults()]: to easily set the variables from the default values
 #' * [vars_types()]: for the associated accepted types/classes
 #' * [labels()]: for a list of tagged variables in a `linelist`
-#' * [set_labels()]: for modifying tags
-#' * [labels_df()]: for selecting variables by tags
+#' * [set_labels()]: for modifying labels
+#' * [labels_df()]: for selecting variables by labels
 #'
-#' @details `make_linelist` defaults to permissive parameters. That is, it
-#' will be non-strict and allow extra labels by default. This is carried
-#' forward throughout the entire package. It will provide warnings if
-#' data is lost by default.
-#'
-#' You can easily change default variables using [update_defaults()] and
-#' passing the returned object using the `!!!` splice operator (see examples).
-#'
-#' Default variables and their types include:
+#' @details Default variables and their types are:
 #'
 #' * `id`: a unique case identifier as `numeric` or `character`
 #'
@@ -87,60 +73,67 @@
 #'
 #' @export
 #'
-#' @return The function returns a `linelist` object, which is interoperable
-#' with `safeframe` objects
+#' @return The function returns a `linelist` object.
 #'
 #' @examples
 #'
 #' if (require(outbreaks)) {
+#'
 #'   ## dataset we will convert to linelist
 #'   head(measles_hagelloch_1861)
 #'
 #'   ## create linelist
-#'   x <- make_linelist(
-#'     measles_hagelloch_1861,
-#'     !!!update_defaults(id = "case_ID", date_onset = "date_of_prodrome")
+#'   x <- make_linelist(measles_hagelloch_1861,
+#'     case_ID = "id",
+#'     date_of_prodrome = "date_onset",
+#'     age = "age",
+#'     gender = "gender"
 #'   )
 #'
 #'   ## print result - just first few entries
 #'   head(x)
 #'
-#'   ## check labels
-#'   labels(x)
+#'   ## check tags
+#'   tags(x)
 #'
-#'   ## you can also add non-standard labels
-#'   x <- make_linelist(
-#'     measles_hagelloch_1861,
-#'     !!!c(
-#'       update_defaults(id = "case_ID", date_onset = "date_of_prodrome"),
-#'       infector = "Disease infector"
-#'     )
+#'   ## Tags can also be passed as a list with the splice operator (!!!)
+#'   my_tags <- list(
+#'     case_ID = "id",
+#'     ate_of_prodrome = "date_onset",
+#'     age = "age",
+#'     gender = "gender"
 #'   )
+#'   new_x <- make_linelist(measles_hagelloch_1861, !!!my_tags)
+#'
+#'   ## The output is strictly equivalent to the previous one
+#'   identical(x, new_x)
 #' }
 #'
 make_linelist <- function(x,
                           ...,
-                          strict = FALSE,
-                          allow_extra = TRUE) {
+                          allow_extra = FALSE) {
   # assert inputs
-  checkmate::assert_data_frame(x, min.cols = 1)
-  checkmate::assert_logical(strict)
   checkmate::assert_logical(allow_extra)
-
-  labs <- rlang::list2(...)
-
-  # We replace default values with user-provided ones, and then
+  # Further checks are done by safeframe
+  
+  args <- rlang::list2(...)
+  
+  # The approach is to replace default values with user-provided ones, and then
   # tag each variable in turn. Validation the tagged variables is done
   # elsewhere.
-  lbl <- modify_defaults(label_defaults(),
-    labs,
-    allow_extra = allow_extra
-  )
-  # Retain only those lbl list values whose name is present in x if !strict
-  if (!strict) lbl <- lbl[names(lbl) %in% names(x)]
-
-  x <- safeframe::make_safeframe(x, !!!lbl)
-
+  extra <- setdiff(args, label_defaults())
+  if (!allow_extra && (length(extra) > 0L)) {
+    stop(
+      "Unknown variable types: ",
+      toString(extra),
+      "\n  ",
+      "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`",
+      call. = FALSE
+    )
+  }
+  
+  x <- safeframe::make_safeframe(x, !!!args)
+  
   # shape output and return object
   class(x) <- c("linelist", class(x))
   x
