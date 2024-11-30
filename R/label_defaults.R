@@ -13,8 +13,11 @@
 #' label_defaults()
 #'
 label_defaults <- function() {
-  as.list(setNames(
-    default_labels(),
-    default_vars()
-  ))
+  setNames(
+    vector(
+      "list",
+      length = length(vars_types())
+    ),
+    names(vars_types())
+  )
 }
