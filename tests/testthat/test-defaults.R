@@ -59,9 +59,3 @@ test_that("default_labels succeeds as expected", {
     )
   )
 })
-
-test_that("default_types succeeds as expected", {
-  expect_snapshot(default_types())
-
-  expect_snapshot(default_types(type("category")))
-})

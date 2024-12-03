@@ -8,7 +8,7 @@ test_that("validate_linelist() detects invalid objects", {
 
   x <- make_linelist(cars, speed = "gender")
   expect_snapshot_error(
-    validate_linelist(x, ref_types = vars_types(gender = "speed"))
+    validate_linelist(x, ref_types = labels_types(gender = "speed"))
   )
 })
 

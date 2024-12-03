@@ -55,36 +55,3 @@ default_labels <- function(...) {
   
   update_or_append(defaults, ...)
 }
-
-#' Get the default types for linelist variables
-#'
-#' @param ... a series of vectors containing types to append to the defaults.
-#'
-#' @note
-#' Use the helper function `type()` to generate known collections of types.
-#'
-#' @return list of types
-#' @export
-#'
-default_types <- function(...) {
-  extra <- rlang::list2(...)
-  checkmate::assert_list(extra, null.ok = TRUE)
-  defaults <- list(
-    c("numeric", "integer", "character"),
-    type("date"),
-    type("date"),
-    type("date"),
-    type("date"),
-    type("date"),
-    type("date"),
-    type("category"),
-    type("numeric"),
-    type("category"),
-    type("category"),
-    type("binary"),
-    type("category")
-  )
-
-
-  c(defaults, extra)
-}

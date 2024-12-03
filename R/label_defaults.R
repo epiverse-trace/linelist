@@ -9,5 +9,5 @@
 #' label_defaults()
 #'
 label_defaults <- function() {
-  names(vars_types())
+  names(labels_types())
 }

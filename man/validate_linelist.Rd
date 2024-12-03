@@ -4,7 +4,7 @@
 \alias{validate_linelist}
 \title{Checks the content of a linelist object}
 \usage{
-validate_linelist(x, allow_extra = TRUE, ref_types = vars_types())
+validate_linelist(x, allow_extra = TRUE, ref_types = labels_types())
 }
 \arguments{
 \item{x}{a \code{linelist} object}

@@ -66,7 +66,7 @@
 #' }
 validate_linelist <- function(x,
                               allow_extra = TRUE,
-                              ref_types = vars_types()) {
+                              ref_types = labels_types()) {
   checkmate::assert_class(x, "linelist")
   validate_labels(x, allow_extra)
   validate_types(x, ref_types)
