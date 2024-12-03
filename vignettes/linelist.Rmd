@@ -212,7 +212,9 @@ x <- measles_hagelloch_1861 %>%
   tibble() %>%
   make_linelist(
     date_of_prodrome = "date_onset",
-    date_of_death = "date_death"
+    date_of_death = "date_death",
+    age = "age",
+    gender = "gender"
   )
 head(x)
 ```
@@ -244,7 +246,7 @@ x <- x %>%
   mutate(
     inferred_outcome = if_else(is.na(date_of_death), "survived", "died")
   ) %>%
-  set_labels(inferred_outcome = "Inferred outcome of disease")
+  set_labels(inferred_outcome = "outcome")
 x
 ```
 
@@ -267,7 +269,7 @@ types. We could access labelled variables using any of the following means:
 ```{r}
 # select tagged variables only
 x %>%
-  select(has_label(c("date_of_prodrome", "date_of_death")))
+  select(has_label(c("date_onset", "date_death")))
 
 # select tagged variables only with renaming on the fly
 x %>%
