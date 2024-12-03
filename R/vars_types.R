@@ -23,7 +23,7 @@
 #' vars_types(id = "case_ID")
 #'
 vars_types <- function(...) {
-  res <- setNames(default_types(), default_vars(...))
+  res <- setNames(default_types(), default_labels(...))
 
   res
 }

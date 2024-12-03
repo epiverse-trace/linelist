@@ -2,7 +2,6 @@
 
 export(default_labels)
 export(default_types)
-export(default_vars)
 export(get_lost_labels_action)
 export(has_label)
 export(label_defaults)

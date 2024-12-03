@@ -28,16 +28,15 @@ update_or_append <- function(x, ...) {
   x
 }
 
-#' Default column names for a linelist
+#' Default labels for a linelist
 #'
-#' @param ... A series of column names provided as `col1, col2` to add columns
-#' or optionally `id = 'ID', date_onset = 'date_symptom_onset'` to rename
-#' defaults
+#' @param ... A series of labels provided as `"label1", "label2"` to add
+#' labels or optionally `"id" = "new_id"` to rename defaults
 #'
-#' @return vector of variables
+#' @return vector of labels
 #' @export
 #'
-default_vars <- function(...) {
+default_labels <- function(...) {
   defaults <- c(
     "id",
     "date_onset",
@@ -53,35 +52,7 @@ default_vars <- function(...) {
     "hcw",
     "outcome"
   )
-
-  update_or_append(defaults, ...)
-}
-
-#' Default labels for a linelist
-#'
-#' @param ... A series of labels provided as `"Label 1", "Label 2"` to add
-#' labels or optionally `"Subject ID" = "Participant ID"` to rename defaults
-#'
-#' @return vector of labels
-#' @export
-#'
-default_labels <- function(...) {
-  defaults <- c(
-    "Subject ID",
-    "Date of symptom onset",
-    "date_reporting",
-    "Date of hospital admission",
-    "Date of hospital discharge",
-    "Date of case outcome",
-    "Date of death",
-    "Reported gender",
-    "Reported age",
-    "Reported location",
-    "Reported Occupation",
-    "Healthcare Worker",
-    "Case outcome"
-  )
-
+  
   update_or_append(defaults, ...)
 }
 

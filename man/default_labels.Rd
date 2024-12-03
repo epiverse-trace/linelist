@@ -7,8 +7,8 @@
 default_labels(...)
 }
 \arguments{
-\item{...}{A series of labels provided as \verb{"Label 1", "Label 2"} to add
-labels or optionally \code{"Subject ID" = "Participant ID"} to rename defaults}
+\item{...}{A series of labels provided as \verb{"label1", "label2"} to add
+labels or optionally \code{"id" = "new_id"} to rename defaults}
 }
 \value{
 vector of labels
