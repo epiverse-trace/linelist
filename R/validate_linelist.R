@@ -65,12 +65,11 @@
 #'   ), error = paste)
 #' }
 validate_linelist <- function(x,
-                              strict = FALSE,
                               allow_extra = TRUE,
                               ref_types = vars_types()) {
   checkmate::assert_class(x, "linelist")
-  validate_labels(x, strict, allow_extra)
-  validate_types(x, ref_types, strict)
+  validate_labels(x, allow_extra)
+  validate_types(x, ref_types)
 
   message("'", checkmate::vname(x), "' is a valid linelist object")
 

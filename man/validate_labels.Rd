@@ -4,12 +4,10 @@
 \alias{validate_labels}
 \title{Checks the labels of a linelist object}
 \usage{
-validate_labels(x, strict = FALSE, allow_extra = TRUE)
+validate_labels(x, allow_extra = TRUE)
 }
 \arguments{
 \item{x}{a \code{linelist} object}
-
-\item{strict}{a \code{logical} indicating whether checks should be strict}
 
 \item{allow_extra}{a \code{logical} indicating whether non-default labels are
 allowed}

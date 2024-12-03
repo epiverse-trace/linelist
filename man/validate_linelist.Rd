@@ -4,18 +4,10 @@
 \alias{validate_linelist}
 \title{Checks the content of a linelist object}
 \usage{
-validate_linelist(
-  x,
-  strict = FALSE,
-  allow_extra = TRUE,
-  ref_types = vars_types()
-)
+validate_linelist(x, allow_extra = TRUE, ref_types = vars_types())
 }
 \arguments{
 \item{x}{a \code{linelist} object}
-
-\item{strict}{a \code{logical} indicating whether all defaults must be present
-(\code{TRUE}) or not (\code{FALSE})}
 
 \item{allow_extra}{a \code{logical} indicating whether non-default variables are
 permitted}

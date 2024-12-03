@@ -4,7 +4,7 @@
 \alias{validate_types}
 \title{Type check variables}
 \usage{
-validate_types(x, ref_types = vars_types(), strict = FALSE)
+validate_types(x, ref_types = tags_types())
 }
 \arguments{
 \item{x}{a \code{linelist} object}
@@ -14,9 +14,6 @@ types. Defaults to output from by \code{\link[=vars_types]{vars_types()}}, which
 naming of default variables, for example \code{vars_types(id = "case_ID")}. Extra
 variables can be concatenated, for example
 \code{c(vars_types(), y_loc = type("numeric"))}.}
-
-\item{strict}{a \code{logical} indicating whether all defaults must be present
-(\code{TRUE}) or not (\code{FALSE})}
 }
 \value{
 A named \code{list}.

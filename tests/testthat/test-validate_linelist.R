@@ -4,7 +4,7 @@ test_that("validate_linelist() detects invalid objects", {
 
   x <- make_linelist(cars, speed = "id", dist = "gender")
 
-  expect_snapshot_error(validate_linelist(x, strict = TRUE))
+  expect_snapshot_error(validate_linelist(x))
 
   x <- make_linelist(cars, speed = "gender")
   expect_snapshot_error(

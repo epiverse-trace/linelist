@@ -8,8 +8,6 @@
 #' @export
 #'
 #' @param x a `linelist` object
-#'
-#' @param strict a `logical` indicating whether checks should be strict
 #' @param allow_extra a `logical` indicating whether non-default labels are
 #' allowed
 #'
@@ -40,7 +38,6 @@
 #' }
 validate_labels <- function(
     x,
-    strict = FALSE,
     allow_extra = TRUE) {
   checkmate::assert_class(x, "safeframe")
   x_labels <- labels(x)
@@ -53,18 +50,6 @@ validate_labels <- function(
   # check that x is a list, and each tag is a `character`
   checkmate::assert_list(x_labels, types = c("character", "null"))
   default_labels <- default_labels()
-
-  # check that all defaults are present
-  if (strict) {
-    missing_labels <- default_labels[!default_labels %in% x_labels]
-    if (length(missing_labels) > 0) {
-      stop(
-        "The following default labels are missing:\n",
-        toString(missing_labels),
-        call. = FALSE
-      )
-    }
-  }
 
   # check there is no extra value
   if (!allow_extra) {

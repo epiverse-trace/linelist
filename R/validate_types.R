@@ -13,9 +13,6 @@
 #' variables can be concatenated, for example
 #' `c(vars_types(), y_loc = type("numeric"))`.
 #'
-#' @param strict a `logical` indicating whether all defaults must be present
-#'   (`TRUE`) or not (`FALSE`)
-#'
 #' @return A named `list`.
 #'
 #' @seealso
@@ -43,17 +40,8 @@
 #'     ref_types = vars_types(gender = "date_of_prodrome")
 #'   ), error = paste)
 #' }
-validate_types <- function(x, ref_types = vars_types(), strict = FALSE) {
+validate_types <- function(x, ref_types = vars_types()) {
   checkmate::assert_class(x, "linelist")
-
-  if (strict && !all(names(x) %in% names(ref_types))) {
-    stop(
-      "Variable ",
-      toString(paste0("`", setdiff(names(x), names(ref_types)), "`")),
-      " are not available in `x`.",
-      call. = FALSE
-    )
-  }
 
   check_df <- suppressWarnings(x[, names(x) %in% names(ref_types)])
   type_checks <- lapply(
@@ -64,7 +52,7 @@ validate_types <- function(x, ref_types = vars_types(), strict = FALSE) {
         check_df[[type]],
         allowed_types,
         null.ok = TRUE
-      )
+    )
     }
   )
   has_correct_types <- vapply(type_checks, isTRUE, logical(1))
