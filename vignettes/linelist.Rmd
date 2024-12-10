@@ -208,8 +208,8 @@ library(linelist) # this package!
 
 x <- measles_hagelloch_1861 %>%
   tibble() %>%
-  make_linelist(date_onset = "date_of_prodrome",
-                date_death = "date_of_death",
+  make_linelist(date_of_prodrome = "date_onset",
+                date_of_death = "date_death",
                 age = "age",
                 gender = "gender")
 head(x)
@@ -238,7 +238,7 @@ x <- x %>%
   mutate(
     inferred_outcome = if_else(is.na(date_of_death), "survived", "died")
   ) %>%
-  set_tags(outcome = "inferred_outcome")
+  set_tags(inferred_outcome = "outcome")
 x
 ```
 

@@ -1,15 +1,16 @@
 # Compatibility with dplyr::transmute()
 
-    The following tags have lost their variable:
-     date_onset:dist, date_outcome:speed
+    The following labelled variables are lost:
+     speed - date_outcome
+     dist - date_onset
 
 # Compatibility with dplyr::mutate(.keep)
 
-    The following tags have lost their variable:
-     date_outcome:speed
+    The following labelled variables are lost:
+     speed - date_outcome
 
 # Compatibility with dplyr::select()
 
-    The following tags have lost their variable:
-     date_outcome:speed
+    The following labelled variables are lost:
+     speed - date_outcome
 

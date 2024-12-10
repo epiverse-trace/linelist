@@ -38,12 +38,12 @@ if (require(outbreaks)) {
   x <- set_tags(x,
     age = "age",
     gender = "gender",
-    date_onset = "date_of_prodrome"
+    date_of_prodrome = "date_onset"
   )
   tags(x)
 
   ## add non-default tags using allow_extra
-  x <- set_tags(x, severe = "complications", allow_extra = TRUE)
+  x <- set_tags(x, complications = "severe", allow_extra = TRUE)
   tags(x)
 
   ## remove tags by setting them to NULL

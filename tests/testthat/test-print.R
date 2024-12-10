@@ -1,5 +1,5 @@
 test_that("tests for print.linelist", {
-  x <- make_linelist(cars, date_onset = "dist", date_outcome = "speed")
+  x <- make_linelist(cars, dist = "date_onset", speed = "date_outcome")
   expect_snapshot_output(print(x))
 
   y <- make_linelist(cars)

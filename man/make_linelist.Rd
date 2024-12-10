@@ -71,8 +71,8 @@ if (require(outbreaks)) {
 
   ## create linelist
   x <- make_linelist(measles_hagelloch_1861,
-    id = "case_ID",
-    date_onset = "date_of_prodrome",
+    case_ID = "id",
+    date_of_prodrome = "date_onset",
     age = "age",
     gender = "gender"
   )
@@ -85,8 +85,8 @@ if (require(outbreaks)) {
 
   ## Tags can also be passed as a list with the splice operator (!!!)
   my_tags <- list(
-    id = "case_ID",
-    date_onset = "date_of_prodrome",
+    case_ID = "id",
+    date_of_prodrome = "date_onset",
     age = "age",
     gender = "gender"
   )

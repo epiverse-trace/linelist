@@ -1,24 +1,24 @@
 test_that("tests for set_tags()", {
-  x <- make_linelist(cars, date_onset = "dist")
+  x <- make_linelist(cars, dist = "date_onset")
 
   # Check error messages
   msg <- "Must inherit from class 'linelist', but has class 'data.frame'."
   expect_error(set_tags(cars), msg)
 
   msg <- "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
-  expect_error(set_tags(x, toto = 1), msg, fixed = TRUE)
+  expect_error(set_tags(x, dist = "toto"), msg, fixed = TRUE)
 
-  msg <- "Must be element of set {'speed','dist'}, but is"
-  expect_error(set_tags(x, outcome = "toto"), msg, fixed = TRUE)
+  msg <- "Must be element of set {'speed','dist'}, but"
+  expect_error(set_tags(x, toto = "outcome"), msg, fixed = TRUE)
 
 
   # Check functionality
   expect_identical(x, set_tags(x))
-  x <- set_tags(x, date_reporting = "speed")
-  expect_identical(tags(x)$date_reporting, "speed")
-  expect_identical(tags(x)$date_onset, "dist")
+  x <- set_tags(x, speed = "date_reporting")
+  expect_identical(tags(x)$speed, "date_reporting")
+  expect_identical(tags(x)$dist, "date_onset")
 
-  x <- set_tags(x, id = "speed", date_outcome = "dist")
-  y <- set_tags(x, !!!list(id = "speed", date_outcome = "dist"))
+  x <- set_tags(x, speed = "id", dist = "date_outcome")
+  y <- set_tags(x, !!!list(speed = "id", dist = "date_outcome"))
   expect_identical(x, y)
 })

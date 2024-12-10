@@ -23,12 +23,12 @@
 #'   x <- set_tags(x,
 #'     age = "age",
 #'     gender = "gender",
-#'     date_onset = "date_of_prodrome"
+#'     date_of_prodrome = "date_onset"
 #'   )
 #'   tags(x)
 #'
 #'   ## add non-default tags using allow_extra
-#'   x <- set_tags(x, severe = "complications", allow_extra = TRUE)
+#'   x <- set_tags(x, complications = "severe", allow_extra = TRUE)
 #'   tags(x)
 #'
 #'   ## remove tags by setting them to NULL
@@ -47,13 +47,19 @@ set_tags <- function(x, ..., allow_extra = FALSE) {
   checkmate::assertClass(x, "linelist")
   checkmate::assertLogical(allow_extra)
 
-  old_tags <- attr(x, "tags")
-  defaults <- tags_defaults()
-  new_tags <- rlang::list2(...)
-
-  final_tags <- modify_defaults(defaults, old_tags, strict = FALSE)
-  final_tags <- modify_defaults(old_tags, new_tags, strict = !allow_extra)
-
-  tag_variables(x, final_tags)
+  args <- rlang::list2(...)
+  
+  extra <- setdiff(args, tags_names())
+  if (!allow_extra && (length(extra) > 0L)) {
+    stop(
+      "Unknown variable types: ",
+      toString(extra),
+      "\n  ",
+      "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`",
+      call. = FALSE
+    )
+  }
+  
+  safeframe::set_labels(x, ...)
 
 }

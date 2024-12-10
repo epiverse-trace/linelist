@@ -7,17 +7,17 @@ test_that("tests for make_linelist", {
   msg <- "Must have at least 1 cols, but has 0 cols."
   expect_error(make_linelist(data.frame()), msg)
 
-  msg <- "Must be element of set {'speed','dist'}, but is"
-  expect_error(make_linelist(cars, outcome = "bar"), msg, fixed = TRUE)
+  msg <- "Must be element of set {'speed','dist'}"
+  expect_error(make_linelist(cars, bar = "outcome"), msg, fixed = TRUE)
 
   expect_error(
-    make_linelist(cars, outcome = "bar", age = "bla"), 
+    make_linelist(cars, bar = "outcome", bla = "age"), 
     "2 assertions failed"
   )
 
   msg <- "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`"
   expect_error(
-    make_linelist(cars, foo = "speed", allow_extra = FALSE),
+    make_linelist(cars, speed = "foo", allow_extra = FALSE),
     msg,
     fixed = TRUE
   )
@@ -25,16 +25,16 @@ test_that("tests for make_linelist", {
   # test functionalities
   expect_identical(tags_defaults(), tags(make_linelist(cars), TRUE))
 
-  x <- make_linelist(cars, date_onset = "dist", date_outcome = "speed")
-  expect_identical(tags(x)$date_onset, "dist")
-  expect_identical(tags(x)$date_outcome, "speed")
+  x <- make_linelist(cars, dist = "date_onset", speed = "date_outcome")
+  expect_identical(tags(x)$dist, "date_onset")
+  expect_identical(tags(x)$speed, "date_outcome")
   expect_null(tags(x)$outcome)
   expect_null(tags(x)$date_reporting)
 
-  x <- make_linelist(cars, foo = "speed", bar = "dist", allow_extra = TRUE)
+  x <- make_linelist(cars, speed = "foo", dist = "bar", allow_extra = TRUE)
   expect_identical(
     tags(x, TRUE),
-    c(tags_defaults(), foo = "speed", bar = "dist")
+    c(tags_defaults(), speed = "foo", dist = "bar")
   )
 
 })
@@ -42,8 +42,8 @@ test_that("tests for make_linelist", {
 test_that("make_linelist() works with dynamic dots", {
 
   expect_identical(
-    make_linelist(cars, date_onset = "dist", date_outcome = "speed"),
-    make_linelist(cars, !!!list(date_onset = "dist", date_outcome = "speed"))
+    make_linelist(cars, dist = "date_onset", speed = "date_outcome"),
+    make_linelist(cars, !!!list(dist = "date_onset", speed = "date_outcome"))
   )
 
 })
