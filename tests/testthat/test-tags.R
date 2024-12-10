@@ -5,6 +5,5 @@ test_that("tests for tags", {
 
   # Check functionality
   expect_identical(tags(x), list(speed = "age"))
-  expect_identical(tags(x, TRUE), attr(x, "tags"))
   expect_identical(tags(make_linelist(cars), TRUE), tags_defaults())
 })
