@@ -1,5 +1,41 @@
 # linelist (development version)
 
+## Breaking changes
+
+* Deprecated functions and arguments have been completely removed. The following
+  operations are no longer possible:
+  
+  * List of tags now needs to be spliced in `make_linelist()`:
+    ```r
+    my_tags <- list(
+      id = "case_ID",
+      date_onset = "date_of_prodrome",
+      age = "age",
+      gender = "gender"
+    )
+
+    # No longer possible
+    make_linelist(obj, my_tags)
+
+    # Instead slice list in dynamic dots
+    make_linelist(obj, !!!my_tags)
+    ```
+    
+  * `select_tags()`:
+  ```r
+  # No longer possible
+  x %>%
+    select_tags("age")
+
+  # Instead use
+  x %>%
+    select(has_tag("age")) %>%
+    tags_df()
+  ```
+
+  * `select.linelist()`. This change should be invisible to users since the 
+    parent method `select.data.frame()` will be used with the same effect.
+
 # linelist 1.1.4
 
 ## Internal change

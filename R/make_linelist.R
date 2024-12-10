@@ -119,17 +119,6 @@ make_linelist <- function(x,
 
   args <- rlang::list2(...)
 
-  if (length(args) && is.list(args[[1]])) {
-    warning(
-      "The use of a list of tags is deprecated. ",
-      "Please use the splice operator (!!!) instead. ",
-      "More information is available in the examples and in the ",
-      "?rlang::`dyn-dots` documentation.",
-      call. = FALSE
-    )
-    args <- args[[1]]
-  }
-
   # The approach is to replace default values with user-provided ones, and then
   # tag each variable in turn. Validation the tagged variables is done
   # elsewhere.
