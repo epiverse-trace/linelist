@@ -84,8 +84,8 @@
 #'
 #'   ## create linelist
 #'   x <- make_linelist(measles_hagelloch_1861,
-#'     id = "case_ID",
-#'     date_onset = "date_of_prodrome",
+#'     case_ID = "id",
+#'     date_of_prodrome = "date_onset",
 #'     age = "age",
 #'     gender = "gender"
 #'   )
@@ -98,8 +98,8 @@
 #'
 #'   ## Tags can also be passed as a list with the splice operator (!!!)
 #'   my_tags <- list(
-#'     id = "case_ID",
-#'     date_onset = "date_of_prodrome",
+#'     case_ID = "id",
+#'     date_of_prodrome = "date_onset",
 #'     age = "age",
 #'     gender = "gender"
 #'   )
@@ -122,13 +122,24 @@ make_linelist <- function(x,
   # The approach is to replace default values with user-provided ones, and then
   # tag each variable in turn. Validation the tagged variables is done
   # elsewhere.
-  tags <- tags_defaults()
+  extra <- setdiff(args, tags_names())
+  if (!allow_extra && (length(extra) > 0L)) {
+    stop(
+      "Unknown variable types: ",
+      toString(extra),
+      "\n  ",
+      "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`",
+      call. = FALSE
+    )
+  }
 
-  tags <- modify_defaults(tags, args, strict = !allow_extra)
-
-  x <- tag_variables(x, tags)
+  x <- safeframe::make_safeframe(x, !!!args)
 
   # shape output and return object
+  class(x) <- c("linelist", class(x))
+  x
+
+    # shape output and return object
   class(x) <- c("linelist", class(x))
   x
 }

@@ -14,21 +14,18 @@ including \code{NULL} ones, should be returned; if \code{FALSE}, only tags with 
 non-NULL value are returned; defaults to \code{FALSE}}
 }
 \value{
-The function returns a named \code{list} where names indicate generic
-types of data, and values indicate which column they correspond to.
+The function returns a named \code{list} where names indicate column
+names, and values indicate the corresponding tag.
 }
 \description{
 This function returns the list of tags identifying specific variable types in
 a \code{linelist}.
 }
-\details{
-Tags are stored as the \code{tags} attribute of the object.
-}
 \examples{
 
 if (require(outbreaks)) {
   ## make a linelist
-  x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
+  x <- make_linelist(measles_hagelloch_1861, date_of_prodrome = "date_onset")
 
   ## check non-null tags
   tags(x)

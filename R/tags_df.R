@@ -17,8 +17,8 @@
 #'   ## create a tibble linelist
 #'   x <- measles_hagelloch_1861 %>%
 #'     make_linelist(
-#'       id = "case_ID",
-#'       date_onset = "date_of_prodrome",
+#'       case_ID = "id",
+#'       date_of_prodrome = "date_onset",
 #'       age = "age",
 #'       gender = "gender"
 #'     )
@@ -30,7 +30,7 @@
 tags_df <- function(x) {
   checkmate::assertClass(x, "linelist")
   tags <- unlist(tags(x))
-  out <- drop_linelist(x, remove_tags = TRUE)[tags]
-  names(out) <- names(tags)
+  out <- drop_linelist(x, remove_tags = TRUE)[names(tags)]
+  names(out) <- tags
   out
 }

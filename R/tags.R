@@ -11,16 +11,14 @@
 #'
 #' @export
 #'
-#' @return The function returns a named `list` where names indicate generic
-#'   types of data, and values indicate which column they correspond to.
-#'
-#' @details Tags are stored as the `tags` attribute of the object.
+#' @return The function returns a named `list` where names indicate column 
+#'   names, and values indicate the corresponding tag.
 #'
 #' @examples
 #'
 #' if (require(outbreaks)) {
 #'   ## make a linelist
-#'   x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
+#'   x <- make_linelist(measles_hagelloch_1861, date_of_prodrome = "date_onset")
 #'
 #'   ## check non-null tags
 #'   tags(x)
@@ -31,10 +29,5 @@
 #'
 tags <- function(x, show_null = FALSE) {
   checkmate::assertClass(x, "linelist")
-  out <- attr(x, "tags")
-  if (!show_null) {
-    to_remove <- vapply(out, is.null, logical(1))
-    out <- out[!to_remove]
-  }
-  out
+  safeframe::labels(x, show_null)
 }

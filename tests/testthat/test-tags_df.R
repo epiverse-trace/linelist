@@ -1,7 +1,7 @@
 test_that("tests for tags_df", {
-  x <- make_linelist(cars, age = "speed", date_reporting = "dist")
-  y <- cars[c("dist", "speed")]
-  names(y) <- c("date_reporting", "age")
+  x <- make_linelist(cars, speed = "age", dist = "date_reporting")
+  y <- cars[c("speed", "dist")]
+  names(y) <- c("age", "date_reporting")
 
   # errors
   msg <- "Must inherit from class 'linelist', but has class 'data.frame'."

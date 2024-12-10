@@ -57,8 +57,8 @@ if (require(outbreaks)) {
 
   ## create linelist
   x <- make_linelist(measles_hagelloch_1861[1:50, ],
-    id = "case_ID",
-    date_onset = "date_of_prodrome",
+    case_ID = "id",
+    date_of_prodrome = "date_onset",
     age = "age",
     gender = "gender"
   )
@@ -95,8 +95,8 @@ if (require(outbreaks)) {
     x <- measles_hagelloch_1861 \%>\%
       tibble() \%>\%
       make_linelist(
-        id = "case_ID",
-        date_onset = "date_of_prodrome",
+        case_ID = "id",
+        date_of_prodrome = "date_onset",
         age = "age",
         gender = "gender"
       ) \%>\%

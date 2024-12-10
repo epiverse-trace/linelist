@@ -25,8 +25,8 @@ if (require(outbreaks) && require(magrittr)) {
   ## create an invalid linelist - gender is a numeric
   x <- measles_hagelloch_1861 \%>\%
     make_linelist(
-      id = "case_ID",
-      gender = "infector"
+      case_ID = "id",
+      infector = "gender"
     )
   x
 

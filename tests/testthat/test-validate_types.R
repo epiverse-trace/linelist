@@ -7,7 +7,7 @@ test_that("tests for validate_types() basic input checking", {
 
 test_that("validate_types() validates types", {
   # Successful validations
-  x <- make_linelist(cars, age = "speed")
+  x <- make_linelist(cars, speed = "age")
   expect_silent(
     expect_identical(
       x,
@@ -16,13 +16,13 @@ test_that("validate_types() validates types", {
   )
 
   # Failed validations
-  x <- make_linelist(cars, age = "speed")
+  x <- make_linelist(cars, speed = "age")
   expect_error(
     validate_types(x, ref_types = tags_types(age = "factor")), 
     "age: Must inherit from class 'factor', but has class 'numeric'"
   )
 
-  x <- make_linelist(cars, age = "speed", gender = "dist")
+  x <- make_linelist(cars, speed = "age", dist = "gender")
   expect_snapshot_error(
     validate_types(x, ref_types = tags_types(age = "factor"))
   )
@@ -30,14 +30,14 @@ test_that("validate_types() validates types", {
 
 test_that("missing ref_type in validate_types()", {
   # Single missing
-  x <- make_linelist(cars, age = "speed", d = "dist", allow_extra = TRUE)
+  x <- make_linelist(cars, speed = "age", dist = "d", allow_extra = TRUE)
   expect_error(
     validate_types(x),
     "Allowed types for tag `d` are not documented in `ref_types`."
   )
 
   # Two missing
-  x <- make_linelist(cars, a = "speed", d = "dist", allow_extra = TRUE)
+  x <- make_linelist(cars, speed = "a", dist = "d", allow_extra = TRUE)
   expect_error(
     validate_types(x),
     "Allowed types for tag `a`, `d` are not documented in `ref_types`."

@@ -1,6 +1,6 @@
 skip_if_not_installed("dplyr")
 
-x <- make_linelist(cars, date_onset = "dist", date_outcome = "speed")
+x <- make_linelist(cars, dist = "date_onset", speed = "date_outcome")
 
 # Rows ----
 
@@ -106,7 +106,7 @@ test_that("Compatibility with dplyr::rename()", {
 
   expect_identical(
     tags(dplyr::rename(x, toto = dist)),
-    list(date_onset = "toto", date_outcome = "speed")
+    list(toto = "date_onset", speed = "date_outcomed")
   )
 
   # Identity
@@ -146,7 +146,7 @@ test_that("Compatibility with dplyr::select()", {
     dplyr::select("dist") %>%
     expect_s3_class("linelist") %>%
     tags() %>%
-    expect_identical(list(date_onset = "dist")) %>%
+    expect_identical(list(dist = "date_onset")) %>%
     expect_snapshot_warning()
 
   # Even when renames happen
@@ -154,7 +154,7 @@ test_that("Compatibility with dplyr::select()", {
     dplyr::select(dist, vitesse = speed) %>%
     expect_s3_class("linelist") %>%
     tags() %>%
-    expect_identical(list(date_onset = "dist", date_outcome = "vitesse"))
+    expect_identical(list(dist = "date_onset", vitesse = "date_outcome"))
 
 })
 
