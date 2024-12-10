@@ -82,47 +82,6 @@ references:
   year: '2024'
   doi: 10.32614/CRAN.package.checkmate
 - type: software
-  title: dplyr
-  abstract: 'dplyr: A Grammar of Data Manipulation'
-  notes: Imports
-  url: https://dplyr.tidyverse.org
-  repository: https://CRAN.R-project.org/package=dplyr
-  authors:
-  - family-names: Wickham
-    given-names: Hadley
-    email: hadley@posit.co
-    orcid: https://orcid.org/0000-0003-4757-117X
-  - family-names: François
-    given-names: Romain
-    orcid: https://orcid.org/0000-0002-2444-4226
-  - family-names: Henry
-    given-names: Lionel
-  - family-names: Müller
-    given-names: Kirill
-    orcid: https://orcid.org/0000-0002-1416-3412
-  - family-names: Vaughan
-    given-names: Davis
-    email: davis@posit.co
-    orcid: https://orcid.org/0000-0003-4777-038X
-  year: '2024'
-  doi: 10.32614/CRAN.package.dplyr
-- type: software
-  title: lifecycle
-  abstract: 'lifecycle: Manage the Life Cycle of your Package Functions'
-  notes: Imports
-  url: https://lifecycle.r-lib.org/
-  repository: https://CRAN.R-project.org/package=lifecycle
-  authors:
-  - family-names: Henry
-    given-names: Lionel
-    email: lionel@posit.co
-  - family-names: Wickham
-    given-names: Hadley
-    email: hadley@posit.co
-    orcid: https://orcid.org/0000-0003-4757-117X
-  year: '2024'
-  doi: 10.32614/CRAN.package.lifecycle
-- type: software
   title: rlang
   abstract: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'
   notes: Imports
@@ -167,6 +126,31 @@ references:
     given-names: Winston
   year: '2024'
   doi: 10.32614/CRAN.package.callr
+- type: software
+  title: dplyr
+  abstract: 'dplyr: A Grammar of Data Manipulation'
+  notes: Suggests
+  url: https://dplyr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=dplyr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: François
+    given-names: Romain
+    orcid: https://orcid.org/0000-0002-2444-4226
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Müller
+    given-names: Kirill
+    orcid: https://orcid.org/0000-0002-1416-3412
+  - family-names: Vaughan
+    given-names: Davis
+    email: davis@posit.co
+    orcid: https://orcid.org/0000-0003-4777-038X
+  year: '2024'
+  doi: 10.32614/CRAN.package.dplyr
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
