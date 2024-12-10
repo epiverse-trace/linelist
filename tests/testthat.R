@@ -1,8 +1,12 @@
+# This file is part of the standard setup for testthat.
+# It is recommended that you do not modify it.
+#
+# Where should you do additional test configuration?
+# Learn more about the roles of various files in:
+# * https://r-pkgs.org/testing-design.html#sec-tests-files-overview
+# * https://testthat.r-lib.org/articles/special-files.html
+
 library(testthat)
 library(linelist)
 
-test_df <- as.data.frame(test_check("linelist"))
-
-if (any(test_df$warning > 0) && !identical(Sys.getenv("NOT_CRAN"), "TRUE")) {
-  stop("tests failed with warnings", call. = FALSE)
-}
+test_check("linelist", stop_on_warning = FALSE)
