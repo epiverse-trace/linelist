@@ -35,6 +35,19 @@
 
   * `select.linelist()`. This change should be invisible to users since the 
     parent method `select.data.frame()` will be used with the same effect.
+  
+  * `lost_tags_action()` as part of a pipeline is no longer possible:
+  ```
+  # No longer possible
+  make_linelist(cars, date_onset = "dist", date_outcome = "speed") |>
+    lost_tags_action("none") |>
+    dplyr::select(-dist)
+  
+  # Instead do
+  lost_tags_action("none") 
+  make_linelist(cars, date_onset = "dist", date_outcome = "speed") |>
+    dplyr::select(-dist)
+  ```
 
 # linelist 1.1.4
 

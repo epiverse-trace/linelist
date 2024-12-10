@@ -5,7 +5,7 @@
 \alias{get_lost_tags_action}
 \title{Check and set behaviour for lost tags}
 \usage{
-lost_tags_action(action = c("warning", "error", "none"), quiet = FALSE, x)
+lost_tags_action(action = c("warning", "error", "none"), quiet = FALSE)
 
 get_lost_tags_action()
 }
@@ -16,8 +16,6 @@ will issue a warning; "none" will do nothing}
 
 \item{quiet}{a \code{logical} indicating if a message should be displayed; only
 used outside pipelines}
-
-\item{x}{deprecated}
 }
 \value{
 returns \code{NULL}; the option itself is set in \code{options("linelist")}

@@ -17,18 +17,3 @@ test_that("tests for lost_tags_action", {
   lost_tags_action("warning", quiet = TRUE)
   expect_identical(get_lost_tags_action(), "warning")
 })
-
-test_that("deprecated pipeline option for lost_tags_action()", {
-
-  x <- make_linelist(cars, date_onset = "dist", date_outcome = "speed")
-  expect_error(
-    lost_tags_action(x),
-    "deprecated"
-  )
-  expect_error(
-    lost_tags_action(
-      x = "none"
-    )
-  )
-
-})
