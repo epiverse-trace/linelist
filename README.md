@@ -41,13 +41,13 @@ pak::pak("epiverse-trace/safeframe")
 library(safeframe)
 
 # Create a safeframe object
-x <- make_safeframe(cars, mph = "speed", distance = "dist")
+x <- make_safeframe(cars, speed = 'Miles per hour', dist = 'Distance in miles')
 
 # Validate the data are of a specific type
 validate_safeframe(x, 
-  mph = 'numeric',        # speed should be numeric
+  speed = 'numeric',        # speed should be numeric
   # type() is a helper function of related classes
-  distance = type('numeric')    # dist should be numeric, integer
+  dist = type('numeric')    # dist should be numeric, integer
 )
 ```
 
