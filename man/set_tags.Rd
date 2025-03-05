@@ -2,61 +2,43 @@
 % Please edit documentation in R/set_tags.R
 \name{set_tags}
 \alias{set_tags}
-\title{Changes tags of a linelist object}
+\title{Change tags of a safeframe object}
 \usage{
-set_tags(x, ..., allow_extra = FALSE)
+set_tags(x, ...)
 }
 \arguments{
-\item{x}{a \code{data.frame} or a \code{tibble} containing case line list data, with
-cases in rows and variables in columns}
+\item{x}{a \code{data.frame} or a \code{tibble}, equivalent to parameter \code{.data} in
+\code{\link[=make_safeframe]{make_safeframe()}}}
 
 \item{...}{<\code{\link[rlang:dyn-dots]{dynamic-dots}}> A series of tags provided as
-\code{tag_name = "column_name"}, where \code{tag_name} indicates any of the known
-variables listed in 'Details' and values indicate their name in \code{x}; see
-details for a list of known variable types and their expected content}
-
-\item{allow_extra}{a \code{logical} indicating if additional data tags not
-currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
-tags will trigger an error}
+\code{tag_name = "column_name"}}
 }
 \value{
-The function returns a \code{linelist} object.
+The function returns a \code{safeframe} object.
 }
 \description{
-This function changes the \code{tags} of a \code{linelist} object, using the same
-syntax as the constructor \code{\link[=make_linelist]{make_linelist()}}. If some of the default tags are
-missing, they will be added to the final object.
+This function changes the \code{tags} of a \code{safeframe} object, using the same
+syntax as the constructor \code{\link[=make_safeframe]{make_safeframe()}}.
 }
 \examples{
 
-if (require(outbreaks)) {
-  ## create a linelist
-  x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_rash")
-  tags(x)
+## create a safeframe
+x <- make_safeframe(cars, mph = "speed")
+tags(x)
 
-  ## add new tags and fix an existing one
-  x <- set_tags(x,
-    age = "age",
-    gender = "gender",
-    date_onset = "date_of_prodrome"
-  )
-  tags(x)
+## add new tags and fix an existing one
+x <- set_tags(x, distance = "dist")
+tags(x)
 
-  ## add non-default tags using allow_extra
-  x <- set_tags(x, severe = "complications", allow_extra = TRUE)
-  tags(x)
+## remove tags by setting them to NULL
+old_tags <- tags(x)
+x <- set_tags(x, mph = NULL, distance = NULL)
+tags(x)
 
-  ## remove tags by setting them to NULL
-  old_tags <- tags(x)
-  x <- set_tags(x, age = NULL, gender = NULL)
-  tags(x)
-
-  ## setting tags providing a list (used to restore old tags here)
-  x <- set_tags(x, !!!old_tags)
-  tags(x)
-}
-
+## setting tags providing a list (used to restore old tags here)
+x <- set_tags(x, !!!old_tags)
+tags(x)
 }
 \seealso{
-\code{\link[=make_linelist]{make_linelist()}} to create a \code{linelist} object
+\code{\link[=make_safeframe]{make_safeframe()}} to create a \code{safeframe} object
 }

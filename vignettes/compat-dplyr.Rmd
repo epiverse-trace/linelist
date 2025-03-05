@@ -14,22 +14,18 @@ knitr::opts_chunk$set(
 )
 ```
 
-linelist philosophy is to prevent you from accidentally losing valuable data, but to otherwise be totally transparent and not interfere with your workflow.
+**safeframe** philosophy is to prevent you from accidentally losing valuable data, but to otherwise be totally transparent and not to interfere with your workflow.
 
-One popular ecosystem for data science workflow is the tidyverse and we are going the extra mile to ensure linelist compatibility with the tidyverse. All dplyr verbs are thoroughly tested in the `tests/test-compat-dplyr.R` file.
+One popular ecosystem for data science workflow is the **tidyverse**. We try to ensure decent safeframe compatibility with the tidyverse. All dplyr verbs are tested in the `tests/test-compat-dplyr.R` file.
 
 ```{r}
-library(linelist)
+library(safeframe)
 library(dplyr)
 
-data("measles_hagelloch_1861", package = "outbreaks")
-
-x <- make_linelist(
-  measles_hagelloch_1861,
-  id = "case_ID",
-  date_onset = "date_of_prodrome",
-  age = "age",
-  gender = "gender"
+x <- make_safeframe(
+  cars,
+  mph = "speed",
+  distance = "dist"
 )
 
 head(x)
@@ -37,14 +33,14 @@ head(x)
 
 ## Verbs operating on rows
 
-linelist does not modify anything regarding the behaviour for row-operations. As such, it is fully compatible with dplyr verbs operating on rows out-of-the-box.
-You can see in the following examples that linelist does not produce any errors, warnings or messages and its tags are conserved through dplyr operations on rows.
+safeframe does not modify anything regarding the behaviour for row-operations. As such, it is fully compatible with dplyr verbs operating on rows out-of-the-box.
+You can see in the following examples that safeframe does not produce any errors, warnings or messspeeds and its tags are conserved through dplyr operations on rows.
 
 ### `dplyr::arrange()` ✅
 
 ```{r}
 x %>%
-  arrange(case_ID) %>%
+  arrange(speed) %>%
   head()
 ```
 
@@ -60,7 +56,7 @@ x %>%
 
 ```{r}
 x %>%
-  filter(age >= 10) %>%
+  filter(speed >= 5) %>%
   head()
 ```
 
@@ -77,10 +73,10 @@ x %>%
   slice_tail(n = 5)
 
 x %>%
-  slice_min(age, n = 3)
+  slice_min(speed, n = 3)
 
 x %>%
-  slice_max(age, n = 3)
+  slice_max(speed, n = 3)
 
 x %>%
   slice_sample(n = 5)
@@ -88,7 +84,7 @@ x %>%
 
 ## Verbs operating on columns
 
-During operations on columns, linelist will:
+During operations on columns, safeframe will:
 
 - stay invisible and conserve tags if no tagged column is affected by the operation
 - trigger `lost_tags_action()` if tagged columns are affected by the operation
@@ -97,50 +93,50 @@ During operations on columns, linelist will:
 
 There is an incomplete compatibility with `dplyr::mutate()` in that simple renames without any actual modification of the column don't update the tags. In this scenario, users should rather use `dplyr::rename()`
 
-Although `dplyr::mutate()` is not able to leverage to full power of linelist tags, linelist objects behave as expected the same way a data.frame would:
+Although `dplyr::mutate()` is not able to leverspeed to full power of safeframe tags, safeframe objects behave as expected the same way a data.frame would:
 
 ```{r}
 # In place modification doesn't lose tags
 x %>%
-  mutate(age = as.integer(age)) %>%
+  mutate(speed = speed + 10) %>%
   head()
 
 # New columns don't affect existing tags
 x %>%
-  mutate(major = age >= 18) %>%
+  mutate(ticket = speed >= 50) %>%
   head()
 
 # .keep = "unused" generate expected tag loss conditions
 x %>%
-  mutate(edad = age, .keep = "unused") %>%
+  mutate(edad = speed, .keep = "unused") %>%
   head()
 ```
 
 ### `dplyr::pull()` ✅
 
-`dplyr::pull()` returns a vector, which results, as expected, in the loss of the linelist class and tags:
+`dplyr::pull()` returns a vector, which maintains the tag but result in loss of the safeframe class:
 
 ```{r}
 x %>%
-  pull(age)
+  pull(speed)
 ```
 
 ### `dplyr::relocate()` ✅
 
 ```{r}
 x %>%
-  relocate(date_of_prodrome, .before = 1) %>%
+  relocate(speed, .before = 1) %>%
   head()
 ```
 
 
 ### `dplyr::rename()` & `dplyr::rename_with()` ✅
 
-`dplyr::rename()` is fully compatible out-of-the-box with linelist, meaning that tags will be updated at the same time that columns are renamed. This is possibly because it uses `names<-()` under the hood, which linelist provides a custom `names<-.linelist()` method for:
+`dplyr::rename()` is fully compatible out-of-the-box with safeframe, meaning that tags will be updated at the same time that columns are renamed.
 
 ```{r}
 x %>%
-  rename(edad = age) %>%
+  rename(edad = speed) %>%
   head()
 
 x %>%
@@ -150,23 +146,23 @@ x %>%
 
 ### `dplyr::select()` ✅
 
-`dplyr::select()` is fully compatible with linelist, including when columns are renamed in a `select()`:
+`dplyr::select()` is fully compatible with safeframe, including when columns are renamed in a `select()`:
 
 ```{r}
 # Works fine
 x %>%
-  select(case_ID, date_of_prodrome, gender, age) %>%
+  select(speed, dist) %>%
   head()
 
-# Tags are updated!
+# tags are updated!
 x %>%
-  select(case_ID, date_of_prodrome, gender, edad = age) %>%
+  select(dist, edad = speed) %>%
   head()
 ```
 
 ## Verbs operating on groups ✘
 
-Groups are not yet supported. Applying any verb operating on group to a linelist will silently convert it back to a data.frame or tibble.
+Groups are not yet supported. Applying any verb operating on group to a safeframe will silently convert it back to a data.frame or tibble.
 
 ## Verbs operating on data.frames
 
@@ -180,27 +176,27 @@ dim(bind_rows(x, x))
 
 ### `dplyr::bind_cols()` ✘
 
-`bind_cols()` is currently incompatible with linelist:
+`bind_cols()` is currently incompatible with safeframe:
 
-- Tags from the second element are lost
-- Warnings are produced about lost tagged, even for tags that are not actually lost
+- tags from the second element are lost
+- Warnings are produced about lost tags, even for tags that are not actually lost
 
 ```{r}
 bind_cols(
-  suppressWarnings(select(x, case_ID, date_of_prodrome)),
-  suppressWarnings(select(x, age, gender))
+  suppressWarnings(select(x, speed)),
+  suppressWarnings(select(x, dist))
 ) %>%
   head()
 ```
 
 ### Joins ✘
 
-Joins are currently not compatible with linelist as tags from the second element are silently dropped.
+Joins are currently not compatible with safeframe as tags from the second element are silently dropped.
 
 ```{r}
 full_join(
-  suppressWarnings(select(x, case_ID, date_of_prodrome)),
-  suppressWarnings(select(x, case_ID, age, gender))
+  suppressWarnings(select(x, speed, dist)),
+  suppressWarnings(select(x, dist, speed))
 ) %>%
   head()
 ```
@@ -217,7 +213,7 @@ x %>%
   head()
 ```
 
-As such, we could expect it to work with linelist custom tidyselect-like function: `has_tag()` but it's not the case since `pick()` currently strips out all attributes, including the `linelist` class and all tags.
+As such, we could expect it to work with safeframe custom tidyselect-like function: `has_tag()` but it's not the case since `pick()` currently strips out all attributes, including the `safeframe` class and all tags.
 This unclassing is documented in `?pick`:
 
 > `pick()` returns a data frame containing the selected columns for the current group.

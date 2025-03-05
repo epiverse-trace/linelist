@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(linelist)
+library(safeframe)
 
-test_check("linelist", stop_on_warning = FALSE)
+test_check("safeframe", stop_on_warning = FALSE)

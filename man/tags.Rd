@@ -2,39 +2,34 @@
 % Please edit documentation in R/tags.R
 \name{tags}
 \alias{tags}
-\title{Get the list of tags in a linelist}
+\title{Get the list of tags in a safeframe}
 \usage{
 tags(x, show_null = FALSE)
 }
 \arguments{
-\item{x}{a \code{linelist} object}
+\item{x}{a \code{safeframe} object}
 
-\item{show_null}{a \code{logical} indicating if the complete list of tags,
-including \code{NULL} ones, should be returned; if \code{FALSE}, only tags with a
-non-NULL value are returned; defaults to \code{FALSE}}
+\item{show_null}{DEPRECATED}
 }
 \value{
 The function returns a named \code{list} where names indicate generic
 types of data, and values indicate which column they correspond to.
 }
 \description{
-This function returns the list of tags identifying specific variable types in
-a \code{linelist}.
+This function returns the list of tags identifying specific variable types
+in a \code{safeframe} object.
 }
 \details{
-Tags are stored as the \code{tags} attribute of the object.
+tags are stored as the \code{label} attribute of the column variable.
 }
 \examples{
 
-if (require(outbreaks)) {
-  ## make a linelist
-  x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
+## make a safeframe
+x <- make_safeframe(cars, mph = "speed")
 
-  ## check non-null tags
-  tags(x)
+## check non-null tags
+tags(x)
 
-  ## get a list of all tags, including NULL ones
-  tags(x, TRUE)
-}
-
+## get a list of all tags, including NULL ones
+tags(x, TRUE)
 }

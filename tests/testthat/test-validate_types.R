@@ -1,45 +1,56 @@
 test_that("tests for validate_types() basic input checking", {
   expect_error(
-    validate_types(cars), 
-    "Must inherit from class 'linelist', but has class 'data.frame'."
+    validate_types(cars),
+    "Must inherit from class 'safeframe', but has class 'data.frame'."
   )
 })
 
 test_that("validate_types() validates types", {
   # Successful validations
-  x <- make_linelist(cars, age = "speed")
-  expect_silent(
-    expect_identical(
-      x,
-      validate_types(x)
-    )
+  x <- make_safeframe(cars, mph = "speed")
+  expect_identical(
+    x,
+    validate_types(x, mph = "numeric")
   )
 
   # Failed validations
-  x <- make_linelist(cars, age = "speed")
+  x <- make_safeframe(cars, mph = "speed")
   expect_error(
-    validate_types(x, ref_types = tags_types(age = "factor")), 
-    "age: Must inherit from class 'factor', but has class 'numeric'"
+    validate_types(x, mph = "factor"),
+    "mph: Must inherit from class 'factor', but has class 'numeric'"
   )
 
-  x <- make_linelist(cars, age = "speed", gender = "dist")
+  x <- make_safeframe(cars, mph = "speed", distance = "dist")
   expect_snapshot_error(
-    validate_types(x, ref_types = tags_types(age = "factor"))
+    validate_types(x, mph = "factor", distance = "character")
   )
 })
 
-test_that("missing ref_type in validate_types()", {
-  # Single missing
-  x <- make_linelist(cars, age = "speed", d = "dist", allow_extra = TRUE)
+test_that("ensure validate_types throws error if no types provided", {
+  x <- make_safeframe(cars, mph = "speed", distance = "dist")
   expect_error(
     validate_types(x),
-    "Allowed types for tag `d` are not documented in `ref_types`."
+    "Assertion on 'types' failed: Must have length >= 1, but has length 0."
   )
+})
 
-  # Two missing
-  x <- make_linelist(cars, a = "speed", d = "dist", allow_extra = TRUE)
+test_that("validate_types fails if types are provided for non-existent tags", {
+  x <- make_safeframe(cars, mph = "speed")
   expect_error(
-    validate_types(x),
-    "Allowed types for tag `a`, `d` are not documented in `ref_types`."
+    validate_types(x, distance = "numeric")
   )
+})
+
+test_that("Inherited classes are handled - #44", {
+  y <- 1L
+  x <- data.frame(y)
+  x <- make_safeframe(x, bob = "y")
+  expect_silent(validate_types(x, bob = "integer"))
+  expect_silent(validate_types(x, bob = "numeric"))
+
+  y <- 1
+  x <- data.frame(y)
+  x <- make_safeframe(x, bob = "y")
+  expect_silent(validate_types(x, bob = "double"))
+  expect_silent(validate_types(x, bob = "numeric"))
 })

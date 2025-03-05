@@ -1,0 +1,11 @@
+# FIXME: The url field needs to be updated to contain the URL of the website
+# where the package documentation is hosted
+# (e.g., https://epiverse-trace.github.io/pkg).
+url: https://epiverse-trace.github.io/safeframe
+template:
+  package: epiversetheme
+# It is recommended to add a pkgdown reference index, grouping the different
+# function into logical sections (e.g., modules).
+# It is also recommended to rely on selector such as `starts_with()` or
+# `ends_with()` to create this index as it is a good way to force yourself into
+# using a consistent naming convention for your functions.

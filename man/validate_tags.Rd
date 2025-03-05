@@ -2,49 +2,39 @@
 % Please edit documentation in R/validate_tags.R
 \name{validate_tags}
 \alias{validate_tags}
-\title{Checks the tags of a linelist object}
+\title{Checks the tags of a safeframe object}
 \usage{
-validate_tags(x, allow_extra = FALSE)
+validate_tags(x)
 }
 \arguments{
-\item{x}{a \code{linelist} object}
-
-\item{allow_extra}{a \code{logical} indicating if additional data tags not
-currently recognized by \code{linelist} should be allowed; if \code{FALSE}, unknown
-tags will trigger an error}
+\item{x}{a \code{safeframe} object}
 }
 \value{
-If checks pass, a \code{linelist} object; otherwise issues an error.
+If checks pass, a \code{safeframe} object; otherwise issues an error.
 }
 \description{
-This function evaluates the validity of the tags of a \code{linelist} object by
-checking that: i) tags are present ii) tags is a \code{list} of \code{character} iii)
-that all default tags are present iv) tagged variables exist v) that no extra
-tag exists (if \code{allow_extra} is \code{FALSE}).
+This function evaluates the validity of the tags of a \code{safeframe} object by
+checking that: i) tags are present ii) tags is a \code{list} of \code{character} or
+\code{NULL} values.
 }
 \examples{
-if (require(outbreaks) && require(magrittr)) {
+## create a valid safeframe
+x <- cars |>
+  make_safeframe(
+    mph = "speed",
+    distance = "dist"
+  )
+x
 
-  ## create a valid linelist
-  x <- measles_hagelloch_1861 \%>\%
-    make_linelist(
-      id = "case_ID",
-      date_onset = "date_of_prodrome",
-      age = "age",
-      gender = "gender"
-    )
-  x
+## the below issues an error as safeframe doesn't know any defaults
+## note: tryCatch is only used to avoid a genuine error in the example
+tryCatch(validate_safeframe(x), error = paste)
 
-  ## validation
-  validate_tags(x)
-
-  ## hack to create an invalid tags (missing defaults)
-  attr(x, "tags") <- list(id = "case_ID")
-
-  ## the below issues an error
-  ## note: tryCatch is only used to avoid a genuine error in the example
-  tryCatch(validate_tags(x), error = paste)
-}
+## validation requires you to specify the types directly
+validate_safeframe(x,
+  mph = c("integer", "numeric"),
+  distance = "numeric"
+)
 }
 \seealso{
 \code{\link[=validate_types]{validate_types()}} to check if tagged variables have

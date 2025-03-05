@@ -1,8 +1,8 @@
 ---
-title: "Design Principles for linelist"
+title: "Design Principles for {safeframe}"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Design Principles for linelist}
+  %\VignetteIndexEntry{Design Principles for {safeframe}}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,32 +14,54 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette outlines the design decisions that have been taken during the development of the linelist R package, and provides some of the reasoning, and possible pros and cons of each decision.
+This vignette outlines the design decisions that have been taken during the development of the `{safeframe}` R package, and provides some of the reasoning, and possible pros and cons of each decision.
 
 This document is primarily intended to be read by those interested in understanding the code within the package and for potential package contributors.
 
+<!-- Text in angular brackets (<>) is to guide what to include for each section please delete the guidelines and replace for your package.
+
+None of the sections are required, feel free to remove any sections not relevant to your package or add new sections if helpful. -->
+
 ## Scope
 
-linelist provides a lightweight layer to add tags to `data.frame` columns. This allows:
+**safeframe** provides generic tagging and validation tools. In contrast to the original versions of **linelist** (`<=v1.1.4`), safeframe functions at the variable level instead of the object level. 
 
-- column identification without renaming
-- extra feature for the tagged columns, such as the ability to warn when a tagged column is dropped, or when its data type is incompatible with the expected one.
+The validation tooling is specific to type checking variables and providing feedback on potential data loss or coercion. It does not aim to do complex validations at this time.
+
+## Naming conventions
+
+We separate functions as much as is reasonable into their own files under `R/`. If there are tests available for a file under `R/`, it follows the convention of `test-<filename>.R` under `tests/testthat/`. Not all source code has respective tests. 
+
+We try to make function names as descriptive as possible, while keeping them short. This is to make the package easy to use and understand.
 
 ## Input/Output/Interoperability
 
-Because of its scope, linelist is intended to provide maximum compatibility with data.frames, or packages defining subclasses of data.frames.
+Any data frame object can be passed into **safeframe**. Output from safeframe remains a data frame object, with an additional safeframe class attribute. This means it remains interoperable with all the regular data frame operations one may attempt to do. 
 
-We prefer not adding a new feature, rather than having this feature alter the usual behaviour of a data.frame.
-
-One notable exception to this rule are `data.table` since they differ too much from the standard `data.frame` behaviour, which makes it difficult to ensure compatibility.
-
-`make_linelist()` is the main user-facing function of this package. It takes a `data.frame`/`tibble`/`X` as input as returns an output of class `c("linelist", "data.frame")`/`c("linelist", "tibble")`/`c("linelist", "X")`.
-As a consequence, differences in behaviour between `data.frame` and `tibble` are still present after conversion to a `linelist` object.
+**safeframe** is interoperable with pipes (that is, `|>` or `%>%`). This allows for easy chaining of functions. Note that there are no guarantees that tags are preserved when piping or wrangling in another way. For example, **dplyr** drops variable level attributes when using `dplyr::mutate()`.
 
 ## Design decisions
 
-- Wherever possible, linelist should not provide its own method, but degrade gracefully and rely on the superclass method. This is to ensure that linelist is as compatible as possible with other packages and data types.
+* **Generic**: The package is designed to be a generic tool for tagging and validating data. This is to ensure that the package can be used in a wide range of contexts and is not limited to a specific use case. Any specific use cases should be implemented in separate packages.
+* **Local**: We keep functions as local as possible. This means operations should be as precise as is feasible, to be non-destructive and ensure changes on one variable do not unexpectedly affect another. This helps ensure the package is predictable and easy to use + maintain.
+* **Minimize number of functions**: We aim to keep the number of functions in the package to a minimum. This helps usability and maintainability.
+* **Base R**: We aim to use base R functions where possible. This is to ensure that the package is lightweight and does not have many dependencies. This is for example why we do not use **labelled** as the tagging package.
+
+If you feel like we did not uphold one of these design decisions, please let us know 😊
+
+### Quirks
+
+Any package development has quirks. We outline quirks we are aware of here:
+
+* Currently, emptying tags leads to setting them to `""` (empty character strings). Preferably we would end up setting them to `NULL` in the end.
 
 ## Dependencies
 
-Because of its strong interoperability with the tidyverse packages, it is accepted for linelist to depend on low-level tidyverse or r-lib packages, such as [rlang](https://rlang.r-lib.org/), [vctrs](https://vctrs.r-lib.org/) or [tidyselect](https://tidyselect.r-lib.org/).
+* **checkmate** - provide assertions for function arguments
+* **lifecycle** - help manage function lifecycle
+* **rlang** - `...` to list parsing
+* **tidyselect** - ensure we can use pipes in `has_tag()`
+
+## Development journey
+
+The **safeframe** package is a major refactor of **linelist** `v1.1.4`. The refactor was necessary to make the package more generic and to make the codebase more maintainable. The refactor was completed in a series of steps documented in [#37](https://github.com/epiverse-trace/safeframe/pull/37).

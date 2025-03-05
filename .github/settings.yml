@@ -1,0 +1,22 @@
+repository:
+  # https://probot.github.io/apps/settings/
+  allow_merge_commit: false
+  allow_rebase_merge: true
+  allow_squash_merge: true
+  default_branch: main
+  delete_branch_on_merge: true
+  # has_discussions: false
+  has_issues: true
+  # has_projects: false
+  # has_wiki: false
+  # private: false
+branches:
+  - name: main
+    # https://docs.github.com/en/rest/reference/repos#update-branch-protection
+    protection:
+      required_pull_request_reviews:
+        required_approving_review_count: 0 # (1-6; optionally 0)
+        dismiss_stale_reviews: true
+        require_code_owner_reviews: false
+      required_status_checks:
+        strict: true

@@ -3,20 +3,24 @@
 # If global settings need to be modified, they should be restored to their
 # original values on exit. This can be achieved with the `on.exit()` base
 # function, or more conveniently with the `withr` package.
-testthat::set_state_inspector(function() {
-  list(
-    attached    = search(),
-    connections = getAllConnections(),
-    cwd         = getwd(),
-    envvars     = Sys.getenv(),
-    handlers    = globalCallingHandlers(),
-    libpaths    = .libPaths(),
-    locale      = Sys.getlocale(),
-    options     = options(),
-    par         = par(),
-    packages    = .packages(all.available = TRUE),
-    sink        = sink.number(),
-    timezone    = Sys.timezone(),
-    NULL
-  )
-})
+# We add a test on R >= 4.0.0 because some functions such as
+# `globalCallingHandlers()` did not exist before.
+if (getRversion() >= "4.0.0") {
+  testthat::set_state_inspector(function() {
+    list(
+      attached    = search(),
+      connections = getAllConnections(),
+      cwd         = getwd(),
+      envvars     = Sys.getenv(),
+      handlers    = globalCallingHandlers(),
+      libpaths    = .libPaths(),
+      locale      = Sys.getlocale(),
+      options     = options(),
+      par         = par(),
+      packages    = .packages(all.available = TRUE),
+      sink        = sink.number(),
+      timezone    = Sys.timezone(),
+      NULL
+    )
+  })
+}

@@ -7,8 +7,7 @@
 has_tag(tags)
 }
 \arguments{
-\item{tags}{A character vector of tags listing the variables you want to
-operate on}
+\item{tags}{A character vector of tags you want to operate on}
 }
 \value{
 A numeric vector containing the position of the columns with the
@@ -18,22 +17,16 @@ requested tags
 A selector function to use in \pkg{tidyverse} functions
 }
 \examples{
-if (require(outbreaks) && require(dplyr)) {
+## create safeframe
+x <- make_safeframe(cars,
+  mph = "speed",
+  distance = "dist"
+)
+head(x)
 
-  ## dataset we'll create a linelist from
-  measles_hagelloch_1861
-
-  ## create linelist
-  x <- make_linelist(measles_hagelloch_1861,
-    id = "case_ID",
-    date_onset = "date_of_prodrome",
-    age = "age",
-    gender = "gender"
-  )
-  head(x)
-
+if (require(dplyr) && require(magrittr)) {
   x \%>\%
-    select(has_tag(c("id", "age"))) \%>\%
+    select(has_tag(c("mph", "distance"))) \%>\%
     head()
 }
 }

@@ -1,40 +1,51 @@
-#' Get the list of tags in a linelist
+#' Get the list of tags in a safeframe
 #'
-#' This function returns the list of tags identifying specific variable types in
-#' a `linelist`.
+#' This function returns the list of tags identifying specific variable types
+#' in a `safeframe` object.
 #'
-#' @param x a `linelist` object
+#' @param x a `safeframe` object
 #'
-#' @param show_null a `logical` indicating if the complete list of tags,
-#'   including `NULL` ones, should be returned; if `FALSE`, only tags with a
-#'   non-NULL value are returned; defaults to `FALSE`
+#' @param show_null DEPRECATED
 #'
 #' @export
 #'
 #' @return The function returns a named `list` where names indicate generic
 #'   types of data, and values indicate which column they correspond to.
 #'
-#' @details Tags are stored as the `tags` attribute of the object.
+#' @details tags are stored as the `label` attribute of the column variable.
 #'
 #' @examples
 #'
-#' if (require(outbreaks)) {
-#'   ## make a linelist
-#'   x <- make_linelist(measles_hagelloch_1861, date_onset = "date_of_prodrome")
+#' ## make a safeframe
+#' x <- make_safeframe(cars, mph = "speed")
 #'
-#'   ## check non-null tags
-#'   tags(x)
+#' ## check non-null tags
+#' tags(x)
 #'
-#'   ## get a list of all tags, including NULL ones
-#'   tags(x, TRUE)
-#' }
-#'
+#' ## get a list of all tags, including NULL ones
+#' tags(x, TRUE)
 tags <- function(x, show_null = FALSE) {
-  checkmate::assertClass(x, "linelist")
-  out <- attr(x, "tags")
-  if (!show_null) {
-    to_remove <- vapply(out, is.null, logical(1))
-    out <- out[!to_remove]
+  if (show_null) {
+    msg <-
+      "The 'show_null' argument is deprecated and is no longer functional."
+    warning(msg, call. = FALSE)
+    show_null <- FALSE
   }
+
+  out <- lapply(names(x), FUN = function(var) {
+    tmpLabel <- attr(x[[var]], "label")
+    if (!is.null(tmpLabel)) {
+      tmpVar <- list(var)
+      names(tmpVar) <- tmpLabel
+      return(tmpVar)
+    } else {
+      return(NULL)
+    }
+  })
+
+  # Flatten the list
+  out <- do.call(c, out)
+  if (is.null(out)) out <- list()
+
   out
 }

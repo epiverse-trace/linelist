@@ -1,7 +1,7 @@
-# tests for print.linelist
+# tests for print.safeframe
 
     
-    // linelist object
+    // safeframe object
        speed dist
     1      4    2
     2      4   10
@@ -54,12 +54,14 @@
     49    24  120
     50    25   85
     
-    // tags: date_onset:dist, date_outcome:speed 
+    tagged variables:
+     mph - speed
+     distance - dist 
 
 ---
 
     
-    // linelist object
+    // safeframe object
        speed dist
     1      4    2
     2      4   10
@@ -112,5 +114,5 @@
     49    24  120
     50    25   85
     
-    // tags: [no tagged variable] 
+    [no tagged variables]
 

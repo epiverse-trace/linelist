@@ -1,60 +1,54 @@
-#' Check tagged variables are the right class
+#' Type check variables
 #'
-#' This function checks the class of each tagged variable in a `linelist`
-#' against pre-defined accepted classes in [tags_types()].
+#' This function checks the type of variables in a `safeframe` against
+#' accepted classes. Only checks the type of provided variables and ignores
+#' those not provided.
 #'
 #' @export
 #'
-#' @param x a `linelist` object
+#' @param x a `safeframe` object
 #'
-#' @param ref_types a `list` providing allowed types for all tags, as returned
-#'   by [tags_types()]
+#' @param ... <[`dynamic-dots`][rlang::dyn-dots]> A named list with tags in `x`
+#' as list names and the related types as list values.
 #'
 #' @return A named `list`.
 #'
 #' @seealso
-#' * [tags_types()] to change allowed types
-#' * [validate_tags()] to perform a series of checks on the tags
-#' * [validate_linelist()] to combine `validate_tags` and `validate_types`
+#' * [validate_tags()] to perform a series of checks on variables
+#' * [validate_safeframe()] to combine `validate_tags` and `validate_types`
 #'
 #' @examples
-#' if (require(outbreaks) && require(magrittr)) {
+#' x <- make_safeframe(cars,
+#'   mph = "speed",
+#'   distance = "dist"
+#' )
+#' x
 #'
-#'   ## create an invalid linelist - gender is a numeric
-#'   x <- measles_hagelloch_1861 %>%
-#'     make_linelist(
-#'       id = "case_ID",
-#'       gender = "infector"
-#'     )
-#'   x
+#' ## the below would issue an error
+#' ## note: tryCatch is only used to avoid a genuine error in the example
+#' tryCatch(validate_types(x), error = paste)
 #'
-#'   ## the below would issue an error
-#'   ## note: tryCatch is only used to avoid a genuine error in the example
-#'   tryCatch(validate_types(x), error = paste)
+#' ## to allow other types, e.g. gender to be integer, character or factor
+#' validate_types(x, mph = "numeric", distance = c(
+#'   "integer",
+#'   "character", "numeric"
+#' ))
 #'
-#'   ## to allow other types, e.g. gender to be integer, character or factor
-#'   validate_types(x, tags_types(gender = c("integer", "character", "factor")))
-#' }
-validate_types <- function(x, ref_types = tags_types()) {
-  checkmate::assert_class(x, "linelist")
+validate_types <- function(x, ...) {
+  checkmate::assert_class(x, "safeframe")
+  types <- rlang::list2(...)
+  checkmate::assert_subset(names(types), names(tags(x)))
 
-  df_to_check <- tags_df(x)
+  checkmate::assert_list(types, min.len = 1, types = "character")
 
-  if (!all(names(df_to_check) %in% names(ref_types))) {
-    stop(
-      "Allowed types for tag ",
-      toString(paste0("`", setdiff(names(df_to_check), names(ref_types)), "`")),
-      " are not documented in `ref_types`.",
-      call. = FALSE
-    )
-  }
+  vars_to_check <- intersect(names(tags(x)), names(types))
 
   type_checks <- lapply(
-    names(df_to_check),
-    function(tag) {
-      allowed_types <- ref_types[[tag]]
-      checkmate::check_multi_class(
-        df_to_check[[tag]],
+    vars_to_check,
+    function(var) {
+      allowed_types <- types[[var]]
+      check_multi_class(
+        x[[tags(x)[[var]]]],
         allowed_types,
         null.ok = TRUE
       )
@@ -67,7 +61,7 @@ validate_types <- function(x, ref_types = tags_types()) {
       "Some tags have the wrong class:\n",
       sprintf(
         "  - %s: %s\n",
-        names(df_to_check)[!has_correct_types],
+        vars_to_check[!has_correct_types],
         type_checks[!has_correct_types]
       ),
       call. = FALSE
@@ -75,4 +69,36 @@ validate_types <- function(x, ref_types = tags_types()) {
   }
 
   x
+}
+
+#' Internal function
+#' Custom implementation of checkmate's check_multi_class to ensure
+#' proper handling of multi-class situations as reported in #44.
+#' @param x Object to check classes for
+#' @param classes Character vector of class names to check against
+#' @param null.ok Logical indicating whether NULL is allowed (default: FALSE)
+#' @noRd
+check_multi_class <- function(x, classes, null.ok = FALSE) {
+  checkmate::qassert(classes, "S+")
+  checkmate::qassert(null.ok, "B1")
+  if (is.null(x) && null.ok) {
+    return(TRUE)
+  }
+
+  # Get all classes including inherited ones
+  obj_classes <- .class2(x)
+
+  if (!any(classes %in% obj_classes)) {
+    cl <- class(x)
+    return(sprintf(
+      "Must inherit from class '%s', but has class%s '%s'",
+      paste(classes, collapse = "'/'"), if (length(cl) >
+        1L) {
+        "es"
+      } else {
+        ""
+      }, paste(cl, collapse = "','")
+    ))
+  }
+  return(TRUE)
 }

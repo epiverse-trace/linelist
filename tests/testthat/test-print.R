@@ -1,7 +1,7 @@
-test_that("tests for print.linelist", {
-  x <- make_linelist(cars, date_onset = "dist", date_outcome = "speed")
+test_that("tests for print.safeframe", {
+  x <- make_safeframe(cars, distance = "dist", mph = "speed")
   expect_snapshot_output(print(x))
 
-  y <- make_linelist(cars)
+  y <- make_safeframe(cars)
   expect_snapshot_output(print(y))
 })

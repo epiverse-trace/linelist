@@ -7,31 +7,23 @@
 tags_df(x)
 }
 \arguments{
-\item{x}{a \code{linelist} object}
+\item{x}{a \code{safeframe} object}
 }
 \value{
-A \code{data.frame} of tagged variables.
+A \code{data.frame} of with variables renamed according to their tags
 }
 \description{
-This function returns a \code{data.frame} of all the tagged variables stored in a
-\code{linelist}. Note that the output is no longer a \code{linelist}, but a regular
-\code{data.frame}.
+This function returns a \code{data.frame}, where tagged variables (as stored in
+the \code{safeframe} object) are renamed. Note that the output is no longer a
+\code{safeframe}, but a regular \code{data.frame}. untagged variables are unaffected.
 }
 \examples{
 
-if (require(outbreaks) && require(magrittr)) {
+x <- make_safeframe(cars,
+  mph = "speed",
+  distance = "dist"
+)
 
-  ## create a tibble linelist
-  x <- measles_hagelloch_1861 \%>\%
-    make_linelist(
-      id = "case_ID",
-      date_onset = "date_of_prodrome",
-      age = "age",
-      gender = "gender"
-    )
-  x
-
-  ## get a data.frame of all tagged variables
-  tags_df(x)
-}
+## get a data.frame with variables renamed based on tags
+tags_df(x)
 }

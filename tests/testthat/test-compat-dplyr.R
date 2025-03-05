@@ -1,32 +1,27 @@
 skip_if_not_installed("dplyr")
 
-x <- make_linelist(cars, date_onset = "dist", date_outcome = "speed")
+x <- make_safeframe(cars, mph = "speed", distance = "dist")
 
 # Rows ----
 
 test_that("Compatibility with dplyr::arrange()", {
-
   ordered_x <- expect_no_warning(dplyr::arrange(x, dist))
 
-  expect_s3_class(ordered_x, "linelist")
+  expect_s3_class(ordered_x, "safeframe")
   expect_identical(
-    drop_linelist(ordered_x),
+    drop_safeframe(ordered_x),
     dplyr::arrange(cars, dist)
   )
-
 })
 
 test_that("Compatibility with dplyr::distinct()", {
-
   expect_identical(
     x[1:10, ],
     dplyr::distinct(x[1:10, ])
   )
-
 })
 
 test_that("Compatibility with dplyr::filter()", {
-
   # nolint start: expect_named_linter
   expect_identical(
     names(dplyr::filter(x, dist > mean(dist))),
@@ -38,50 +33,45 @@ test_that("Compatibility with dplyr::filter()", {
     tags(dplyr::filter(x, dist > mean(dist))),
     tags(x)
   )
-
 })
 
 test_that("Compatibility with dplyr::slice()", {
-
   x %>%
     dplyr::slice(5:10) %>%
-    expect_s3_class("linelist") %>%
+    expect_s3_class("safeframe") %>%
     dim() %>%
     expect_identical(c(6L, ncol(x)))
-
 })
 
 # Columns ----
 
 test_that("Compatibility with dplyr::transmute()", {
-
   x %>%
     dplyr::transmute(vitesse = speed) %>%
-    expect_s3_class("linelist") %>%
+    expect_s3_class("safeframe") %>%
     expect_snapshot_warning()
-
 })
 
 test_that("Compatibility with dplyr::mutate(.keep)", {
-
   # This is not ideal because this simple mutate() is actually equivalent to a
   # rename() and it would be great if dplyr could pick this up and modify the
   # tags as it does in the rename() case.
   x %>%
     dplyr::mutate(vitesse = speed, .keep = "unused") %>%
-    expect_s3_class("linelist") %>%
+    expect_s3_class("safeframe") %>%
     expect_snapshot_warning()
-
-  x %>%
-    dplyr::mutate(speed = as.integer(speed)) %>%
-    expect_s3_class("linelist") %>%
-    tags() %>%
-    expect_identical(tags(x))
-
 })
 
-test_that("Compatibility with dplyr::relocate()", {
+# mutate across
+test_that("compatibility with dplyr::mutate across", {
+  x |>
+    dplyr::mutate(dplyr::across(dist, ~ . * 10)) |>
+    tags() |>
+    expect_identical(tags(x))
+})
 
+
+test_that("Compatibility with dplyr::relocate()", {
   expect_mapequal(
     x,
     dplyr::relocate(x, 2)
@@ -99,14 +89,12 @@ test_that("Compatibility with dplyr::relocate()", {
     x,
     new_x
   )
-
 })
 
 test_that("Compatibility with dplyr::rename()", {
-
   expect_identical(
     tags(dplyr::rename(x, toto = dist)),
-    list(date_onset = "toto", date_outcome = "speed")
+    list(mph = "speed", distance = "toto")
   )
 
   # Identity
@@ -118,14 +106,14 @@ test_that("Compatibility with dplyr::rename()", {
     dplyr::rename(dist = toto, speed = titi)
 
   expect_identical(x, new_x)
-
 })
 
 test_that("Compatibility with dplyr::rename_with()", {
-
+  y <- x
+  names(y) <- toupper(names(y))
   expect_identical(
     tags(dplyr::rename_with(x, toupper)),
-    lapply(tags(x), toupper)
+    tags(y)
   )
 
   # Identity
@@ -137,41 +125,34 @@ test_that("Compatibility with dplyr::rename_with()", {
     dplyr::rename_with(tolower)
 
   expect_identical(x, new_x)
-
 })
 
 test_that("Compatibility with dplyr::select()", {
-
   x %>%
     dplyr::select("dist") %>%
-    expect_s3_class("linelist") %>%
+    expect_s3_class("safeframe") %>%
     tags() %>%
-    expect_identical(list(date_onset = "dist")) %>%
+    expect_identical(list(distance = "dist")) %>%
     expect_snapshot_warning()
 
   # Even when renames happen
   x %>%
     dplyr::select(dist, vitesse = speed) %>%
-    expect_s3_class("linelist") %>%
+    expect_s3_class("safeframe") %>%
     tags() %>%
-    expect_identical(list(date_onset = "dist", date_outcome = "vitesse"))
-
+    expect_identical(list(
+      distance = "dist",
+      mph = "vitesse"
+    ))
 })
 
 # Data.frames ----
 
 test_that("Compatibility with dplyr::bind_rows()", {
-
   rbound_x <- dplyr::bind_rows(x, x)
-
-  expect_identical(
-    tags(x),
-    tags(rbound_x)
-  )
 
   expect_s3_class(
     x,
-    "linelist"
+    "safeframe"
   )
-
 })

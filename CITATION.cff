@@ -4,58 +4,27 @@
 # --------------------------------------------
  
 cff-version: 1.2.0
-message: 'To cite package "linelist" in publications use:'
+message: 'To cite package "safeframe" in publications use:'
 type: software
 license: MIT
-title: 'linelist: Tagging and Validating Epidemiological Data'
-version: 1.1.4.9000
-doi: 10.5281/zenodo.6532786
-identifiers:
-- type: doi
-  value: 10.32614/CRAN.package.linelist
-abstract: Provides tools to help storing and handling case line list data. The 'linelist'
-  class adds a tagging system to classical 'data.frame' objects to identify key epidemiological
-  data such as dates of symptom onset, epidemiological case definition, age, gender
-  or disease outcome. Once tagged, these variables can be seamlessly used in downstream
-  analyses, making data pipelines more robust and reliable.
+title: 'safeframe: Generic Data Tagging and Validating'
+version: 0.0.1
+abstract: Provides tools to help tag and validate data according to user-specified
+  rules. The 'safeframe' class adds variable level attributes to 'data.frame' columns.
+  Once tagged, these variables can be seamlessly used in downstream analyses, making
+  data pipelines clearer, more robust, and more reliable.
 authors:
-- family-names: Gruson
-  given-names: Hugo
-  email: hugo@data.org
-  orcid: https://orcid.org/0000-0002-4094-1476
-- family-names: Jombart
-  given-names: Thibaut
-preferred-citation:
-  type: manual
-  title: 'linelist: Tagging and Validating Epidemiological Data'
-  authors:
-  - family-names: Gruson
-    given-names: Hugo
-    email: hugo@data.org
-    orcid: https://orcid.org/0000-0002-4094-1476
-  - family-names: Jombart
-    given-names: Thibaut
-  year: '2024'
-  doi: 10.5281/zenodo.6532786
-  url: https://epiverse-trace.github.io/linelist/
-repository: https://CRAN.R-project.org/package=linelist
-repository-code: https://github.com/epiverse-trace/linelist
-url: https://epiverse-trace.github.io/linelist/
+- family-names: Hartgerink
+  given-names: Chris
+  email: chris@data.org
+  orcid: https://orcid.org/0000-0003-1050-6809
+repository-code: https://github.com/epiverse-trace/safeframe
+url: https://epiverse-trace.github.io/safeframe/
 contact:
-- family-names: Gruson
-  given-names: Hugo
-  email: hugo@data.org
-  orcid: https://orcid.org/0000-0002-4094-1476
-keywords:
-- data
-- data-structures
-- epidemiology
-- epiverse
-- outbreaks
-- r
-- r-package
-- sdg-3
-- structured-data
+- family-names: Hartgerink
+  given-names: Chris
+  email: chris@data.org
+  orcid: https://orcid.org/0000-0003-1050-6809
 references:
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
@@ -66,8 +35,8 @@ references:
   institution:
     name: R Foundation for Statistical Computing
     address: Vienna, Austria
-  year: '2024'
-  version: '>= 3.1.0'
+  year: '2025'
+  version: '>= 4.0.0'
 - type: software
   title: checkmate
   abstract: 'checkmate: Fast and Versatile Argument Checks'
@@ -79,8 +48,24 @@ references:
     given-names: Michel
     email: michellang@gmail.com
     orcid: https://orcid.org/0000-0001-9754-0393
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.checkmate
+- type: software
+  title: lifecycle
+  abstract: 'lifecycle: Manage the Life Cycle of your Package Functions'
+  notes: Imports
+  url: https://lifecycle.r-lib.org/
+  repository: https://CRAN.R-project.org/package=lifecycle
+  authors:
+  - family-names: Henry
+    given-names: Lionel
+    email: lionel@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  year: '2025'
+  doi: 10.32614/CRAN.package.lifecycle
 - type: software
   title: rlang
   abstract: 'rlang: Functions for Base Types and Core R and ''Tidyverse'' Features'
@@ -94,7 +79,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.rlang
 - type: software
   title: tidyselect
@@ -109,7 +94,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.tidyselect
 - type: software
   title: callr
@@ -124,7 +109,7 @@ references:
     orcid: https://orcid.org/0000-0001-7098-9676
   - family-names: Chang
     given-names: Winston
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.callr
 - type: software
   title: dplyr
@@ -149,7 +134,7 @@ references:
     given-names: Davis
     email: davis@posit.co
     orcid: https://orcid.org/0000-0003-4777-038X
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.dplyr
 - type: software
   title: knitr
@@ -162,7 +147,7 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.knitr
 - type: software
   title: magrittr
@@ -177,30 +162,8 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@rstudio.com
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.magrittr
-- type: software
-  title: outbreaks
-  abstract: 'outbreaks: A Collection of Disease Outbreak Data'
-  notes: Suggests
-  url: https://github.com/reconhub/outbreaks
-  repository: https://CRAN.R-project.org/package=outbreaks
-  authors:
-  - family-names: Jombart
-    given-names: Thibaut
-    email: thibaut.jombart@gmail.com
-  - family-names: Frost
-    given-names: Simon
-  - family-names: Nouvellet
-    given-names: Pierre
-  - family-names: Campbell
-    given-names: Finlay
-    email: finlaycampbell93@gmail.com
-  - family-names: Sudre
-    given-names: Bertrand
-    email: bertrand.sudre@edc.europa.eu
-  year: '2024'
-  doi: 10.32614/CRAN.package.outbreaks
 - type: software
   title: rmarkdown
   abstract: 'rmarkdown: Dynamic Documents for R'
@@ -243,7 +206,7 @@ references:
     given-names: Richard
     email: rich@posit.co
     orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.rmarkdown
 - type: software
   title: spelling
@@ -259,7 +222,7 @@ references:
   - family-names: Hester
     given-names: Jim
     email: james.hester@rstudio.com
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.spelling
 - type: software
   title: testthat
@@ -271,7 +234,7 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@posit.co
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.testthat
 - type: software
   title: tibble
@@ -287,6 +250,6 @@ references:
   - family-names: Wickham
     given-names: Hadley
     email: hadley@rstudio.com
-  year: '2024'
+  year: '2025'
   doi: 10.32614/CRAN.package.tibble
 
