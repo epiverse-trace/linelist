@@ -52,7 +52,7 @@ if (require(outbreaks)) {
   tags(x)
 
   ## setting tags providing a list (used to restore old tags here)
-  x <- set_tags(x, !!!old_tags)
+  x <- set_tags(x, !!!old_tags, allow_extra = TRUE)
   tags(x)
 }
 

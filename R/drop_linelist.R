@@ -16,9 +16,13 @@
 
 drop_linelist <- function(x, remove_tags = TRUE) {
   classes <- class(x)
-  class(x) <- setdiff(classes, "linelist")
+  class(x) <- setdiff(classes, c("linelist", "safeframe"))
+
   if (remove_tags) {
-    attr(x, "tags") <- NULL
+    # Set the label attribute to NULL for all variables in x
+    for (var in names(x)) {
+      attr(x[[var]], "label") <- NULL
+    }
   }
   x
 }
