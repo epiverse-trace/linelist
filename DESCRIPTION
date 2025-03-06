@@ -36,6 +36,7 @@ Depends:
 Imports:
     checkmate,
     rlang,
+    safeframe,
     tidyselect
 Suggests:
     callr,
@@ -51,3 +52,4 @@ Config/Needs/website:
     epiverse-trace/epiversetheme
 VignetteBuilder: knitr
 Language: en-GB
+Remotes: epiverse-trace/safeframe
