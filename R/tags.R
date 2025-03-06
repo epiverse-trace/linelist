@@ -31,10 +31,16 @@
 #'
 tags <- function(x, show_null = FALSE) {
   checkmate::assertClass(x, "linelist")
-  out <- attr(x, "tags")
+  checkmate::assertLogical(show_null)
+
+  taglist <- modifyList(
+    tags_defaults(),
+    safeframe::tags(x)
+  )
+
   if (!show_null) {
-    to_remove <- vapply(out, is.null, logical(1))
-    out <- out[!to_remove]
+    taglist <- taglist[!vapply(taglist, is.null, logical(1))]
   }
-  out
+
+  taglist
 }

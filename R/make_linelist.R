@@ -119,14 +119,18 @@ make_linelist <- function(x,
 
   args <- rlang::list2(...)
 
-  # The approach is to replace default values with user-provided ones, and then
-  # tag each variable in turn. Validation the tagged variables is done
-  # elsewhere.
-  tags <- tags_defaults()
+  extra <- setdiff(names(args), tags_names())
+  if (!allow_extra && (length(extra) > 0L)) {
+    stop(
+      "Unknown variable types: ",
+      toString(extra),
+      "\n  ",
+      "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`",
+      call. = FALSE
+    )
+  }
 
-  tags <- modify_defaults(tags, args, strict = !allow_extra)
-
-  x <- tag_variables(x, tags)
+  x <- safeframe::make_safeframe(x, !!!args)
 
   # shape output and return object
   class(x) <- c("linelist", class(x))

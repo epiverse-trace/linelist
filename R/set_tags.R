@@ -37,7 +37,7 @@
 #'   tags(x)
 #'
 #'   ## setting tags providing a list (used to restore old tags here)
-#'   x <- set_tags(x, !!!old_tags)
+#'   x <- set_tags(x, !!!old_tags, allow_extra = TRUE)
 #'   tags(x)
 #' }
 #'
@@ -47,13 +47,19 @@ set_tags <- function(x, ..., allow_extra = FALSE) {
   checkmate::assertClass(x, "linelist")
   checkmate::assertLogical(allow_extra)
 
-  old_tags <- attr(x, "tags")
-  defaults <- tags_defaults()
-  new_tags <- rlang::list2(...)
+  args <- rlang::list2(...)
 
-  final_tags <- modify_defaults(defaults, old_tags, strict = FALSE)
-  final_tags <- modify_defaults(old_tags, new_tags, strict = !allow_extra)
+  extra <- setdiff(names(args), tags_names())
+  if (!allow_extra && (length(extra) > 0L)) {
+    stop(
+      "Unknown variable types: ",
+      toString(extra),
+      "\n  ",
+      "Use only tags listed in `tags_names()`, or set `allow_extra = TRUE`",
+      call. = FALSE
+    )
+  }
 
-  tag_variables(x, final_tags)
+  safeframe::set_tags(x, ...)
 
 }
