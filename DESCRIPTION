@@ -36,8 +36,7 @@ Depends:
 Imports:
     checkmate,
     rlang,
-    safeframe,
-    tidyselect
+    safeframe
 Suggests:
     callr,
     dplyr,
