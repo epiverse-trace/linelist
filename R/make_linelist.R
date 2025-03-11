@@ -112,9 +112,6 @@
 make_linelist <- function(x,
                           ...,
                           allow_extra = FALSE) {
-  # assert inputs
-  checkmate::assert_data_frame(x, min.cols = 1)
-  assert_not_data_table(x)
   checkmate::assert_logical(allow_extra)
 
   args <- rlang::list2(...)
