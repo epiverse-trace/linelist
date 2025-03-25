@@ -28,9 +28,7 @@
 #'   tags_df(x)
 #' }
 tags_df <- function(x) {
-  checkmate::assertClass(x, "linelist")
-  tags <- unlist(tags(x))
-  out <- drop_linelist(x, remove_tags = TRUE)[tags]
-  names(out) <- names(tags)
-  out
+  safeframe::tags_df(x)
+  class(x) <- setdiff(class(x), "linelist")
+  x
 }
