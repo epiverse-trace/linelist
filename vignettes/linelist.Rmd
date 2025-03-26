@@ -31,7 +31,7 @@ functional, it often means that each analysis step will:
 1. need to check the required inputs are present in the data, and for the user
    to specify where (e.g. '*This is the column where dates of onset are
    stored.*')
-   
+
 2. need to validate the required data (e.g. '*Check that the field storing dates
    of onset are indeed dates, and not a `character`.*')
 
@@ -39,9 +39,9 @@ The aim of *linelist* is to take care of these pre-requisites once and for all
 before downstream analyses, thus helping to make data pipelines more robust and
 straightforward.
 
-# linelist in a nutshell 
+# linelist in a nutshell
 
-## Outline 
+## Outline
 
 *linelist* is an R package which implements basic data representation for case
 line lists, alongside accessors and basic methods. It essentially provides three
@@ -54,7 +54,7 @@ symptom onset, age, gender, disease outcome)
 2. **validation**: functions checking that tagged variables are indeed present
    in the `data.frame/tibble`, and that they have the expected type
    (e.g. checking that dates are `Date`, `integer` or `numeric`)
-   
+
 3. **secured methods**: generic functions which could lead to the loss of tagged
    variables have dedicated methods for *linelist* objects with adapted
    behaviours, either updating tags as needed (*e.g.* `rename()`, `names() <-
@@ -282,7 +282,7 @@ against this. For instance, let's assume we want to select only some columns of
 
 ```{r}
 x %>%
-  select(1:2)
+  select(1:3)
 ```
 
 Here, the above command gave a meaningful warning, in which `select()` removes

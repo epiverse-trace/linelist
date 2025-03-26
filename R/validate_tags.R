@@ -1,9 +1,8 @@
 #' Checks the tags of a linelist object
 #'
 #' This function evaluates the validity of the tags of a `linelist` object by
-#' checking that: i) tags are present ii) tags is a `list` of `character` iii)
-#' that all default tags are present iv) tagged variables exist v) that no extra
-#' tag exists (if `allow_extra` is `FALSE`).
+#' checking that: i) tags are present ii) tags is a `list` of `character`
+#' iii) that no extra tag exists (if `allow_extra` is `FALSE`).
 #'
 #' @export
 #'
@@ -44,22 +43,11 @@ validate_tags <- function(x, allow_extra = FALSE) {
   x_tags <- tags(x, show_null = TRUE)
 
   stopifnot(
-    "`x` has no tags attribute" = !is.null(x_tags)
+    "`x` has no tags" = !is.null(unlist(x_tags))
   )
 
   # check that x is a list, and each tag is a `character`
   checkmate::assert_list(x_tags, types = c("character", "null"))
-
-  # check that defaults are present
-  default_present <- tags_names() %in% names(x_tags)
-  if (!all(default_present)) {
-    missing_tags <- tags_names()[!default_present]
-    stop(
-      "The following default tags are missing:\n",
-      toString(missing_tags),
-      call. = FALSE
-    )
-  }
 
   # check there is no extra value
   if (!allow_extra) {
@@ -73,18 +61,6 @@ validate_tags <- function(x, allow_extra = FALSE) {
         call. = FALSE
       )
     }
-  }
-
-  # check that tagged variables exist
-  x_tags_vec <- unlist(tags(x))
-  var_exists <- x_tags_vec %in% names(x)
-  if (!all(var_exists)) {
-    missing_var <- x_tags_vec[!var_exists]
-    stop(
-      "The following tagged variables are missing:\n",
-      paste0(names(missing_var), ":", missing_var, collapse = ", "),
-      call. = FALSE
-    )
   }
 
   x
