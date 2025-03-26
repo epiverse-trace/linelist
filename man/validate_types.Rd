@@ -20,10 +20,10 @@ This function checks the class of each tagged variable in a \code{linelist}
 against pre-defined accepted classes in \code{\link[=tags_types]{tags_types()}}.
 }
 \examples{
-if (require(outbreaks) && require(magrittr)) {
+if (require(outbreaks)) {
 
   ## create an invalid linelist - gender is a numeric
-  x <- measles_hagelloch_1861 \%>\%
+  x <- measles_hagelloch_1861 |>
     make_linelist(
       id = "case_ID",
       gender = "infector"

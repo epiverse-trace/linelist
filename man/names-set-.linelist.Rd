@@ -43,7 +43,7 @@ if (require(outbreaks)) {
  # This also works with using `dplyr::rename()` because it uses names<-()
  # under hood
  if (require(dplyr)) {
-   x <- x \%>\%
+   x <- x |>
      rename(case_id= case_label)
    head(x)
    tags(x)

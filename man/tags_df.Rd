@@ -19,10 +19,10 @@ This function returns a \code{data.frame} of all the tagged variables stored in 
 }
 \examples{
 
-if (require(outbreaks) && require(magrittr)) {
+if (require(outbreaks)) {
 
-  ## create a tibble linelist
-  x <- measles_hagelloch_1861 \%>\%
+  ## create a linelist
+  x <- measles_hagelloch_1861 |>
     make_linelist(
       id = "case_ID",
       date_onset = "date_of_prodrome",

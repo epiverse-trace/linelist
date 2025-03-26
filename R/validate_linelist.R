@@ -32,10 +32,10 @@
 #'
 #' @examples
 #'
-#' if (require(outbreaks) && require(magrittr)) {
+#' if (require(outbreaks)) {
 #'
 #'   ## create a valid linelist
-#'   x <- measles_hagelloch_1861 %>%
+#'   x <- measles_hagelloch_1861 |>
 #'     make_linelist(
 #'       id = "case_ID",
 #'       date_onset = "date_of_prodrome",
@@ -48,7 +48,7 @@
 #'   validate_linelist(x)
 #'
 #'   ## create an invalid linelist - onset date is a factor
-#'   x <- measles_hagelloch_1861 %>%
+#'   x <- measles_hagelloch_1861 |>
 #'     make_linelist(
 #'       id = "case_ID",
 #'       date_onset = "gender",

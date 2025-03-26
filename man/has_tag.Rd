@@ -32,8 +32,8 @@ if (require(outbreaks) && require(dplyr)) {
   )
   head(x)
 
-  x \%>\%
-    select(has_tag(c("id", "age"))) \%>\%
+  x |>
+    select(has_tag(c("id", "age"))) |>
     head()
 }
 }

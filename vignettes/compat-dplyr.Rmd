@@ -43,46 +43,46 @@ You can see in the following examples that linelist does not produce any errors,
 ### `dplyr::arrange()` ✅
 
 ```{r}
-x %>%
-  arrange(case_ID) %>%
+x |>
+  arrange(case_ID) |>
   head()
 ```
 
 ### `dplyr:distinct()` ✅
 
 ```{r}
-x %>%
-  distinct() %>%
+x |>
+  distinct() |>
   head()
 ```
 
 ### `dplyr::filter()` ✅
 
 ```{r}
-x %>%
-  filter(age >= 10) %>%
+x |>
+  filter(age >= 10) |>
   head()
 ```
 
 ### `dplyr::slice()` ✅
 
 ```{r}
-x %>%
+x |>
   slice(5:10)
 
-x %>%
+x |>
   slice_head(n = 5)
 
-x %>%
+x |>
   slice_tail(n = 5)
 
-x %>%
+x |>
   slice_min(age, n = 3)
 
-x %>%
+x |>
   slice_max(age, n = 3)
 
-x %>%
+x |>
   slice_sample(n = 5)
 ```
 
@@ -101,18 +101,18 @@ Although `dplyr::mutate()` is not able to leverage to full power of linelist tag
 
 ```{r}
 # In place modification doesn't lose tags
-x %>%
-  mutate(age = as.integer(age)) %>%
+x |>
+  mutate(age = as.integer(age)) |>
   head()
 
 # New columns don't affect existing tags
-x %>%
-  mutate(major = age >= 18) %>%
+x |>
+  mutate(major = age >= 18) |>
   head()
 
 # .keep = "unused" generate expected tag loss conditions
-x %>%
-  mutate(edad = age, .keep = "unused") %>%
+x |>
+  mutate(edad = age, .keep = "unused") |>
   head()
 ```
 
@@ -121,15 +121,15 @@ x %>%
 `dplyr::pull()` returns a vector, which results, as expected, in the loss of the linelist class and tags:
 
 ```{r}
-x %>%
+x |>
   pull(age)
 ```
 
 ### `dplyr::relocate()` ✅
 
 ```{r}
-x %>%
-  relocate(date_of_prodrome, .before = 1) %>%
+x |>
+  relocate(date_of_prodrome, .before = 1) |>
   head()
 ```
 
@@ -139,12 +139,12 @@ x %>%
 `dplyr::rename()` is fully compatible out-of-the-box with linelist, meaning that tags will be updated at the same time that columns are renamed. This is possibly because it uses `names<-()` under the hood, which linelist provides a custom `names<-.linelist()` method for:
 
 ```{r}
-x %>%
-  rename(edad = age) %>%
+x |>
+  rename(edad = age) |>
   head()
 
-x %>%
-  rename_with(toupper) %>%
+x |>
+  rename_with(toupper) |>
   head()
 ```
 
@@ -154,13 +154,13 @@ x %>%
 
 ```{r}
 # Works fine
-x %>%
-  select(case_ID, date_of_prodrome, gender, age) %>%
+x |>
+  select(case_ID, date_of_prodrome, gender, age) |>
   head()
 
 # Tags are updated!
-x %>%
-  select(case_ID, date_of_prodrome, gender, edad = age) %>%
+x |>
+  select(case_ID, date_of_prodrome, gender, edad = age) |>
   head()
 ```
 
@@ -189,7 +189,7 @@ dim(bind_rows(x, x))
 bind_cols(
   suppressWarnings(select(x, case_ID, date_of_prodrome)),
   suppressWarnings(select(x, age, gender))
-) %>%
+) |>
   head()
 ```
 
@@ -201,7 +201,7 @@ Joins are currently not compatible with linelist as tags from the second element
 full_join(
   suppressWarnings(select(x, case_ID, date_of_prodrome)),
   suppressWarnings(select(x, case_ID, age, gender))
-) %>%
+) |>
   head()
 ```
 
@@ -212,8 +212,8 @@ full_join(
 `pick()` makes tidyselect functions work in usually tidyselect-incompatible functions, such as:
 
 ```{r}
-x %>%
-  dplyr::arrange(dplyr::pick(ends_with("loc"))) %>%
+x |>
+  dplyr::arrange(dplyr::pick(ends_with("loc"))) |>
   head()
 ```
 

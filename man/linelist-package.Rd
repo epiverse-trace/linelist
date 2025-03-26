@@ -91,29 +91,29 @@ if (require(outbreaks)) {
   ## example of creating a linelist, adding a new variable, and adding a tag
   ## for it
 
-  if (require(dplyr) && require(magrittr)) {
-    x <- measles_hagelloch_1861 \%>\%
-      tibble() \%>\%
+  if (require(dplyr)) {
+    x <- measles_hagelloch_1861 |>
+      tibble() |>
       make_linelist(
         id = "case_ID",
         date_onset = "date_of_prodrome",
         age = "age",
         gender = "gender"
       ) \%>\%
-      mutate(result = if_else(is.na(date_of_death), "survived", "died")) \%>\%
-      set_tags(outcome = "result") \%>\%
+      mutate(result = if_else(is.na(date_of_death), "survived", "died")) |>
+      set_tags(outcome = "result") |>
       rename(identifier = case_ID)
 
     head(x)
 
     ## extract tagged variables
-    x \%>\%
+    x |>
       select(has_tag(c("gender", "age")))
 
-    x \%>\%
+    x |>
       tags()
 
-    x \%>\%
+    x |>
       select(starts_with("date"))
   }
 }
