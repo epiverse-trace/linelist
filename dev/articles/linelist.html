@@ -313,11 +313,10 @@ downstream analyses, after having checked their tag name in
 <span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span> <span class="co"># for the %&gt;% operator</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://epiverse-trace.github.io/linelist/">linelist</a></span><span class="op">)</span> <span class="co"># this package!</span></span>
 <span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">measles_hagelloch_1861</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/make_linelist.html">make_linelist</a></span><span class="op">(</span>date_onset <span class="op">=</span> <span class="st">"date_of_prodrome"</span>,</span>
 <span>                date_death <span class="op">=</span> <span class="st">"date_of_death"</span>,</span>
 <span>                age <span class="op">=</span> <span class="st">"age"</span>,</span>
@@ -367,10 +366,10 @@ not only a <code>linelist</code>, but also a regular <code>tibble</code>
 and this is compatible with <code>dplyr</code> verbs), and setting up a
 new tag using <code><a href="../reference/set_tags.html">set_tags()</a></code>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
 <span>    inferred_outcome <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html" class="external-link">if_else</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">date_of_death</span><span class="op">)</span>, <span class="st">"survived"</span>, <span class="st">"died"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/set_tags.html">set_tags</a></span><span class="op">(</span>outcome <span class="op">=</span> <span class="st">"inferred_outcome"</span><span class="op">)</span></span>
 <span><span class="va">x</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -396,7 +395,7 @@ new tag using <code><a href="../reference/set_tags.html">set_tags()</a></code>:<
 <p>If we wanted to undo the above, i.e. remove the <code>outcome</code>
 tag, we only need to set it to <code>NULL</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/set_tags.html">set_tags</a></span><span class="op">(</span>outcome <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/tags.html">tags</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $date_onset</span></span>
@@ -420,7 +419,7 @@ worry about variable names and types. We could access tagged variables
 using any of the following means:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># select tagged variables only</span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"date_onset"</span>, <span class="st">"date_death"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  gender:gender, age:age</span></span>
@@ -444,7 +443,7 @@ using any of the following means:</p>
 <span><span class="co">#&gt; // tags: date_onset:date_of_prodrome, date_death:date_of_death</span></span>
 <span></span>
 <span><span class="co"># select tagged variables only with renaming on the fly</span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span>onset <span class="op">=</span> <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"date_onset"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_death:date_of_death, gender:gender, age:age</span></span>
@@ -468,7 +467,7 @@ using any of the following means:</p>
 <span><span class="co">#&gt; // tags: date_onset:onset</span></span>
 <span></span>
 <span><span class="co"># get all tagged variables in a data.frame</span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/tags_df.html">tags_df</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 188 × 4</span></span></span>
 <span><span class="co">#&gt;    date_onset date_death gender   age</span></span>
@@ -495,7 +494,7 @@ tagged variables. <em>linelist</em> provides a safeguard mechanism
 against this. For instance, let’s assume we want to select only some
 columns of <code>x</code>:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, gender:gender, age:age</span></span>
@@ -525,7 +524,7 @@ columns via their tag. For example, to retain the first 2 variables, and
 the <code>gender</code> tag:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># hybrid selection</span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"gender"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
@@ -553,7 +552,7 @@ could be changed to issue an error (for stronger pipelines for
 instance):</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># hybrid selection</span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"gender"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
@@ -580,7 +579,7 @@ instance):</p>
 <span><span class="fu"><a href="../reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"none"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Lost tags will now be ignored.</span></span>
 <span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"gender"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; // linelist object</span></span>
@@ -605,7 +604,7 @@ instance):</p>
 <span><span class="fu"><a href="../reference/lost_tags_action.html">lost_tags_action</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Lost tags will now issue an error.</span></span>
 <span></span>
-<span><span class="va">x</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">x</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fu"><a href="../reference/has_tag.html">has_tag</a></span><span class="op">(</span><span class="st">"gender"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error: The following tags have lost their variable:</span></span>
 <span><span class="co">#&gt;  date_onset:date_of_prodrome, date_death:date_of_death, age:age</span></span>
