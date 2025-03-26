@@ -23,10 +23,10 @@ that all default tags are present iv) tagged variables exist v) that no extra
 tag exists (if \code{allow_extra} is \code{FALSE}).
 }
 \examples{
-if (require(outbreaks) && require(magrittr)) {
+if (require(outbreaks)) {
 
   ## create a valid linelist
-  x <- measles_hagelloch_1861 \%>\%
+  x <- measles_hagelloch_1861 |>
     make_linelist(
       id = "case_ID",
       date_onset = "date_of_prodrome",

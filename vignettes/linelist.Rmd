@@ -31,7 +31,7 @@ functional, it often means that each analysis step will:
 1. need to check the required inputs are present in the data, and for the user
    to specify where (e.g. '*This is the column where dates of onset are
    stored.*')
-   
+
 2. need to validate the required data (e.g. '*Check that the field storing dates
    of onset are indeed dates, and not a `character`.*')
 
@@ -39,9 +39,9 @@ The aim of *linelist* is to take care of these pre-requisites once and for all
 before downstream analyses, thus helping to make data pipelines more robust and
 straightforward.
 
-# linelist in a nutshell 
+# linelist in a nutshell
 
-## Outline 
+## Outline
 
 *linelist* is an R package which implements basic data representation for case
 line lists, alongside accessors and basic methods. It essentially provides three
@@ -54,7 +54,7 @@ symptom onset, age, gender, disease outcome)
 2. **validation**: functions checking that tagged variables are indeed present
    in the `data.frame/tibble`, and that they have the expected type
    (e.g. checking that dates are `Date`, `integer` or `numeric`)
-   
+
 3. **secured methods**: generic functions which could lead to the loss of tagged
    variables have dedicated methods for *linelist* objects with adapted
    behaviours, either updating tags as needed (*e.g.* `rename()`, `names() <-
@@ -203,11 +203,10 @@ information:
 ```{r}
 library(tibble) # data.frame but with nice printing
 library(dplyr) # for data handling
-library(magrittr) # for the %>% operator
 library(linelist) # this package!
 
-x <- measles_hagelloch_1861 %>%
-  tibble() %>%
+x <- measles_hagelloch_1861 |>
+  tibble() |>
   make_linelist(date_onset = "date_of_prodrome",
                 date_death = "date_of_death",
                 age = "age",
@@ -234,10 +233,10 @@ using `mutate()` on `x` to create the new variable (remember `x` is not only a
 and setting up a new tag using `set_tags()`:
 
 ```{r}
-x <- x %>%
+x <- x |>
   mutate(
     inferred_outcome = if_else(is.na(date_of_death), "survived", "died")
-  ) %>%
+  ) |>
   set_tags(outcome = "inferred_outcome")
 x
 ```
@@ -246,7 +245,7 @@ If we wanted to undo the above, i.e. remove the `outcome` tag, we only need to s
 it to `NULL`:
 
 ```{r}
-x <- x %>%
+x <- x |>
   set_tags(outcome = NULL)
 tags(x)
 ```
@@ -260,15 +259,15 @@ types. We could access tagged variables using any of the following means:
 
 ```{r}
 # select tagged variables only
-x %>%
+x |>
   select(has_tag(c("date_onset", "date_death")))
 
 # select tagged variables only with renaming on the fly
-x %>%
+x |>
   select(onset = has_tag("date_onset"))
 
 # get all tagged variables in a data.frame
-x %>%
+x |>
   tags_df()
 ```
 
@@ -281,7 +280,7 @@ against this. For instance, let's assume we want to select only some columns of
 `x`:
 
 ```{r}
-x %>%
+x |>
   select(1:2)
 ```
 
@@ -293,7 +292,7 @@ For example, to retain the first 2 variables, and the `gender` tag:
 
 ```{r}
 # hybrid selection
-x %>%
+x |>
   select(1:2, has_tag("gender"))
 ```
 
@@ -303,19 +302,19 @@ issue an error (for stronger pipelines for instance):
 
 ```{r error = TRUE, purl = FALSE}
 # hybrid selection
-x %>%
+x |>
   select(1:2, has_tag("gender"))
 
 # hybrid selection - no warning
 lost_tags_action("none")
 
-x %>%
+x |>
   select(1:2, has_tag("gender"))
 
 # hybrid selection - error due to lost tags
 lost_tags_action("error")
 
-x %>%
+x |>
   select(1:2, has_tag("gender"))
 
 # note that `lost_tags_action` sets the behavior for any later operation, so we

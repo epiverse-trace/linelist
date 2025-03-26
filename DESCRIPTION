@@ -1,7 +1,7 @@
 Package: linelist
 Title: Tagging and Validating Epidemiological Data
 Version: 1.1.4.9000
-Authors@R: 
+Authors@R:
     c(
       person(given = "Hugo",
              family = "Gruson",
@@ -19,7 +19,7 @@ Authors@R:
              role = "rev",
              comment = c(ORCID = "0000-0003-1050-6809"))
     )
-Description: Provides tools to help storing and handling case line list data. The 'linelist' class adds a tagging system to classical 'data.frame' objects to identify key epidemiological data such as dates of symptom onset, epidemiological case definition, age, gender or disease outcome. Once tagged, these variables can be seamlessly used in downstream analyses, making data pipelines more robust and reliable. 
+Description: Provides tools to help storing and handling case line list data. The 'linelist' class adds a tagging system to classical 'data.frame' objects to identify key epidemiological data such as dates of symptom onset, epidemiological case definition, age, gender or disease outcome. Once tagged, these variables can be seamlessly used in downstream analyses, making data pipelines more robust and reliable.
 License: MIT + file LICENSE
 URL: https://epiverse-trace.github.io/linelist/, https://github.com/epiverse-trace/linelist
 BugReports: https://github.com/epiverse-trace/linelist/issues
@@ -32,7 +32,7 @@ Config/Needs/README:
     incidence2 (>= 2.1.1),
     ggplot2
 Depends:
-    R (>= 3.1.0)
+    R (>= 4.1.0)
 Imports:
     checkmate,
     rlang,
@@ -41,7 +41,6 @@ Suggests:
     callr,
     dplyr,
     knitr,
-    magrittr,
     outbreaks,
     rmarkdown,
     spelling,

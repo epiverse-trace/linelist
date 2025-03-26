@@ -48,17 +48,17 @@ takes the appropriate action if this is the case (warning, error, or ignore,
 depending on the general option set via \code{\link[=lost_tags_action]{lost_tags_action()}}) .
 }
 \examples{
-if (require(outbreaks) && require(dplyr) && require(magrittr)) {
+if (require(outbreaks) && require(dplyr)) {
   ## create a linelist
-  x <- measles_hagelloch_1861 \%>\%
+  x <- measles_hagelloch_1861 |>
     make_linelist(
       id = "case_ID",
       date_onset = "date_of_prodrome",
       age = "age",
       gender = "gender"
-    ) \%>\%
-    mutate(result = if_else(is.na(date_of_death), "survived", "died")) \%>\%
-    set_tags(outcome = "result") \%>\%
+    ) |>
+    mutate(result = if_else(is.na(date_of_death), "survived", "died")) |>
+    set_tags(outcome = "result") |>
     rename(identifier = case_ID)
   x
 
