@@ -2,6 +2,8 @@
 
     
     // linelist object
+    
+    // safeframe object
        speed dist
     1      4    2
     2      4   10
@@ -54,12 +56,16 @@
     49    24  120
     50    25   85
     
-    // tags: date_onset:dist, date_outcome:speed 
+    tagged variables:
+     date_outcome - speed
+     date_onset - dist 
 
 ---
 
     
     // linelist object
+    
+    // safeframe object
        speed dist
     1      4    2
     2      4   10
@@ -112,5 +118,5 @@
     49    24  120
     50    25   85
     
-    // tags: [no tagged variable] 
+    [no tagged variables]
 
