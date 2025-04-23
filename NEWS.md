@@ -1,4 +1,4 @@
-# linelist (development version)
+# linelist 2.0.0
 
 ## Breaking changes
 
