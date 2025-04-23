@@ -16,12 +16,12 @@ knitr::opts_chunk$set(
 # **linelist**: Tagging and Validating Epidemiological Data <img src="man/figures/logo.svg" align="right" width="120" />
 
 <!-- badges: start -->
-[![Digital Public Good](https://raw.githubusercontent.com/epiverse-trace/linelist/main/man/figures/dpg_badge.png)](https://digitalpublicgoods.net/registry/linelist.html)
+[![Digital Public Good](https://raw.githubusercontent.com/epiverse-trace/linelist/main/man/figures/dpg_badge.png)](https://www.digitalpublicgoods.net/r/linelist)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/mit)
 [![cran-check](https://badges.cranchecks.info/summary/linelist.svg)](https://cran.r-project.org/web/checks/check_results_linelist.html)
 [![R-CMD-check](https://github.com/epiverse-trace/linelist/workflows/R-CMD-check/badge.svg)](https://github.com/epiverse-trace/linelist/actions)
 [![codecov](https://codecov.io/gh/epiverse-trace/linelist/branch/main/graph/badge.svg?token=JGTCEY0W02)](https://app.codecov.io/gh/epiverse-trace/linelist)
-[![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-maturing.svg)](https://www.reconverse.org/lifecycle.html#maturing) 
+[![lifecycle-experimental](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-maturing.svg)](https://www.reconverse.org/lifecycle.html#maturing)
 [![month-download](https://cranlogs.r-pkg.org/badges/linelist)](https://cran.r-project.org/package=linelist)
 [![total-download](https://cranlogs.r-pkg.org/badges/grand-total/linelist)](https://cran.r-project.org/package=linelist)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6532786.svg)](https://doi.org/10.5281/zenodo.6532786)
@@ -74,10 +74,10 @@ types of features:
 1. a **tagging system** to identify key data, enabling access to these data using
    their tags rather than actual names, which may change over time and across
    datasets
-   
+
 2. **validation** of the tagged variables (making sure they are present and of the
    right type/class)
-   
+
 3. **safeguards** against accidental losses of tagged variables in common data
    handling operations
 
@@ -224,7 +224,7 @@ Contributions are welcome via [pull requests](https://github.com/epiverse-trace/
 
 ### Code of Conduct
 
-Please note that the linelist project is released with a 
+Please note that the linelist project is released with a
 [Code of Conduct](https://github.com/epiverse-trace/.github/blob/main/CODE_OF_CONDUCT.md).
 By contributing to this project, you agree to abide by its terms.
 
