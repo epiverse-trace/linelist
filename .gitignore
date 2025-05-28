@@ -21,6 +21,10 @@
 # RStudio files
 .Rproj.user/
 
+# vignette building
+/doc/
+/Meta/
+
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
@@ -50,3 +54,8 @@ rsconnect/
 
 # macOS hidden files
 .DS_Store
+
+# revdepcheck
+revdep/library
+revdep/data.sqlite
+revdep/checks
