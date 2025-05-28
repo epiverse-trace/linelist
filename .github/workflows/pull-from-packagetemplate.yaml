@@ -43,6 +43,9 @@ jobs:
           name: config-from-packagetemplate
       - uses: peter-evans/create-pull-request@v7
         with:
+          # We need a custom PAT because the permission workflows: write cannot be set
+          # on the default PAT.
+          token: ${{ secrets.UPDATE_WORKFLOWS }}
           commit-message: 'Update config files from packagetemplate'
           title: 'Update config files from packagetemplate'
           add-paths: |
