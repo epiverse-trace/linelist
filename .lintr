@@ -9,8 +9,7 @@ linters: all_linters(
       modify_defaults(
         default_undesirable_functions,
         citEntry = "use the more modern bibentry() function",
-        library = NULL, # too many false positive in too many files
-        options = NULL
+        library = NULL # too many false positive in too many files
       )
     ),
     function_argument_linter = NULL,
