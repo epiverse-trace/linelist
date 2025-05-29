@@ -30,17 +30,6 @@
 #'
 #' @section Dedicated methods:
 #'
-#'   Specific methods commonly used to handle `data.frame` are provided for
-#'   `linelist` objects, typically to help flag or prevent actions which could
-#'   alter or lose tagged variables (and may thus break downstream data
-#'   pipelines).
-#'
-#'   * `names() <-` (and related functions, such as [dplyr::rename()]) will
-#'   rename tags as needed
-#'
-#'   * `x[...] <-` and `x[[...]] <-` (see [sub_linelist]): will adopt the
-#'    desired behaviour when tagged variables are lost
-#'
 #'   * `print()`: prints info about the `linelist` in addition to the
 #'   `data.frame` or `tibble`
 #'
