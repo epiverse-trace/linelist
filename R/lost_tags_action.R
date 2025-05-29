@@ -41,14 +41,15 @@
 #' # reset to default: warning
 #' lost_tags_action()
 #'
-lost_tags_action <- function(action = c("warning", "error", "none"),
-                             quiet = FALSE) {
-
-  linelist_options <- options("linelist")$linelist
+lost_tags_action <- function(
+  action = c("warning", "error", "none"),
+  quiet = FALSE
+) {
+  linelist_options <- getOption("linelist")
 
   action <- match.arg(action)
   linelist_options$lost_tags_action <- action
-  options(linelist = linelist_options)
+  options(linelist = linelist_options) # nolint: undesirable_function_linter.
   if (!quiet) {
     if (action == "warning") msg <- "Lost tags will now issue a warning."
     if (action == "error") msg <- "Lost tags will now issue an error."
@@ -56,7 +57,6 @@ lost_tags_action <- function(action = c("warning", "error", "none"),
     message(msg)
   }
   return(invisible(NULL))
-
 }
 
 
@@ -66,5 +66,5 @@ lost_tags_action <- function(action = c("warning", "error", "none"),
 #' @rdname lost_tags_action
 
 get_lost_tags_action <- function() {
-  options("linelist")$linelist$lost_tags_action
+  getOption("linelist")$lost_tags_action
 }
