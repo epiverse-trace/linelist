@@ -129,17 +129,17 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Hugo Gruson \email{hugo@data.org} (\href{https://orcid.org/0000-0002-4094-1476}{ORCID})
+\strong{Maintainer}: Chris Hartgerink \email{chris@data.org} (\href{https://orcid.org/0000-0003-1050-6809}{ORCID}) [reviewer]
 
 Authors:
 \itemize{
+  \item Hugo Gruson (\href{https://orcid.org/0000-0002-4094-1476}{ORCID})
   \item Thibaut Jombart [conceptor]
 }
 
 Other contributors:
 \itemize{
   \item Tim Taylor [contributor]
-  \item Chris Hartgerink (\href{https://orcid.org/0000-0003-1050-6809}{ORCID}) [reviewer]
 }
 
 }
