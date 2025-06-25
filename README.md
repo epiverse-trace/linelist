@@ -81,13 +81,13 @@ details about `linelist` objects.
 # -------------------------------------------
 library(linelist)
 library(dplyr)
-#>
+#> 
 #> Attaching package: 'dplyr'
 #> The following objects are masked from 'package:stats':
-#>
+#> 
 #>     filter, lag
 #> The following objects are masked from 'package:base':
-#>
+#> 
 #>     intersect, setdiff, setequal, union
 
 dataset <- outbreaks::mers_korea_2015$linelist
@@ -118,8 +118,8 @@ head(dataset)
 # ----------------------------
 tags_names()
 #>  [1] "id"             "date_onset"     "date_reporting" "date_admission"
-#>  [5] "date_discharge" "date_outcome"   "date_death"     "gender"
-#>  [9] "age"            "location"       "occupation"     "hcw"
+#>  [5] "date_discharge" "date_outcome"   "date_death"     "gender"        
+#>  [9] "age"            "location"       "occupation"     "hcw"           
 #> [13] "outcome"
 
 # build a linelist
@@ -132,11 +132,11 @@ x <- dataset %>%
     occupation = "age" # mistake
   )
 x
-#>
+#> 
 #> // linelist object
 #> # A tibble: 162 × 15
-#>    id      age age_class sex   place_infect   reporting_ctry loc_hosp dt_onset
-#>    <chr> <int> <chr>     <fct> <fct>          <fct>          <fct>    <date>
+#>    id      age age_class sex   place_infect   reporting_ctry loc_hosp dt_onset  
+#>    <chr> <int> <chr>     <fct> <fct>          <fct>          <fct>    <date>    
 #>  1 SK_1     68 60-69     M     Middle East    South Korea    Pyeongt… 2015-05-11
 #>  2 SK_2     63 60-69     F     Outside Middl… South Korea    Pyeongt… 2015-05-18
 #>  3 SK_3     76 70-79     M     Outside Middl… South Korea    Pyeongt… 2015-05-20
@@ -145,20 +145,20 @@ x
 #>  6 SK_6     71 70-79     M     Outside Middl… South Korea    Pyeongt… 2015-05-24
 #>  7 SK_7     28 20-29     F     Outside Middl… South Korea    Pyeongt… 2015-05-21
 #>  8 SK_8     46 40-49     F     Outside Middl… South Korea    Seoul C… 2015-05-26
-#>  9 SK_9     56 50-59     M     Outside Middl… South Korea    Pyeongt… NA
+#>  9 SK_9     56 50-59     M     Outside Middl… South Korea    Pyeongt… NA        
 #> 10 SK_10    44 40-49     M     Outside Middl… China          Pyeongt… 2015-05-21
 #> # ℹ 152 more rows
 #> # ℹ 7 more variables: dt_report <date>, week_report <fct>, dt_start_exp <date>,
 #> #   dt_end_exp <date>, dt_diag <date>, outcome <fct>, dt_death <date>
-#>
+#> 
 #> // tags: date_onset:dt_onset, date_reporting:dt_report, occupation:age
 tags(x) # check available tags
 #> $date_onset
 #> [1] "dt_onset"
-#>
+#> 
 #> $date_reporting
 #> [1] "dt_report"
-#>
+#> 
 #> $occupation
 #> [1] "age"
 ```
@@ -220,40 +220,40 @@ x_no_geo %>%
   select(has_tag(c("date_onset", "outcome")))
 #> Warning: The following tags have lost their variable:
 #>  date_reporting:dt_report, gender:sex
-#>
+#> 
 #> // linelist object
 #> # A tibble: 162 × 2
 #>    dt_onset   outcome
-#>    <date>     <fct>
-#>  1 2015-05-11 Alive
-#>  2 2015-05-18 Alive
-#>  3 2015-05-20 Dead
-#>  4 2015-05-25 Alive
-#>  5 2015-05-25 Alive
-#>  6 2015-05-24 Dead
-#>  7 2015-05-21 Alive
-#>  8 2015-05-26 Alive
-#>  9 NA         Alive
-#> 10 2015-05-21 Alive
+#>    <date>     <fct>  
+#>  1 2015-05-11 Alive  
+#>  2 2015-05-18 Alive  
+#>  3 2015-05-20 Dead   
+#>  4 2015-05-25 Alive  
+#>  5 2015-05-25 Alive  
+#>  6 2015-05-24 Dead   
+#>  7 2015-05-21 Alive  
+#>  8 2015-05-26 Alive  
+#>  9 NA         Alive  
+#> 10 2015-05-21 Alive  
 #> # ℹ 152 more rows
-#>
+#> 
 #> // tags: date_onset:dt_onset, outcome:outcome
 
 x_no_geo %>%
   tags_df()
 #> # A tibble: 162 × 4
 #>    date_onset date_reporting gender outcome
-#>    <date>     <date>         <fct>  <fct>
-#>  1 2015-05-11 2015-05-19     M      Alive
-#>  2 2015-05-18 2015-05-20     F      Alive
-#>  3 2015-05-20 2015-05-20     M      Dead
-#>  4 2015-05-25 2015-05-26     F      Alive
-#>  5 2015-05-25 2015-05-27     M      Alive
-#>  6 2015-05-24 2015-05-28     M      Dead
-#>  7 2015-05-21 2015-05-28     F      Alive
-#>  8 2015-05-26 2015-05-29     F      Alive
-#>  9 NA         2015-05-29     M      Alive
-#> 10 2015-05-21 2015-05-29     M      Alive
+#>    <date>     <date>         <fct>  <fct>  
+#>  1 2015-05-11 2015-05-19     M      Alive  
+#>  2 2015-05-18 2015-05-20     F      Alive  
+#>  3 2015-05-20 2015-05-20     M      Dead   
+#>  4 2015-05-25 2015-05-26     F      Alive  
+#>  5 2015-05-25 2015-05-27     M      Alive  
+#>  6 2015-05-24 2015-05-28     M      Dead   
+#>  7 2015-05-21 2015-05-28     F      Alive  
+#>  8 2015-05-26 2015-05-29     F      Alive  
+#>  9 NA         2015-05-29     M      Alive  
+#> 10 2015-05-21 2015-05-29     M      Alive  
 #> # ℹ 152 more rows
 ```
 
@@ -314,9 +314,9 @@ sharing them with analytics teams.
 ### Lifecycle
 
 This package is currently *stable*, as defined by the [RECON software
-lifecycle](https://www.reconverse.org/lifecycle.html). This means that the
-interface is not meant to change in the future and this package can be used as a
-dependency in other packages.
+lifecycle](https://www.reconverse.org/lifecycle.html). This means that
+the interface is not meant to change in the future and this package can
+be used as a dependency in other packages.
 
 ### Contributions
 
