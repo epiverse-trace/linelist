@@ -8,7 +8,7 @@ message: 'To cite package "linelist" in publications use:'
 type: software
 license: MIT
 title: 'linelist: Tagging and Validating Epidemiological Data'
-version: 2.0.0.9000
+version: 2.0.1.9000
 doi: 10.5281/zenodo.6532786
 identifiers:
 - type: doi
@@ -21,17 +21,19 @@ abstract: Provides tools to help storing and handling case line list data. The '
 authors:
 - family-names: Gruson
   given-names: Hugo
-  email: hugo@data.org
   orcid: https://orcid.org/0000-0002-4094-1476
 - family-names: Jombart
   given-names: Thibaut
+- family-names: Hartgerink
+  given-names: Chris
+  email: chris@data.org
+  orcid: https://orcid.org/0000-0003-1050-6809
 preferred-citation:
   type: manual
   title: 'linelist: Tagging and Validating Epidemiological Data'
   authors:
   - family-names: Gruson
     given-names: Hugo
-    email: hugo@data.org
     orcid: https://orcid.org/0000-0002-4094-1476
   - family-names: Jombart
     given-names: Thibaut
@@ -42,10 +44,10 @@ repository: https://CRAN.R-project.org/package=linelist
 repository-code: https://github.com/epiverse-trace/linelist
 url: https://epiverse-trace.github.io/linelist/
 contact:
-- family-names: Gruson
-  given-names: Hugo
-  email: hugo@data.org
-  orcid: https://orcid.org/0000-0002-4094-1476
+- family-names: Hartgerink
+  given-names: Chris
+  email: chris@data.org
+  orcid: https://orcid.org/0000-0003-1050-6809
 keywords:
 - data
 - data-structures
