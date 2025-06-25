@@ -5,9 +5,8 @@ Authors@R:
     c(
       person(given = "Hugo",
              family = "Gruson",
-             role = c("aut", "cre"),
-             comment = c(ORCID = "0000-0002-4094-1476"),
-             email = "hugo@data.org"),
+             role = "aut",
+             comment = c(ORCID = "0000-0002-4094-1476")),
       person(given = "Thibaut",
              family = "Jombart",
              role = c("aut", "ccp")),
@@ -16,7 +15,8 @@ Authors@R:
              role = "ctb"),
       person(given = "Chris",
              family = "Hartgerink",
-             role = "rev",
+             role = c("cre", "rev"),
+             email = "chris@data.org",
              comment = c(ORCID = "0000-0003-1050-6809"))
     )
 Description: Provides tools to help storing and handling case line list data. The 'linelist' class adds a tagging system to classical 'data.frame' objects to identify key epidemiological data such as dates of symptom onset, epidemiological case definition, age, gender or disease outcome. Once tagged, these variables can be seamlessly used in downstream analyses, making data pipelines more robust and reliable.

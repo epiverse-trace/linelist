@@ -1,5 +1,9 @@
 # linelist (development version)
 
+## Internal changes
+
+* Chris Hartgerink (@chartgerink) is now linelist maintainer.
+
 # linelist 2.0.0
 
 ## Breaking changes
