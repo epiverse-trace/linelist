@@ -213,10 +213,10 @@ with analytics teams.
 
 ### Lifecycle
 
-This package is currently *maturing*, as defined by the [RECON software
-lifecycle](https://www.reconverse.org/lifecycle.html). This means that essential
-features and mechanisms are present and stable but minor breaking changes, or
-function renames may still occur sporadically.
+This package is currently *stable*, as defined by the [RECON software
+lifecycle](https://www.reconverse.org/lifecycle.html). This means that the
+interface is not meant to change in the future and this package can be used as a
+dependency in other packages.
 
 ### Contributions
 
