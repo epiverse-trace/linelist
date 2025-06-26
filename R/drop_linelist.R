@@ -15,10 +15,8 @@
 #'
 
 drop_linelist <- function(x, remove_tags = TRUE) {
-  classes <- class(x)
-  class(x) <- setdiff(classes, "linelist")
-  if (remove_tags) {
-    attr(x, "tags") <- NULL
-  }
+  x <- safeframe::drop_safeframe(x, remove_tags = remove_tags)
+  class(x) <- setdiff(class(x), "linelist")
+
   x
 }
