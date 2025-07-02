@@ -5,8 +5,8 @@ on:
 
 permissions:
   actions: write
-  contents: write
   pull-requests: write
+  contents: write
 
 jobs:
   download-from-packagetemplate:
@@ -20,7 +20,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: config-from-packagetemplate
-          include-hidden-files: true
           path: |
             .Rbuildignore
             .gitattributes
@@ -43,11 +42,6 @@ jobs:
           name: config-from-packagetemplate
       - uses: peter-evans/create-pull-request@v7
         with:
-          # We need a custom PAT because the permission workflows: write cannot be set
-          # on the default PAT.
-          token: ${{ secrets.UPDATE_WORKFLOWS }}
-          commit-message: 'Update config files from packagetemplate'
-          title: 'Update config files from packagetemplate'
           add-paths: |
             .Rbuildignore
             .gitattributes
