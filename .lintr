@@ -1,5 +1,5 @@
 linters: all_linters(
-    packages = c("lintr", "etdev"),
+    packages = "lintr",
     pipe_consistency_linter(pipe = "|>"),
     object_name_linter = NULL,
     implicit_integer_linter = NULL,
@@ -16,9 +16,8 @@ linters: all_linters(
     indentation_linter = NULL, # unstable as of lintr 3.1.0
     one_call_pipe_linter = NULL,
     object_overwrite_linter = NULL,
-    # Use minimum R declared in DESCRIPTION or fall back to current R version.
-    # Install etdev package from https://github.com/epiverse-trace/etdev
-    backport_linter(if (length(x <- etdev::extract_min_r_version())) x else getRversion())
+    # Epiverse-TRACE minimum R version support, as described in the blueprints
+    backport_linter("oldrel-4")
   )
 exclusions: list(
     "tests/testthat.R" = list(
