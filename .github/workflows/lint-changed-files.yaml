@@ -35,7 +35,6 @@ jobs:
             any::lintr
             any::purrr
             any::cyclocomp
-            epiverse-trace/etdev
           needs: check
 
       - name: Install package
