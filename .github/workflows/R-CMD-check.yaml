@@ -42,6 +42,7 @@ name: R-CMD-check
 
 permissions:
   contents: read
+  actions: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
